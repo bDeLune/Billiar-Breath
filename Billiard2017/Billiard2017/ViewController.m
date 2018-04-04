@@ -1,25 +1,20 @@
-//
-//  ViewController.m
-//  BilliardBreath
-//
-//  Created by barry on 09/12/2013.
-//  Copyright (c) 2013 rocudo. All rights reserved.
-//
-
 #import "ViewController.h"
 #import "AddNewUserOperation.h"
 #import "User.h"
 #import "Game.h"
 #import "GameViewController.h"
-
+#import "GPUImage.h"
 //maybe
+
 #define GUAGE_HEIGHT 575
-#import  "Source/GPUImageBulgeDistortionFilter.h"
-#import  "GPUImageSwirlFilter.h"
+
+/*
+#import "GPUImageBulgeDistortionFilter.h"
+#import "GPUImageSwirlFilter.h"
 #import "GPUImageZoomBlurFilter.h"
-#import"GPUImageVignetteFilter.h"
+#import "GPUImageVignetteFilter.h"
 #import "GPUImageToonFilter.h"
-//#import "GPUImageToneCurveFilter.h"
+#import "GPUImageToneCurveFilter.h"
 #import "GPUImageThresholdSketchFilter.h"
 #import "GPUImageDilationFilter.h"
 #import "GPUImageDissolveBlendFilter.h"
@@ -30,13 +25,14 @@
 #import "GPUImagePixellateFilter.h"
 #import "GPUImageHazeFilter.h"
 #import "GPUImageErosionFilter.h"
-#import "Source/GPUImagePicture.h"
-#import "Source/GPUImageView.h"
-#import "Source/GPUImageExposureFilter.h"
-#import <CoreMIDI/CoreMIDI.h>
-#import <AudioToolbox/AudioToolbox.h>
+#import "GPUImagePicture.h"
 #import "GPUImageTiltShiftFilter.h"
 #import "GPUImageContrastFilter.h"
+#import "GPUImageView.h"
+#import "GPUImageExposureFilter.h"*/
+#import <CoreMIDI/CoreMIDI.h>
+#import <AudioToolbox/AudioToolbox.h>
+
 #import "BTLEManager.h"
 
 static void    MyMIDIReadProc(const MIDIPacketList *pktlist, void *refCon, void *connRefCon);
@@ -99,7 +95,7 @@ typedef void(^RunTimer)(void);
 @property(nonatomic,strong)User  *currentUser;
 @property(nonatomic,strong)Game  *currentGame;
 @property(nonatomic,strong)UIImageView *startupImageView;
-@property(nonatomic,strong)UIImageView  *btOnOfImageView;
+
 
 @end
 
@@ -108,6 +104,21 @@ typedef void(^RunTimer)(void);
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //simpleimage
+    [super viewDidLoad];
+    midiinhale=61;
+    midiexhale=73;
+    velocity=0;
+    midiIsOn=false;
+    targetRadius=0;
+    defaultScale=1.5;
+    defaultRadius=0;
+    // [self setupMIDI];
+    // Do any additional setup after loading the view, typically from a nib.
+    
+    
+    
     
     // observe for any errors that come from our parser
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addUserError:) name:kAddNewUserOperationUserError object:nil];
@@ -613,19 +624,8 @@ typedef void(^RunTimer)(void);
         [self toggleDirection:nil];
     }
 }
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    midiinhale=61;
-    midiexhale=73;
-    velocity=0;
-    midiIsOn=false;
-    targetRadius=0;
-    defaultScale=1.5;
-    defaultRadius=0;
-    // [self setupMIDI];
-    // Do any additional setup after loading the view, typically from a nib.
-}
+
+
 -(void)updateimage
 {
     /***
@@ -731,11 +731,6 @@ typedef void(^RunTimer)(void);
      self.focusFallOffRate = 0.2;
      self.blurSize = 2.0;*/
 }
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 
 -(void)setupDisplayFilteringWithImage:(UIImage*)aImage
@@ -807,27 +802,7 @@ typedef void(^RunTimer)(void);
     stillImageFilter=[self filterForIndex:index];
     [sourcePicture addTarget:stillImageFilter];
     [stillImageFilter addTarget:imageView];
-    
-    
-    
-    
 }
-
-/***
- #import"GPUImageVignetteFilter.h"
- #import "GPUImageToonFilter.h"
- #import "GPUImageToneCurveFilter.h"
- #import "GPUImageThresholdSketchFilter.h"
- #import "GPUImageDilationFilter.h"
- #import "GPUImageDissolveBlendFilter.h"
- #import "GPUImageStretchDistortionFilter.h"
- #import "GPUImageSphereRefractionFilter.h"
- #import "GPUImagePolkaDotFilter.h"
- #import "GPUImagePosterizeFilter.h"
- #import "GPUImagePixellateFilter.h"
- #import "GPUImageHazeFilter.h"
- #import "GPUImageErosionFilter.h"
- */
 
 -(GPUImageFilter*)filterForIndex:(int)index
 {
@@ -837,53 +812,33 @@ typedef void(^RunTimer)(void);
         case 0:
             filter=[[GPUImageBulgeDistortionFilter alloc] init];
             break;
-            
         case 1:
             filter=[[GPUImageSwirlFilter alloc] init];
-            
             break;
-            
         case 2:
             filter=[[GPUImageZoomBlurFilter alloc] init];
-            
             break;
-            
-            
         case 3:
             filter=[[GPUImageToonFilter alloc] init];
-            
             break;
-            
-            
         case 4:
             filter=[[GPUImageExposureFilter alloc] init];
             break;
-            
-            
         case 5:
             filter=[[GPUImagePolkaDotFilter alloc] init];
-            
             break;
         case 6:
             filter=[[GPUImagePosterizeFilter alloc] init];
-            
             break;
-            
         case 7:
             filter=[[GPUImagePixellateFilter alloc] init];
-            
             break;
-            
         case 8:
             filter=[[GPUImageContrastFilter alloc] init];
             break;
-            
-            
-            
         default:
             break;
     }
-    
     return filter;
 }
 
@@ -893,16 +848,16 @@ typedef void(^RunTimer)(void);
     NSString  *newstring=[NSString stringWithFormat:@"%@\n%@",_textarea.text,str];
     [_textarea setText:newstring];
 }
+
 -(void)animate
 {
     self.velocity+=0.1;
     if (self.velocity<threshold) {
         return;
     }
+    
     float fVel= (float)self.velocity;
     float rate = fVel/10;
-    
-    
     
     if (inorout==midiinhale) {
         targetRadius=targetRadius+((45.0/100)*_animationrate);
@@ -911,7 +866,6 @@ typedef void(^RunTimer)(void);
         targetRadius=targetRadius-((45.0/100)*_animationrate);
     }
     
-    
     if (targetRadius<0.01) {
         targetRadius=0.01;
     }
@@ -919,9 +873,8 @@ typedef void(^RunTimer)(void);
     if (targetRadius>1) {
         targetRadius=1;
     }
-    
-    
 }
+
 -(void)start
 {
     //  [self stop];
@@ -929,11 +882,10 @@ typedef void(^RunTimer)(void);
     // if (!animationRunning)
     // {
     displayLink = [CADisplayLink displayLinkWithTarget:self
-                                              selector:@selector(animate)];
+                                            selector:@selector(animate)];
     [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
     animationRunning = YES;
     //}
 }
-
 
 @end

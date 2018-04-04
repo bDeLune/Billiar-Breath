@@ -14,7 +14,7 @@
 #import "PlotItem.h"
 #import "CurvedScatterPlot.h"
 #import "AllGamesForDayTableVC.h"
-#import "GCDQueue.h";
+#import "GCDQueue.h"
 
 @interface UserListViewController()<UIActionSheetDelegate,HeaderViewProtocl>
 

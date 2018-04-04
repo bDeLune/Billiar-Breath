@@ -47,7 +47,6 @@
 		7186DE9D1E4DBFA400F71F0C /* BilliardBreathAppIcon80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE8E1E4DBFA400F71F0C /* BilliardBreathAppIcon80x80.png */; };
 		7186DE9E1E4DBFA400F71F0C /* BilliardBreathAppIcon100x100.png in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE8F1E4DBFA400F71F0C /* BilliardBreathAppIcon100x100.png */; };
 		7186DE9F1E4DBFA400F71F0C /* BilliardBreathAppIcon114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE901E4DBFA400F71F0C /* BilliardBreathAppIcon114x114.png */; };
-		7186DEA01E4DBFA400F71F0C /* BilliardBreathAppIcon120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE911E4DBFA400F71F0C /* BilliardBreathAppIcon120x120.png */; };
 		7186DEA11E4DBFA400F71F0C /* BilliardBreathAppIcon144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE921E4DBFA400F71F0C /* BilliardBreathAppIcon144x144.png */; };
 		7186DEA21E4DBFA400F71F0C /* BilliardBreathAppIcon152x152.png in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE931E4DBFA400F71F0C /* BilliardBreathAppIcon152x152.png */; };
 		7186DEA31E4DBFA400F71F0C /* BilliardBreathAppIcon167x167.png in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE941E4DBFA400F71F0C /* BilliardBreathAppIcon167x167.png */; };
@@ -97,8 +96,15 @@
 		71D1A36C2074FBC800C83B63 /* MainBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D1A3632074FBC800C83B63 /* MainBackground.png */; };
 		71D1A36D2074FBC800C83B63 /* Logo-Middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D1A3642074FBC800C83B63 /* Logo-Middle.png */; };
 		71D1A36E2074FBC800C83B63 /* Menu-Users.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D1A3652074FBC800C83B63 /* Menu-Users.png */; };
-		71D1A3702074FE3C00C83B63 /* Source in Resources */ = {isa = PBXBuildFile; fileRef = 71D1A36F2074FE3C00C83B63 /* Source */; };
 		71D1A3732074FE5300C83B63 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D1A3712074FE5200C83B63 /* SecondViewController.m */; };
+		71D1A64B2075187A00C83B63 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D1A6482075184C00C83B63 /* GPUImage.framework */; };
+		71D1A64D2075191E00C83B63 /* GPUImage.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 71D1A6482075184C00C83B63 /* GPUImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		71D1A64F20751F2400C83B63 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D1A64E20751F2400C83B63 /* CoreMedia.framework */; };
+		71D1A65120751F2D00C83B63 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D1A65020751F2C00C83B63 /* CoreVideo.framework */; };
+		71D1A65320751F4200C83B63 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D1A65220751F4200C83B63 /* OpenGLES.framework */; };
+		71D1A65520751F4A00C83B63 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D1A65420751F4A00C83B63 /* AVFoundation.framework */; };
+		71D1A65720751F5300C83B63 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D1A65620751F5200C83B63 /* QuartzCore.framework */; };
+		71D1A65820751F7000C83B63 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D1A6462075184C00C83B63 /* libGPUImage.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,7 +171,41 @@
 			remoteGlobalIDString = C38A09B91A4619A900D45436;
 			remoteInfo = "CorePlot-CocoaTouch";
 		};
+		71D1A6452075184C00C83B63 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 71D1A63F2075184B00C83B63 /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BCF1A33414DDB1EC00852800;
+			remoteInfo = GPUImage;
+		};
+		71D1A6472075184C00C83B63 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 71D1A63F2075184B00C83B63 /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BCE209E51943F20C002FEED8;
+			remoteInfo = GPUImageFramework;
+		};
+		71D1A6492075185900C83B63 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 71D1A63F2075184B00C83B63 /* GPUImage.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BCE209E41943F20C002FEED8;
+			remoteInfo = GPUImageFramework;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		71D1A64C207518D200C83B63 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				71D1A64D2075191E00C83B63 /* GPUImage.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		710857261E439A0A00479032 /* Billiard2017.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Billiard2017.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -305,9 +345,14 @@
 		71D1A3632074FBC800C83B63 /* MainBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MainBackground.png; sourceTree = "<group>"; };
 		71D1A3642074FBC800C83B63 /* Logo-Middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo-Middle.png"; sourceTree = "<group>"; };
 		71D1A3652074FBC800C83B63 /* Menu-Users.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Menu-Users.png"; sourceTree = "<group>"; };
-		71D1A36F2074FE3C00C83B63 /* Source */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Source; sourceTree = "<group>"; };
 		71D1A3712074FE5200C83B63 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		71D1A3722074FE5300C83B63 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		71D1A63F2075184B00C83B63 /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = "../../../Downloads/GPUImage-master 3/framework/GPUImage.xcodeproj"; sourceTree = "<group>"; };
+		71D1A64E20751F2400C83B63 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		71D1A65020751F2C00C83B63 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		71D1A65220751F4200C83B63 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		71D1A65420751F4A00C83B63 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		71D1A65620751F5200C83B63 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,6 +360,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71D1A65820751F7000C83B63 /* libGPUImage.a in Frameworks */,
+				71D1A65720751F5300C83B63 /* QuartzCore.framework in Frameworks */,
+				71D1A65520751F4A00C83B63 /* AVFoundation.framework in Frameworks */,
+				71D1A65320751F4200C83B63 /* OpenGLES.framework in Frameworks */,
+				71D1A65120751F2D00C83B63 /* CoreVideo.framework in Frameworks */,
+				71D1A64F20751F2400C83B63 /* CoreMedia.framework in Frameworks */,
+				71D1A64B2075187A00C83B63 /* GPUImage.framework in Frameworks */,
 				710857681E439B8A00479032 /* Accelerate.framework in Frameworks */,
 				710857651E439B6200479032 /* libCorePlot-CocoaTouch.a in Frameworks */,
 				7186DEB41E4DC59F00F71F0C /* libMelodySmart.a in Frameworks */,
@@ -328,6 +380,7 @@
 			isa = PBXGroup;
 			children = (
 				718E21591E51DD0300E8357B /* LaunchScreen.storyboard */,
+				71D1A63F2075184B00C83B63 /* GPUImage.xcodeproj */,
 				710857431E439B4100479032 /* CorePlot.xcodeproj */,
 				710857281E439A0A00479032 /* Billiard2017 */,
 				710857271E439A0A00479032 /* Products */,
@@ -399,7 +452,6 @@
 				7186DE281E4DBF7100F71F0C /* GameViewController.h */,
 				7186DE291E4DBF7100F71F0C /* GameViewController.m */,
 				7186DE041E4DBF5F00F71F0C /* HeaderView.m */,
-				71D1A36F2074FE3C00C83B63 /* Source */,
 				7186DE051E4DBF5F00F71F0C /* GameViewController.xib */,
 				7186DE061E4DBF5F00F71F0C /* GraphViewController.h */,
 				7186DE071E4DBF5F00F71F0C /* GraphViewController.m */,
@@ -473,6 +525,11 @@
 		710857661E439B8A00479032 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				71D1A65620751F5200C83B63 /* QuartzCore.framework */,
+				71D1A65420751F4A00C83B63 /* AVFoundation.framework */,
+				71D1A65220751F4200C83B63 /* OpenGLES.framework */,
+				71D1A65020751F2C00C83B63 /* CoreVideo.framework */,
+				71D1A64E20751F2400C83B63 /* CoreMedia.framework */,
 				710857671E439B8A00479032 /* Accelerate.framework */,
 			);
 			name = Frameworks;
@@ -597,6 +654,15 @@
 			path = UIEffectDesignerView;
 			sourceTree = "<group>";
 		};
+		71D1A6402075184B00C83B63 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				71D1A6462075184C00C83B63 /* libGPUImage.a */,
+				71D1A6482075184C00C83B63 /* GPUImage.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -607,10 +673,12 @@
 				710857221E439A0A00479032 /* Sources */,
 				710857231E439A0A00479032 /* Frameworks */,
 				710857241E439A0A00479032 /* Resources */,
+				71D1A64C207518D200C83B63 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				71D1A64A2075185900C83B63 /* PBXTargetDependency */,
 				710857641E439B5D00479032 /* PBXTargetDependency */,
 			);
 			name = Billiard2017;
@@ -649,6 +717,10 @@
 				{
 					ProductGroup = 710857441E439B4100479032 /* Products */;
 					ProjectRef = 710857431E439B4100479032 /* CorePlot.xcodeproj */;
+				},
+				{
+					ProductGroup = 71D1A6402075184B00C83B63 /* Products */;
+					ProjectRef = 71D1A63F2075184B00C83B63 /* GPUImage.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -715,6 +787,20 @@
 			remoteRef = 710857611E439B4200479032 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		71D1A6462075184C00C83B63 /* libGPUImage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGPUImage.a;
+			remoteRef = 71D1A6452075184C00C83B63 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		71D1A6482075184C00C83B63 /* GPUImage.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GPUImage.framework;
+			remoteRef = 71D1A6472075184C00C83B63 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -738,7 +824,6 @@
 				71693B90206937D3009F14EA /* BilliardBreath1024X1024.png in Resources */,
 				718E215A1E51DD0300E8357B /* LaunchScreen.storyboard in Resources */,
 				71D1A36D2074FBC800C83B63 /* Logo-Middle.png in Resources */,
-				7186DEA01E4DBFA400F71F0C /* BilliardBreathAppIcon120x120.png in Resources */,
 				7186DDF81E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.wav in Resources */,
 				71D1A3582074F8F000C83B63 /* bell.wav in Resources */,
 				71D1A36C2074FBC800C83B63 /* MainBackground.png in Resources */,
@@ -767,7 +852,6 @@
 				7186DEDF1E51CA2300F71F0C /* DefaultPortrait.png in Resources */,
 				7186DDF71E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.mp3 in Resources */,
 				71D1A3592074F8F000C83B63 /* bell_2.png in Resources */,
-				71D1A3702074FE3C00C83B63 /* Source in Resources */,
 				7186DEA11E4DBFA400F71F0C /* BilliardBreathAppIcon144x144.png in Resources */,
 				7186DE961E4DBFA400F71F0C /* BilliardBreath1024X1024.jpg in Resources */,
 				71D1A36E2074FBC800C83B63 /* Menu-Users.png in Resources */,
@@ -831,6 +915,11 @@
 			isa = PBXTargetDependency;
 			name = "CorePlot-CocoaTouch";
 			targetProxy = 710857631E439B5D00479032 /* PBXContainerItemProxy */;
+		};
+		71D1A64A2075185900C83B63 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GPUImageFramework;
+			targetProxy = 71D1A6492075185900C83B63 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -934,7 +1023,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7HMHYHNLFC;
 				ENABLE_BITCODE = NO;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../corePlotFramework/**";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../corePlotFramework/**",
+					"$(SRCROOT)/../GPUImageFramework/**",
+				);
 				INFOPLIST_FILE = Billiard2017/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -960,7 +1052,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7HMHYHNLFC;
 				ENABLE_BITCODE = NO;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../corePlotFramework/**";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../corePlotFramework/**",
+					"$(SRCROOT)/../GPUImageFramework/**",
+				);
 				INFOPLIST_FILE = Billiard2017/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

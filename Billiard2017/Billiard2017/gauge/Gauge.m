@@ -1,11 +1,3 @@
-//
-//  Gauge.m
-//  FairHammer
-//
-//  Created by barry on 09/07/2013.
-//  Copyright (c) 2013 barry. All rights reserved.
-//
-
 #import "Gauge.h"
 #import <QuartzCore/QuartzCore.h>
 

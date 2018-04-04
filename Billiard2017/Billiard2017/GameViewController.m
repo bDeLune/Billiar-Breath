@@ -1,11 +1,3 @@
-//
-//  GameViewController.m
-//  BilliardBreath
-//
-//  Created by barry on 09/12/2013.
-//  Copyright (c) 2013 rocudo. All rights reserved.
-//
-
 #import "GameViewController.h"
 #import "User.h"
 #import "BilliardBallViewController.h"
@@ -22,7 +14,6 @@
 #import "BTLEManager.h"
 #import "UserListViewController.h"
 
-
 @interface GameViewController ()<BTLEManagerDelegate>
 {
     int threshold;
@@ -33,8 +24,8 @@
     NSTimer  *effectTimer;
     bool wasExhaling;
 }
-@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property(nonatomic,strong)NSOperationQueue  *addGameQueue;
 @property(nonatomic,strong)BilliardBallViewController  *billiardViewController;
 @property(nonatomic,strong)MidiController  *midiController;

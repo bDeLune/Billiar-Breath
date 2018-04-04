@@ -1,11 +1,3 @@
-//
-//  LoginViewController.m
-//  BilliardBreath
-//
-//  Created by barry on 09/12/2013.
-//  Copyright (c) 2013 rocudo. All rights reserved.
-//
-
 #import "LoginViewController.h"
 #import "AddNewUserOperation.h"
 
