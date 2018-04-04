@@ -98,13 +98,14 @@
 		71D1A36E2074FBC800C83B63 /* Menu-Users.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D1A3652074FBC800C83B63 /* Menu-Users.png */; };
 		71D1A3732074FE5300C83B63 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D1A3712074FE5200C83B63 /* SecondViewController.m */; };
 		71D1A64B2075187A00C83B63 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D1A6482075184C00C83B63 /* GPUImage.framework */; };
-		71D1A64D2075191E00C83B63 /* GPUImage.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 71D1A6482075184C00C83B63 /* GPUImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		71D1A64F20751F2400C83B63 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D1A64E20751F2400C83B63 /* CoreMedia.framework */; };
 		71D1A65120751F2D00C83B63 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D1A65020751F2C00C83B63 /* CoreVideo.framework */; };
 		71D1A65320751F4200C83B63 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D1A65220751F4200C83B63 /* OpenGLES.framework */; };
 		71D1A65520751F4A00C83B63 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D1A65420751F4A00C83B63 /* AVFoundation.framework */; };
 		71D1A65720751F5300C83B63 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D1A65620751F5200C83B63 /* QuartzCore.framework */; };
 		71D1A65820751F7000C83B63 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D1A6462075184C00C83B63 /* libGPUImage.a */; };
+		71D1A65A207523C900C83B63 /* giraffe-614141_1280.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 71D1A659207523C900C83B63 /* giraffe-614141_1280.jpg */; };
+		71D1A65B207528AC00C83B63 /* GPUImage.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 71D1A6482075184C00C83B63 /* GPUImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -201,7 +202,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				71D1A64D2075191E00C83B63 /* GPUImage.framework in CopyFiles */,
+				71D1A65B207528AC00C83B63 /* GPUImage.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +354,7 @@
 		71D1A65220751F4200C83B63 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		71D1A65420751F4A00C83B63 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		71D1A65620751F5200C83B63 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		71D1A659207523C900C83B63 /* giraffe-614141_1280.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "giraffe-614141_1280.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -413,9 +415,6 @@
 				7186DDEC1E4DBF4100F71F0C /* AllGamesForDayTableVC.h */,
 				7186DDFB1E4DBF5F00F71F0C /* BilliardBallViewController.h */,
 				7186DDFC1E4DBF5F00F71F0C /* BilliardBallViewController.m */,
-				7186DEE01E51CACC00F71F0C /* Default.png */,
-				7186DDFE1E4DBF5F00F71F0C /* billiardwin.ped */,
-				7186DDFF1E4DBF5F00F71F0C /* Crowd_cheer6.wav */,
 				7186DEA51E4DC59F00F71F0C /* btlemanager */,
 				7186DE001E4DBF5F00F71F0C /* CurvedScatterPlot.h */,
 				71C9F9CA1E53341D0078070D /* data */,
@@ -425,7 +424,6 @@
 				71D1A34F2074F7BF00C83B63 /* gauge */,
 				7186DE151E4DBF7100F71F0C /* Session.h */,
 				7186DE161E4DBF7100F71F0C /* Session.m */,
-				7186DEDE1E51CA2300F71F0C /* DefaultPortrait.png */,
 				7186DE171E4DBF7100F71F0C /* CustomIOSAlertView.h */,
 				7186DE181E4DBF7100F71F0C /* VersionNumber.h */,
 				7186DE191E4DBF7100F71F0C /* CustomIOSAlertView.m */,
@@ -458,10 +456,6 @@
 				7186DE081E4DBF5F00F71F0C /* GraphViewController.xib */,
 				7186DE091E4DBF5F00F71F0C /* Images.xcassets */,
 				7186DDED1E4DBF4100F71F0C /* AllGamesForDayTableVC.m */,
-				7186DDEE1E4DBF4100F71F0C /* Croquet ball drop bounce cement_BLASTWAVEFX_29317.mp3 */,
-				7186DDEF1E4DBF4100F71F0C /* Croquet ball drop bounce cement_BLASTWAVEFX_29317.wav */,
-				7186DDF01E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.mp3 */,
-				7186DDF11E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.wav */,
 				7186DDF21E4DBF4100F71F0C /* AllGamesForDayTableVC.xib */,
 				710857291E439A0A00479032 /* Supporting Files */,
 			);
@@ -471,6 +465,10 @@
 		710857291E439A0A00479032 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7186DDEE1E4DBF4100F71F0C /* Croquet ball drop bounce cement_BLASTWAVEFX_29317.mp3 */,
+				7186DDEF1E4DBF4100F71F0C /* Croquet ball drop bounce cement_BLASTWAVEFX_29317.wav */,
+				7186DDF01E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.mp3 */,
+				7186DDF11E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.wav */,
 				7186DE871E4DBFA400F71F0C /* BilliardBreath1024X1024.jpg */,
 				71D1A3562074F8F000C83B63 /* bell_1.png */,
 				71D1A3602074FBC800C83B63 /* Logo-Full.png */,
@@ -484,6 +482,10 @@
 				71D1A35F2074FBC800C83B63 /* StatsButton.png */,
 				71D1A3542074F8F000C83B63 /* bell_2.png */,
 				71D1A3552074F8F000C83B63 /* bell_3.png */,
+				7186DEE01E51CACC00F71F0C /* Default.png */,
+				7186DDFE1E4DBF5F00F71F0C /* billiardwin.ped */,
+				7186DDFF1E4DBF5F00F71F0C /* Crowd_cheer6.wav */,
+				7186DEDE1E51CA2300F71F0C /* DefaultPortrait.png */,
 				71D1A3572074F8F000C83B63 /* bell.mp3 */,
 				71D1A3532074F8F000C83B63 /* bell.wav */,
 				71D1A3512074F8B700C83B63 /* UsersScreenBackground.png */,
@@ -494,6 +496,7 @@
 				7186DE8B1E4DBFA400F71F0C /* BilliardBreathAppIcon58x58.png */,
 				7186DEB81E4DC61D00F71F0C /* main.m */,
 				718E215B1E51E43000E8357B /* icon-120.png */,
+				71D1A659207523C900C83B63 /* giraffe-614141_1280.jpg */,
 				7186DE8C1E4DBFA400F71F0C /* BilliardBreathAppIcon72x72.png */,
 				7186DE8D1E4DBFA400F71F0C /* BilliardBreathAppIcon76x76.png */,
 				7186DE8E1E4DBFA400F71F0C /* BilliardBreathAppIcon80x80.png */,
@@ -851,6 +854,7 @@
 				71D1A35A2074F8F000C83B63 /* bell_3.png in Resources */,
 				7186DEDF1E51CA2300F71F0C /* DefaultPortrait.png in Resources */,
 				7186DDF71E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.mp3 in Resources */,
+				71D1A65A207523C900C83B63 /* giraffe-614141_1280.jpg in Resources */,
 				71D1A3592074F8F000C83B63 /* bell_2.png in Resources */,
 				7186DEA11E4DBFA400F71F0C /* BilliardBreathAppIcon144x144.png in Resources */,
 				7186DE961E4DBFA400F71F0C /* BilliardBreath1024X1024.jpg in Resources */,

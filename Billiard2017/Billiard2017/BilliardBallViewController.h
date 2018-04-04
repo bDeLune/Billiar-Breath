@@ -11,6 +11,7 @@
 #import "PowerGame.h"
 #import "DurationGame.h"
 #import "Game.h"
+#import "GPUImage.h"
 
 @interface BilliardBallViewController : UIViewController<BilliardBallProtocol>
 -(id)initWithFrame:(CGRect)frame;

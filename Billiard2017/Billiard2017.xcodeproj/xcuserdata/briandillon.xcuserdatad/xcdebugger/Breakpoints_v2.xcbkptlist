@@ -10,13 +10,61 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Billiard2017/CurvedScatterPlot.m"
-            timestampString = "544547511.40109"
+            timestampString = "544556435.107947"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "342"
             endingLineNumber = "342"
             landmarkName = "-renderInLayer:withTheme:animated:"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Billiard2017/GameViewController.h"
+            timestampString = "544556435.10887"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "GameViewController"
+            landmarkType = "2">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GameViewController speedLabel]"
+                  moduleName = "Billiard2017"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/briandillon/Desktop/Rhoon/Billiard2017/Billiard2017/GameViewController.h"
+                  timestampString = "544551884.588516"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "10">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GameViewController setSpeedLabel:]"
+                  moduleName = "Billiard2017"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/briandillon/Desktop/Rhoon/Billiard2017/Billiard2017/GameViewController.h"
+                  timestampString = "544551884.592518"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
