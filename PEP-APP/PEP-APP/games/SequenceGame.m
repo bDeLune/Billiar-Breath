@@ -12,7 +12,6 @@
 @interface SequenceGame()
 {
     BOOL gamewon;
-   
     AVAudioPlayer *audioPlayer;
 }
 
@@ -31,8 +30,6 @@
         self.saveable=NO;
         self.halt=NO;
         self.time=0;
-        
-
     }
     
     return self;
@@ -41,7 +38,6 @@
 {
     NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"IMPACT RING METAL DESEND 01" ofType:@"wav"];
     NSData *fileData = [NSData dataWithContentsOfFile:soundPath];
-    
     NSError *error = nil;
     
     audioPlayer = [[AVAudioPlayer alloc] initWithData:fileData
@@ -55,6 +51,7 @@
 -(int)nextBall
 
 {
+    NSLog(@"next ball");
     self.halt=NO;
   //  [self playHitTop];
     self.currentBall++;

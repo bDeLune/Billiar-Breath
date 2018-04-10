@@ -23,6 +23,7 @@
     UIEffectDesignerView *particleEffect;
     NSTimer  *effectTimer;
     bool wasExhaling;
+    UITabBarController *tabBarController;
     
         //all maybe
         GPUImagePicture *sourcePicture;
@@ -165,19 +166,18 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
     if (self) {
         // Custom initialization
-        //self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 260, 650, 325)];
-        self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 160, 450, 225)];
-       // self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:self.billiardBallView.frame];
-       
         
-        // self.midiController=[[MidiController alloc]init];
-       // self.midiController.delegate=self;
-      //  [self.midiController addObserver:self forKeyPath:@"numberOfSources" options:0 //context:NULL];
-       // [self.midiController setup];
+        //self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 260, 650, 325)];
+         self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 160, 450, 225)];
+        self.midiController=[[MidiController alloc]init];
+        self.midiController.delegate=self;
+        [self.midiController addObserver:self forKeyPath:@"numberOfSources" options:0 context:NULL];
+        // [self.midiController setup];
         self.currentGameType=gameTypeSequence;
-
+        
         currentDifficulty=gameDifficultyEasy;
         [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:currentDifficulty] forKey:@"difficulty"];
         
@@ -190,62 +190,21 @@
         [self.btleManager startWithDeviceName:@"GroovTube" andPollInterval:0.1];
         [self.btleManager setRangeReduction:2];
         [self.btleManager setTreshold:60];
+        
+        
         [self startSession];
-
+        
         self.btOnOfImageView=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.bounds.size.width-230, 30, 100, 100)];
         [self.btOnOfImageView setImage:[UIImage imageNamed:@"Bluetooth-DISCONNECTED"]];
         [self.view addSubview:self.btOnOfImageView];
-        
-        ///image
-        
-        sketchamount=0;
-        self.title = @"Groov";
-        self.tabBarItem.image = [UIImage imageNamed:@"first"];
-        _animationrate=1;
-        picselect=[UIButton buttonWithType:UIButtonTypeCustom];
-        picselect.frame=CGRectMake(0, self.view.frame.size.height-120, 108, 58);
-        [picselect addTarget:self action:@selector(photoButtonLibraryAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:picselect];
-        
-        [picselect setBackgroundImage:[UIImage imageNamed:@"PickPhotoButton.png"] forState:UIControlStateNormal];
-        
-        self.capturedImages = [NSMutableArray array];
-        
-        /*   AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:
-         [[NSBundle mainBundle] pathForResource:@"tick"
-         ofType:@"aiff"]],
-         &_tickSound);*/
-        
-        imagePickerController = [[UIImagePickerController alloc] init] ;
-        imagePickerController.delegate = self;
-        
-        //  [self.view addSubview:imagePickerController.view];
-        
-      //  togglebutton=[UIButton buttonWithType:UIButtonTypeCustom];
-       // togglebutton.frame=CGRectMake(110, self.view.frame.size.height-120, 108, 58);
-       // [togglebutton addTarget:self action:@selector(toggleDirection:) forControlEvents:UIControlEventTouchUpInside];
-       // [self.view addSubview:togglebutton];
-        
-      //  [togglebutton setBackgroundImage:[UIImage imageNamed:@"BreathDirection_EXHALE.png"] forState:UIControlStateNormal];
-      //  toggleIsON=NO;
-       // threshold=0;
-        
-       // self.btOnOfImageView=[[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 100, 100)];
-      //  [self.btOnOfImageView setImage:[UIImage imageNamed:@"Bluetooth-DISCONNECTED"]];
-      //  [self.view addSubview:self.btOnOfImageView];
-        //  self.ledTestButton=[[UIButton alloc]initWithFrame:CGRectMake(110, 10, 100, 100)];
-        //  [self.ledTestButton setBackgroundColor:[UIColor greenColor]];
-        //  [self.ledTestButton addTarget:self action:@selector(testLed:) forControlEvents:UIControlEventTouchUpInside];
-        //dead [self.view addSubview:self.ledTestButton];
     }
     
     return self;
 }
 
-
 -(void)btleManagerBreathBegan:(BTLEManager*)manager{
-
-   /// NSLog(@"allow == %i",[self.midiController allowBreath]);
+    
+    /// NSLog(@"allow == %i",[self.midiController allowBreath]);
     if ([self.midiController allowBreath]==NO) {
         return;
     }
@@ -253,25 +212,25 @@
     if ((self.midiController.toggleIsON == 0 && wasExhaling == 1) || (self.midiController.toggleIsON == 1 && wasExhaling == 0)){
         
         [self midiNoteBegan:nil];
-    
+        
     }else{
-    
+        
         NSLog(@"FIRST MIDI NOTE BEGAN DISALLOWED!");
     }
 }
 
 -(void)btleManagerBreathStopped:(BTLEManager*)manager{
-   /// NSLog(@"allow == %i",[self.midiController allowBreath]);
+    /// NSLog(@"allow == %i",[self.midiController allowBreath]);
     if ([self.midiController allowBreath]==NO) {
         return;
     }
-
+    
     [self midiNoteStopped:nil];
 }
 
 
 -(void)btleManager:(BTLEManager*)manager inhaleWithValue:(float)percentOfmax{
-
+    
     
     wasExhaling = false;
     
@@ -282,16 +241,16 @@
         return;
     }
     self.midiController.velocity=127.0*percentOfmax;
-     self.midiController.speed= (fabs( self.midiController.velocity- self.midiController.previousVelocity));
-     self.midiController.previousVelocity= self.midiController.velocity;
+    self.midiController.speed= (fabs( self.midiController.velocity- self.midiController.previousVelocity));
+    self.midiController.previousVelocity= self.midiController.velocity;
     
-        
+    
     [self midiNoteContinuing: self.midiController];
 }
 
 -(void)btleManager:(BTLEManager*)manager exhaleWithValue:(float)percentOfmax{
-
-     wasExhaling = true;
+    
+    wasExhaling = true;
     
     if (self.midiController.toggleIsON==YES) {
         NSLog(@"EXHALING AND RETURNING");
@@ -304,9 +263,6 @@
     
     [self midiNoteContinuing: self.midiController];
     
-
-
-
 }
 
 
@@ -320,11 +276,9 @@
         _managedObjectContext = [NSManagedObjectContext new];
         [_managedObjectContext setPersistentStoreCoordinator:self.sharedPSC];
     }
-    
-    
-    
     return _managedObjectContext;
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -737,7 +691,9 @@
             default:
                 break;
         }
-        
+    
+    NSLog(@"HERE1");
+    NSLog(@" %hhd", self.sequenceGameController.halt);
 
         if (self.sequenceGameController.halt) {
             return;
@@ -746,15 +702,21 @@
         if (self.sequenceGameController.allowNextBall) {
             self.sequenceGameController.halt=YES;
 
-            
+       NSLog(@"HERE2");
             [[GCDQueue mainQueue]queueBlock:^{
+                
+                
+                NSLog(@"HERE3");
                 NSString  *durationtext=[NSString stringWithFormat:@"%0.1f",self.sequenceGameController.time];
                 [self.durationLabel setText:durationtext];
                 
+                NSLog(@"HERE4");
                 if (midi.velocity!=127) {
                     [self.strenghtLabel setText:[NSString stringWithFormat:@"%0.0f",midi.velocity]];
 
                 }
+                
+                NSLog(@"HERE5");
                  if (midi.speed!=0) {
                  NSLog(@"trying to shoot balls to top");
                 [self.billiardViewController shootBallToTop:self.sequenceGameController.currentBall withAcceleration:midi.speed];
@@ -1349,19 +1311,20 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    if (!displayLink) {
-        [self setupDisplayFiltering];
-        displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateimage)];
-        [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
-        animationRunning = YES;
-        [displayLink setFrameInterval:8];
-        //[self makeTimer];
-        acceleration=0.1;
-        distance=0;
-        time=0;
+    //UNCOMMENT TO GO
+   // if (!displayLink) {
+   //     [self setupDisplayFiltering];
+   //     displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateimage)];
+   //     [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+  //      animationRunning = YES;
+   //     [displayLink setFrameInterval:8];
+        //NO[self makeTimer];
+  //      acceleration=0.1;
+  //      distance=0;
+  //      time=0;
         //      [self toggleDirection:nil];
         //      [self toggleDirection:nil];
-    }
+ //   }
 }
 
 
@@ -1509,7 +1472,6 @@
 }
 - (void)setupDisplayFiltering;
 {
-    
     NSLog(@"SET UP DISPLAY FILTERING");
     UIImage *inputImage;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -1540,6 +1502,7 @@
 
 -(void)setFilter:(int)index
 {
+    NSLog(@"setting filter");
     [sourcePicture removeAllTargets];
     //[stillImageFilter destroyFilterFBO];
     //[stillImageFilter releaseInputTexturesIfNeeded];
@@ -1631,6 +1594,9 @@
     //[self setDefaults];
     // if (!animationRunning)
     // {
+    
+    NSLog(@"starting display link!!!");
+    
     displayLink = [CADisplayLink displayLinkWithTarget:self
                                               selector:@selector(animate)];
     [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];

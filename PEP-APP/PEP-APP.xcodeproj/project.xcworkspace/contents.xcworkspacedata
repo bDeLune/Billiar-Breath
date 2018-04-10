@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Billiard2017.xcodeproj">
+      location = "absolute:Users/briandillon/Desktop/Rhoon/PEP-APP/PEP-APP.xcodeproj">
    </FileRef>
 </Workspace>

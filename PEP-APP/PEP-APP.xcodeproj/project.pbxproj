@@ -10,8 +10,8 @@
 		710857311E439A0A00479032 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 710857301E439A0A00479032 /* ViewController.m */; };
 		710857651E439B6200479032 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7108575C1E439B4200479032 /* libCorePlot-CocoaTouch.a */; };
 		710857681E439B8A00479032 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 710857671E439B8A00479032 /* Accelerate.framework */; };
+		710BDDE5207D039400B1E393 /* Model.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 7186DDCC1E4DBE0D00F71F0C /* Model.xcdatamodel */; };
 		71693B90206937D3009F14EA /* BilliardBreath1024X1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 71693B8F206937D1009F14EA /* BilliardBreath1024X1024.png */; };
-		7186DDCF1E4DBE0D00F71F0C /* Model.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 7186DDCC1E4DBE0D00F71F0C /* Model.xcdatamodel */; };
 		7186DDD01E4DBE0D00F71F0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7186DDCD1E4DBE0D00F71F0C /* Main.storyboard */; };
 		7186DDEB1E4DBF2400F71F0C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7186DDEA1E4DBF2400F71F0C /* LoginViewController.xib */; };
 		7186DDF41E4DBF4100F71F0C /* AllGamesForDayTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DDED1E4DBF4100F71F0C /* AllGamesForDayTableVC.m */; };
@@ -209,7 +209,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		710857261E439A0A00479032 /* Billiard2017.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Billiard2017.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		710857261E439A0A00479032 /* PEP-APP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PEP-APP.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7108572C1E439A0A00479032 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7108572F1E439A0A00479032 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		710857301E439A0A00479032 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; tabWidth = 6; };
@@ -384,7 +384,7 @@
 				718E21591E51DD0300E8357B /* LaunchScreen.storyboard */,
 				71D1A63F2075184B00C83B63 /* GPUImage.xcodeproj */,
 				710857431E439B4100479032 /* CorePlot.xcodeproj */,
-				710857281E439A0A00479032 /* Billiard2017 */,
+				710857281E439A0A00479032 /* PEP-APP */,
 				710857271E439A0A00479032 /* Products */,
 				710857661E439B8A00479032 /* Frameworks */,
 			);
@@ -393,12 +393,12 @@
 		710857271E439A0A00479032 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				710857261E439A0A00479032 /* Billiard2017.app */,
+				710857261E439A0A00479032 /* PEP-APP.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		710857281E439A0A00479032 /* Billiard2017 */ = {
+		710857281E439A0A00479032 /* PEP-APP */ = {
 			isa = PBXGroup;
 			children = (
 				7108572C1E439A0A00479032 /* AppDelegate.h */,
@@ -459,7 +459,7 @@
 				7186DDF21E4DBF4100F71F0C /* AllGamesForDayTableVC.xib */,
 				710857291E439A0A00479032 /* Supporting Files */,
 			);
-			path = Billiard2017;
+			path = "PEP-APP";
 			sourceTree = "<group>";
 		};
 		710857291E439A0A00479032 /* Supporting Files */ = {
@@ -669,9 +669,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		710857251E439A0A00479032 /* Billiard2017 */ = {
+		710857251E439A0A00479032 /* PEP-APP */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 710857401E439A0A00479032 /* Build configuration list for PBXNativeTarget "Billiard2017" */;
+			buildConfigurationList = 710857401E439A0A00479032 /* Build configuration list for PBXNativeTarget "PEP-APP" */;
 			buildPhases = (
 				710857221E439A0A00479032 /* Sources */,
 				710857231E439A0A00479032 /* Frameworks */,
@@ -684,9 +684,9 @@
 				71D1A64A2075185900C83B63 /* PBXTargetDependency */,
 				710857641E439B5D00479032 /* PBXTargetDependency */,
 			);
-			name = Billiard2017;
+			name = "PEP-APP";
 			productName = Billiard2017;
-			productReference = 710857261E439A0A00479032 /* Billiard2017.app */;
+			productReference = 710857261E439A0A00479032 /* PEP-APP.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -705,7 +705,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 710857211E439A0A00479032 /* Build configuration list for PBXProject "Billiard2017" */;
+			buildConfigurationList = 710857211E439A0A00479032 /* Build configuration list for PBXProject "PEP-APP" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -728,7 +728,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				710857251E439A0A00479032 /* Billiard2017 */,
+				710857251E439A0A00479032 /* PEP-APP */,
 			);
 		};
 /* End PBXProject section */
@@ -883,7 +883,6 @@
 				710857311E439A0A00479032 /* ViewController.m in Sources */,
 				71C9FA041E53356C0078070D /* GCDSemaphore.m in Sources */,
 				71C9F9DB1E53341D0078070D /* DurationGame.m in Sources */,
-				7186DDCF1E4DBE0D00F71F0C /* Model.xcdatamodel in Sources */,
 				71C9F9DA1E53341D0078070D /* AbstractGame.m in Sources */,
 				71C9F9E81E5334A90078070D /* easing.c in Sources */,
 				7186DEB31E4DC59F00F71F0C /* BTLEManager.m in Sources */,
@@ -898,6 +897,7 @@
 				7186DE331E4DBF7100F71F0C /* GameViewController.m in Sources */,
 				7186DE2F1E4DBF7100F71F0C /* Globals.m in Sources */,
 				71D1A3732074FE5300C83B63 /* SecondViewController.m in Sources */,
+				710BDDE5207D039400B1E393 /* Model.xcdatamodel in Sources */,
 				71C9FA081E53356C0078070D /* NSData+Base64.m in Sources */,
 				7186DEB91E4DC61D00F71F0C /* main.m in Sources */,
 				71C9FA071E53356C0078070D /* AddNewUserOperation.m in Sources */,
@@ -1031,15 +1031,15 @@
 					"$(SRCROOT)/../corePlotFramework/**",
 					"$(SRCROOT)/../GPUImageFramework/**",
 				);
-				INFOPLIST_FILE = Billiard2017/Info.plist;
+				INFOPLIST_FILE = "PEP-APP/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Billiard2017/btlemanager/libMelodySmart",
+					"$(PROJECT_DIR)/PEP-APP/btlemanager/libMelodySmart",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.audiorhoon.billiardbreath;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.audiorhoon.pep-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1060,15 +1060,15 @@
 					"$(SRCROOT)/../corePlotFramework/**",
 					"$(SRCROOT)/../GPUImageFramework/**",
 				);
-				INFOPLIST_FILE = Billiard2017/Info.plist;
+				INFOPLIST_FILE = "PEP-APP/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Billiard2017/btlemanager/libMelodySmart",
+					"$(PROJECT_DIR)/PEP-APP/btlemanager/libMelodySmart",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.audiorhoon.billiardbreath;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.audiorhoon.pep-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1079,7 +1079,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		710857211E439A0A00479032 /* Build configuration list for PBXProject "Billiard2017" */ = {
+		710857211E439A0A00479032 /* Build configuration list for PBXProject "PEP-APP" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7108573E1E439A0A00479032 /* Debug */,
@@ -1088,7 +1088,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		710857401E439A0A00479032 /* Build configuration list for PBXNativeTarget "Billiard2017" */ = {
+		710857401E439A0A00479032 /* Build configuration list for PBXNativeTarget "PEP-APP" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				710857411E439A0A00479032 /* Debug */,
