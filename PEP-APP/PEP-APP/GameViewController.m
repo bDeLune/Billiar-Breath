@@ -23,36 +23,35 @@
     UIEffectDesignerView *particleEffect;
     NSTimer  *effectTimer;
     bool wasExhaling;
-    UITabBarController *tabBarController;
     
-        //all maybe
-        GPUImagePicture *sourcePicture;
-        GPUImageFilter *stillImageFilter;
-        GPUImageView *imageView;
-        CGFloat  defaultRadius;
-        CGFloat  defaultScale;
-        CGFloat  targetRadius;
-        CGFloat  targetScale;
-        CADisplayLink *displayLink;
-        BOOL animationRunning;
-        NSTimeInterval drawDuration;
-        CFTimeInterval lastDrawTime;
-        CGFloat drawProgress;
-        int inorout;
-        //  MIDIPortRef inPort ;
-        //  MIDIPortRef outPort ;
-        UIButton  *picselect;
-        UIPopoverController *popover;
-        UIImagePickerController *imagePickerController;
-        UIButton  *togglebutton;
-        BOOL   toggleIsON;
-        float mass;
-        BOOL isaccelerating;
-        float acceleration;// force/ mass
-        float distance;
-        float time;
-        float sketchamount;
-        BOOL ledTestIsOn;
+    //all maybe
+    GPUImagePicture *sourcePicture;
+    GPUImageFilter *stillImageFilter;
+    GPUImageView *imageView;
+    CGFloat  defaultRadius;
+    CGFloat  defaultScale;
+    CGFloat  targetRadius;
+    CGFloat  targetScale;
+    CADisplayLink *displayLink;
+    BOOL animationRunning;
+    NSTimeInterval drawDuration;
+    CFTimeInterval lastDrawTime;
+    CGFloat drawProgress;
+    int inorout;
+    //  MIDIPortRef inPort ;
+    //  MIDIPortRef outPort ;
+    UIButton  *picselect;
+    UIPopoverController *popover;
+    UIImagePickerController *imagePickerController;
+    UIButton  *togglebutton;
+    BOOL   toggleIsON;
+    float mass;
+    BOOL isaccelerating;
+    float acceleration;// force/ mass
+    float distance;
+    float time;
+    float sketchamount;
+    BOOL ledTestIsOn;
 }
 
 @property (nonatomic, retain) IBOutlet UIToolbar *myToolbar;
@@ -97,12 +96,12 @@
 //-(IBAction)goToUsersButton:(id)sender
 //-(IBAction) goToSettingsScreen:(id)sender
 //{
- //  self.userList.sharedPSC=self.sharedPSC ;
- //   [self.userList getListOfUsers];
-  //  [UIView transitionFromView:self.view toView:self.navcontroller.view duration:0.5 //options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished){
+//  self.userList.sharedPSC=self.sharedPSC ;
+//   [self.userList getListOfUsers];
+//  [UIView transitionFromView:self.view toView:self.navcontroller.view duration:0.5 //options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished){
 //        self.userList.sharedPSC=self.sharedPSC;
 ///        self.userList.delegate=self;
- //   }];
+//   }];
 //}
 
 -(void)btleManagerConnected:(BTLEManager *)manager
@@ -153,7 +152,7 @@
         }else
         {
             NSLog(@" Midi Sources Detected!!!");
-
+            
         }
     }
     else {
@@ -166,12 +165,11 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    
     if (self) {
         // Custom initialization
-        
         //self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 260, 650, 325)];
-         self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 160, 450, 225)];
+        self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 160, 450, 225)];
+       // self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 260, 650, 325)];
         self.midiController=[[MidiController alloc]init];
         self.midiController.delegate=self;
         [self.midiController addObserver:self forKeyPath:@"numberOfSources" options:0 context:NULL];
@@ -197,10 +195,55 @@
         self.btOnOfImageView=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.bounds.size.width-230, 30, 100, 100)];
         [self.btOnOfImageView setImage:[UIImage imageNamed:@"Bluetooth-DISCONNECTED"]];
         [self.view addSubview:self.btOnOfImageView];
+        
+        ///image
+        
+        sketchamount=0;
+        self.title = @"Groov";
+        self.tabBarItem.image = [UIImage imageNamed:@"first"];
+        _animationrate=1;
+        picselect=[UIButton buttonWithType:UIButtonTypeCustom];
+        picselect.frame=CGRectMake(0, self.view.frame.size.height-120, 108, 58);
+        [picselect addTarget:self action:@selector(photoButtonLibraryAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:picselect];
+        
+        [picselect setBackgroundImage:[UIImage imageNamed:@"PickPhotoButton.png"] forState:UIControlStateNormal];
+        
+        self.capturedImages = [NSMutableArray array];
+        
+        /*   AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:
+         [[NSBundle mainBundle] pathForResource:@"tick"
+         ofType:@"aiff"]],
+         &_tickSound);*/
+        
+        imagePickerController = [[UIImagePickerController alloc] init] ;
+        imagePickerController.delegate = self;
+        
+        //  [self.view addSubview:imagePickerController.view];
+        
+        //  togglebutton=[UIButton buttonWithType:UIButtonTypeCustom];
+        // togglebutton.frame=CGRectMake(110, self.view.frame.size.height-120, 108, 58);
+        // [togglebutton addTarget:self action:@selector(toggleDirection:) forControlEvents:UIControlEventTouchUpInside];
+        // [self.view addSubview:togglebutton];
+        
+        //  [togglebutton setBackgroundImage:[UIImage imageNamed:@"BreathDirection_EXHALE.png"] forState:UIControlStateNormal];
+        //  toggleIsON=NO;
+        // threshold=0;
+        
+        // self.btOnOfImageView=[[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 100, 100)];
+        //  [self.btOnOfImageView setImage:[UIImage imageNamed:@"Bluetooth-DISCONNECTED"]];
+        //  [self.view addSubview:self.btOnOfImageView];
+        //  self.ledTestButton=[[UIButton alloc]initWithFrame:CGRectMake(110, 10, 100, 100)];
+        //  [self.ledTestButton setBackgroundColor:[UIColor greenColor]];
+        //  [self.ledTestButton addTarget:self action:@selector(testLed:) forControlEvents:UIControlEventTouchUpInside];
+        //dead [self.view addSubview:self.ledTestButton];
     }
     
     return self;
 }
+
+//FIND ALLOW BREATH FUNCTION
+
 
 -(void)btleManagerBreathBegan:(BTLEManager*)manager{
     
@@ -226,6 +269,7 @@
     }
     
     [self midiNoteStopped:nil];
+    isaccelerating=NO;
 }
 
 
@@ -240,6 +284,12 @@
         NSLog(@"INHALING AND RETURNING");
         return;
     }
+   // currentdirection=midiinhale;
+    //self.velocity=(percentOfmax/10.0)*127.0;
+    self.velocity=(percentOfmax)*127.0;
+    isaccelerating=YES;
+    //  NSLog(@"inhaleWithValue %f",percentOfmax);
+    
     self.midiController.velocity=127.0*percentOfmax;
     self.midiController.speed= (fabs( self.midiController.velocity- self.midiController.previousVelocity));
     self.midiController.previousVelocity= self.midiController.velocity;
@@ -263,22 +313,30 @@
     
     [self midiNoteContinuing: self.midiController];
     
+  //  currentdirection=midiexhale;
+    //self.velocity=(percentOfmax/10.0)*127.0;
+    self.velocity=(percentOfmax)*127.0;
+    isaccelerating=YES;
+    
+    
 }
 
 
 - (NSManagedObjectContext *)managedObjectContext {
-	
+    
     if (_managedObjectContext != nil) {
         return _managedObjectContext;
     }
-	
+    
     if (self.sharedPSC != nil) {
         _managedObjectContext = [NSManagedObjectContext new];
         [_managedObjectContext setPersistentStoreCoordinator:self.sharedPSC];
     }
+    
+    
+    
     return _managedObjectContext;
 }
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -292,6 +350,14 @@
     
     CGRect frame = self.view.frame;
     [self.navcontroller.view setFrame:frame];
+    
+    midiinhale=61;
+    midiexhale=73;
+    velocity=0;
+    midiIsOn=false;
+    targetRadius=0;
+    defaultScale=1.5;
+    defaultRadius=0;
 }
 
 - (void)didReceiveMemoryWarning
@@ -304,8 +370,8 @@
     [self managedObjectContext];
     [[GCDQueue mainQueue]queueBlock:^{
         self.currentUsersNameLabel.text=[self.gameUser valueForKey:@"userName"];
-       // [self setTargetScore];
-
+        // [self setTargetScore];
+        
     }];
 }
 #pragma - UIControls
@@ -316,7 +382,7 @@
 }
 -(IBAction)toggleDirection:(id)sender
 {
-
+    
     switch (self.midiController.toggleIsON) {
         case 0:
             self.midiController.toggleIsON=YES;
@@ -338,7 +404,7 @@
         default:
             break;
     }
-
+    
 }
 -(IBAction)toggleGameMode:(id)sender
 {
@@ -354,11 +420,11 @@
     self.billiardViewController.currentGameType=  self.currentGameType;
     
     NSLog(@"Current game mode %u", self.currentGameType);
-
+    
     [self.toggleGameModeButton setBackgroundImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];
     
     //[self.settingsButton setBackgroundImage:[UIImage imageNamed:@"DifficultyButtonLOW"] forState:UIControlStateNormal];
-   /// [self setThreshold:0];
+    /// [self setThreshold:0];
     
     [self resetGame:nil];
 }
@@ -374,21 +440,21 @@
             
         case gameTypePowerMode:
             modeString=@"ModeButtonPOWER";
-
+            
             break;
             
         case gameTypeSequence:
             modeString=@"ModeButtonSEQUENCE";
-
+            
             break;
-
+            
             
         default:
             break;
     }
     
     return modeString;
-
+    
 }
 -(IBAction)presentSettings:(id)sender
 {
@@ -401,12 +467,12 @@
     }
     
     currentDifficulty=mode;
-   // int presentDifficulty = [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:currentDifficulty] forKey:@"difficulty"];
+    // int presentDifficulty = [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:currentDifficulty] forKey:@"difficulty"];
     
-   
+    
     int setDifficulty = [[[NSUserDefaults standardUserDefaults] objectForKey:@"difficulty"] intValue];
-  ///  int savedValue = [highScore IntValue];
-
+    ///  int savedValue = [highScore IntValue];
+    
     //NSLog(@"THISDIFF: %d", setDifficulty);
     
     
@@ -418,24 +484,24 @@
     
     /// NSLog(@"THISDIFF1: %d", setDifficulty);
     
-   /** [self.toggleGameModeButton setBackgroundImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];**/
+    /** [self.toggleGameModeButton setBackgroundImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];**/
     
     switch (setDifficulty) {
         case 0:
             [self setThreshold:0];
-             NSLog(@"set SMALL");
+            NSLog(@"set SMALL");
             break;
             
         case 1:
-          [self setThreshold:1];
-             NSLog(@"set MEDIUM");
-
+            [self setThreshold:1];
+            NSLog(@"set MEDIUM");
+            
             break;
         case 2:
-          [self setThreshold:2];
-             NSLog(@"set LARGE");
+            [self setThreshold:2];
+            NSLog(@"set LARGE");
             
-
+            
             break;
             
         default:
@@ -445,9 +511,9 @@
 }
 -(IBAction)resetGame:(id)sender
 {
-
+    
     NSLog(@"RESETTING GAME");
- 
+    
     self.sequenceGameController=[SequenceGame new];
     self.sequenceGameController.delegate=self;
     
@@ -459,99 +525,99 @@
     [self.billiardViewController reset];
     
     //[self test];
-
-
+    
+    
 }
 
 #pragma - Midi Delegate
 
 -(void)midiNoteBegan:(MidiController*)midi
 {
-   // NSLog(@"MIDI NOTES BEGAN");
-   // NSLog(@"self.midiController.toggleIsON %hhd", self.midiController.toggleIsON);
-   // NSLog(@"wasExhaling %d", wasExhaling);
+    // NSLog(@"MIDI NOTES BEGAN");
+    // NSLog(@"self.midiController.toggleIsON %hhd", self.midiController.toggleIsON);
+    // NSLog(@"wasExhaling %d", wasExhaling);
     
     if ((self.midiController.toggleIsON == 0 && wasExhaling == 1) || (self.midiController.toggleIsON == 1 && wasExhaling == 0)){
-    
-    [self.sequenceGameController startTimer];
-
-    switch (self.currentGameType) {
-        case gameTypeDurationMode:
-            self.durationGameController.isRunning=YES;
-            self.billiardViewController.currentGameType=gameTypeDurationMode;
-            [self midiNoteBeganForDuration:midi];
-            break;
-        case gameTypePowerMode:
-            [self midiNoteBeganForPower:midi];
-            self.billiardViewController.currentGameType=gameTypePowerMode;
-
-            break;
-        case gameTypeSequence:
-            
-            [self midiNoteBeganForSequence:midi];
-            self.billiardViewController.currentGameType=gameTypeSequence;
-
-            break;
-        default:
-            break;
+        
+        [self.sequenceGameController startTimer];
+        
+        switch (self.currentGameType) {
+            case gameTypeDurationMode:
+                self.durationGameController.isRunning=YES;
+                self.billiardViewController.currentGameType=gameTypeDurationMode;
+                [self midiNoteBeganForDuration:midi];
+                break;
+            case gameTypePowerMode:
+                [self midiNoteBeganForPower:midi];
+                self.billiardViewController.currentGameType=gameTypePowerMode;
+                
+                break;
+            case gameTypeSequence:
+                
+                [self midiNoteBeganForSequence:midi];
+                self.billiardViewController.currentGameType=gameTypeSequence;
+                
+                break;
+            default:
+                break;
+        }
+        
+    }else{
+        
+        ///     NSLog(@"DISALLOWING MIDI NOTES BEGAN!");
+        
     }
-     
-     }else{
-     
-    ///     NSLog(@"DISALLOWING MIDI NOTES BEGAN!");
-     
-     }
-         
-         
+    
+    
 }
 -(void)midiNoteStopped:(MidiController*)midi
 {
-   // NSLog(@"Midi Stopped\n");
+    // NSLog(@"Midi Stopped\n");
     
     if ((self.midiController.toggleIsON == false && wasExhaling == true) || (self.midiController.toggleIsON == true && wasExhaling == false)){
-
-    
-    
-   // NSLog(@"MIDI NOTES STOPPED HERE");
-    
-    switch (self.currentGameType) {
-        case gameTypeDurationMode:
-            self.durationGameController.isRunning=NO;
-            [self midiNoteStoppedForDuration:midi];
-            break;
-        case gameTypePowerMode:
-            [self midiNoteStoppedForPower:midi];
-            break;
-        case gameTypeSequence:
-            
-            [self midiNoteStoppedForSequence:midi];
-            
-            break;
-        default:
-            break;
-    }
         
-      ///  wasExhaling = nil;
-
+        
+        
+        // NSLog(@"MIDI NOTES STOPPED HERE");
+        
+        switch (self.currentGameType) {
+            case gameTypeDurationMode:
+                self.durationGameController.isRunning=NO;
+                [self midiNoteStoppedForDuration:midi];
+                break;
+            case gameTypePowerMode:
+                [self midiNoteStoppedForPower:midi];
+                break;
+            case gameTypeSequence:
+                
+                [self midiNoteStoppedForSequence:midi];
+                
+                break;
+            default:
+                break;
+        }
+        
+        ///  wasExhaling = nil;
+        
     }else{
         
-   //     NSLog(@"DISALLOWING MIDI NOTES STOPPED!");
+        //     NSLog(@"DISALLOWING MIDI NOTES STOPPED!");
         
-        }
-
+    }
+    
 }
 -(void)midiNoteContinuing:(MidiController*)midi
 {
-
+    
     if (midi.velocity==127) {
         return;
     }
-   /// NSLog(@"Midi Continue\n");
+    /// NSLog(@"Midi Continue\n");
     if (midi.velocity>[self.currentSession.sessionStrength floatValue]) {
         
         if (midi.velocity!=127) {
             self.currentSession.sessionStrength=[NSNumber numberWithFloat:midi.velocity];
-
+            
         }
         // [gaugeView setArrowPos:0];
     }
@@ -560,23 +626,23 @@
     {
         if (self.durationGameController.isRunning) {
             self.currentSession.sessionDuration=[NSNumber numberWithDouble:self.sequenceGameController.time];
-
+            
         }
     }else
     {
         self.currentSession.sessionDuration=[NSNumber numberWithDouble:self.sequenceGameController.time];
-
+        
     }
     self.currentSession.sessionSpeed=[NSNumber numberWithFloat:midi.speed];
     
-        NSString  *durationtext=[NSString stringWithFormat:@"%0.1f",self.sequenceGameController.time];
+    NSString  *durationtext=[NSString stringWithFormat:@"%0.1f",self.sequenceGameController.time];
     
     [[GCDQueue mainQueue]queueBlock:^{
         if (midi.velocity!=127) {
-
+            
         }
         // if (midi.speed!=0) {
-      //  [self.speedLabel setText:[NSString stringWithFormat:@"%0.0f",midi.speed]];
+        //  [self.speedLabel setText:[NSString stringWithFormat:@"%0.0f",midi.speed]];
     }];
     
     if (midi.velocity>self.powerGameController.power) {
@@ -584,40 +650,40 @@
     }
     
     [[GCDQueue mainQueue]queueBlock:^{
-
-    
-    switch (self.currentGameType) {
-        case gameTypeDurationMode:
-            [self midiNoteContinuingForDuration:midi];
-
-           // if (self.durationGameController.isRunning) {
+        
+        
+        switch (self.currentGameType) {
+            case gameTypeDurationMode:
+                [self midiNoteContinuingForDuration:midi];
+                
+                // if (self.durationGameController.isRunning) {
                 [self.durationLabel setText:durationtext];
-
+                
                 [self.strenghtLabel setText:[NSString stringWithFormat:@"%0.01f",midi.velocity]];
-           // }
-            
-
-            break;
-        case gameTypePowerMode:
-            [self midiNoteContinuingForPower:midi];
-            [self.durationLabel setText:durationtext];
-            [self.strenghtLabel setText:[NSString stringWithFormat:@"%i",self.powerGameController.power]];
-
-            break;
-        case gameTypeSequence:
-            [self.strenghtLabel setText:[NSString stringWithFormat:@"%0.0f",midi.velocity]];
-
-            [self midiNoteContinuingForSequence:midi];
-            
-            break;
-        default:
-            break;
-    }
+                // }
+                
+                
+                break;
+            case gameTypePowerMode:
+                [self midiNoteContinuingForPower:midi];
+                [self.durationLabel setText:durationtext];
+                [self.strenghtLabel setText:[NSString stringWithFormat:@"%i",self.powerGameController.power]];
+                
+                break;
+            case gameTypeSequence:
+                [self.strenghtLabel setText:[NSString stringWithFormat:@"%0.0f",midi.velocity]];
+                
+                [self midiNoteContinuingForSequence:midi];
+                
+                break;
+            default:
+                break;
+        }
     }];
     
-  
-
-
+    
+    
+    
 }
 
 #pragma - Sequence
@@ -627,106 +693,98 @@
     
     self.sequenceGameController.currentSpeed=-1;
     
-   // if (self.sequenceGameController.currentBall==0) {
-        [self.sequenceGameController startTimer];
-   // }//ADDED
-
+    // if (self.sequenceGameController.currentBall==0) {
+    [self.sequenceGameController startTimer];
+    // }//ADDED
+    
 }
 -(void)midiNoteStoppedForSequence:(MidiController *)midi
 {
     
     
     [self.sequenceGameController nextBall];
-  
+    
     
     
     
 }
 -(void)midiNoteContinuingForSequence:(MidiController*)midi
 {
-   // if (self.sequenceGameController.currentSpeed==-1) {
-        self.sequenceGameController.currentSpeed=midi.speed;
-   /** [[GCDQueue mainQueue]queueBlock:^{
-        [self.debugtext setText:[NSString stringWithFormat:@"%@%0.0f",self.debugtext.text,midi.speed]];
-
-    }];**/
+    // if (self.sequenceGameController.currentSpeed==-1) {
+    self.sequenceGameController.currentSpeed=midi.speed;
+    /** [[GCDQueue mainQueue]queueBlock:^{
+     [self.debugtext setText:[NSString stringWithFormat:@"%@%0.0f",self.debugtext.text,midi.speed]];
+     
+     }];**/
     
-        gameDifficulty  difficulty=[[[NSUserDefaults standardUserDefaults]objectForKey:@"difficulty"]intValue];
+    gameDifficulty  difficulty=[[[NSUserDefaults standardUserDefaults]objectForKey:@"difficulty"]intValue];
     
     
     NSLog(@"self.sequenceGameController.currentSpeed %d", self.sequenceGameController.currentSpeed);
-     ///   NSLog(@"MIDI NOITE CONTINUING WITH difficulty %u", difficulty);
+    ///   NSLog(@"MIDI NOITE CONTINUING WITH difficulty %u", difficulty);
     
-        switch (difficulty) {
-            case 0: //was gameDifficultyEasy:
-               // NSLog(@"MIDI NOTE BLOWING difficulty 0");
+    switch (difficulty) {
+        case 0: //was gameDifficultyEasy:
+            // NSLog(@"MIDI NOTE BLOWING difficulty 0");
+            [self.sequenceGameController setAllowNextBall:YES];
+            NSLog(@"Sequence small");
+            break;
+        case 1: //added was gameDifficultMedium:
+            /// NSLog(@"MIDI NOTE BLOWING difficulty 1");
+            if (self.sequenceGameController.currentSpeed>15) {       //was 1
                 [self.sequenceGameController setAllowNextBall:YES];
-                        NSLog(@"Sequence small");
-                break;
-            case 1: //added was gameDifficultMedium:
-               /// NSLog(@"MIDI NOTE BLOWING difficulty 1");
-                if (self.sequenceGameController.currentSpeed>15) {       //was 1
-                    [self.sequenceGameController setAllowNextBall:YES];
-                     NSLog(@"Sequence medium");
-                }else
-                {
-                    [self.sequenceGameController setAllowNextBall:NO];
-                    
-                }
+                NSLog(@"Sequence medium");
+            }else
+            {
+                [self.sequenceGameController setAllowNextBall:NO];
                 
-                break;
-            case 2: //added was gameDifficultyHard:
-              ///  NSLog(@"MIDI NOTE BLOWING difficulty 2");
-                if (self.sequenceGameController.currentSpeed>50) {       ///was 2
-                    [self.sequenceGameController setAllowNextBall:YES];
-                    NSLog(@"Sequence hard");
-                }else
-                {
-                    [self.sequenceGameController setAllowNextBall:NO];
-                    
-                }
+            }
+            
+            break;
+        case 2: //added was gameDifficultyHard:
+            ///  NSLog(@"MIDI NOTE BLOWING difficulty 2");
+            if (self.sequenceGameController.currentSpeed>50) {       ///was 2
+                [self.sequenceGameController setAllowNextBall:YES];
+                NSLog(@"Sequence hard");
+            }else
+            {
+                [self.sequenceGameController setAllowNextBall:NO];
                 
-                break;
-                
-            default:
-                break;
-        }
+            }
+            
+            break;
+            
+        default:
+            break;
+    }
     
-    NSLog(@"HERE1");
-    NSLog(@" %hhd", self.sequenceGameController.halt);
-
-        if (self.sequenceGameController.halt) {
-            return;
-        }
+    
+    if (self.sequenceGameController.halt) {
+        return;
+    }
+    
+    if (self.sequenceGameController.allowNextBall) {
+        self.sequenceGameController.halt=YES;
         
-        if (self.sequenceGameController.allowNextBall) {
-            self.sequenceGameController.halt=YES;
-
-       NSLog(@"HERE2");
-            [[GCDQueue mainQueue]queueBlock:^{
+        
+        [[GCDQueue mainQueue]queueBlock:^{
+            NSString  *durationtext=[NSString stringWithFormat:@"%0.1f",self.sequenceGameController.time];
+            [self.durationLabel setText:durationtext];
+            
+            if (midi.velocity!=127) {
+                [self.strenghtLabel setText:[NSString stringWithFormat:@"%0.0f",midi.velocity]];
                 
-                
-                NSLog(@"HERE3");
-                NSString  *durationtext=[NSString stringWithFormat:@"%0.1f",self.sequenceGameController.time];
-                [self.durationLabel setText:durationtext];
-                
-                NSLog(@"HERE4");
-                if (midi.velocity!=127) {
-                    [self.strenghtLabel setText:[NSString stringWithFormat:@"%0.0f",midi.velocity]];
-
-                }
-                
-                NSLog(@"HERE5");
-                 if (midi.speed!=0) {
-                 NSLog(@"trying to shoot balls to top");
+            }
+            if (midi.speed!=0) {
+                NSLog(@"trying to shoot balls to top");
                 [self.billiardViewController shootBallToTop:self.sequenceGameController.currentBall withAcceleration:midi.speed];
                 self.sequenceGameController.totalBallsRaised++;
                 [self.sequenceGameController playHitTop];
                 
-                 }//added
-            }];
-        }
-   // }
+            }//added
+        }];
+    }
+    // }
 }
 #pragma - Duration
 -(void)midiNoteBeganForDuration:(MidiController *)midi
@@ -738,11 +796,11 @@
 }
 -(void)midiNoteStoppedForDuration:(MidiController *)midi
 {
-///NSLog(@"MIDI NOTES midiNoteStoppedForDuration");
+    ///NSLog(@"MIDI NOTES midiNoteStoppedForDuration");
     [[GCDQueue mainQueue]queueBlock:^{
         
         [self.billiardViewController endDurationPowerGame];
-
+        
         [self resetGame:nil];
     }];
     
@@ -754,7 +812,7 @@
 {
     [[GCDQueue mainQueue]queueBlock:^{
         [self.durationGameController pushBall];
-
+        
     }];
 }
 
@@ -764,67 +822,67 @@
 -(void)midiNoteBeganForPower:(MidiController *)midi
 {
     
-  ///   NSLog(@"MIDI NOTES BEGAN FOR POWER");
+    ///   NSLog(@"MIDI NOTES BEGAN FOR POWER");
     self.billiardViewController.powerGame=self.powerGameController;
     [self.billiardViewController startBallsPowerGame];
-
+    
 }
 
 
 -(void)midiNoteStoppedForPower:(MidiController *)midi
 {
     if ((self.midiController.toggleIsON == false && wasExhaling == true) || (self.midiController.toggleIsON == true && wasExhaling == false)){
-    
-    NSLog(@"MIDI NOTES STOPPED FOR POWER");
-    
-
+        
+        NSLog(@"MIDI NOTES STOPPED FOR POWER");
+        
+        
         
         [[GCDQueue mainQueue]queueBlock:^{
             [self.billiardViewController endBallsPowerGame];
-
-           ///  [self saveCurrentSession];
+            
+            ///  [self saveCurrentSession];
             [self resetGame:nil];
         }];
         
-   /// [self saveCurrentSession];
-       
-
+        /// [self saveCurrentSession];
+        
+        
         
     }else{
         NSLog(@"MIDI NOTE DISALLOWED - B");
-    
-    }
         
+    }
+    
 }
 
 -(void)test
 {
-   // [self.billiardViewController startDurationPowerGame];
+    // [self.billiardViewController startDurationPowerGame];
     
     // [self.billiardViewController pushBallsWithVelocity:40];
     
     [self addTestScores];
-
+    
 }
 -(void)midiNoteContinuingForPower:(MidiController*)midi
 {
     
     float  vel=midi.velocity;
-   // vel=30;
-
+    // vel=30;
+    
     if (vel<threshold) {
         return;
     }
- 
+    
     [[GCDQueue mainQueue]queueBlock:^{
         
-             
+        
         [self.billiardViewController pushBallsWithVelocity:vel];
         
         
         
     }];
-
+    
     
 }
 
@@ -848,21 +906,21 @@
             
         case 1:
             threshold=25;
-             NSLog(@"SETTING DIFFICULTY THRESHOLD TO 1 or %d", threshold);
+            NSLog(@"SETTING DIFFICULTY THRESHOLD TO 1 or %d", threshold);
             [self.settingsButton setBackgroundImage:[UIImage imageNamed:@"DifficultyButtonMEDIUM"] forState:UIControlStateNormal];
             [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:1] forKey:@"difficulty"];
             break;
         case 2:
             threshold=50;
-             NSLog(@"SETTING DIFFICULTY THRESHOLD TO 2 or %d", threshold);
-             [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:2] forKey:@"difficulty"];
+            NSLog(@"SETTING DIFFICULTY THRESHOLD TO 2 or %d", threshold);
+            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:2] forKey:@"difficulty"];
             [self.settingsButton setBackgroundImage:[UIImage imageNamed:@"DifficultyButtonHIGH"] forState:UIControlStateNormal];
             break;
             
-       // case 3:
-     //       threshold=50;
-      //       NSLog(@"SETTING DIFFICULTY THRESHOLD TO %d", threshold); //added
-     //       break;
+            // case 3:
+            //       threshold=50;
+            //       NSLog(@"SETTING DIFFICULTY THRESHOLD TO %d", threshold); //added
+            //       break;
             
         default:
             break;
@@ -875,23 +933,23 @@
 -(void)gameEnded:(AbstractGame *)game
 {
     self.durationGameController.isRunning=NO;
-
+    
     [[GCDQueue mainQueue]queueBlock:^{
         [self resetGame:nil];
         
-
+        
     }];
     
     //if (game.saveable) {
-        [self saveCurrentSession]; ///addded
-        
+    [self saveCurrentSession]; ///addded
+    
     ///}
     
     [self.sequenceGameController killTimer];
 }
 -(void)gameStarted:(AbstractGame *)game
 {
-
+    
 }
 /*
  
@@ -941,26 +999,26 @@
 
 -(void)gameWonDuration
 {
-   
+    
     if (particleEffect) {
         return;
     }
     
-   // self.durationGameController.isRunning=NO;
+    // self.durationGameController.isRunning=NO;
     [[GCDQueue mainQueue]queueBlock:^{
         [self playSound];
         [self startEffects];
-       /// [self resetGame:nil];
+        /// [self resetGame:nil];
         
     }];
     
     
     // UIEffectDesignerView* effectView = [UIEffectDesignerView effectWithFile:@"billiardwin.ped"];
     // [self.view addSubview:effectView];
-   // if (game.saveable) {
-        //[self saveCurrentSession];
-        
-   // }
+    // if (game.saveable) {
+    //[self saveCurrentSession];
+    
+    // }
     
     [self.sequenceGameController killTimer];
 }
@@ -980,35 +1038,35 @@
     }
     
     self.durationGameController.isRunning=NO;
-   
+    
     
     [[GCDQueue mainQueue]queueBlock:^{
         [self playSound];
         [self startEffects];
         [self resetGame:nil];
-
+        
     }];
     
     
-   // [[GCDQueue mainQueue]queueBlock:^{
-       //  [self resetGame:nil];
-  //  } afterDelay:1.0];
+    // [[GCDQueue mainQueue]queueBlock:^{
+    //  [self resetGame:nil];
+    //  } afterDelay:1.0];
     
     
     
     
     //UIEffectDesignerView* effectView = [UIEffectDesignerView effectWithFile:@"billiardwin.ped"];
-   // [self.view addSubview:effectView];
-   
+    // [self.view addSubview:effectView];
+    
     if (self.currentGameType==gameTypePowerMode) {
-       [[GCDQueue mainQueue]queueBlock:^{
-        [self saveCurrentSession];  //added kung
-           }];
+        [[GCDQueue mainQueue]queueBlock:^{
+            [self saveCurrentSession];  //added kung
+        }];
         return;
     }
     
     if (game.saveable) {
-      ///
+        ///
     }
     
     [self.sequenceGameController killTimer];
@@ -1017,7 +1075,7 @@
 {
     
     particleEffect = [UIEffectDesignerView effectWithFile:@"billiardwin.ped"];
-  //  CGRect frame=particleEffect.frame;
+    //  CGRect frame=particleEffect.frame;
     particleEffect.frame=self.view.frame;
     CGRect frame=particleEffect.frame;
     frame.origin.x+=100;
@@ -1026,7 +1084,7 @@
     [self.view addSubview:particleEffect];
     effectTimer=[NSTimer timerWithTimeInterval:2 target:self selector:@selector(killSparks) userInfo:nil repeats:NO];///timer was 2
     [[NSRunLoop mainRunLoop] addTimer:effectTimer forMode:NSDefaultRunLoopMode];
-
+    
 }
 
 -(void)killSparks
@@ -1036,7 +1094,7 @@
         particleEffect=nil;
         [effectTimer invalidate];
         effectTimer=nil;
-
+        
     });
 }
 
@@ -1046,15 +1104,15 @@
     
     self.currentSession.sessionType=[NSNumber numberWithInt:self.currentGameType];
     
-        AddNewScoreOperation  *operation=[[AddNewScoreOperation alloc]initWithData:self.gameUser session:self.currentSession sharedPSC:self.sharedPSC];
+    AddNewScoreOperation  *operation=[[AddNewScoreOperation alloc]initWithData:self.gameUser session:self.currentSession sharedPSC:self.sharedPSC];
     
     
     NSLog(@"SAVING CURRENT SESSION");
     
-        [self.addGameQueue addOperation:operation];
-
-       [self startSession];
-
+    [self.addGameQueue addOperation:operation];
+    
+    [self startSession];
+    
 }
 
 -(void)setTargetScore
@@ -1075,12 +1133,12 @@
         User  *user=[items objectAtIndex:0];
         NSSet  *game=user.game;
         NSArray  *games=[game allObjects];
-      //  NSArray *sortedArray;
+        //  NSArray *sortedArray;
         /**sortedArray = [games sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-            NSNumber *first = [(Game*)a power];
-            NSNumber *second = [(Game*)b power];
-            return [first compare:second];
-        }];**/
+         NSNumber *first = [(Game*)a power];
+         NSNumber *second = [(Game*)b power];
+         return [first compare:second];
+         }];**/
         
         float highestNumber=0;
         
@@ -1095,28 +1153,28 @@
         float value=highestNumber;
         [[GCDQueue mainQueue]queueBlock:^{
             [self.targetLabel setText:[NSString stringWithFormat:@"%0.0f",value]];
-
+            
         }];
         
     }
-
+    
 }
 -(IBAction)testButtonDown:(id)sender
 {
-
-   // [self midiNoteBeganForDuration:nil];
-   // [self testContinueStart];
-  //  [self startSession];
+    
+    // [self midiNoteBeganForDuration:nil];
+    // [self testContinueStart];
+    //  [self startSession];
     [self addTestScores];
 }
 -(IBAction)testButtonUp:(id)sender
 
 {
-   // [self saveCurrentSession];
-   // [self midiNoteStoppedForDuration:nil];
-   // [self testContinueStop];
-
-
+    // [self saveCurrentSession];
+    // [self midiNoteStoppedForDuration:nil];
+    // [self testContinueStop];
+    
+    
 }
 
 -(void)testContinueStop
@@ -1129,9 +1187,9 @@
 {
     //  [self stop];
     [self midiNoteBeganForPower:Nil];
-        testDurationDisplayLink = [CADisplayLink displayLinkWithTarget:self
-                                                  selector:@selector(animateForTestDuration)];
-        [testDurationDisplayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+    testDurationDisplayLink = [CADisplayLink displayLinkWithTarget:self
+                                                          selector:@selector(animateForTestDuration)];
+    [testDurationDisplayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
     
 }
 -(void)animateForTestDuration
@@ -1164,7 +1222,7 @@
         
     }
     
-
+    
     //[soundPath release];
     // NSLog(@"soundpath retain count: %d", [soundPath retainCount]);
 }
@@ -1181,7 +1239,7 @@
 -(void)addTestScores
 
 {
-
+    
     
     for (int i=0; i<30; i++) {
         
@@ -1216,16 +1274,16 @@
 
 {
     //self.btleMager.delegate=nil;
-   // self.btleMager=nil;
-   // [displayLink invalidate];
-   // displayLink=nil;
+    // self.btleMager=nil;
+    // [displayLink invalidate];
+    // displayLink=nil;
 }
 
 -(void)foreground
 {
-  //  self.btleMager=[BTLEManager new];
-  //  self.btleMager.delegate=self;
- //   [self.btleMager startWithDeviceName:@"GroovTube 2.0" andPollInterval:0.1];
+    //  self.btleMager=[BTLEManager new];
+    //  self.btleMager.delegate=self;
+    //   [self.btleMager startWithDeviceName:@"GroovTube 2.0" andPollInterval:0.1];
     //[self.btleMager setTreshold:60];
     
 }
@@ -1238,11 +1296,11 @@
 
 //- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 //{
-   // self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-  //  if (self) {
+// self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+//  if (self) {
 
-   // }
-   // return self;
+// }
+// return self;
 //}
 
 #pragma mark -
@@ -1252,6 +1310,8 @@
 //
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    NSLog(@"PHOTO LIBRARY ACTION - imagePickerController");
+    
     UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
     [self setupDisplayFilteringWithImage:image];
     
@@ -1278,6 +1338,8 @@
 
 - (IBAction)photoButtonLibraryAction:(id)sender
 {
+    NSLog(@"PHOTO LIBRARY ACTION");
+    
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         popover = [[UIPopoverController alloc] initWithContentViewController:imagePickerController];
         [popover presentPopoverFromRect:CGRectMake(0, 0, 500, 500) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
@@ -1311,25 +1373,26 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    //UNCOMMENT TO GO
-   // if (!displayLink) {
-   //     [self setupDisplayFiltering];
-   //     displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateimage)];
-   //     [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
-  //      animationRunning = YES;
-   //     [displayLink setFrameInterval:8];
-        //NO[self makeTimer];
-  //      acceleration=0.1;
-  //      distance=0;
-  //      time=0;
+    if (!displayLink) {
+        [self setupDisplayFiltering];
+        displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateimage)];
+        [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+        animationRunning = YES;
+        [displayLink setFrameInterval:8];
+        //[self makeTimer];
+        acceleration=0.1;
+        distance=0;
+        time=0;
         //      [self toggleDirection:nil];
         //      [self toggleDirection:nil];
- //   }
+    }
 }
 
 
 -(void)updateimage
 {
+  //  NSLog(@"UPDATE IMAGE");
+    
     /***
      @"Bulge",@"Swirl",@"Blur",@"Vignette",@"Toon",
      @"Tone",@"Sketch",@"Polka",
@@ -1340,10 +1403,13 @@
     float fVel= (float)self.velocity;
     // float rate = fVel/5;
     float rate = fVel;
-    //NSLog(@"rate == %f",rate);
+   
+    
+    //NSLog(@"stillImageFilter %@",stillImageFilter);
     
     if (isaccelerating)
     {
+        NSLog(@"isaccelerating == %hhd",isaccelerating);
         if (self.velocity>=threshold) {
             
             targetRadius=targetRadius+((rate/500)*_animationrate);
@@ -1355,6 +1421,8 @@
         // targetRadius=targetRadius-((35.0/500)*_animationrate);
         targetRadius=targetRadius-((40.0/500)*_animationrate);
     }
+    
+     NSLog(@"targetRadius == %f",targetRadius);
     
     //if (inorout==midiinhale) {
     // }else
@@ -1437,7 +1505,7 @@
 
 -(void)setupDisplayFilteringWithImage:(UIImage*)aImage
 {
-    
+    NSLog(@"SETUP DISPLAY WITH NEW IMAGE");
     //cleanup
     [sourcePicture removeAllTargets];
     //[stillImageFilter destroyFilterFBO];
@@ -1445,8 +1513,8 @@
     stillImageFilter=nil;
     [imageView removeFromSuperview];
     imageView=nil;
-   // imageView = [[GPUImageView alloc]initWithFrame:self.view.frame]
-
+    // imageView = [[GPUImageView alloc]initWithFrame:self.view.frame]
+    
     stillImageFilter=[self filterForIndex:0];
     [sourcePicture addTarget:stillImageFilter];
     [stillImageFilter addTarget:imageView];
@@ -1472,6 +1540,7 @@
 }
 - (void)setupDisplayFiltering;
 {
+    
     NSLog(@"SET UP DISPLAY FILTERING");
     UIImage *inputImage;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -1502,7 +1571,6 @@
 
 -(void)setFilter:(int)index
 {
-    NSLog(@"setting filter");
     [sourcePicture removeAllTargets];
     //[stillImageFilter destroyFilterFBO];
     //[stillImageFilter releaseInputTexturesIfNeeded];
@@ -1594,9 +1662,6 @@
     //[self setDefaults];
     // if (!animationRunning)
     // {
-    
-    NSLog(@"starting display link!!!");
-    
     displayLink = [CADisplayLink displayLinkWithTarget:self
                                               selector:@selector(animate)];
     [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];

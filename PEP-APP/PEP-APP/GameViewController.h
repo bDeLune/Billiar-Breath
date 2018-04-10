@@ -3,6 +3,7 @@
 #import "Game.h"
 #import "AbstractGame.h"
 #import "MidiController.h"
+#import "GPUImage.h"
 
 @protocol SETTINGS_DELEGATE
 -(void)sendValue:(int)note onoff:(int)onoff;
@@ -17,7 +18,13 @@
 -(void)gameViewExitGame;
 @end
 
-@interface GameViewController : UIViewController<MidiControllerProtocol,GameProtocol,SETTINGS_DELEGATE,UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITabBarDelegate>
+@interface GameViewController : UIViewController<MidiControllerProtocol,GameProtocol,SETTINGS_DELEGATE,UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITabBarDelegate>{
+    
+   // GPUImagePicture *sourcePicture;
+    GPUImageOutput<GPUImageInput> *sepiaFilter, *sepiaFilter2;
+    
+    UISlider *imageSlider;
+}
 
 @property(nonatomic,weak)IBOutlet  UIButton  *backToLoginButton;
 @property(nonatomic,weak)IBOutlet  UIButton *toggleDirectionButton;
@@ -65,6 +72,10 @@
 //@property (weak, nonatomic) IBOutlet UITabBarItem *goToUsersScreen;
 -(IBAction)testButtonDown:(id)sender;
 -(IBAction)testButtonUp:(id)sender;
-
+// Image filtering
+- (void)setupDisplayFiltering;
+- (void)setupImageFilteringToDisk;
+- (void)setupImageResampling;
+- (IBAction)updateSliderValue:(id)sender;
 
 @end
