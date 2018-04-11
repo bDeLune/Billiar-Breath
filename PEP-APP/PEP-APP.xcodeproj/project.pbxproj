@@ -13,6 +13,7 @@
 		710BDDE5207D039400B1E393 /* Model.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 7186DDCC1E4DBE0D00F71F0C /* Model.xcdatamodel */; };
 		710BDDE9207D1DFE00B1E393 /* PickPhotoButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 710BDDE8207D1DFE00B1E393 /* PickPhotoButton.png */; };
 		710BDDEB207D24B600B1E393 /* giraffe-614141_1280.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 710BDDEA207D24B600B1E393 /* giraffe-614141_1280.jpg */; };
+		710BDDF1207E5B9400B1E393 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 710BDDEF207E48B700B1E393 /* SettingsViewController.xib */; };
 		71693B90206937D3009F14EA /* BilliardBreath1024X1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 71693B8F206937D1009F14EA /* BilliardBreath1024X1024.png */; };
 		7186DDD01E4DBE0D00F71F0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7186DDCD1E4DBE0D00F71F0C /* Main.storyboard */; };
 		7186DDEB1E4DBF2400F71F0C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7186DDEA1E4DBF2400F71F0C /* LoginViewController.xib */; };
@@ -98,7 +99,7 @@
 		71D1A36C2074FBC800C83B63 /* MainBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D1A3632074FBC800C83B63 /* MainBackground.png */; };
 		71D1A36D2074FBC800C83B63 /* Logo-Middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D1A3642074FBC800C83B63 /* Logo-Middle.png */; };
 		71D1A36E2074FBC800C83B63 /* Menu-Users.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D1A3652074FBC800C83B63 /* Menu-Users.png */; };
-		71D1A3732074FE5300C83B63 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D1A3712074FE5200C83B63 /* SecondViewController.m */; };
+		71D1A3732074FE5300C83B63 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D1A3712074FE5200C83B63 /* SettingsViewController.m */; };
 		71D1A64B2075187A00C83B63 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D1A6482075184C00C83B63 /* GPUImage.framework */; };
 		71D1A64F20751F2400C83B63 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D1A64E20751F2400C83B63 /* CoreMedia.framework */; };
 		71D1A65120751F2D00C83B63 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D1A65020751F2C00C83B63 /* CoreVideo.framework */; };
@@ -220,6 +221,7 @@
 		710857671E439B8A00479032 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		710BDDE8207D1DFE00B1E393 /* PickPhotoButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PickPhotoButton.png; sourceTree = "<group>"; };
 		710BDDEA207D24B600B1E393 /* giraffe-614141_1280.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "giraffe-614141_1280.jpg"; sourceTree = "<group>"; };
+		710BDDEF207E48B700B1E393 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		71693B8F206937D1009F14EA /* BilliardBreath1024X1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BilliardBreath1024X1024.png; sourceTree = "<group>"; };
 		7186DDCC1E4DBE0D00F71F0C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		7186DDCD1E4DBE0D00F71F0C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -350,8 +352,8 @@
 		71D1A3632074FBC800C83B63 /* MainBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MainBackground.png; sourceTree = "<group>"; };
 		71D1A3642074FBC800C83B63 /* Logo-Middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo-Middle.png"; sourceTree = "<group>"; };
 		71D1A3652074FBC800C83B63 /* Menu-Users.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Menu-Users.png"; sourceTree = "<group>"; };
-		71D1A3712074FE5200C83B63 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
-		71D1A3722074FE5300C83B63 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		71D1A3712074FE5200C83B63 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		71D1A3722074FE5300C83B63 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		71D1A63F2075184B00C83B63 /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = "../../../Downloads/GPUImage-master 3/framework/GPUImage.xcodeproj"; sourceTree = "<group>"; };
 		71D1A64E20751F2400C83B63 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		71D1A65020751F2C00C83B63 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
@@ -446,12 +448,13 @@
 				7186DE221E4DBF7100F71F0C /* Globals.m */,
 				7186DE231E4DBF7100F71F0C /* PlotGallery.m */,
 				7186DE241E4DBF7100F71F0C /* PlotItem.h */,
-				71D1A3722074FE5300C83B63 /* SecondViewController.h */,
-				71D1A3712074FE5200C83B63 /* SecondViewController.m */,
+				71D1A3722074FE5300C83B63 /* SettingsViewController.h */,
 				7186DE251E4DBF7100F71F0C /* PlotItem.m */,
+				71D1A3712074FE5200C83B63 /* SettingsViewController.m */,
 				7186DE261E4DBF7100F71F0C /* LoginViewController.m */,
 				7186DE271E4DBF7100F71F0C /* BilliardBreath-Prefix.pch */,
 				7186DE281E4DBF7100F71F0C /* GameViewController.h */,
+				710BDDEF207E48B700B1E393 /* SettingsViewController.xib */,
 				7186DE291E4DBF7100F71F0C /* GameViewController.m */,
 				7186DE041E4DBF5F00F71F0C /* HeaderView.m */,
 				7186DE051E4DBF5F00F71F0C /* GameViewController.xib */,
@@ -856,6 +859,7 @@
 				7186DE0D1E4DBF5F00F71F0C /* Crowd_cheer6.wav in Resources */,
 				71D1A36A2074FBC800C83B63 /* Menu-Settings.png in Resources */,
 				7186DEA31E4DBFA400F71F0C /* BilliardBreathAppIcon167x167.png in Resources */,
+				710BDDF1207E5B9400B1E393 /* SettingsViewController.xib in Resources */,
 				7186DE9F1E4DBFA400F71F0C /* BilliardBreathAppIcon114x114.png in Resources */,
 				7186DE9B1E4DBFA400F71F0C /* BilliardBreathAppIcon72x72.png in Resources */,
 				71D1A35A2074F8F000C83B63 /* bell_3.png in Resources */,
@@ -904,7 +908,7 @@
 				71C9F9E71E5334A90078070D /* CAKeyframeAnimation+AHEasing.m in Sources */,
 				7186DE331E4DBF7100F71F0C /* GameViewController.m in Sources */,
 				7186DE2F1E4DBF7100F71F0C /* Globals.m in Sources */,
-				71D1A3732074FE5300C83B63 /* SecondViewController.m in Sources */,
+				71D1A3732074FE5300C83B63 /* SettingsViewController.m in Sources */,
 				710BDDE5207D039400B1E393 /* Model.xcdatamodel in Sources */,
 				71C9FA081E53356C0078070D /* NSData+Base64.m in Sources */,
 				7186DEB91E4DC61D00F71F0C /* main.m in Sources */,

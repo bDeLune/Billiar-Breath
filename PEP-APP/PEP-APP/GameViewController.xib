@@ -167,6 +167,19 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7QT-wR-PVR">
                     <rect key="frame" x="0.0" y="272" width="792" height="251"/>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iaw-Al-Fsu">
+                    <rect key="frame" x="15" y="834" width="82" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="5jC-yr-MLt"/>
+                        <constraint firstAttribute="width" constant="82" id="qYE-7r-AWg"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="LoginButton">
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="toSettingsScreen:" destination="-1" eventType="touchUpInside" id="vRw-fh-cc3"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -180,6 +193,7 @@
                 <constraint firstAttribute="trailing" secondItem="7QT-wR-PVR" secondAttribute="trailing" id="JYE-kK-xN1"/>
                 <constraint firstItem="ecC-LK-npv" firstAttribute="top" secondItem="wei-TP-4wR" secondAttribute="top" id="Luw-BN-TdU"/>
                 <constraint firstItem="TE6-R3-G8k" firstAttribute="leading" secondItem="Ke9-1k-1RZ" secondAttribute="trailing" constant="8" symbolic="YES" id="Lza-Fx-Mjg"/>
+                <constraint firstItem="7Fi-Eh-iAy" firstAttribute="leading" secondItem="Iaw-Al-Fsu" secondAttribute="trailing" constant="8" symbolic="YES" id="MOI-e3-7hc"/>
                 <constraint firstItem="TE6-R3-G8k" firstAttribute="top" secondItem="AkJ-s6-cq1" secondAttribute="top" id="NHY-OT-Dvn"/>
                 <constraint firstItem="xTf-Lk-gJp" firstAttribute="baseline" secondItem="21a-HR-7I2" secondAttribute="baseline" id="NMs-ro-QyQ"/>
                 <constraint firstItem="wei-TP-4wR" firstAttribute="leading" secondItem="ecC-LK-npv" secondAttribute="trailing" constant="8" symbolic="YES" id="NuR-fn-WwS"/>
@@ -210,6 +224,7 @@
                 <constraint firstItem="ecC-LK-npv" firstAttribute="top" secondItem="7QT-wR-PVR" secondAttribute="bottom" constant="311" id="lR4-lB-rkn"/>
                 <constraint firstItem="xTf-Lk-gJp" firstAttribute="leading" secondItem="7Fi-Eh-iAy" secondAttribute="leading" id="ljS-gv-uX0"/>
                 <constraint firstItem="21a-HR-7I2" firstAttribute="centerX" secondItem="Ke9-1k-1RZ" secondAttribute="centerX" id="m7R-4H-C2o"/>
+                <constraint firstItem="Iaw-Al-Fsu" firstAttribute="bottom" secondItem="7Fi-Eh-iAy" secondAttribute="bottom" constant="-89" id="qDg-aE-NQI"/>
                 <constraint firstItem="7QT-wR-PVR" firstAttribute="top" secondItem="pwD-YL-Hh8" secondAttribute="bottom" constant="40" id="roa-cb-rgx"/>
                 <constraint firstItem="Ke9-1k-1RZ" firstAttribute="leading" secondItem="7Fi-Eh-iAy" secondAttribute="trailing" constant="8" symbolic="YES" id="tB9-9a-ca6"/>
                 <constraint firstAttribute="trailing" secondItem="FSE-oq-oRC" secondAttribute="trailing" constant="9" id="xvt-rc-ALJ"/>

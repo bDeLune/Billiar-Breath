@@ -90,37 +90,21 @@
     
     NSLog(@"CLICKED TAB BAR ITEM");
     NSLog(@"%@", item);
-    
 }
-
-//-(IBAction)goToUsersButton:(id)sender
-//-(IBAction) goToSettingsScreen:(id)sender
-//{
-//  self.userList.sharedPSC=self.sharedPSC ;
-//   [self.userList getListOfUsers];
-//  [UIView transitionFromView:self.view toView:self.navcontroller.view duration:0.5 //options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished){
-//        self.userList.sharedPSC=self.sharedPSC;
-///        self.userList.delegate=self;
-//   }];
-//}
 
 -(void)btleManagerConnected:(BTLEManager *)manager
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.btOnOfImageView setImage:[UIImage imageNamed:@"Bluetooth-CONNECTED"]];
-        
     });
-    
 }
 
 -(void)btleManagerDisconnected:(BTLEManager *)manager
-
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         
         [self.btOnOfImageView setImage:[UIImage imageNamed:@"Bluetooth-DISCONNECTED"]];
     });
-    
 }
 
 #pragma mark -
@@ -132,7 +116,6 @@
     self.currentSession=[Session new];
     self.currentSession.sessionDate=[NSDate date];
 }
-
 
 #pragma mark -
 #pragma mark - KVO
@@ -160,8 +143,6 @@
     }
 }
 
-
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -188,8 +169,6 @@
         [self.btleManager startWithDeviceName:@"GroovTube" andPollInterval:0.1];
         [self.btleManager setRangeReduction:2];
         [self.btleManager setTreshold:60];
-        
-        
         [self startSession];
         
         self.btOnOfImageView=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.bounds.size.width-230, 30, 100, 100)];
@@ -197,7 +176,6 @@
         [self.view addSubview:self.btOnOfImageView];
         
         ///image
-        
         sketchamount=0;
         self.title = @"Groov";
         self.tabBarItem.image = [UIImage imageNamed:@"first"];
@@ -243,8 +221,6 @@
 }
 
 //FIND ALLOW BREATH FUNCTION
-
-
 -(void)btleManagerBreathBegan:(BTLEManager*)manager{
     
     /// NSLog(@"allow == %i",[self.midiController allowBreath]);
@@ -310,7 +286,6 @@
     self.midiController.speed= (fabs( self.midiController.velocity- self.midiController.previousVelocity));
     self.midiController.previousVelocity= self.midiController.velocity;
     
-    
     [self midiNoteContinuing: self.midiController];
     
   //  currentdirection=midiexhale;
@@ -365,6 +340,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 -(void)setLabels
 {
     [self managedObjectContext];
@@ -380,6 +356,18 @@
 {
     [self.delegate gameViewExitGame];
 }
+
+
+
+
+
+- (IBAction)toSettingsScreen:(id)sender {
+    
+    NSLog(@"Go to settings screen");
+    [self.delegate toSettingsScreen];
+}
+
+
 -(IBAction)toggleDirection:(id)sender
 {
     
@@ -404,8 +392,8 @@
         default:
             break;
     }
-    
 }
+
 -(IBAction)toggleGameMode:(id)sender
 {
     int mode=self.currentGameType;
@@ -448,7 +436,6 @@
             
             break;
             
-            
         default:
             break;
     }
@@ -468,7 +455,6 @@
     
     currentDifficulty=mode;
     // int presentDifficulty = [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:currentDifficulty] forKey:@"difficulty"];
-    
     
     int setDifficulty = [[[NSUserDefaults standardUserDefaults] objectForKey:@"difficulty"] intValue];
     ///  int savedValue = [highScore IntValue];
@@ -596,16 +582,12 @@
             default:
                 break;
         }
-        
-        ///  wasExhaling = nil;
-        
+        /// wasExhaling = nil;
     }else{
-        
-        //     NSLog(@"DISALLOWING MIDI NOTES STOPPED!");
-        
+        //  NSLog(@"DISALLOWING MIDI NOTES STOPPED!");
     }
-    
 }
+
 -(void)midiNoteContinuing:(MidiController*)midi
 {
     
@@ -700,14 +682,9 @@
 }
 -(void)midiNoteStoppedForSequence:(MidiController *)midi
 {
-    
-    
     [self.sequenceGameController nextBall];
-    
-    
-    
-    
 }
+
 -(void)midiNoteContinuingForSequence:(MidiController*)midi
 {
     // if (self.sequenceGameController.currentSpeed==-1) {
@@ -875,15 +852,8 @@
     }
     
     [[GCDQueue mainQueue]queueBlock:^{
-        
-        
         [self.billiardViewController pushBallsWithVelocity:vel];
-        
-        
-        
     }];
-    
-    
 }
 
 -(void)sendLogToOutput:(NSString*)log
@@ -893,6 +863,7 @@
         [self.debugtext setText:log];
     }];
 }
+
 -(void)setThreshold:(int)pvalue
 {
     
@@ -936,8 +907,6 @@
     
     [[GCDQueue mainQueue]queueBlock:^{
         [self resetGame:nil];
-        
-        
     }];
     
     //if (game.saveable) {
@@ -1409,7 +1378,7 @@
     
     if (isaccelerating)
     {
-        NSLog(@"isaccelerating == %hhd",isaccelerating);
+    //    NSLog(@"isaccelerating == %hhd",isaccelerating);
         if (self.velocity>=threshold) {
             
             targetRadius=targetRadius+((rate/500)*_animationrate);
@@ -1422,14 +1391,12 @@
         targetRadius=targetRadius-((40.0/500)*_animationrate);
     }
     
-     NSLog(@"targetRadius == %f",targetRadius);
-    
+    // NSLog(@"targetRadius == %f",targetRadius);
     //if (inorout==midiinhale) {
     // }else
     // {
     // targetRadius=targetRadius-((rate/1000)*_animationrate);
     // }
-    
     
     if (targetRadius<0.001) {
         targetRadius=0.001;
@@ -1501,7 +1468,6 @@
      self.focusFallOffRate = 0.2;
      self.blurSize = 2.0;*/
 }
-
 
 -(void)setupDisplayFilteringWithImage:(UIImage*)aImage
 {

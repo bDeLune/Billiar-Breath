@@ -16,6 +16,7 @@
 
 @protocol GameViewProtocol <NSObject>
 -(void)gameViewExitGame;
+-(void)toSettingsScreen;
 @end
 
 @interface GameViewController : UIViewController<MidiControllerProtocol,GameProtocol,SETTINGS_DELEGATE,UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITabBarDelegate>{

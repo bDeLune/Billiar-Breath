@@ -1,32 +1,35 @@
-//
-//  SecondViewController.m
+//  SettingsViewController.m
 //  GroovTube
 //
 //  Created by Culann Mac Cabe on 21/02/2013.
 //  Copyright (c) 2013 Culann Mac Cabe. All rights reserved.
-//
+#import "ViewController.h"
+#import "SettingsViewController.h"
 
-#import "SecondViewController.h"
-
-@interface SecondViewController ()
+@interface SettingsViewController ()<UITabBarDelegate>
 
 @end
 
-@implementation SecondViewController
+@implementation SettingsViewController
+
 @synthesize settinngsDelegate;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
+    
+     NSLog(@"INITIATED SETTINGS MODE");
+    
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
+   
     if (self) {
         self.title = @"Settings";
         self.tabBarItem.image = [UIImage imageNamed:@"second"];
         
         arrayA=[NSMutableArray arrayWithObjects:@"Small",@"Normal",@"Big", nil];
-       arrayB=[NSMutableArray arrayWithObjects:@"Low",@"Normal",@"High",@"Very High", nil];
-
+        arrayB=[NSMutableArray arrayWithObjects:@"Low",@"Normal",@"High",@"Very High", nil];
         arrayC=[NSMutableArray arrayWithObjects:@"10",@"50",@"100",@"200", nil];
         
-        /**
+        /*
          #import"GPUImageVignetteFilter.h"
          #import "GPUImageToonFilter.h"
          #import "GPUImageToneCurveFilter.h"
@@ -40,35 +43,34 @@
          #import "GPUImagePixellateFilter.h"
          #import "GPUImageHazeFilter.h"
          #import "GPUImageErosionFilter.h"
-         
-         
          */
-         
-      
         
         filterArray=[NSMutableArray arrayWithObjects:
                      @"Bulge",@"Swirl",@"Blur",@"Toon",
-                    @"Expose",@"Polka",
+                     @"Expose",@"Polka",
                      @"Posterize",@"Pixellate",@"Contrast", nil];
-
-
     }
     return self;
 }
-							
 
+
+- (IBAction)backToGameButton:(id)sender {
+    
+    NSLog(@"returning from settings");
+    NSLog(@"Go to settings screen");
+    //[self.delegate toSettingsScreen];
+    //[self.view addSubview:self.settingsViewController.view];
+}
 
 #pragma mark -
 #pragma mark Picker View Methods
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)thePickerView {
-	
 	return 1;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)thePickerView numberOfRowsInComponent:(NSInteger)component {
 	
-    
     int amount;
     
     if (thePickerView==pickerViewA) {
@@ -76,21 +78,18 @@
     }
     if (thePickerView==pickerViewB) {
         amount=(int)[arrayB count];
-
     }
     if (thePickerView==pickerViewC) {
         amount=(int)[arrayC count];
-
     }
     if (thePickerView==filterPicker) {
         amount=(int)[filterArray count];
-        
     }
+    
 	return amount;
 }
 
 - (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-	
     
     NSString *thetitle;
     
@@ -99,22 +98,18 @@
     }
     if (thePickerView==pickerViewB) {
         thetitle=[arrayB objectAtIndex:row];
-        
     }
     if (thePickerView==pickerViewC) {
         thetitle=[arrayC objectAtIndex:row];
-        
     }
     if (thePickerView==filterPicker) {
         thetitle=[filterArray objectAtIndex:row];
-        
     }
 	return thetitle;
 }
 
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
 	
-    
     int rowint=(int)row;
     if (thePickerView==pickerViewA) {
         //NSLog(@"Selected : %@. Index of selected color: %i", [arrayA objectAtIndex:row], row);
@@ -124,21 +119,16 @@
     if (thePickerView==pickerViewB) {
        // NSLog(@"Selected : %@. Index of selected color: %i", [arrayB objectAtIndex:row], row);
         [self valueBSend:rowint];
-
-        
     }
+    
     if (thePickerView==pickerViewC) {
        // NSLog(@"Selected : %@. Index of selected color: %i", [arrayC objectAtIndex:row], row);
         [self valueCSend:rowint];
-
-        
     }
     
     if (thePickerView==filterPicker) {
         //NSLog(@"Selected : %@. Index of selected color: %i", [filterArray objectAtIndex:row], row);
         [self.settinngsDelegate setFilter:rowint];
-        
-        
     }
 
 }

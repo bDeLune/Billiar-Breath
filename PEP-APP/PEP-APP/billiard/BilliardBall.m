@@ -125,10 +125,7 @@
 
 -(void)stop
 {
-    
     CGRect frame=self.frame;
-    
-    
     frame.origin.y=0;
     self.frame=frame;
     [self setNeedsDisplay];
@@ -136,8 +133,7 @@
         if (_animationRunning) {
             [displayLink invalidate];
             _animationRunning=NO;
-            
-           
+    
         //added
         [[GCDQueue mainQueue]queueBlock:^{
                 [self.delegate ballReachedFinalTarget:self];
@@ -145,7 +141,7 @@
             } afterDelay:0.1];
 
         }
-        
+
   ///  NSLog(@"Stopped!!");
    /// }];
 }

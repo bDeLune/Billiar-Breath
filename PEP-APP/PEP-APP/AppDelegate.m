@@ -1,19 +1,13 @@
-//
-//  AppDelegate.m
-//  BilliardBreath
-//
-//  Created by barry on 09/12/2013.
-//  Copyright (c) 2013 rocudo. All rights reserved.
-//
-
+#import "GCDQueue.h"
 #import "AppDelegate.h"
 #import "AddNewScoreOperation.h"
+#import "SettingsViewController.h"
+#import "GameViewController.h"
 
 @interface AppDelegate()
 {
     UIImageView  *startupImageView;
     NSTimer      *startupTimer;
-    
 }
 
 @end
@@ -21,11 +15,21 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-    
-    ///[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
-    
-    return YES;
+  ///  [[GCDQueue mainQueue]queueBlock:^{
+        //   self.tabBarController.view.alpha=1.0;
+      //  LoginViewController *viewController1;
+       // SettingsViewController*viewController2;
+
+       // viewController1 = [[LoginViewController alloc] initWithNibName:@"FirstViewController_iPad" bundle:nil];
+       // viewController2 = [[SettingsViewController alloc] initWithNibName:@"SecondViewController_iPad" bundle:nil];
+        
+     //  [viewController2 setSettinngsDelegate:viewController1];
+     //  self.tabBarController = [[UITabBarController alloc] init];
+     //  self.tabBarController.viewControllers = @[viewController1, viewController2];
+     //  self.window.rootViewController = self.tabBarController;
+        
+  //  }];
+ return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

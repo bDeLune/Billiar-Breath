@@ -3,6 +3,8 @@
 #import "User.h"
 #import "Game.h"
 #import "GameViewController.h"
+#import "SettingsViewController.h"
+
 #define GUAGE_HEIGHT 575
 //#import <CoreMIDI/CoreMIDI.h>
 #import <AudioToolbox/AudioToolbox.h>
@@ -24,11 +26,12 @@ typedef void(^RunTimer)(void);
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
-@property(nonatomic,strong)LoginViewController  *loginViewController;
-@property(nonatomic,strong)GameViewController  *gameViewController;
-@property(nonatomic,strong)User  *currentUser;
-@property(nonatomic,strong)Game  *currentGame;
-@property(nonatomic,strong)UIImageView *startupImageView;
+@property(nonatomic,strong) LoginViewController  *loginViewController;
+@property(nonatomic,strong) GameViewController  *gameViewController;
+@property(nonatomic,strong) SettingsViewController  *settingsViewController;
+@property(nonatomic,strong) User  *currentUser;
+@property(nonatomic,strong) Game  *currentGame;
+@property(nonatomic,strong) UIImageView *startupImageView;
 @end
 
 @implementation ViewController
@@ -45,6 +48,8 @@ typedef void(^RunTimer)(void);
     // Do any additional setup after loading the view, typically from a nib.
     [self managedObjectContext];
     [self addUserLoginViewController];
+    
+    
     
 ///_startupImageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Default.png"]];
 //[self.view addSubview:_startupImageView];
@@ -85,6 +90,17 @@ typedef void(^RunTimer)(void);
     self.loginViewController.delegate=self;
 }
 
+-(void)addSettingsViewController
+{
+    if (!self.settingsViewController) {
+        self.settingsViewController=[[SettingsViewController alloc]initWithNibName:@"SettingsViewController" bundle:nil];
+    }
+    
+    [self.view addSubview:self.settingsViewController.view];
+   // self.loginViewController.sharedPSC=self.persistentStoreCoordinator;
+   // self.loginViewController.delegate=self;
+}
+
 #pragma mark -
 
 #pragma mark - Login Delegate
@@ -114,6 +130,24 @@ typedef void(^RunTimer)(void);
     [UIView transitionFromView:self.gameViewController.view toView:self.loginViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromTop completion:^(BOOL finished){
         
     }];
+}
+
+-(void)exitSettingsViewController
+{
+    [UIView transitionFromView:self.settingsViewController.view toView:self.gameViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromTop completion:^(BOOL finished){
+        
+    }];
+}
+
+-(void)toSettingsScreen
+{
+    NSLog(@"Go to settings view controller");
+    
+     [self addSettingsViewController];
+    
+   // [UIView transitionFromView:self.gameViewController.view toView:self.settingsViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromTop completion:^(BOOL finished){
+    //    NSLog(@"transition complete");
+   // }];
 }
 
 
