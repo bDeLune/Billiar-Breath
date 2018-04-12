@@ -19,10 +19,10 @@
     NSMutableArray *arrayB;
     NSMutableArray *arrayC;
     NSMutableArray *filterArray;
-    id<SETTINGS_DELEGATE> __unsafe_unretained settinngsDelegate;
+   // id<SETTINGS_DELEGATE> __unsafe_unretained settinngsDelegate;
 }
 
-@property (unsafe_unretained) id<SETTINGS_DELEGATE> settinngsDelegate;
+@property (unsafe_unretained) id<SETTINGS_DELEGATE> delegate;
 -(IBAction)changeRate:(id)sender;
 -(IBAction)changeThreshold:(id)sender;
 -(IBAction)changeBTTreshold:(id)sender;

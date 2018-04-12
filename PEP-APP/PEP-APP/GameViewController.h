@@ -12,6 +12,7 @@
 -(void)setThreshold:(float)value;
 -(void)setBTTreshold:(float)value;
 -(void)setBTBoost:(float)value;
+-(void)test:(float)value;
 @end
 
 @protocol GameViewProtocol <NSObject>

@@ -14,7 +14,7 @@
 #import "BTLEManager.h"
 #import "UserListViewController.h"
 
-@interface GameViewController ()<BTLEManagerDelegate, UITabBarDelegate>
+@interface GameViewController ()<BTLEManagerDelegate, UITabBarDelegate, SETTINGS_DELEGATE>
 {
     int threshold;
     CADisplayLink *testDurationDisplayLink;
@@ -292,8 +292,6 @@
     //self.velocity=(percentOfmax/10.0)*127.0;
     self.velocity=(percentOfmax)*127.0;
     isaccelerating=YES;
-    
-    
 }
 
 
@@ -1323,15 +1321,27 @@
 -(void)setBTTreshold:(float)value
 {
     [self.btleMager setTreshold:value];
+    
+     NSLog(@"inner setBTTreshold");
 }
 -(void)setBTBoost:(float)value
 {
     [self.btleMager setRangeReduction:value];
+    NSLog(@"inner setBTBoost");
 }
 -(void)setRate:(float)value
 {
+    NSLog(@"inner setRate");
     self.animationrate=value;
 }
+
+-(void)test:(float)value
+{
+    NSLog(@"inner TEST");
+    self.animationrate=value;
+}
+
+
 -(void) appendToTextView: (NSString*) moreText {
     dispatch_async(dispatch_get_main_queue(), ^{
         _outputtext.text = [NSString stringWithFormat:@"%@%@\n",
@@ -1360,7 +1370,7 @@
 
 -(void)updateimage
 {
-  //  NSLog(@"UPDATE IMAGE");
+    //  NSLog(@"UPDATE IMAGE");
     
     /***
      @"Bulge",@"Swirl",@"Blur",@"Vignette",@"Toon",
@@ -1372,13 +1382,13 @@
     float fVel= (float)self.velocity;
     // float rate = fVel/5;
     float rate = fVel;
-   
+    
     
     //NSLog(@"stillImageFilter %@",stillImageFilter);
     
     if (isaccelerating)
     {
-    //    NSLog(@"isaccelerating == %hhd",isaccelerating);
+        //    NSLog(@"isaccelerating == %hhd",isaccelerating);
         if (self.velocity>=threshold) {
             
             targetRadius=targetRadius+((rate/500)*_animationrate);
@@ -1537,6 +1547,8 @@
 
 -(void)setFilter:(int)index
 {
+    NSLog(@"inner set filter");
+    
     [sourcePicture removeAllTargets];
     //[stillImageFilter destroyFilterFBO];
     //[stillImageFilter releaseInputTexturesIfNeeded];
@@ -1550,6 +1562,7 @@
     [sourcePicture addTarget:stillImageFilter];
     [stillImageFilter addTarget:imageView];
 }
+
 
 -(GPUImageFilter*)filterForIndex:(int)index
 {
@@ -1634,4 +1647,8 @@
     animationRunning = YES;
     //}
 }
+
+
+
+
 @end

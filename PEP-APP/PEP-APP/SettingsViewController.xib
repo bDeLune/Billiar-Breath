@@ -188,14 +188,6 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ojn-1y-tKz">
-                    <rect key="frame" x="282" y="870" width="194" height="98"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Back"/>
-                    <connections>
-                        <action selector="backToGameButton:" destination="-1" eventType="touchUpInside" id="nvx-o4-TC6"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" red="0.66666668653488159" green="0.66666668653488159" blue="0.66666668653488159" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </view>

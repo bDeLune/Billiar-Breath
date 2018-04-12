@@ -1,8 +1,3 @@
-//  SettingsViewController.m
-//  GroovTube
-//
-//  Created by Culann Mac Cabe on 21/02/2013.
-//  Copyright (c) 2013 Culann Mac Cabe. All rights reserved.
 #import "ViewController.h"
 #import "SettingsViewController.h"
 
@@ -12,7 +7,7 @@
 
 @implementation SettingsViewController
 
-@synthesize settinngsDelegate;
+//@synthesize settinngsDelegate;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     
@@ -49,17 +44,12 @@
                      @"Bulge",@"Swirl",@"Blur",@"Toon",
                      @"Expose",@"Polka",
                      @"Posterize",@"Pixellate",@"Contrast", nil];
+        
+     //   GameViewController *game = [[GameViewController alloc] init];
+    //    [self setDelegate:game];
+       // [self.delegate conformsToProtocol:@protocol(SETTINGS_DELEGATE)];
     }
     return self;
-}
-
-
-- (IBAction)backToGameButton:(id)sender {
-    
-    NSLog(@"returning from settings");
-    NSLog(@"Go to settings screen");
-    //[self.delegate toSettingsScreen];
-    //[self.view addSubview:self.settingsViewController.view];
 }
 
 #pragma mark -
@@ -70,6 +60,8 @@
 }
 
 - (NSInteger)pickerView:(UIPickerView *)thePickerView numberOfRowsInComponent:(NSInteger)component {
+    
+    NSLog(@"changing pickerView 0");
 	
     int amount;
     
@@ -91,6 +83,8 @@
 
 - (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     
+    NSLog(@"changing pickerView 1");
+    
     NSString *thetitle;
     
     if (thePickerView==pickerViewA) {
@@ -109,6 +103,8 @@
 }
 
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    
+    NSLog(@"changing thePickerView 2 ");
 	
     int rowint=(int)row;
     if (thePickerView==pickerViewA) {
@@ -128,7 +124,7 @@
     
     if (thePickerView==filterPicker) {
         //NSLog(@"Selected : %@. Index of selected color: %i", [filterArray objectAtIndex:row], row);
-        [self.settinngsDelegate setFilter:rowint];
+        [self.delegate setFilter:rowint];
     }
 
 }
@@ -136,9 +132,12 @@
 -(IBAction)changeRate:(id)sender
 
 {
+    NSLog(@"changing rate");
+    
     UISlider  *slider=(UISlider*)sender;
-    [self.settinngsDelegate setRate:slider.value];
-
+    [self.delegate setRate:slider.value];
+    
+   
 }
 /*
  -(void)setBTTreshold:(float)value
@@ -153,19 +152,27 @@
  */
 -(IBAction)changeThreshold:(id)sender
 {
-    [self.settinngsDelegate setThreshold:thresholdSlider.value];
+    NSLog(@"changing threshold");
+    
+    [self.delegate setThreshold:thresholdSlider.value];
     [thresholdLabel setText:[NSString stringWithFormat:@"%f",thresholdSlider.value]];
 }
 -(IBAction)changeBTTreshold:(id)sender
 {
-    [self.settinngsDelegate setBTTreshold:btThresholdSlider.value];
+    NSLog(@"changing changeBTTreshold");
+    
+    [self.delegate setBTTreshold:btThresholdSlider.value];
 
     [btTresholdLabel setText:[NSString stringWithFormat:@"%f",btThresholdSlider.value]];
+    
+    [self.delegate test:btThresholdSlider.value];
 
 }
 -(IBAction)changeBTBoostValue:(id)sender
 {
-    [self.settinngsDelegate setBTBoost:btBoostSlider.value];
+    NSLog(@"changing changeBTBoostValue");
+    
+    [self.delegate setBTBoost:btBoostSlider.value];
     [btrangeBoost setText:[NSString stringWithFormat:@"%f",btBoostSlider.value]];
 
 }
@@ -210,7 +217,7 @@
     }
     
     
-    [settinngsDelegate sendValue:note onoff:0];
+    [self.delegate sendValue:note onoff:0];
 }
 -(void)valueBSend:(NSInteger)index
 {
@@ -237,7 +244,7 @@
     }
     
     
-    [settinngsDelegate sendValue:note onoff:0];
+    [self.delegate sendValue:note onoff:0];
 }
 -(void)valueCSend:(NSInteger)index
 {
@@ -264,7 +271,7 @@
     }
     
     
-    [settinngsDelegate sendValue:note onoff:0];
+    [self.delegate sendValue:note onoff:0];
 }
 
 

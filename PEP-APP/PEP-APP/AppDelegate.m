@@ -15,20 +15,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  ///  [[GCDQueue mainQueue]queueBlock:^{
-        //   self.tabBarController.view.alpha=1.0;
-      //  LoginViewController *viewController1;
-       // SettingsViewController*viewController2;
+   // self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // Override point for customization after application launch.
+  //  temproot=[[SplashViewController alloc]initWithNibName:@"SplashViewController" bundle:nil];
+   // self.window.rootViewController = temproot;
+    
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    GameViewController *controller1 = [[GameViewController alloc] init];
+    SettingsViewController *controller2 = [[SettingsViewController alloc] init];
+    
+    tabBarController.viewControllers = [NSArray arrayWithObjects:
+                                        controller1,
+                                        controller2,
+                                        nil];
+    
+    self.window.rootViewController = tabBarController;
+    [self.window makeKeyAndVisible];
 
-       // viewController1 = [[LoginViewController alloc] initWithNibName:@"FirstViewController_iPad" bundle:nil];
-       // viewController2 = [[SettingsViewController alloc] initWithNibName:@"SecondViewController_iPad" bundle:nil];
-        
-     //  [viewController2 setSettinngsDelegate:viewController1];
-     //  self.tabBarController = [[UITabBarController alloc] init];
-     //  self.tabBarController.viewControllers = @[viewController1, viewController2];
-     //  self.window.rootViewController = self.tabBarController;
-        
-  //  }];
  return YES;
 }
 
