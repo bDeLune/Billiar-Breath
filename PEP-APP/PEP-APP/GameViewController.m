@@ -14,7 +14,7 @@
 #import "BTLEManager.h"
 #import "UserListViewController.h"
 
-@interface GameViewController ()<BTLEManagerDelegate, UITabBarDelegate, SETTINGS_DELEGATE>
+@interface GameViewController ()<BTLEManagerDelegate, UITabBarDelegate,UITabBarControllerDelegate, SETTINGS_DELEGATE>
 {
     int threshold;
     CADisplayLink *testDurationDisplayLink;
@@ -72,6 +72,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageFilterView;
 @property (weak, nonatomic) IBOutlet UIImageView *billiardBallView;
 @property(nonatomic,strong)UINavigationController *navcontroller;
+@property (strong, nonatomic) UITabBarController *tabBarController;
 @end
 
 @implementation GameViewController
@@ -355,16 +356,11 @@
     [self.delegate gameViewExitGame];
 }
 
-
-
-
-
 - (IBAction)toSettingsScreen:(id)sender {
     
     NSLog(@"Go to settings screen");
     [self.delegate toSettingsScreen];
 }
-
 
 -(IBAction)toggleDirection:(id)sender
 {
@@ -439,8 +435,8 @@
     }
     
     return modeString;
-    
 }
+
 -(IBAction)presentSettings:(id)sender
 {
     int mode=currentDifficulty;
@@ -500,17 +496,13 @@
     
     self.sequenceGameController=[SequenceGame new];
     self.sequenceGameController.delegate=self;
-    
     self.powerGameController=[PowerGame new];
     self.powerGameController.delegate=self;
     self.durationGameController=[DurationGame new];
     self.durationGameController.delegate=self;
     //[self setThreshold:0];
     [self.billiardViewController reset];
-    
     //[self test];
-    
-    
 }
 
 #pragma - Midi Delegate
@@ -547,13 +539,10 @@
         }
         
     }else{
-        
         ///     NSLog(@"DISALLOWING MIDI NOTES BEGAN!");
-        
     }
-    
-    
 }
+
 -(void)midiNoteStopped:(MidiController*)midi
 {
     // NSLog(@"Midi Stopped\n");
@@ -660,10 +649,6 @@
                 break;
         }
     }];
-    
-    
-    
-    
 }
 
 #pragma - Sequence
@@ -1491,9 +1476,10 @@
     imageView=nil;
     // imageView = [[GPUImageView alloc]initWithFrame:self.view.frame]
     
-    stillImageFilter=[self filterForIndex:0];
-    [sourcePicture addTarget:stillImageFilter];
-    [stillImageFilter addTarget:imageView];
+    //maybe0th 
+   // stillImageFilter=[self filterForIndex:0];
+   // [sourcePicture addTarget:stillImageFilter];
+   // [stillImageFilter addTarget:imageView];
     
     //image set
     //dispatch_async(dispatch_get_main_queue(), ^{

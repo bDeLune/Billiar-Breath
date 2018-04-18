@@ -90,6 +90,9 @@ void MyMIDINotifyProc (const MIDINotification  *message, void *refCon);
 {
 
 }
+
+
+
 -(BOOL)allowBreath
 {
     if (_toggleIsON) {

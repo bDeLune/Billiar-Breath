@@ -1,8 +1,12 @@
-#import <UIKit/UIKit.h>
-#import "ViewController.h"
+#import <UIKit/UIKit.h>  
+//#import "ViewController.h"
 #import "GameViewController.h" ///MAYBE
 
-@interface SettingsViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate, SETTINGS_DELEGATE,UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITabBarDelegate>
+@protocol SettingsViewProtocol <NSObject>
+-(void)exitSettingsViewController;
+@end
+
+@interface SettingsViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITabBarDelegate>
 {
     IBOutlet UIPickerView *pickerViewA;
     IBOutlet UIPickerView *pickerViewB;
@@ -19,10 +23,10 @@
     NSMutableArray *arrayB;
     NSMutableArray *arrayC;
     NSMutableArray *filterArray;
-   // id<SETTINGS_DELEGATE> __unsafe_unretained settinngsDelegate;
+    id<SETTINGS_DELEGATE> __unsafe_unretained settinngsDelegate;
 }
-
-@property (unsafe_unretained) id<SETTINGS_DELEGATE> delegate;
+@property (unsafe_unretained) id<SETTINGS_DELEGATE> settinngsDelegate;
+@property(nonatomic,unsafe_unretained)id<SettingsViewProtocol, UITabBarDelegate>delegate;
 -(IBAction)changeRate:(id)sender;
 -(IBAction)changeThreshold:(id)sender;
 -(IBAction)changeBTTreshold:(id)sender;

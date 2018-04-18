@@ -87,6 +87,9 @@ typedef void(^RunTimer)(void);
     
     [self.view addSubview:self.loginViewController.view];
     self.loginViewController.sharedPSC=self.persistentStoreCoordinator;
+    
+    //added
+    self.loginViewController.hidesBottomBarWhenPushed = YES;
     self.loginViewController.delegate=self;
 }
 
@@ -111,6 +114,8 @@ typedef void(^RunTimer)(void);
     
     self.currentUser=user;
     
+    //AppDelegateFileName *appDelegate (AppDegateFileAnem *) 
+    
     if (!self.gameViewController) {
         self.gameViewController=[[GameViewController alloc]initWithNibName:@"GameViewController" bundle:nil];
         self.gameViewController.delegate=self;
@@ -134,6 +139,8 @@ typedef void(^RunTimer)(void);
 
 -(void)exitSettingsViewController
 {
+    NSLog(@"inner back button pressed");
+    
     [UIView transitionFromView:self.settingsViewController.view toView:self.gameViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromTop completion:^(BOOL finished){
         
     }];

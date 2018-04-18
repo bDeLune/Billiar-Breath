@@ -7,14 +7,12 @@
 
 @implementation SettingsViewController
 
-//@synthesize settinngsDelegate;
+@synthesize settinngsDelegate;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    
-     NSLog(@"INITIATED SETTINGS MODE");
+    NSLog(@"INITIATED SETTINGS MODE");
     
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    
    
     if (self) {
         self.title = @"Settings";
@@ -124,7 +122,7 @@
     
     if (thePickerView==filterPicker) {
         //NSLog(@"Selected : %@. Index of selected color: %i", [filterArray objectAtIndex:row], row);
-        [self.delegate setFilter:rowint];
+        [self.settinngsDelegate setFilter:rowint];
     }
 
 }
@@ -135,10 +133,12 @@
     NSLog(@"changing rate");
     
     UISlider  *slider=(UISlider*)sender;
-    [self.delegate setRate:slider.value];
+    [self.settinngsDelegate setRate:slider.value];
     
    
 }
+
+
 /*
  -(void)setBTTreshold:(float)value
  {
@@ -154,25 +154,25 @@
 {
     NSLog(@"changing threshold");
     
-    [self.delegate setThreshold:thresholdSlider.value];
+    [self.settinngsDelegate setThreshold:thresholdSlider.value];
     [thresholdLabel setText:[NSString stringWithFormat:@"%f",thresholdSlider.value]];
 }
 -(IBAction)changeBTTreshold:(id)sender
 {
     NSLog(@"changing changeBTTreshold");
     
-    [self.delegate setBTTreshold:btThresholdSlider.value];
+    [self.settinngsDelegate setBTTreshold:btThresholdSlider.value];
 
     [btTresholdLabel setText:[NSString stringWithFormat:@"%f",btThresholdSlider.value]];
     
-    [self.delegate test:btThresholdSlider.value];
+    [self.settinngsDelegate test:btThresholdSlider.value];
 
 }
 -(IBAction)changeBTBoostValue:(id)sender
 {
     NSLog(@"changing changeBTBoostValue");
     
-    [self.delegate setBTBoost:btBoostSlider.value];
+    [self.settinngsDelegate setBTBoost:btBoostSlider.value];
     [btrangeBoost setText:[NSString stringWithFormat:@"%f",btBoostSlider.value]];
 
 }
@@ -195,9 +195,15 @@
  F3  41
  F4  53
  **/
+- (IBAction)backButtonPressed:(id)sender {
+    
+    NSLog(@" back button pressed");
+    
+    [self.delegate exitSettingsViewController];
+}
+
 -(void)valueASend:(NSInteger)index
 {
-    
     int note =0;
     switch (index) {
         case 0:
@@ -216,9 +222,9 @@
             break;
     }
     
-    
-    [self.delegate sendValue:note onoff:0];
+    [self.settinngsDelegate sendValue:note onoff:0];
 }
+
 -(void)valueBSend:(NSInteger)index
 {
     int note =0;
@@ -244,7 +250,7 @@
     }
     
     
-    [self.delegate sendValue:note onoff:0];
+    [self.settinngsDelegate sendValue:note onoff:0];
 }
 -(void)valueCSend:(NSInteger)index
 {
@@ -271,7 +277,7 @@
     }
     
     
-    [self.delegate sendValue:note onoff:0];
+    [self.settinngsDelegate sendValue:note onoff:0];
 }
 
 
@@ -362,5 +368,6 @@
  }
  }
  **/
+
 
 @end

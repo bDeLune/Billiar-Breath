@@ -19,17 +19,7 @@
     // Override point for customization after application launch.
   //  temproot=[[SplashViewController alloc]initWithNibName:@"SplashViewController" bundle:nil];
    // self.window.rootViewController = temproot;
-    
-    UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    GameViewController *controller1 = [[GameViewController alloc] init];
-    SettingsViewController *controller2 = [[SettingsViewController alloc] init];
-    
-    tabBarController.viewControllers = [NSArray arrayWithObjects:
-                                        controller1,
-                                        controller2,
-                                        nil];
-    
-    self.window.rootViewController = tabBarController;
+
     [self.window makeKeyAndVisible];
 
  return YES;

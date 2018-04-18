@@ -1,7 +1,7 @@
 #import "LoginViewController.h"
 #import "AddNewUserOperation.h"
 
-@interface LoginViewController ()<UserListProtoCol>
+@interface LoginViewController ()<UserListProtoCol, UITabBarControllerDelegate>
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property(nonatomic,strong)NSManagedObject  *loggedInUser;
 @property(nonatomic,strong)NSOperationQueue  *addUserQueue;
@@ -59,7 +59,7 @@
 
     //CGRect  frame=self.view.frame;
     
-    CGRect  frame=  [[UIScreen mainScreen] bounds];
+    CGRect frame=  [[UIScreen mainScreen] bounds];
     [self.navcontroller.view setFrame:frame];
     // Do any additional setup after loading the view from its nib.
 }
