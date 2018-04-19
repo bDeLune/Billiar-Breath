@@ -22,7 +22,7 @@
     
     int ballGameCount;
     AVAudioPlayer *audioPlayer;
-
+    BOOL muteAudio;
     
 }
 @property(nonatomic,strong)    NSMutableArray  *balls;
@@ -96,24 +96,14 @@
         self.view.backgroundColor=[UIColor  clearColor];
         self.balls=[NSMutableArray new];
         self.animators=[NSMutableArray new];
-        
-        
-     
         // Set the timing functions that should be used to calculate interpolation between the first two keyframes
        // [self makeBalls];
     }
-
-    
-        
-    
     
     return self;
 }
 
-
-
 -(void)makeBalls
-
 {
     self.currentBallININdex=0;
    __block int  startx=0;
@@ -129,7 +119,7 @@
         startx+=BALL_RADIUS+10;
     }
     
-    NSLog(@"MAKING BALLS");
+    NSLog(@"Creating Balls");
     
     [self animateBallStart];
    // [self animateBallStart:[self.balls objectAtIndex:self.currentBallININdex]];
@@ -186,14 +176,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)reset
+-(void)reset        //MAY BE OK TO REMOVE ENTIRELY
 {
-    
     NSLog(@"BIG RESET");
-    
-
-    
-    
     @try {
         NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"Croquet ball drop bounce cement_BLASTWAVEFX_29317" ofType:@"wav"];
         NSData *fileData = [NSData dataWithContentsOfFile:soundPath];
@@ -205,7 +190,14 @@
         [audioPlayer setNumberOfLoops:1];
         [audioPlayer prepareToPlay];
         audioPlayer.volume=0.3;
-        [audioPlayer play];
+        
+        NSLog(@"SOUND: reset all %hhd", muteAudio);
+        
+        if (muteAudio == 1){
+            NSLog(@"AUDIO MUTED");
+        }else{
+             [audioPlayer play];
+        }
     }
     @catch (NSException *exception) {
         NSLog(@"COULDNT PLAY AUDIO FILE  - %@", exception.reason);
@@ -409,7 +401,8 @@
 
 -(void)playHitTop
 {
-
+    
+    NSLog(@"BALLS HITTING TOP");
     
     @try {
         NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"IMPACT RING METAL DESEND 01" ofType:@"wav"];
@@ -421,7 +414,14 @@
                                                     error:&error];
         [audioPlayer prepareToPlay];
         audioPlayer.volume=0.3;
-        [audioPlayer play];
+        
+        NSLog(@"SOUND:AUDIO HIT TOP");
+        if (muteAudio == 1){
+            NSLog(@"AUDIO MUTED");
+        }else{
+            [audioPlayer play];
+        }
+       // [audioPlayer play];
     }
     @catch (NSException *exception) {
         NSLog(@"COULDNT PLAY AUDIO FILE  - %@", exception.reason);
@@ -461,4 +461,12 @@
    
     NSLog(@"a ball is done");
 }
+
+-(void)setAudioMute: (BOOL) muteSetting{
+    
+    NSLog(@"setting inner audio mute %hhd", muteSetting);
+
+    muteAudio = muteSetting;
+}
+
 @end

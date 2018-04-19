@@ -30,6 +30,7 @@
 }
 
 @property(nonatomic,weak)IBOutlet  UIButton  *backToLoginButton;
+@property (weak, nonatomic) IBOutlet UIProgressView *breathStrengthBar;
 @property(nonatomic,weak)IBOutlet  UIButton *toggleDirectionButton;
 @property(nonatomic,weak)IBOutlet  UIButton *toggleGameModeButton;
 @property(nonatomic,weak)IBOutlet  UIButton *resetGameButton;
@@ -80,5 +81,6 @@
 - (void)setupImageFilteringToDisk;
 - (void)setupImageResampling;
 - (IBAction)updateSliderValue:(id)sender;
+@property (weak, nonatomic) IBOutlet UIProgressView *breathGauge;
 
 @end

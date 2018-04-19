@@ -17,4 +17,5 @@
 @property BOOL  halt;
 
 -(void)playHitTop;
+-(void)setAudioMute: (BOOL) muteSetting;
 @end

@@ -23,6 +23,7 @@
 -(void)endBallsPowerGame;
 -(void)startDurationPowerGame;
 -(void)endDurationPowerGame;
+-(void)setAudioMute:(BOOL) muteSettings;
 @property(nonatomic,weak)PowerGame  *powerGame;
 @property(nonatomic,weak)DurationGame  *durationGame;
 @property gameType  currentGameType;

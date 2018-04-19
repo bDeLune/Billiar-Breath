@@ -14,6 +14,8 @@
 		710BDDE9207D1DFE00B1E393 /* PickPhotoButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 710BDDE8207D1DFE00B1E393 /* PickPhotoButton.png */; };
 		710BDDEB207D24B600B1E393 /* giraffe-614141_1280.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 710BDDEA207D24B600B1E393 /* giraffe-614141_1280.jpg */; };
 		710BDDF1207E5B9400B1E393 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 710BDDEF207E48B700B1E393 /* SettingsViewController.xib */; };
+		7138E5952088FBA700C0C08F /* infoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7138E5932088FBA700C0C08F /* infoViewController.m */; };
+		7138E5962088FBA700C0C08F /* infoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7138E5942088FBA700C0C08F /* infoViewController.xib */; };
 		71693B90206937D3009F14EA /* BilliardBreath1024X1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 71693B8F206937D1009F14EA /* BilliardBreath1024X1024.png */; };
 		7186DDD01E4DBE0D00F71F0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7186DDCD1E4DBE0D00F71F0C /* Main.storyboard */; };
 		7186DDEB1E4DBF2400F71F0C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7186DDEA1E4DBF2400F71F0C /* LoginViewController.xib */; };
@@ -222,6 +224,9 @@
 		710BDDE8207D1DFE00B1E393 /* PickPhotoButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PickPhotoButton.png; sourceTree = "<group>"; };
 		710BDDEA207D24B600B1E393 /* giraffe-614141_1280.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "giraffe-614141_1280.jpg"; sourceTree = "<group>"; };
 		710BDDEF207E48B700B1E393 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		7138E5922088FBA700C0C08F /* infoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = infoViewController.h; sourceTree = "<group>"; };
+		7138E5932088FBA700C0C08F /* infoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = infoViewController.m; sourceTree = "<group>"; };
+		7138E5942088FBA700C0C08F /* infoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = infoViewController.xib; sourceTree = "<group>"; };
 		71693B8F206937D1009F14EA /* BilliardBreath1024X1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BilliardBreath1024X1024.png; sourceTree = "<group>"; };
 		7186DDCC1E4DBE0D00F71F0C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		7186DDCD1E4DBE0D00F71F0C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -444,6 +449,9 @@
 				7186DE201E4DBF7100F71F0C /* PlotGallery.h */,
 				71C9FA0A1E5335C40078070D /* AppDelegate.h */,
 				71C9FA0B1E5335C40078070D /* AppDelegate.m */,
+				7138E5922088FBA700C0C08F /* infoViewController.h */,
+				7138E5932088FBA700C0C08F /* infoViewController.m */,
+				7138E5942088FBA700C0C08F /* infoViewController.xib */,
 				7186DE211E4DBF7100F71F0C /* Globals.h */,
 				7186DE221E4DBF7100F71F0C /* Globals.m */,
 				7186DE231E4DBF7100F71F0C /* PlotGallery.m */,
@@ -824,6 +832,7 @@
 				7186DE9A1E4DBFA400F71F0C /* BilliardBreathAppIcon58x58.png in Resources */,
 				7186DDF91E4DBF4100F71F0C /* AllGamesForDayTableVC.xib in Resources */,
 				7186DEA21E4DBFA400F71F0C /* BilliardBreathAppIcon152x152.png in Resources */,
+				7138E5962088FBA700C0C08F /* infoViewController.xib in Resources */,
 				7186DE9E1E4DBFA400F71F0C /* BilliardBreathAppIcon100x100.png in Resources */,
 				7186DEE11E51CACC00F71F0C /* Default.png in Resources */,
 				71D1A36B2074FBC800C83B63 /* Logo-Top.png in Resources */,
@@ -900,6 +909,7 @@
 				7186DEB31E4DC59F00F71F0C /* BTLEManager.m in Sources */,
 				71C9F9D81E53341D0078070D /* Game.m in Sources */,
 				7186DE2A1E4DBF7100F71F0C /* Session.m in Sources */,
+				7138E5952088FBA700C0C08F /* infoViewController.m in Sources */,
 				71C9F9DC1E53341D0078070D /* PowerGame.m in Sources */,
 				7186DE2E1E4DBF7100F71F0C /* PiNumberFormatter.m in Sources */,
 				71C9FA201E5344EB0078070D /* UserListViewController.m in Sources */,

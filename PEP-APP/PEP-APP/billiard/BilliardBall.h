@@ -4,7 +4,7 @@
 @protocol BilliardBallProtocol <NSObject>
 
 -(void)ballReachedFinalTarget:(BilliardBall*)ball;
-
+//-(void)setAudioMute:(BOOL) muteSettings;
 @end
 @interface BilliardBall : UIView <NSObject, CAAnimationDelegate>//ADDED
 @property (nonatomic,strong)NSNumber  *weight;

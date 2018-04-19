@@ -25,6 +25,7 @@
     NSMutableArray *filterArray;
     id<SETTINGS_DELEGATE> __unsafe_unretained settinngsDelegate;
 }
+
 @property (unsafe_unretained) id<SETTINGS_DELEGATE> settinngsDelegate;
 @property(nonatomic,unsafe_unretained)id<SettingsViewProtocol, UITabBarDelegate>delegate;
 -(IBAction)changeRate:(id)sender;

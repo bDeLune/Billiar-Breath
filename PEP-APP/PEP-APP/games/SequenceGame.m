@@ -13,6 +13,7 @@
 {
     BOOL gamewon;
     AVAudioPlayer *audioPlayer;
+    BOOL muteAudio;
 }
 
 @end
@@ -45,7 +46,13 @@
     audioPlayer.volume=0.3;
 
     [audioPlayer prepareToPlay];
-    [audioPlayer play];
+    
+    NSLog(@"SOUND: playing hit top SEQ %hhd", muteAudio);
+    
+    if (muteAudio == 0){
+        [audioPlayer play];
+    }
+    
     
 }
 -(int)nextBall
@@ -84,6 +91,13 @@
     
     return self.currentBall;
 
+}
+
+-(void)setAudioMute: (BOOL) muteSetting{
+    
+    NSLog(@"setting inner audio mute SEQ %hhd", muteSetting);
+    
+    muteAudio = muteSetting;
 }
 
 @end

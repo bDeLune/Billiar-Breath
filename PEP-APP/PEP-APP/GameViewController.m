@@ -13,6 +13,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "BTLEManager.h"
 #import "UserListViewController.h"
+#import "infoViewController.h"
 
 @interface GameViewController ()<BTLEManagerDelegate, UITabBarDelegate,UITabBarControllerDelegate, SETTINGS_DELEGATE>
 {
@@ -23,7 +24,6 @@
     UIEffectDesignerView *particleEffect;
     NSTimer  *effectTimer;
     bool wasExhaling;
-    
     //all maybe
     GPUImagePicture *sourcePicture;
     GPUImageFilter *stillImageFilter;
@@ -52,6 +52,7 @@
     float time;
     float sketchamount;
     BOOL ledTestIsOn;
+    BOOL globalSoundActivated;
 }
 
 @property (nonatomic, retain) IBOutlet UIToolbar *myToolbar;
@@ -247,6 +248,7 @@
     
     [self midiNoteStopped:nil];
     isaccelerating=NO;
+    self.breathGauge.progress = 0;
 }
 
 
@@ -261,6 +263,10 @@
         NSLog(@"INHALING AND RETURNING");
         return;
     }
+    self.breathGauge.progress = percentOfmax;
+    
+    
+    
    // currentdirection=midiinhale;
     //self.velocity=(percentOfmax/10.0)*127.0;
     self.velocity=(percentOfmax)*127.0;
@@ -283,6 +289,9 @@
         NSLog(@"EXHALING AND RETURNING");
         return;
     }
+    
+    self.breathGauge.progress = percentOfmax;
+    
     self.midiController.velocity=127.0*percentOfmax;
     self.midiController.speed= (fabs( self.midiController.velocity- self.midiController.previousVelocity));
     self.midiController.previousVelocity= self.midiController.velocity;
@@ -311,6 +320,7 @@
     
     return _managedObjectContext;
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -324,7 +334,7 @@
     
     CGRect frame = self.view.frame;
     [self.navcontroller.view setFrame:frame];
-    
+    self.breathGauge.progress = 0;
     midiinhale=61;
     midiexhale=73;
     velocity=0;
@@ -350,6 +360,21 @@
     }];
 }
 #pragma - UIControls
+
+- (IBAction)goToInfoView:(id)sender {
+    
+    NSLog(@"Going to info view");
+    
+    infoViewController *infoVC = [[infoViewController alloc]initWithNibName:@"infoViewController" bundle:nil];
+    
+    if (infoVC){
+        NSLog(@"instantiating infoVC");
+        [self presentViewController:infoVC animated:YES completion:nil];
+    }else{
+        NSLog(@"Cant instantiate infoVC");
+    }
+}
+
 
 -(IBAction)exitGameScreen:(id)sender
 {
@@ -814,6 +839,22 @@
     }
     
 }
+- (IBAction)toggleMuteSound:(id)sender {
+    
+    NSLog(@"toggle sound");
+    
+    if (globalSoundActivated == 1){
+        NSLog(@"muting sound");
+        globalSoundActivated = 0;
+        [self.billiardViewController setAudioMute: globalSoundActivated];
+        [self.sequenceGameController setAudioMute: globalSoundActivated];
+    }else if(globalSoundActivated == 0){
+        NSLog(@"unmuting sound");
+        globalSoundActivated = 1;
+        [self.billiardViewController setAudioMute: globalSoundActivated];
+        [self.sequenceGameController setAudioMute: globalSoundActivated];
+    }
+}
 
 -(void)test
 {
@@ -1165,7 +1206,14 @@
         //[audioPlayer setNumberOfLoops:1];
         [audioPlayer prepareToPlay];
         audioPlayer.volume=1.0;
-        [audioPlayer play];
+        
+        NSLog(@"SOUND: reset all2 %hhd", globalSoundActivated);
+        
+        if (globalSoundActivated == 1){
+            NSLog(@"AUDIO MUTED");
+        }else{
+            [audioPlayer play];
+        }
     }
     @catch (NSException *exception) {
         NSLog(@"COULDNT PLAY AUDIO FILE  - %@", exception.reason);
@@ -1355,8 +1403,7 @@
 
 -(void)updateimage
 {
-    //  NSLog(@"UPDATE IMAGE");
-    
+    //  NSLog(@"UPDATE IMAGE")
     /***
      @"Bulge",@"Swirl",@"Blur",@"Vignette",@"Toon",
      @"Tone",@"Sketch",@"Polka",
@@ -1621,6 +1668,7 @@
     }
 }
 
+
 -(void)start
 {
     //  [self stop];
@@ -1633,8 +1681,5 @@
     animationRunning = YES;
     //}
 }
-
-
-
 
 @end
