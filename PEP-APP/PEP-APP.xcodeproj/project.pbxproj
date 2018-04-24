@@ -343,10 +343,9 @@
 		71C9F9FE1E53356C0078070D /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		71C9F9FF1E53356C0078070D /* UIEffectDesignerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIEffectDesignerView.h; sourceTree = "<group>"; };
 		71C9FA001E53356C0078070D /* UIEffectDesignerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIEffectDesignerView.m; sourceTree = "<group>"; };
-		71C9FA0A1E5335C40078070D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		71C9FA0B1E5335C40078070D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		71C9FA1E1E5344EB0078070D /* UserListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserListViewController.h; path = billiard/UserListViewController.h; sourceTree = "<group>"; };
-		71C9FA1F1E5344EB0078070D /* UserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserListViewController.m; path = billiard/UserListViewController.m; sourceTree = "<group>"; };
+		71C9FA1E1E5344EB0078070D /* UserListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserListViewController.h; sourceTree = "<group>"; };
+		71C9FA1F1E5344EB0078070D /* UserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserListViewController.m; sourceTree = "<group>"; };
 		71D1A3512074F8B700C83B63 /* UsersScreenBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UsersScreenBackground.png; sourceTree = "<group>"; };
 		71D1A3532074F8F000C83B63 /* bell.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bell.wav; sourceTree = "<group>"; };
 		71D1A3542074F8F000C83B63 /* bell_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bell_2.png; sourceTree = "<group>"; };
@@ -417,69 +416,22 @@
 		710857281E439A0A00479032 /* PEP-APP */ = {
 			isa = PBXGroup;
 			children = (
+				71A04EC7208FCE5100AA878B /* Gauge */,
+				71C9F9CA1E53341D0078070D /* Balloon Game */,
+				71C9F9CF1E53341D0078070D /* Users */,
+				71C9F9F71E53356C0078070D /* Operations */,
+				71A04EC8208FCEB800AA878B /* Plot */,
+				71A04ECA208FD06E00AA878B /* Login VC */,
+				71A04ECB208FD0E400AA878B /* Info VC */,
+				71A04ECC208FD0F200AA878B /* Settings VC */,
+				71A04ECD208FD11000AA878B /* Primary VC */,
+				7108573D1E439A0A00479032 /* Info.plist */,
+				71C9FA0B1E5335C40078070D /* AppDelegate.m */,
 				7108572C1E439A0A00479032 /* AppDelegate.h */,
 				7108572F1E439A0A00479032 /* ViewController.h */,
 				710857301E439A0A00479032 /* ViewController.m */,
-				71C9F9DE1E5334A90078070D /* AHEasing */,
-				71C9F9E41E5334A90078070D /* billiard */,
-				7108573D1E439A0A00479032 /* Info.plist */,
-				7186DDEA1E4DBF2400F71F0C /* LoginViewController.xib */,
-				71A04EC0208FA8BC00AA878B /* Gauge.h */,
-				71A04EC1208FA8BD00AA878B /* Gauge.m */,
-				7186DDCC1E4DBE0D00F71F0C /* Model.xcdatamodel */,
-				7186DDCD1E4DBE0D00F71F0C /* Main.storyboard */,
-				71A04EC4208FA8F700AA878B /* Draggable.h */,
-				71A04EC5208FA8F800AA878B /* Draggable.m */,
-				71C9FA1E1E5344EB0078070D /* UserListViewController.h */,
-				71C9FA1F1E5344EB0078070D /* UserListViewController.m */,
-				7186DDEC1E4DBF4100F71F0C /* AllGamesForDayTableVC.h */,
-				7186DDFB1E4DBF5F00F71F0C /* BilliardBallViewController.h */,
-				7186DDFC1E4DBF5F00F71F0C /* BilliardBallViewController.m */,
-				7186DEA51E4DC59F00F71F0C /* btlemanager */,
-				7186DE001E4DBF5F00F71F0C /* CurvedScatterPlot.h */,
-				71C9F9CA1E53341D0078070D /* data */,
-				71C9F9CF1E53341D0078070D /* games */,
-				7186DE011E4DBF5F00F71F0C /* CurvedScatterPlot.m */,
-				7186DE031E4DBF5F00F71F0C /* HeaderView.h */,
-				7186DE151E4DBF7100F71F0C /* Session.h */,
-				7186DE161E4DBF7100F71F0C /* Session.m */,
-				7186DE171E4DBF7100F71F0C /* CustomIOSAlertView.h */,
-				7186DE181E4DBF7100F71F0C /* VersionNumber.h */,
-				7186DE191E4DBF7100F71F0C /* CustomIOSAlertView.m */,
-				7186DE1C1E4DBF7100F71F0C /* UserListViewController.xib */,
-				7186DE1D1E4DBF7100F71F0C /* LoginViewController.h */,
-				7186DE1E1E4DBF7100F71F0C /* PiNumberFormatter.h */,
-				71C9F9EA1E53356C0078070D /* GCDObjC */,
-				71C9F9F41E53356C0078070D /* midi */,
-				71C9F9F71E53356C0078070D /* operations */,
-				71C9F9FC1E53356C0078070D /* UIEffectDesignerView */,
-				7186DE1F1E4DBF7100F71F0C /* PiNumberFormatter.m */,
-				7186DE201E4DBF7100F71F0C /* PlotGallery.h */,
-				71C9FA0A1E5335C40078070D /* AppDelegate.h */,
-				71C9FA0B1E5335C40078070D /* AppDelegate.m */,
-				7138E5922088FBA700C0C08F /* infoViewController.h */,
-				7138E5932088FBA700C0C08F /* infoViewController.m */,
-				7138E5942088FBA700C0C08F /* infoViewController.xib */,
-				7186DE211E4DBF7100F71F0C /* Globals.h */,
-				7186DE221E4DBF7100F71F0C /* Globals.m */,
-				7186DE231E4DBF7100F71F0C /* PlotGallery.m */,
-				7186DE241E4DBF7100F71F0C /* PlotItem.h */,
-				71D1A3722074FE5300C83B63 /* SettingsViewController.h */,
-				7186DE251E4DBF7100F71F0C /* PlotItem.m */,
-				71D1A3712074FE5200C83B63 /* SettingsViewController.m */,
-				7186DE261E4DBF7100F71F0C /* LoginViewController.m */,
-				7186DE271E4DBF7100F71F0C /* BilliardBreath-Prefix.pch */,
-				7186DE281E4DBF7100F71F0C /* GameViewController.h */,
-				710BDDEF207E48B700B1E393 /* SettingsViewController.xib */,
-				7186DE291E4DBF7100F71F0C /* GameViewController.m */,
-				7186DE041E4DBF5F00F71F0C /* HeaderView.m */,
-				7186DE051E4DBF5F00F71F0C /* GameViewController.xib */,
-				7186DE061E4DBF5F00F71F0C /* GraphViewController.h */,
-				7186DE071E4DBF5F00F71F0C /* GraphViewController.m */,
-				7186DE081E4DBF5F00F71F0C /* GraphViewController.xib */,
 				7186DE091E4DBF5F00F71F0C /* Images.xcassets */,
-				7186DDED1E4DBF4100F71F0C /* AllGamesForDayTableVC.m */,
-				7186DDF21E4DBF4100F71F0C /* AllGamesForDayTableVC.xib */,
+				7186DDCC1E4DBE0D00F71F0C /* Model.xcdatamodel */,
 				710857291E439A0A00479032 /* Supporting Files */,
 			);
 			path = "PEP-APP";
@@ -588,20 +540,85 @@
 			path = libMelodySmart;
 			sourceTree = "<group>";
 		};
-		71C9F9CA1E53341D0078070D /* data */ = {
+		71A04EC7208FCE5100AA878B /* Gauge */ = {
 			isa = PBXGroup;
 			children = (
-				71C9F9CB1E53341D0078070D /* Game.h */,
-				71C9F9CC1E53341D0078070D /* Game.m */,
-				71C9F9CD1E53341D0078070D /* User.h */,
-				71C9F9CE1E53341D0078070D /* User.m */,
+				71A04EC4208FA8F700AA878B /* Draggable.h */,
+				71A04EC0208FA8BC00AA878B /* Gauge.h */,
+				71A04EC1208FA8BD00AA878B /* Gauge.m */,
+				71A04EC5208FA8F800AA878B /* Draggable.m */,
 			);
-			path = data;
+			path = Gauge;
 			sourceTree = "<group>";
 		};
-		71C9F9CF1E53341D0078070D /* games */ = {
+		71A04EC8208FCEB800AA878B /* Plot */ = {
 			isa = PBXGroup;
 			children = (
+				7186DE001E4DBF5F00F71F0C /* CurvedScatterPlot.h */,
+				7186DE011E4DBF5F00F71F0C /* CurvedScatterPlot.m */,
+				7186DE201E4DBF7100F71F0C /* PlotGallery.h */,
+				7186DE231E4DBF7100F71F0C /* PlotGallery.m */,
+				7186DE241E4DBF7100F71F0C /* PlotItem.h */,
+				7186DE061E4DBF5F00F71F0C /* GraphViewController.h */,
+				7186DE071E4DBF5F00F71F0C /* GraphViewController.m */,
+				7186DE081E4DBF5F00F71F0C /* GraphViewController.xib */,
+				7186DE251E4DBF7100F71F0C /* PlotItem.m */,
+			);
+			path = Plot;
+			sourceTree = "<group>";
+		};
+		71A04ECA208FD06E00AA878B /* Login VC */ = {
+			isa = PBXGroup;
+			children = (
+				7186DDEA1E4DBF2400F71F0C /* LoginViewController.xib */,
+				7186DE1D1E4DBF7100F71F0C /* LoginViewController.h */,
+				7186DE261E4DBF7100F71F0C /* LoginViewController.m */,
+			);
+			path = "Login VC";
+			sourceTree = "<group>";
+		};
+		71A04ECB208FD0E400AA878B /* Info VC */ = {
+			isa = PBXGroup;
+			children = (
+				7138E5922088FBA700C0C08F /* infoViewController.h */,
+				7138E5932088FBA700C0C08F /* infoViewController.m */,
+				7138E5942088FBA700C0C08F /* infoViewController.xib */,
+			);
+			path = "Info VC";
+			sourceTree = "<group>";
+		};
+		71A04ECC208FD0F200AA878B /* Settings VC */ = {
+			isa = PBXGroup;
+			children = (
+				71D1A3722074FE5300C83B63 /* SettingsViewController.h */,
+				71D1A3712074FE5200C83B63 /* SettingsViewController.m */,
+				710BDDEF207E48B700B1E393 /* SettingsViewController.xib */,
+			);
+			path = "Settings VC";
+			sourceTree = "<group>";
+		};
+		71A04ECD208FD11000AA878B /* Primary VC */ = {
+			isa = PBXGroup;
+			children = (
+				7186DE281E4DBF7100F71F0C /* GameViewController.h */,
+				7186DE291E4DBF7100F71F0C /* GameViewController.m */,
+				7186DE051E4DBF5F00F71F0C /* GameViewController.xib */,
+			);
+			path = "Primary VC";
+			sourceTree = "<group>";
+		};
+		71C9F9CA1E53341D0078070D /* Balloon Game */ = {
+			isa = PBXGroup;
+			children = (
+				7186DDEC1E4DBF4100F71F0C /* AllGamesForDayTableVC.h */,
+				7186DDED1E4DBF4100F71F0C /* AllGamesForDayTableVC.m */,
+				7186DDF21E4DBF4100F71F0C /* AllGamesForDayTableVC.xib */,
+				71C9F9E51E5334A90078070D /* BilliardBall.h */,
+				71C9F9E61E5334A90078070D /* BilliardBall.m */,
+				7186DDFB1E4DBF5F00F71F0C /* BilliardBallViewController.h */,
+				7186DDFC1E4DBF5F00F71F0C /* BilliardBallViewController.m */,
+				71C9F9CB1E53341D0078070D /* Game.h */,
+				71C9F9CC1E53341D0078070D /* Game.m */,
 				71C9F9D01E53341D0078070D /* AbstractGame.h */,
 				71C9F9D11E53341D0078070D /* AbstractGame.m */,
 				71C9F9D21E53341D0078070D /* DurationGame.h */,
@@ -610,8 +627,26 @@
 				71C9F9D51E53341D0078070D /* PowerGame.m */,
 				71C9F9D61E53341D0078070D /* SequenceGame.h */,
 				71C9F9D71E53341D0078070D /* SequenceGame.m */,
+				7186DE151E4DBF7100F71F0C /* Session.h */,
+				7186DE161E4DBF7100F71F0C /* Session.m */,
+				71C9F9F81E53356C0078070D /* AddNewScoreOperation.h */,
+				71C9F9F91E53356C0078070D /* AddNewScoreOperation.m */,
 			);
-			path = games;
+			path = "Balloon Game";
+			sourceTree = "<group>";
+		};
+		71C9F9CF1E53341D0078070D /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				7186DE1C1E4DBF7100F71F0C /* UserListViewController.xib */,
+				71C9FA1E1E5344EB0078070D /* UserListViewController.h */,
+				71C9FA1F1E5344EB0078070D /* UserListViewController.m */,
+				71C9F9CD1E53341D0078070D /* User.h */,
+				71C9F9CE1E53341D0078070D /* User.m */,
+				71C9F9FA1E53356C0078070D /* AddNewUserOperation.h */,
+				71C9F9FB1E53356C0078070D /* AddNewUserOperation.m */,
+			);
+			path = Users;
 			sourceTree = "<group>";
 		};
 		71C9F9DE1E5334A90078070D /* AHEasing */ = {
@@ -624,15 +659,6 @@
 				71C9F9E31E5334A90078070D /* EasingDeclarations.h */,
 			);
 			path = AHEasing;
-			sourceTree = "<group>";
-		};
-		71C9F9E41E5334A90078070D /* billiard */ = {
-			isa = PBXGroup;
-			children = (
-				71C9F9E51E5334A90078070D /* BilliardBall.h */,
-				71C9F9E61E5334A90078070D /* BilliardBall.m */,
-			);
-			path = billiard;
 			sourceTree = "<group>";
 		};
 		71C9F9EA1E53356C0078070D /* GCDObjC */ = {
@@ -651,24 +677,36 @@
 			path = GCDObjC;
 			sourceTree = "<group>";
 		};
-		71C9F9F41E53356C0078070D /* midi */ = {
+		71C9F9F41E53356C0078070D /* MIDI */ = {
 			isa = PBXGroup;
 			children = (
 				71C9F9F51E53356C0078070D /* MidiController.h */,
 				71C9F9F61E53356C0078070D /* MidiController.m */,
 			);
-			path = midi;
+			path = MIDI;
 			sourceTree = "<group>";
 		};
-		71C9F9F71E53356C0078070D /* operations */ = {
+		71C9F9F71E53356C0078070D /* Operations */ = {
 			isa = PBXGroup;
 			children = (
-				71C9F9F81E53356C0078070D /* AddNewScoreOperation.h */,
-				71C9F9F91E53356C0078070D /* AddNewScoreOperation.m */,
-				71C9F9FA1E53356C0078070D /* AddNewUserOperation.h */,
-				71C9F9FB1E53356C0078070D /* AddNewUserOperation.m */,
+				7186DDCD1E4DBE0D00F71F0C /* Main.storyboard */,
+				71C9F9DE1E5334A90078070D /* AHEasing */,
+				7186DEA51E4DC59F00F71F0C /* btlemanager */,
+				7186DE171E4DBF7100F71F0C /* CustomIOSAlertView.h */,
+				7186DE191E4DBF7100F71F0C /* CustomIOSAlertView.m */,
+				71C9F9F41E53356C0078070D /* MIDI */,
+				71C9F9EA1E53356C0078070D /* GCDObjC */,
+				7186DE031E4DBF5F00F71F0C /* HeaderView.h */,
+				71C9F9FC1E53356C0078070D /* UIEffectDesignerView */,
+				7186DE181E4DBF7100F71F0C /* VersionNumber.h */,
+				7186DE1E1E4DBF7100F71F0C /* PiNumberFormatter.h */,
+				7186DE1F1E4DBF7100F71F0C /* PiNumberFormatter.m */,
+				7186DE211E4DBF7100F71F0C /* Globals.h */,
+				7186DE221E4DBF7100F71F0C /* Globals.m */,
+				7186DE271E4DBF7100F71F0C /* BilliardBreath-Prefix.pch */,
+				7186DE041E4DBF5F00F71F0C /* HeaderView.m */,
 			);
-			path = operations;
+			path = Operations;
 			sourceTree = "<group>";
 		};
 		71C9F9FC1E53356C0078070D /* UIEffectDesignerView */ = {

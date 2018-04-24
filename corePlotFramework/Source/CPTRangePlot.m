@@ -1035,7 +1035,7 @@ typedef struct CGPointError CGPointError;
    //     yValue = yValuesSorted[0];
    // }
 
-    label.anchorPlotPoint     = @[xValue, yValue];
+    //label.anchorPlotPoint     = @[xValue, yValue];
     label.contentLayer.hidden = self.hidden || isnan([xValue doubleValue]) || isnan([yValue doubleValue]);
 
     if ( positiveDirection ) {

@@ -1,13 +1,4 @@
-//
-//  NSData+NSData_Conversion.m
-//  GrooveTubeMelodySmart
-//
-//  Created by barry on 21/08/2015.
-//  Copyright (c) 2015 rocudo. All rights reserved.
-//
-
 #import "NSData+NSData_Conversion.h"
-
 
 @implementation NSData (NSData_Conversion)
 
