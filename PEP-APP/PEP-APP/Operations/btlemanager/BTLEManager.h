@@ -79,7 +79,7 @@ typedef enum BT_LE_State:NSUInteger
 /**
  *  Distance of dead zone from calibrated center
  *
- *  @param range Reccommened minimum = 60
+ *  @param threshold Reccommened minimum = 60
  */
 -(void)setTreshold:(int)threshold;
 /**

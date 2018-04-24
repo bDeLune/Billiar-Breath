@@ -252,7 +252,7 @@ typedef enum {
 /*!
  *  @method sendPioState
  *
- *  @param data  8 bits representing the new state of 1 or more pios.
+ *  @param state  8 bits representing the new state of 1 or more pios.
  *
  *  @param location the set of PIOs the state is representing PioLocation
  *

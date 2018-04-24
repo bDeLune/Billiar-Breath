@@ -617,7 +617,7 @@
 -(void)sendLogToOutput:(NSString*)log
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSString  *string=[NSString stringWithFormat:@"\n %@",log];
+   //     NSString  *string=[NSString stringWithFormat:@"\n %@",log];
   //      _debugTextField.text =[_debugTextField.text stringByAppendingString:string];
     });
 }

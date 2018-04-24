@@ -1,9 +1,8 @@
 {
   "images" : [
     {
-      "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "BilliardBreathAppIcon40x40-4.png",
+      "size" : "20x20",
       "scale" : "1x"
     },
     {

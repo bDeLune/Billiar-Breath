@@ -154,9 +154,9 @@ NSString *const kSecond = @"Inhale";
     if ([array count]==0) {
         return;
     }
-    Game  *game=[sortedArray objectAtIndex:0];
+    //Game  *game=[sortedArray objectAtIndex:0];
     
-    NSDate *refDate = game.gameDate ;
+   // NSDate *refDate = game.gameDate ;
     
     // if (plotData) {
     // [plotData release];
@@ -166,7 +166,7 @@ NSString *const kSecond = @"Inhale";
     NSMutableArray *contentArray = [NSMutableArray array];
     
     for ( NSUInteger i = 0; i < [sortedArray count]; i++ ) {
-        NSDate  *date=[[sortedArray objectAtIndex:i]valueForKey:@"gameDate"];
+     //   NSDate  *date=[[sortedArray objectAtIndex:i]valueForKey:@"gameDate"];
         
         NSNumber  *dateNumber=[NSNumber numberWithInt:i];
         NSNumber  *yvalue=0;
@@ -238,7 +238,7 @@ NSString *const kSecond = @"Inhale";
         return;
     }
 
-    Game  *game=[sortedArray objectAtIndex:0];
+   // Game  *game=[sortedArray objectAtIndex:0];
     
     NSLog(@"SORTED -- - %@", sortedArray);
     NSLog(@"PLOT DATA -- - %@", plotData);
@@ -312,7 +312,7 @@ NSString *const kSecond = @"Inhale";
         Game  *game=[sortedArray objectAtIndex:i];
         NSDate *date = game.gameDate;
         NSString *stringFromDate2=[formatter stringFromDate:date];
-        NSString *dateString = [NSString stringWithFormat: @"%@ (%d)", stringFromDate2, i];
+       // NSString *dateString = [NSString stringWithFormat: @"%@ (%d)", stringFromDate2, i];
         CPTAxisLabel *xlabel = [[CPTAxisLabel alloc] initWithText:stringFromDate2  textStyle:x.labelTextStyle];
         NSNumber *myXIndex = @(i);
         xlabel.tickLocation = myXIndex;
