@@ -89,7 +89,6 @@
 }
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
-    
     NSLog(@"CLICKED TAB BAR ITEM");
     NSLog(@"%@", item);
 }
@@ -315,9 +314,6 @@
         _managedObjectContext = [NSManagedObjectContext new];
         [_managedObjectContext setPersistentStoreCoordinator:self.sharedPSC];
     }
-    
-    
-    
     return _managedObjectContext;
 }
 
@@ -356,7 +352,6 @@
     [[GCDQueue mainQueue]queueBlock:^{
         self.currentUsersNameLabel.text=[self.gameUser valueForKey:@"userName"];
         // [self setTargetScore];
-        
     }];
 }
 #pragma - UIControls
@@ -381,9 +376,9 @@
     [self.delegate gameViewExitGame];
 }
 
-- (IBAction)toSettingsScreen:(id)sender {
+- (IBAction)goToSettings:(id)sender {
     
-    NSLog(@"Go to settings screen");
+    NSLog(@"Go to settings");
     [self.delegate toSettingsScreen];
 }
 
@@ -1037,17 +1032,11 @@
         [self playSound];
         [self startEffects];
         [self resetGame:nil];
-        
     }];
-    
     
     // [[GCDQueue mainQueue]queueBlock:^{
     //  [self resetGame:nil];
     //  } afterDelay:1.0];
-    
-    
-    
-    
     //UIEffectDesignerView* effectView = [UIEffectDesignerView effectWithFile:@"billiardwin.ped"];
     // [self.view addSubview:effectView];
     
@@ -1064,6 +1053,7 @@
     
     [self.sequenceGameController killTimer];
 }
+
 -(void)startEffects
 {
     
@@ -1166,8 +1156,6 @@
     // [self saveCurrentSession];
     // [self midiNoteStoppedForDuration:nil];
     // [self testContinueStop];
-    
-    
 }
 
 -(void)testContinueStop

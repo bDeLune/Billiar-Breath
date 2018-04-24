@@ -72,7 +72,7 @@
 -(IBAction)presentSettings:(id)sender;
 -(IBAction)resetGame:(id)sender;
 //@property (weak, nonatomic) IBOutlet UITabBarItem *changeGameMode;
-//@property (weak, nonatomic) IBOutlet UITabBarItem *goToSettingsScreen;
+
 //@property (weak, nonatomic) IBOutlet UITabBarItem *goToUsersScreen;
 -(IBAction)testButtonDown:(id)sender;
 -(IBAction)testButtonUp:(id)sender;

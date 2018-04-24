@@ -4,7 +4,6 @@
 #import "Game.h"
 #import "GameViewController.h"
 #import "SettingsViewController.h"
-
 #define GUAGE_HEIGHT 575
 //#import <CoreMIDI/CoreMIDI.h>
 #import <AudioToolbox/AudioToolbox.h>
@@ -28,7 +27,7 @@ typedef void(^RunTimer)(void);
 @property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
 @property(nonatomic,strong) LoginViewController  *loginViewController;
 @property(nonatomic,strong) GameViewController  *gameViewController;
-@property(nonatomic,strong) SettingsViewController  *settingsViewController;
+@property(nonatomic,strong) SettingsViewController *settingsViewController;
 @property(nonatomic,strong) User  *currentUser;
 @property(nonatomic,strong) Game  *currentGame;
 @property(nonatomic,strong) UIImageView *startupImageView;
@@ -48,9 +47,7 @@ typedef void(^RunTimer)(void);
     // Do any additional setup after loading the view, typically from a nib.
     [self managedObjectContext];
     [self addUserLoginViewController];
-    
-    
-    
+
 ///_startupImageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Default.png"]];
 //[self.view addSubview:_startupImageView];
   //  [ NSTimer scheduledTimerWithTimeInterval:5.0
@@ -95,13 +92,19 @@ typedef void(^RunTimer)(void);
 
 -(void)addSettingsViewController
 {
+    NSLog(@"VC: Adding settings view controller ");
+    
     if (!self.settingsViewController) {
         self.settingsViewController=[[SettingsViewController alloc]initWithNibName:@"SettingsViewController" bundle:nil];
+    }else{
+        NSLog(@"Cant instantiate SettingsViewController/already instantiated");
     }
     
+    self.settingsViewController.delegate=self;
+
     [self.view addSubview:self.settingsViewController.view];
    // self.loginViewController.sharedPSC=self.persistentStoreCoordinator;
-   // self.loginViewController.delegate=self;
+    
 }
 
 #pragma mark -
@@ -118,7 +121,7 @@ typedef void(^RunTimer)(void);
     
     if (!self.gameViewController) {
         self.gameViewController=[[GameViewController alloc]initWithNibName:@"GameViewController" bundle:nil];
-        self.gameViewController.delegate=self;
+        self.gameViewController.delegate= self;
     }
     
     [UIView transitionFromView:self.loginViewController.view toView:self.gameViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromBottom completion:^(BOOL finished){
@@ -142,19 +145,24 @@ typedef void(^RunTimer)(void);
     NSLog(@"inner back button pressed");
     
     [UIView transitionFromView:self.settingsViewController.view toView:self.gameViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromTop completion:^(BOOL finished){
-        
     }];
 }
 
 -(void)toSettingsScreen
 {
-    NSLog(@"Go to settings view controller");
+    NSLog(@" VC: Go to settings view controller");
+    
+   // if (self.settingsViewController){
+  //      NSLog(@"instantiating SettingsViewController");
+  ///      [self presentViewController:self.settingsViewController animated:YES completion:nil];
+  //  }else{
+  //      NSLog(@"Cant instantiate SettingsViewController");
+  //  }
     
      [self addSettingsViewController];
-    
-   // [UIView transitionFromView:self.gameViewController.view toView:self.settingsViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromTop completion:^(BOOL finished){
-    //    NSLog(@"transition complete");
-   // }];
+    //  [UIView transitionFromView:self.gameViewController.view toView:self.settingsViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromTop completion:^(BOOL finished){
+    //     NSLog(@"transition complete");
+    //  }];
 }
 
 

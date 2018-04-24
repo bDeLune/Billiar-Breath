@@ -189,11 +189,11 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aYP-Xf-e9L">
-                    <rect key="frame" x="-10" y="871" width="308" height="58"/>
+                    <rect key="frame" x="14" y="871" width="261" height="58"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="BACK" image="LoginButton"/>
+                    <state key="normal" image="LoginButton"/>
                     <connections>
-                        <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="T91-TQ-FS7"/>
+                        <action selector="exitSettingsViewController:" destination="-1" eventType="touchUpInside" id="Atc-Oh-z3l"/>
                     </connections>
                 </button>
             </subviews>

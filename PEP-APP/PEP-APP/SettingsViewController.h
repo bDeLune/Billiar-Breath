@@ -27,7 +27,7 @@
 }
 
 @property (unsafe_unretained) id<SETTINGS_DELEGATE> settinngsDelegate;
-@property(nonatomic,unsafe_unretained)id<SettingsViewProtocol, UITabBarDelegate>delegate;
+@property(nonatomic,unsafe_unretained)id<SettingsViewProtocol>delegate;
 -(IBAction)changeRate:(id)sender;
 -(IBAction)changeThreshold:(id)sender;
 -(IBAction)changeBTTreshold:(id)sender;

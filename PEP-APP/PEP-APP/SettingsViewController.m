@@ -195,9 +195,9 @@
  F3  41
  F4  53
  **/
-- (IBAction)backButtonPressed:(id)sender {
+- (IBAction)exitSettingsViewController:(id)sender {
     
-    NSLog(@" back button pressed");
+    NSLog(@"SV: back button pressed");
     
     [self.delegate exitSettingsViewController];
 }
