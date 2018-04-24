@@ -14,6 +14,15 @@
 #import "BTLEManager.h"
 #import "UserListViewController.h"
 #import "infoViewController.h"
+#import "Gauge.h"
+#import <QuartzCore/QuartzCore.h>
+#import <AudioToolbox/AudioToolbox.h>
+#import "Gauge.h"
+//#import "ScoreDisplayViewController.h"
+#import "Session.h"
+#import "UIEffectDesignerView.h"
+#import <AVFoundation/AVFoundation.h>
+#import "Draggable.h"
 
 @interface GameViewController ()<BTLEManagerDelegate, UITabBarDelegate,UITabBarControllerDelegate, SETTINGS_DELEGATE>
 {
@@ -53,6 +62,40 @@
     float sketchamount;
     BOOL ledTestIsOn;
     BOOL globalSoundActivated;
+    
+    
+    //tets
+    UINavigationController   *navcontroller;
+  //  LoginViewViewController   *loginViewController;
+  //  HighScoreViewController   *highScoreViewController;
+    Gauge    *gaugeView;
+    MidiController  *midiController;
+   /// ScoreDisplayViewController  *scoreViewController;
+    NSTimer  *timer;
+    BOOL  sessionRunning;
+    Session  *currentSession;
+    
+   // UIEffectDesignerView  *particleEffect;
+    
+    NSTimer  *effecttimer;
+    UIImageView  *bellImageView;
+    UIImageView  *bg;
+    Draggable  *peakholdImageView;
+    
+  //  LogoViewController  *logoviewcontroller;
+  //  int threshold;
+    
+   // AVAudioPlayer *audioPlayer;
+    
+   // UIButton  *togglebutton;
+  //  BOOL   toggleIsON;
+    
+    int midiinhale;
+    int midiexhale;
+    int currentdirection;
+  //  int inorout;
+    bool currentlyExhaling;
+    bool currentlyInhaling;
 }
 
 @property (nonatomic, retain) IBOutlet UIToolbar *myToolbar;
@@ -67,6 +110,8 @@
 @property(nonatomic,strong)SequenceGame  *sequenceGameController;
 @property(nonatomic,strong)PowerGame  *powerGameController;
 @property(nonatomic,strong)DurationGame  *durationGameController;
+
+@property(nonatomic,strong)Gauge *gaugeView;
 @property(nonatomic,strong)BTLEManager  *btleManager;
 @property(nonatomic,strong)UIImageView  *btOnOfImageView;
 @property(nonatomic,strong)UserListViewController  *userList;
@@ -112,10 +157,10 @@
 #pragma mark - Session
 
 -(void)startSession
-{
+{   //ADDED CHECK
     NSLog(@"START Session");
-    self.currentSession=[Session new];
-    self.currentSession.sessionDate=[NSDate date];
+   self.currentSession=[Session new];
+   self.currentSession.sessionDate=[NSDate date];
 }
 
 #pragma mark -
@@ -256,6 +301,9 @@
     
     wasExhaling = false;
     
+    //addedgauge
+     [self.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
+    
     if (self.midiController.toggleIsON==NO) {
         
         
@@ -276,6 +324,10 @@
     self.midiController.speed= (fabs( self.midiController.velocity- self.midiController.previousVelocity));
     self.midiController.previousVelocity= self.midiController.velocity;
     
+    //addedgaugeview
+  //  float scale=50.0f;
+   // float value=self.velocity*scale;
+   // [self.gaugeView setForce:(value)];
     
     [self midiNoteContinuing: self.midiController];
 }
@@ -283,6 +335,9 @@
 -(void)btleManager:(BTLEManager*)manager exhaleWithValue:(float)percentOfmax{
     
     wasExhaling = true;
+    
+    //addedgauge
+    //[self.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
     
     if (self.midiController.toggleIsON==YES) {
         NSLog(@"EXHALING AND RETURNING");
@@ -301,6 +356,11 @@
     //self.velocity=(percentOfmax/10.0)*127.0;
     self.velocity=(percentOfmax)*127.0;
     isaccelerating=YES;
+    
+    //addedgauge
+   // float scale=50.0f;
+   // float value = self.velocity*scale;
+   // [self.gaugeView setForce:(value)];
 }
 
 
@@ -327,6 +387,13 @@
     self.userList.sharedPSC=self.sharedPSC;
     
     self.navcontroller=[[UINavigationController alloc]initWithRootViewController:self.userList];
+    
+    //addedgauge
+   // self.gaugeView=[[Gauge alloc]initWithFrame:CGRectMake(370, 365, 40, GUAGE_HEIGHT)];
+   // self.gaugeView.gaugedelegate=self;
+  //   [self.view addSubview:self.gaugeView];
+   //  [self.gaugeView setBreathToggleAsExhale:false isExhaling: self.midiController.toggleIsON];
+   // [self setResitance:2];//added, should be done by picker
     
     CGRect frame = self.view.frame;
     [self.navcontroller.view setFrame:frame];
@@ -500,8 +567,6 @@
         case 2:
             [self setThreshold:2];
             NSLog(@"set LARGE");
-            
-            
             break;
             
         default:
@@ -509,9 +574,9 @@
     }
     
 }
+
 -(IBAction)resetGame:(id)sender
 {
-    
     NSLog(@"RESETTING GAME");
     
     self.sequenceGameController=[SequenceGame new];
@@ -558,6 +623,15 @@
                 break;
         }
         
+        //addedgauge
+       // if (self.gaugeView.animationRunning) {
+          //  dispatch_async(dispatch_get_main_queue(), ^{
+          //      [_debugTextField setText:@"\nMidi Began"];
+        // });
+        //
+        //[self.gaugeView blowingBegan];
+      //  }
+        
     }else{
         ///     NSLog(@"DISALLOWING MIDI NOTES BEGAN!");
     }
@@ -589,6 +663,12 @@
             default:
                 break;
         }
+        
+        //addedgauge
+       /// if (self.gaugeView.animationRunning) {
+       //     [self sendLogToOutput:@"\nMidi Stop"];
+       //     [self.gaugeView blowingEnded];
+       // }
         /// wasExhaling = nil;
     }else{
         //  NSLog(@"DISALLOWING MIDI NOTES STOPPED!");
@@ -601,6 +681,13 @@
     if (midi.velocity==127) {
         return;
     }
+    
+    //added gauge
+   // float scale=50.0f;
+  //  float value=midi.velocity*scale;
+  //  [self.gaugeView setForce:(value)];
+    
+    
     /// NSLog(@"Midi Continue\n");
     if (midi.velocity>[self.currentSession.sessionStrength floatValue]) {
         
@@ -814,9 +901,7 @@
     if ((self.midiController.toggleIsON == false && wasExhaling == true) || (self.midiController.toggleIsON == true && wasExhaling == false)){
         
         NSLog(@"MIDI NOTES STOPPED FOR POWER");
-        
-        
-        
+    
         [[GCDQueue mainQueue]queueBlock:^{
             [self.billiardViewController endBallsPowerGame];
             
@@ -825,15 +910,11 @@
         }];
         
         /// [self saveCurrentSession];
-        
-        
-        
     }else{
         NSLog(@"MIDI NOTE DISALLOWED - B");
-        
     }
-    
 }
+
 - (IBAction)toggleMuteSound:(id)sender {
     
     NSLog(@"toggle sound");
@@ -851,15 +932,19 @@
     }
 }
 
--(void)test
-{
+
+//change
+//-(void)test
+//{
     // [self.billiardViewController startDurationPowerGame];
     
     // [self.billiardViewController pushBallsWithVelocity:40];
     
-    [self addTestScores];
+//    [self addTestScores];
     
-}
+//}
+
+
 -(void)midiNoteContinuingForPower:(MidiController*)midi
 {
     
@@ -1668,6 +1753,37 @@
     [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
     animationRunning = YES;
     //}
+}
+
+
+///GAUGE STUFF
+
+-(void)setResitance:(int)pvalue
+{
+    NSLog(@"Setting setResitance to %d", pvalue);
+    
+    switch (pvalue) {
+        case 0:
+            [self.gaugeView setMass:1];
+            break;
+            
+        case 1:
+            [self.gaugeView setMass:2];
+            
+            break;
+        case 2:
+            [self.gaugeView setMass:2.5];
+            
+            break;
+            
+        case 3:
+            [self.gaugeView setMass:3];
+            
+            break;
+            
+        default:
+            break;
+    }
 }
 
 @end

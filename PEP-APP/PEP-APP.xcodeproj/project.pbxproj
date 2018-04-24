@@ -65,6 +65,9 @@
 		7186DEE11E51CACC00F71F0C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7186DEE01E51CACC00F71F0C /* Default.png */; };
 		718E215A1E51DD0300E8357B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 718E21591E51DD0300E8357B /* LaunchScreen.storyboard */; };
 		718E215C1E51E43000E8357B /* icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 718E215B1E51E43000E8357B /* icon-120.png */; };
+		71A04EC2208FA8BD00AA878B /* Gauge.h in Sources */ = {isa = PBXBuildFile; fileRef = 71A04EC0208FA8BC00AA878B /* Gauge.h */; };
+		71A04EC3208FA8BD00AA878B /* Gauge.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A04EC1208FA8BD00AA878B /* Gauge.m */; };
+		71A04EC6208FA8F800AA878B /* Draggable.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A04EC5208FA8F800AA878B /* Draggable.m */; };
 		71C9F9D81E53341D0078070D /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9F9CC1E53341D0078070D /* Game.m */; };
 		71C9F9D91E53341D0078070D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9F9CE1E53341D0078070D /* User.m */; };
 		71C9F9DA1E53341D0078070D /* AbstractGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9F9D11E53341D0078070D /* AbstractGame.m */; };
@@ -85,7 +88,6 @@
 		71C9FA091E53356C0078070D /* UIEffectDesignerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9FA001E53356C0078070D /* UIEffectDesignerView.m */; };
 		71C9FA0E1E5335C40078070D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9FA0B1E5335C40078070D /* AppDelegate.m */; };
 		71C9FA201E5344EB0078070D /* UserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9FA1F1E5344EB0078070D /* UserListViewController.m */; };
-		71D1A3502074F7BF00C83B63 /* gauge in Resources */ = {isa = PBXBuildFile; fileRef = 71D1A34F2074F7BF00C83B63 /* gauge */; };
 		71D1A3522074F8B700C83B63 /* UsersScreenBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D1A3512074F8B700C83B63 /* UsersScreenBackground.png */; };
 		71D1A3582074F8F000C83B63 /* bell.wav in Resources */ = {isa = PBXBuildFile; fileRef = 71D1A3532074F8F000C83B63 /* bell.wav */; };
 		71D1A3592074F8F000C83B63 /* bell_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D1A3542074F8F000C83B63 /* bell_2.png */; };
@@ -299,6 +301,10 @@
 		7186DEE01E51CACC00F71F0C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		718E21591E51DD0300E8357B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		718E215B1E51E43000E8357B /* icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-120.png"; sourceTree = "<group>"; };
+		71A04EC0208FA8BC00AA878B /* Gauge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Gauge.h; sourceTree = "<group>"; };
+		71A04EC1208FA8BD00AA878B /* Gauge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Gauge.m; sourceTree = "<group>"; };
+		71A04EC4208FA8F700AA878B /* Draggable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Draggable.h; sourceTree = "<group>"; };
+		71A04EC5208FA8F800AA878B /* Draggable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Draggable.m; sourceTree = "<group>"; };
 		71C9F9CB1E53341D0078070D /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		71C9F9CC1E53341D0078070D /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		71C9F9CD1E53341D0078070D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -341,7 +347,6 @@
 		71C9FA0B1E5335C40078070D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		71C9FA1E1E5344EB0078070D /* UserListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserListViewController.h; path = billiard/UserListViewController.h; sourceTree = "<group>"; };
 		71C9FA1F1E5344EB0078070D /* UserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserListViewController.m; path = billiard/UserListViewController.m; sourceTree = "<group>"; };
-		71D1A34F2074F7BF00C83B63 /* gauge */ = {isa = PBXFileReference; lastKnownFileType = folder; path = gauge; sourceTree = "<group>"; };
 		71D1A3512074F8B700C83B63 /* UsersScreenBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UsersScreenBackground.png; sourceTree = "<group>"; };
 		71D1A3532074F8F000C83B63 /* bell.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bell.wav; sourceTree = "<group>"; };
 		71D1A3542074F8F000C83B63 /* bell_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bell_2.png; sourceTree = "<group>"; };
@@ -419,8 +424,12 @@
 				71C9F9E41E5334A90078070D /* billiard */,
 				7108573D1E439A0A00479032 /* Info.plist */,
 				7186DDEA1E4DBF2400F71F0C /* LoginViewController.xib */,
+				71A04EC0208FA8BC00AA878B /* Gauge.h */,
+				71A04EC1208FA8BD00AA878B /* Gauge.m */,
 				7186DDCC1E4DBE0D00F71F0C /* Model.xcdatamodel */,
 				7186DDCD1E4DBE0D00F71F0C /* Main.storyboard */,
+				71A04EC4208FA8F700AA878B /* Draggable.h */,
+				71A04EC5208FA8F800AA878B /* Draggable.m */,
 				71C9FA1E1E5344EB0078070D /* UserListViewController.h */,
 				71C9FA1F1E5344EB0078070D /* UserListViewController.m */,
 				7186DDEC1E4DBF4100F71F0C /* AllGamesForDayTableVC.h */,
@@ -432,7 +441,6 @@
 				71C9F9CF1E53341D0078070D /* games */,
 				7186DE011E4DBF5F00F71F0C /* CurvedScatterPlot.m */,
 				7186DE031E4DBF5F00F71F0C /* HeaderView.h */,
-				71D1A34F2074F7BF00C83B63 /* gauge */,
 				7186DE151E4DBF7100F71F0C /* Session.h */,
 				7186DE161E4DBF7100F71F0C /* Session.m */,
 				7186DE171E4DBF7100F71F0C /* CustomIOSAlertView.h */,
@@ -828,7 +836,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71D1A3502074F7BF00C83B63 /* gauge in Resources */,
 				7186DE9A1E4DBFA400F71F0C /* BilliardBreathAppIcon58x58.png in Resources */,
 				7186DDF91E4DBF4100F71F0C /* AllGamesForDayTableVC.xib in Resources */,
 				7186DEA21E4DBFA400F71F0C /* BilliardBreathAppIcon152x152.png in Resources */,
@@ -894,6 +901,8 @@
 				71C9FA0E1E5335C40078070D /* AppDelegate.m in Sources */,
 				7186DDF41E4DBF4100F71F0C /* AllGamesForDayTableVC.m in Sources */,
 				71C9F9E91E5334A90078070D /* BilliardBall.m in Sources */,
+				71A04EC2208FA8BD00AA878B /* Gauge.h in Sources */,
+				71A04EC3208FA8BD00AA878B /* Gauge.m in Sources */,
 				7186DE0A1E4DBF5F00F71F0C /* BilliardBallViewController.m in Sources */,
 				7186DE311E4DBF7100F71F0C /* PlotItem.m in Sources */,
 				71C9FA061E53356C0078070D /* AddNewScoreOperation.m in Sources */,
@@ -924,6 +933,7 @@
 				7186DEB91E4DC61D00F71F0C /* main.m in Sources */,
 				71C9FA071E53356C0078070D /* AddNewUserOperation.m in Sources */,
 				71C9FA031E53356C0078070D /* GCDQueue.m in Sources */,
+				71A04EC6208FA8F800AA878B /* Draggable.m in Sources */,
 				7186DEB51E4DC59F00F71F0C /* NSData+NSData_Conversion.m in Sources */,
 				7186DE0E1E4DBF5F00F71F0C /* CurvedScatterPlot.m in Sources */,
 				7186DE121E4DBF5F00F71F0C /* GraphViewController.m in Sources */,

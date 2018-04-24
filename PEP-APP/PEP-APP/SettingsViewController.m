@@ -1,7 +1,50 @@
 #import "ViewController.h"
 #import "SettingsViewController.h"
+#import "BTLEManager.h"
+#import "Gauge.h"
+#import <QuartzCore/QuartzCore.h>
+#import <AudioToolbox/AudioToolbox.h>
+#import "Session.h"
+#import "UIEffectDesignerView.h"
+#import <AVFoundation/AVFoundation.h>
+#import "Draggable.h"
 
-@interface SettingsViewController ()<UITabBarDelegate>
+@interface SettingsViewController ()<UITabBarDelegate, BTLEManagerDelegate, MidiControllerProtocol>{
+    
+    UINavigationController   *navcontroller;
+  ///  LoginViewViewController   /*loginViewController;
+  //  HighScoreViewController   *highScoreViewController;
+    Gauge    *gaugeView;
+    MidiController  *midiController;
+  //  ScoreDisplayViewController  *scoreViewController;
+    NSTimer  *timer;
+    BOOL  sessionRunning;
+ //   Session  *currentSession;
+    
+ //   UIEffectDesignerView  *particleEffect;
+    
+    NSTimer  *effecttimer;
+    UIImageView  *bellImageView;
+    UIImageView  *bg;
+    Draggable  *peakholdImageView;
+    
+  //  LogoViewController  *logoviewcontroller;
+    int threshold;
+    
+    AVAudioPlayer *audioPlayer;
+    
+    UIButton  *togglebutton;
+    BOOL   toggleIsON;
+    
+    int midiinhale;
+    int midiexhale;
+    int currentdirection;
+    int inorout;
+    bool currentlyExhaling;
+    bool currentlyInhaling;
+}
+
+@property(nonatomic,strong)BTLEManager  *btleManager;
 
 @end
 
@@ -43,9 +86,65 @@
                      @"Expose",@"Polka",
                      @"Posterize",@"Pixellate",@"Contrast", nil];
         
-     //   GameViewController *game = [[GameViewController alloc] init];
-    //    [self setDelegate:game];
-       // [self.delegate conformsToProtocol:@protocol(SETTINGS_DELEGATE)];
+        
+       
+        
+        
+        
+        gaugeView=[[Gauge alloc]initWithFrame:CGRectMake(370, 365, 40, GUAGE_HEIGHT)];
+        gaugeView.gaugedelegate=self;
+        
+      //  scoreViewController=[[ScoreDisplayViewController alloc]init];
+      //  scoreViewController.view.frame=CGRectMake(self.view.bounds.size.width-200,
+        //                                          self.view.bounds.size.height-400,
+       //                                           200,
+        //                                          300);
+        //
+       // [self.view addSubview:scoreViewController.view];
+        [self.view addSubview:gaugeView];
+        
+        NSArray *imageNames = @[@"bell_1.png", @"bell_2.png", @"bell_3.png", @"bell_2.png",@"bell_1.png"];
+        
+        NSMutableArray *images = [[NSMutableArray alloc] init];
+        for (int i = 0; i < imageNames.count; i++) {
+            [images addObject:[UIImage imageNamed:[imageNames objectAtIndex:i]]];
+        }
+        bellImageView = [[UIImageView alloc] initWithFrame:CGRectMake(gaugeView.frame.origin.x, gaugeView.frame.origin.y-50, 100, 100)];
+        bellImageView.animationImages = images;
+        bellImageView.animationDuration = 0.7;
+        
+        [self.view addSubview:bellImageView];
+        peakholdImageView=[[Draggable alloc]initWithImage:[UIImage imageNamed:@"PeakHoldArrow.png"]];
+        CGRect peakframe=peakholdImageView.frame;
+        // peakframe.origin.x=-100;
+        peakframe.origin.y=900;
+        peakframe.origin.x=251;
+        
+        [peakholdImageView setFrame:peakframe];
+        peakholdImageView.delegate=self;
+        // [gaugeView addSubview:peakholdImageView];
+        //  self.view.userInteractionEnabled=NO;
+        [self.view addSubview:peakholdImageView];
+        gaugeView.arrow=peakholdImageView;
+        
+        
+        
+     //   self.addGameQueue=[[NSOperationQueue alloc]init];
+        self.btleManager=[BTLEManager new];
+        self.btleManager.delegate=self;
+        [self.btleManager startWithDeviceName:@"GroovTube" andPollInterval:0.1];
+        [self.btleManager setRangeReduction:2];
+        [self.btleManager setTreshold:60];
+       // [self startSession];
+        
+        
+        
+        currentlyExhaling = false;
+        [gaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
+        
+        
+         [gaugeView start];
+
     }
     return self;
 }
@@ -131,25 +230,10 @@
 
 {
     NSLog(@"changing rate");
-    
     UISlider  *slider=(UISlider*)sender;
     [self.settinngsDelegate setRate:slider.value];
-    
-   
 }
 
-
-/*
- -(void)setBTTreshold:(float)value
- {
- [self.btleMager setTreshold:value];
- }
- -(void)setBTBoost:(float)value
- {
- [self.btleMager setRangeReduction:value];
- }
-
- */
 -(IBAction)changeThreshold:(id)sender
 {
     NSLog(@"changing threshold");
@@ -174,27 +258,8 @@
     
     [self.settinngsDelegate setBTBoost:btBoostSlider.value];
     [btrangeBoost setText:[NSString stringWithFormat:@"%f",btBoostSlider.value]];
-
 }
-/**
- 
- C1  12
- C2  24
- C3  36
- C4  48
- D1  14
- D2  26
- D3  38
- D4  50
- E1  16
- E2  28
- E3  40
- E4  52
- F1  17
- F2  29
- F3  41
- F4  53
- **/
+
 - (IBAction)exitSettingsViewController:(id)sender {
     
     NSLog(@"SV: back button pressed");
@@ -275,99 +340,383 @@
         default:
             break;
     }
-    
-    
     [self.settinngsDelegate sendValue:note onoff:0];
 }
 
+//TEST
 
+-(void)btleManagerBreathBegan:(BTLEManager*)manager{
+ //   self.date=[NSDate date];
+    
+    //  NSLog(@"MIDINOTEBGAN currentlyexhaling == %d", currentlyExhaling);
+    //  NSLog(@"MIDINOTEBGAN currentlyInhaling == %d", currentlyInhaling);
+    
+    //  if ((currentlyExhaling == true && midiController.toggleIsON )|| (currentlyInhaling == true && midiController.toggleIsON == false)){
+    
+    [self midiNoteBegan:nil];
+    //  }else{
+    // }
+}
+-(void)btleManagerBreathStopped:(BTLEManager*)manager{
+    [self midiNoteStopped:nil];
+}
 
-/**
- 
- 
- void HandleNote(BYTE Note)
- {
- BOOL ToggleLed = TRUE;
- 
- if (NextNoteIsOutNote || NextNoteIsInNote) {
- if (NextNoteIsOutNote) {
- setNotes(Note);
- FLASH_SaveParameters();
- //FLASH_WriteUserBytes(,Note);
- } else {
- MIDI_InBreathNote = Note;
- }
- NextNoteIsOutNote = FALSE;
- NextNoteIsInNote = FALSE;
- return;
- }
- switch (Note)
- {
- case C1:
- //LED2_TOGGLE;
- BREATH_SetHysterisis(BREATH_DEAD_ZONE_SMALL);
- break;
- case D1:
- //LED2_TOGGLE;
- BREATH_SetHysterisis(BREATH_DEAD_ZONE_NORMAL);
- break;
- case E1:
- //LED2_TOGGLE;
- BREATH_SetHysterisis(BREATH_DEAD_ZONE_BIG);
- break;
- case C2:
- //LED2_TOGGLE;
- BREATH_SetSensitivity(BREATH_SENSITIVITY_LOW);
- break;
- case D2:
- //LED2_TOGGLE;
- BREATH_SetSensitivity(BREATH_SENSITIVITY_NORMAL);
- break;
- case E2:
- //LED2_TOGGLE;
- BREATH_SetSensitivity(BREATH_SENSITIVITY_HIGH);
- break;
- case F2:
- //LED2_TOGGLE;
- BREATH_SetSensitivity(BREATH_SENSITIVITY_VERY_HIGH);
- break;
- case C3:
- //LED2_TOGGLE;
- BREATH_SetAcceptanceTime(BREATH_ACCEPTANCE_10);
- break;
- case D3:
- //LED2_TOGGLE;
- BREATH_SetAcceptanceTime(BREATH_ACCEPTANCE_50);
- break;
- case E3:
- //LED2_TOGGLE;
- BREATH_SetAcceptanceTime(BREATH_ACCEPTANCE_100);
- break;
- case F3:
- //LED2_TOGGLE;
- BREATH_SetAcceptanceTime(BREATH_ACCEPTANCE_200);
- break;
- case C4:
- NextNoteIsOutNote = TRUE;
- //LED2_TOGGLE;
- break;
- //case D4:
- //NextNoteIsInNote = TRUE;
- //LED2_TOGGLE;
- //      break;
- case E4:
- //LED2_TOGGLE;
- break;
- default:
- ToggleLed = FALSE;
- break;
- }
- if (ToggleLed) {
- if ((Note != C4) && (Note != D4)) {FLASH_SaveParameters();}
- LED2_ON;
- }
- }
- **/
+-(void)btleManager:(BTLEManager*)manager inhaleWithValue:(float)percentOfmax
+{
+    currentlyExhaling = false;
+    currentlyInhaling = true;
+    
+    [gaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
+    
+    if (midiController.toggleIsON==NO) {
+        return;
+    }
+    
+    float  vel=127.0*percentOfmax;;
+    
+    if (vel<threshold) {
+        return;
+    }
+    if (vel==127) {
+        return;
+    }
+    float scale=50.0f;
+    float value=vel*scale;
+    [gaugeView setForce:(value)];
+   // NSDate  *date=[NSDate date];
+    
+   // if (vel>[currentSession.sessionStrength intValue]) {
+  //      currentSession.sessionStrength=[NSNumber numberWithInt:vel];
+        // [gaugeView setArrowPos:0];
+ //   }
+    
+  //  double  duration=[date timeIntervalSinceDate:self.date];
+   // currentSession.sessionDuration=[NSNumber numberWithDouble:duration];
+   // NSString  *durationtext=[NSString stringWithFormat:@"%0.0f",duration];
+  //  dispatch_async(dispatch_get_main_queue(), ^{
+       // scoreViewController.durationValueLabel.text=durationtext;
+       // [scoreViewController setStrength:vel];
+        // [self sendLogToOutput:@"conti"];
+  //  });
+}
 
+-(void)btleManager:(BTLEManager*)manager exhaleWithValue:(float)percentOfmax{
+    
+    currentlyExhaling = true;
+    currentlyInhaling = false;
+    
+    //-(void)setBreathToggleAsExhale:(bool)value isExhaling: (bool)value2;
+    [gaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
+    
+    if (midiController.toggleIsON) {
+        return;
+    }
+    
+    float  vel=127.0*percentOfmax;;
+    
+    if (vel<threshold) {
+        return;
+    }
+    if (vel==127) {
+        return;
+    }
+    
+    ///NSLog(@"VEL IS %f", vel);
+    
+    float scale=50.0f;
+    float value=vel*scale;
+    [gaugeView setForce:(value)];
+    NSDate  *date=[NSDate date];
+    
+  //  if (vel>[currentSession.sessionStrength intValue]) {
+  //      currentSession.sessionStrength=[NSNumber numberWithInt:vel];
+        // [gaugeView setArrowPos:0];
+  //  }
+    
+   // double  duration=[date timeIntervalSinceDate:self.date];
+  //  currentSession.sessionDuration=[NSNumber numberWithDouble:duration];
+   // NSString  *durationtext=[NSString stringWithFormat:@"%0.0f",duration];
+  //  dispatch_async(dispatch_get_main_queue(), ^{
+    //    scoreViewController.durationValueLabel.text=durationtext;
+    //    [scoreViewController setStrength:vel];
+        // [self sendLogToOutput:@"conti"];
+ //   });
+}
+
+-(void)setResitance:(int)pvalue
+{
+    NSLog(@"Setting setResitance to %d", pvalue);
+    
+    switch (pvalue) {
+        case 0:
+            [gaugeView setMass:1];
+            break;
+            
+        case 1:
+            [gaugeView setMass:2];
+            
+            break;
+        case 2:
+            [gaugeView setMass:2.5];
+            
+            break;
+            
+        case 3:
+            [gaugeView setMass:3];
+            
+            break;
+            
+        default:
+            break;
+    }
+}
+
+//MORETEST
+
+-(void)draggable:(Draggable *)didDrag
+{
+    //900-330
+    CGRect  frame=didDrag.frame;
+    [gaugeView setBestDistanceWithY:900-frame.origin.y];
+    // CGRect  newframe=[self.view convertRect:frame toView:gaugeView];
+}
+
+- (IBAction)toggleDirection:(id)sender
+{
+    if (!midiController) {
+        midiController=[MidiController new];
+    }
+    switch (midiController.toggleIsON) {
+        case 0:
+            midiController.toggleIsON=YES;
+            //  midiController.currentdirection=midiinhale;
+            [togglebutton setBackgroundImage:[UIImage imageNamed:@"BreathDirection_INHALE.png"] forState:UIControlStateNormal];
+            [[NSUserDefaults standardUserDefaults]setObject:@"inhale" forKey:@"direction"];
+            // currentlyExhaling = false;
+            break;
+        case 1:
+            midiController.toggleIsON=NO;
+            
+            [togglebutton setBackgroundImage:[UIImage imageNamed:@"BreathDirection_EXHALE.png"] forState:UIControlStateNormal];
+            [[NSUserDefaults standardUserDefaults]setObject:@"exhale" forKey:@"direction"];
+            //currentlyExhaling = true;
+            //  midiController.currentdirection=midiexhale;
+            break;
+            
+        default:
+            break;
+    }
+}
+
+#pragma mark -
+#pragma mark - Test Methods
+
+-(IBAction)touchAccelerateUp:(id)sender
+{
+    [gaugeView blowingEnded];
+    [self endCurrentSession];
+    [timer invalidate];
+}
+-(IBAction)touchAccelerateDown:(id)sender
+{
+    [self beginNewSession];
+    
+    [gaugeView blowingBegan];
+    timer=[NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(simulateBlow) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+}
+-(void)simulateBlow
+{
+   NSLog(@"Simulating blow");
+    
+    
+  //  float  vel=[_inputtext.text floatValue];
+  //  if (vel==127) {
+  //      return;
+  //  }
+   // float scale=10.0f;
+ ////   float value=vel*scale;
+ //   [gaugeView setForce:(value)];
+ //   NSDate  *date=[NSDate date];
+    
+ ///   if (vel>[currentSession.sessionStrength intValue]) {
+  //      currentSession.sessionStrength=[NSNumber numberWithInt:vel];
+   // }
+    
+  //  double  duration=[date timeIntervalSinceDate:self.date];
+  //  currentSession.sessionDuration=[NSNumber numberWithDouble:duration];
+  //  NSString  *durationtext=[NSString stringWithFormat:@"%0.1f",duration];
+  //  dispatch_async(dispatch_get_main_queue(), ^{
+ //       scoreViewController.durationValueLabel.text=durationtext;
+ //       [scoreViewController setStrength:vel];
+        
+   // });
+}
+#pragma mark -
+#pragma mark - Midi Delegate
+
+-(void)midiNoteBegan:(MidiController*)midi
+{
+    NSLog(@"MIDINOTEBEGAN");
+    
+    if (gaugeView.animationRunning) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+         //   [_debugTextField setText:@"\nMidi Began"];
+        });
+        [self beginNewSession];
+        [gaugeView blowingBegan];
+    }
+}
+
+-(void)midiNoteStopped:(MidiController*)midi
+{
+    if (gaugeView.animationRunning) {
+        [self sendLogToOutput:@"\nMidi Stop"];
+        [gaugeView blowingEnded];
+        [self endCurrentSession];
+    }
+}
+
+-(void)midiNoteContinuing:(MidiController*)midi
+{
+    NSLog(@"midiNoteContinuing currentlyExhaling %d", currentlyExhaling);
+    NSLog(@"midiNoteContinuing currentlyInhaling %d", currentlyInhaling);
+    
+    if ((currentlyExhaling == true && midiController.toggleIsON) || (currentlyInhaling == true && midiController.toggleIsON == false)){
+        
+        float  vel=midiController.velocity;
+        
+        if (vel<threshold) {
+            return;
+        }
+        if (vel==127) {
+            return;
+        }
+        float scale=50.0f;
+        float value=vel*scale;
+        [gaugeView setForce:(value)];
+        NSDate  *date=[NSDate date];
+        
+    //    if (vel>[currentSession.sessionStrength intValue]) {
+     //       currentSession.sessionStrength=[NSNumber numberWithInt:vel];
+             [gaugeView setArrowPos:0];
+    //    }
+        
+      //  double  duration=[date timeIntervalSinceDate:self.date];
+   //     currentSession.sessionDuration=[NSNumber numberWithDouble:duration];
+   //     NSString  *durationtext=[NSString stringWithFormat:@"%0.0f",duration];
+    //    dispatch_async(dispatch_get_main_queue(), ^{
+    //        scoreViewController.durationValueLabel.text=durationtext;
+    //        [scoreViewController setStrength:vel];
+            // [self sendLogToOutput:@"conti"];
+    //    });
+        
+    }else{
+        NSLog(@"Disallowing");
+    }
+}
+
+-(void)sendLogToOutput:(NSString*)log
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSString  *string=[NSString stringWithFormat:@"\n %@",log];
+  //      _debugTextField.text =[_debugTextField.text stringByAppendingString:string];
+    });
+}
+
+#pragma mark -
+#pragma mark - Session Controls
+-(void)beginNewSession
+{
+    if (!sessionRunning) {
+        sessionRunning=YES;
+    //    currentSession=[[Session alloc]init];
+     //   self.date=[NSDate date];
+     //   currentSession.sessionDate=self.date;
+     ///   currentSession.username=[[NSUserDefaults standardUserDefaults]valueForKey:@"currentusername"];
+    }
+}
+
+-(void)endCurrentSessionTest
+{
+    
+}
+-(void)endCurrentSession
+{
+    if (sessionRunning) {
+        sessionRunning=NO;
+    }
+    // dispatch_async(dispatch_get_main_queue(), ^{
+    //  scoreViewController.durationValueLabel.text=@"";
+    // scoreViewController.strengthValueLabel.text=@"";
+    
+    // });
+ //   [loginViewController updateUserStats:currentSession];
+  //  [highScoreViewController updateWithCurrentSession:currentSession];
+}
+
+#pragma mark -
+#pragma mark - Animation
+
+-(void)maxDistanceReached
+{
+    [self endCurrentSession];
+    [midiController pause];
+  //  if (particleEffect) {
+  ///      dispatch_async(dispatch_get_main_queue(), ^{
+ //           [particleEffect removeFromSuperview];
+ //           particleEffect=nil;
+ //       });
+   // }
+  //  particleEffect = [UIEffectDesignerView effectWithFile:@"sparks.ped"];
+    ///CGRect frame=particleEffect.frame;
+  //  frame.origin.x=(self.view.bounds.size.width/2)-50;
+  //  frame.origin.y=gaugeView.frame.origin.y-40;
+  //  particleEffect.frame=frame;
+   // [self.view addSubview:particleEffect];
+   // effecttimer=[NSTimer timerWithTimeInterval:4 target:self selector:@selector(killSparks) userInfo:nil repeats:NO];
+   // [[NSRunLoop mainRunLoop] addTimer:effecttimer forMode:NSDefaultRunLoopMode];
+   // [self playSound];
+    //[bellImageView startAnimating];
+   // [logoviewcontroller startAnimating];
+    // [loginViewController updateUserStats:currentSession];
+    
+    //
+   // [highScoreViewController updateWithCurrentSession:currentSession];
+}
+
+-(void)killSparks
+{
+    
+    NSLog(@"KILL SPARKS");
+ //   dispatch_async(dispatch_get_main_queue(), ^{
+ //       [particleEffect removeFromSuperview];
+ ///       particleEffect=nil;
+ //   });
+[midiController resume];
+    [self midiNoteStopped:midiController];
+    [effecttimer invalidate];
+   effecttimer=nil;
+
+    [gaugeView start];
+    [bellImageView stopAnimating];
+ //   [logoviewcontroller stopAnimating];
+    
+}
+-(void) playSound {
+    
+    NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"bell" ofType:@"wav"];
+    NSData *fileData = [NSData dataWithContentsOfFile:soundPath];
+    NSError *error = nil;
+    audioPlayer = [[AVAudioPlayer alloc] initWithData:fileData
+                                                error:&error];
+    [audioPlayer prepareToPlay];
+    [audioPlayer play];
+}
+
+-(void)sendValue:(int)note onoff:(int)onoff
+{
+    [midiController sendValue:note onoff:onoff];
+}
 
 @end

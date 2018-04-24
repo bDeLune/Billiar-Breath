@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 #import "Game.h"
+#import "Gauge.h"
 #import "AbstractGame.h"
 #import "MidiController.h"
 #import "GPUImage.h"
@@ -21,7 +22,7 @@
 -(void)toSettingsScreen;
 @end
 
-@interface GameViewController : UIViewController<MidiControllerProtocol,GameProtocol,SETTINGS_DELEGATE,UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITabBarDelegate>{
+@interface GameViewController : UIViewController<MidiControllerProtocol,GameProtocol,GaugeProtocol, SETTINGS_DELEGATE,UINavigationControllerDelegate,DraggableDelegate, UIImagePickerControllerDelegate, UITabBarDelegate>{
     
    // GPUImagePicture *sourcePicture;
     GPUImageOutput<GPUImageInput> *sepiaFilter, *sepiaFilter2;
