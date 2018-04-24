@@ -1,11 +1,3 @@
-//
-//  Session.m
-//  FairHammer
-//
-//  Created by barry on 11/07/2013.
-//  Copyright (c) 2013 barry. All rights reserved.
-//
-
 #import "Session.h"
 
 @implementation Session
@@ -27,7 +19,6 @@
 
 -(void)updateStrength:(float)pvalue
 {
-
     if (pvalue>[_sessionStrength floatValue]) {
         _sessionStrength=[NSNumber numberWithFloat:pvalue];
     }
@@ -39,7 +30,6 @@
     [encoder encodeObject:_sessionDuration forKey:@"sessionDuration"];
     [encoder encodeObject:_sessionStrength forKey:@"sessionStrength"];
     [encoder encodeObject:_sessionSpeed forKey:@"sessionSpeed"];
-
     [encoder encodeObject:_username forKey:@"username"];
     [encoder encodeObject:_sessionType forKey:@"sessionType"];
 }

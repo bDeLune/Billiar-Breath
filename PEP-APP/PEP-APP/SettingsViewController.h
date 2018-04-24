@@ -1,6 +1,5 @@
-#import <UIKit/UIKit.h>  
-//#import "ViewController.h"
-#import "GameViewController.h" ///MAYBE
+#import <UIKit/UIKit.h>
+#import "GameViewController.h"
 
 @protocol SettingsViewProtocol <NSObject>
 -(void)exitSettingsViewController;

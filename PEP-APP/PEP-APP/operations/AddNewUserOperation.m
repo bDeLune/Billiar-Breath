@@ -1,11 +1,3 @@
-//
-//  AddNewUserOperation.m
-//  BilliardBreath
-//
-//  Created by barry on 09/12/2013.
-//  Copyright (c) 2013 rocudo. All rights reserved.
-//
-
 #import "AddNewUserOperation.h"
 #import "User.h"
 NSString *kAddNewUserOperationUserExistsError = @"ExistsError";
@@ -42,8 +34,6 @@ NSString *kAddNewUserOperationUserAdded = @"UserAdded";
 
 -(void)addTheUser
 {
-    
-    
     User* newTask = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:self.managedObjectContext];
     [newTask setUserName:self.username];
     NSError  *error;
@@ -61,14 +51,13 @@ NSString *kAddNewUserOperationUserAdded = @"UserAdded";
             abort();
         }
     }
-
-
 }
 
 -(void)addUserFailed:(NSString*)withMessage
 {
 
 }
+
 -(void)addUserSucceeded
 {
 

@@ -1,11 +1,3 @@
-//
-//  DurationGame.h
-//  BilliardBreath
-//
-//  Created by barry on 11/12/2013.
-//  Copyright (c) 2013 rocudo. All rights reserved.
-//
-
 #import "AbstractGame.h"
 #import <AVFoundation/AVFoundation.h>
 

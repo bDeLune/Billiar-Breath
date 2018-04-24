@@ -1,11 +1,3 @@
-//
-//  Globals.m
-//  Breath5
-//
-//  Created by barry on 21/04/2015.
-//  Copyright (c) 2015 rocudo. All rights reserved.
-//
-
 #import "Globals.h"
 #import "Game.h"
 #import "User.h"
@@ -16,7 +8,6 @@
 @implementation Globals
 static Globals *sharedGlobal = nil;
 dispatch_semaphore_t sema;
-
 
 + (Globals *)sharedInstance {
     
@@ -32,25 +23,10 @@ dispatch_semaphore_t sema;
 
 -(void)setup
 {
-   /* NSString * const gameHillType_toString[] = {
-        [hillTypeFlat] = @"Flat",
-        [hillTypeHill] = @"Hill",
-        [hillTypeMountain]=@"Mountain"
-    };
-    
-    NSString * const gameUserType_toString[]={
-      [userTypeSignifigant]=@"User Type 1",
-        [userTypeReduced]=@"User Type 2",
-        [userTypeLittleReduced]=@"User Type 3",
-
-    };*/
-    
-
 
 }
 -(void)updateCoreData
 {
-    
     if ([self.managedObjectContext hasChanges]) {
         
         if (![self.managedObjectContext save:nil]) {
@@ -63,9 +39,8 @@ dispatch_semaphore_t sema;
             // abort();
         }
     }
-
-
 }
+
 -(void)updateUser:(User*)user
 {
     //NSLog(@"%@",user.userAbilityType);
@@ -74,8 +49,6 @@ dispatch_semaphore_t sema;
         self.managedObjectContext.persistentStoreCoordinator = self.sharedPSC;
     }
    
-    
-    
     NSString   *name=user.userName;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSManagedObjectContext *context = self.managedObjectContext;
@@ -94,16 +67,12 @@ dispatch_semaphore_t sema;
     }
     
     [self updateCoreData];
-
-
-
 }
+
 -(NSManagedObjectID*)gameIDForUser:(User*)user breathDirection:(int)direction hilltype:(int)hilltype
 {
     NSManagedObjectContext *managedObjectContext =[[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     managedObjectContext.persistentStoreCoordinator = self.sharedPSC;
-    
-    
     NSString   *name=user.userName;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSManagedObjectContext *context = managedObjectContext;
@@ -120,8 +89,6 @@ dispatch_semaphore_t sema;
         User  *user=[items objectAtIndex:0];
         NSSet  *game=user.game;
         NSArray  *games=[game allObjects];
-        
-        //see if a game exists for combination of hill type and breath direction
         
         for (Game *game in games)
         {
@@ -137,17 +104,12 @@ dispatch_semaphore_t sema;
     }
     
     return nil;
-
-
 }
+
 -(Game*)gameForUser:(User*)user breathDirection:(int)direction hilltype:(int)hilltype
 {
-    
-    
     NSManagedObjectContext *managedObjectContext =[[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     managedObjectContext.persistentStoreCoordinator = self.sharedPSC;
-
-    
     NSString   *name=user.userName;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSManagedObjectContext *context = managedObjectContext;
@@ -164,9 +126,6 @@ dispatch_semaphore_t sema;
         User  *user=[items objectAtIndex:0];
         NSSet  *game=user.game;
         NSArray  *games=[game allObjects];
-        
-        //see if a game exists for combination of hill type and breath direction
-        
         for (Game *game in games)
         {
             NSLog(@"direction == %@",game.gameDirectionInt);
@@ -178,9 +137,7 @@ dispatch_semaphore_t sema;
             }
         }
     }
-    
     return nil;
-    
 }
 
 @end

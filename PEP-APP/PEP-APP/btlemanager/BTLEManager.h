@@ -1,35 +1,12 @@
-//
-//  BTLEManager.h
-//  BTLEManager
-//
-//  Created by barry on 06/10/2015.
-//  Copyright © 2015 rocudo. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
-
+#import <Foundation/Foundation.h>
 //! Project version number for BTLEManager.
 FOUNDATION_EXPORT double BTLEManagerVersionNumber;
-
-//! Project version string for BTLEManager.
 FOUNDATION_EXPORT const unsigned char BTLEManagerVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <BTLEManager/PublicHeader.h>
-//
-//  BTLEManager.h
-//  GrooveTubeMelodySmart
-//
-//  Created by barry on 19/08/2015.
-//  Copyright (c) 2015 rocudo. All rights reserved.
-//
-
-#import <Foundation/Foundation.h>
-
 #define MAX_INHALE 2000
 #define MAX_EXHALE 2000
 
 typedef enum BT_LE_State:NSUInteger
-
 {
     BTLEState_Beginnging,
     BTLEState_Began,
@@ -50,33 +27,23 @@ typedef enum BT_LE_State:NSUInteger
 -(void)btleManagerBreathBeganWithExhale:(BTLEManager*)manager;
 -(void)btleManagerBreathBeganWithInhale:(BTLEManager*)manager;
 -(void)btleManagerBreathBegan:(BTLEManager*)manager;
-
-
 /*!
  *  Implement this delegate method to
  be notified when a breath has Stopped
  *
  *  @param manager Your instance of BTLEManager
  */
-
-
 -(void)btleManagerBreathStopped:(BTLEManager*)manager;
 /*!
- 
  *  Implement this delegate method to
  be notified when a btlemanager has connected to your device
- 
  *
  *  @param manager Your instance of BTLEManager
  */
-
-
 -(void)btleManagerConnected:(BTLEManager*)manager;
 /**
- 
  *  Implement this delegate method to
  be notified when a btlemanager has disconnected from your device
- 
  *
  *  @param manager Your instance of BTLEManager
  */
@@ -100,7 +67,6 @@ typedef enum BT_LE_State:NSUInteger
 @end
 
 @interface BTLEManager : NSObject
-
 /**
  *  Setup
  *
@@ -121,13 +87,8 @@ typedef enum BT_LE_State:NSUInteger
  *
  */
 -(void)setRangeReduction:(float)range;
-
 @property(nonatomic,unsafe_unretained)id<BTLEManagerDelegate>delegate;
 @property BT_LE_State  btleState;
 @property BOOL isConnected;
 + (instancetype)sharedInstance;
-
 @end
-
-
-

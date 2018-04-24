@@ -29,6 +29,7 @@ NSString *const kSecond = @"Inhale";
 
 -(id)init
 {
+    NSLog(@"Initialised Graph - check to see if in use");
     if ( (self = [super init]) ) {
         self.title   = @"Curved Scatter Plot";
         self.section = kLinePlots;

@@ -1,11 +1,3 @@
-//
-//  SequenceGame.m
-//  BilliardBreath
-//
-//  Created by barry on 10/12/2013.
-//  Copyright (c) 2013 rocudo. All rights reserved.
-//
-
 #import "SequenceGame.h"
 #import <AVFoundation/AVFoundation.h>
 
@@ -44,60 +36,41 @@
     audioPlayer = [[AVAudioPlayer alloc] initWithData:fileData
                                                                error:&error];
     audioPlayer.volume=0.3;
-
     [audioPlayer prepareToPlay];
-    
     NSLog(@"SOUND: playing hit top SEQ %hhd", muteAudio);
-    
     if (muteAudio == 0){
         [audioPlayer play];
     }
-    
-    
 }
--(int)nextBall
 
-{
+-(int)nextBall{
     NSLog(@"next ball");
     self.halt=NO;
-  //  [self playHitTop];
+    //[self playHitTop];
     self.currentBall++;
     self.totalBallsAttempted++;
        // [self.delegate gameEnded:self];
        // return -1;
-        
         if (self.totalBallsRaised>=self.totalBalls) {
        //     [[GCDQueue mainQueue]queueBlock:^{
-                
                 if (!gamewon) {
                     [self.delegate gameWon:self];
-
                     gamewon=YES;
                 }
-                
-
          //   } afterDelay:1.0];
             return -1;
         }
-    
-    
     if (!gamewon) {
         if (self.totalBallsAttempted>=self.totalBalls) {
             [self.delegate gameEnded:self];
             return -1;
         }
     }
-   
-    
     return self.currentBall;
-
 }
 
 -(void)setAudioMute: (BOOL) muteSetting{
-    
     NSLog(@"setting inner audio mute SEQ %hhd", muteSetting);
-    
     muteAudio = muteSetting;
 }
-
 @end

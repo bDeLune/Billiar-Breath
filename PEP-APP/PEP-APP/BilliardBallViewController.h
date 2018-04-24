@@ -1,11 +1,3 @@
-//
-//  BilliardBallViewController.h
-//  BilliardBreath
-//
-//  Created by barry on 09/12/2013.
-//  Copyright (c) 2013 rocudo. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 #import "BilliardBall.h"
 #import "PowerGame.h"
@@ -27,6 +19,4 @@
 @property(nonatomic,weak)PowerGame  *powerGame;
 @property(nonatomic,weak)DurationGame  *durationGame;
 @property gameType  currentGameType;
-
-
 @end

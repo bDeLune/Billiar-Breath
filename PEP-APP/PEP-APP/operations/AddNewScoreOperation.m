@@ -1,11 +1,3 @@
-//
-//  AddNewScoreOperation.m
-//  BilliardBreath
-//
-//  Created by barry on 09/12/2013.
-//  Copyright (c) 2013 rocudo. All rights reserved.
-//
-
 #import "AddNewScoreOperation.h"
 @interface AddNewScoreOperation ()
 @property (strong) NSManagedObjectContext *managedObjectContext;
@@ -27,7 +19,7 @@
     
 }
 - (void)main {
-    
+
     // Creating context in main function here make sure the context is tied to current thread.
     // init: use thread confine model to make things simpler.
     self.managedObjectContext = [[NSManagedObjectContext alloc] init];
@@ -38,10 +30,8 @@
 
 -(void)addTheSession
 {
-    
     Game  *game=[NSEntityDescription insertNewObjectForEntityForName:@"Game" inManagedObjectContext:self.managedObjectContext];
-   // [game setUser:self.user];
-    
+    //[game setUser:self.user];
     if ([self.session.sessionDuration floatValue]<=0.0) {
         return;
     }
@@ -52,8 +42,6 @@
     NSString *direction=[[NSUserDefaults standardUserDefaults]objectForKey:@"direction"];
     [game setGameDirection:direction];
    // [game setSpeed:self.session.sessionSpeed];
-    
-    
     NSString   *name=[self.user valueForKey:@"userName"];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSManagedObjectContext *context = self.managedObjectContext;
@@ -66,17 +54,11 @@
     NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
     
     if ([items count]>0) {
-     
         User  *auser=[items objectAtIndex:0];
         [[auser mutableSetValueForKey:@"game"]addObject:game];
     }
 
-    
-    
-    
-    
     if ([self.managedObjectContext hasChanges]) {
-        
         if (![self.managedObjectContext save:&error]) {
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate.
@@ -88,10 +70,6 @@
            // abort();
         }
     }
-    
-
-    
-
 }
 
 @end

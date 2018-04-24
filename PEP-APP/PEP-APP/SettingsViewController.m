@@ -12,8 +12,6 @@
 @interface SettingsViewController ()<UITabBarDelegate, BTLEManagerDelegate, MidiControllerProtocol>{
     
     UINavigationController   *navcontroller;
-  ///  LoginViewViewController   /*loginViewController;
-  //  HighScoreViewController   *highScoreViewController;
     Gauge    *gaugeView;
     MidiController  *midiController;
   //  ScoreDisplayViewController  *scoreViewController;
@@ -517,6 +515,7 @@
     [self endCurrentSession];
     [timer invalidate];
 }
+
 -(IBAction)touchAccelerateDown:(id)sender
 {
     [self beginNewSession];
@@ -525,11 +524,10 @@
     timer=[NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(simulateBlow) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
 }
+
 -(void)simulateBlow
 {
    NSLog(@"Simulating blow");
-    
-    
   //  float  vel=[_inputtext.text floatValue];
   //  if (vel==127) {
   //      return;
@@ -639,8 +637,8 @@
 
 -(void)endCurrentSessionTest
 {
-    
 }
+
 -(void)endCurrentSession
 {
     if (sessionRunning) {
@@ -687,24 +685,20 @@
 
 -(void)killSparks
 {
-    
     NSLog(@"KILL SPARKS");
- //   dispatch_async(dispatch_get_main_queue(), ^{
- //       [particleEffect removeFromSuperview];
- ///       particleEffect=nil;
- //   });
-[midiController resume];
+    //dispatch_async(dispatch_get_main_queue(), ^{
+    //[particleEffect removeFromSuperview];
+    //particleEffect=nil;
+    //});
+    [midiController resume];
     [self midiNoteStopped:midiController];
     [effecttimer invalidate];
-   effecttimer=nil;
-
+    effecttimer=nil;
     [gaugeView start];
     [bellImageView stopAnimating];
- //   [logoviewcontroller stopAnimating];
-    
 }
+
 -(void) playSound {
-    
     NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"bell" ofType:@"wav"];
     NSData *fileData = [NSData dataWithContentsOfFile:soundPath];
     NSError *error = nil;

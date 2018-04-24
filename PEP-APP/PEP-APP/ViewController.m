@@ -5,21 +5,15 @@
 #import "GameViewController.h"
 #import "SettingsViewController.h"
 #define GUAGE_HEIGHT 575
-//#import <CoreMIDI/CoreMIDI.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import "BTLEManager.h"
-//static void    MyMIDIReadProc(const MIDIPacketList *pktlist, void *refCon, void *connRefCon);
-//void MyMIDINotifyProc (const MIDINotification  *message, void *refCon);
-typedef void(^RunTimer)(void);
 
+typedef void(^RunTimer)(void);
 @interface ViewController ()<BTLEManagerDelegate>
 @property (nonatomic, retain) IBOutlet UIToolbar *myToolbar;
 @property (nonatomic, retain) NSMutableArray *capturedImages;
 @property(nonatomic,strong)BTLEManager  *btleMager;
 @property(nonatomic,strong)UIImageView  *btOnOfImageView;
-// toolbar buttons
-//- (IBAction)photoLibraryAction:(id)sender;
-//- (IBAction)cameraAction:(id)sender;
 @property (assign) SystemSoundID tickSound;
 @property(nonatomic,strong)UIButton *ledTestButton;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
@@ -38,28 +32,16 @@ typedef void(^RunTimer)(void);
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib
-    // observe for any errors that come from our parser
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addUserError:) name:kAddNewUserOperationUserError object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addUserExistsError:) name:kAddNewUserOperationUserExistsError object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addUserSuccess:) name:kAddNewUserOperationUserAdded object:nil];
-    
-    // Do any additional setup after loading the view, typically from a nib.
     [self managedObjectContext];
     [self addUserLoginViewController];
-
-///_startupImageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Default.png"]];
-//[self.view addSubview:_startupImageView];
-  //  [ NSTimer scheduledTimerWithTimeInterval:5.0
-   //                                   target:self
-   //                                 selector:@selector(removeStartupImage:)
-   //                                 userInfo:nil
-  //                                   repeats:NO];
-//added
 }
 
 -(void)removeStartupImage:(NSTimer*)timer
 {
+    //remove
     [timer invalidate];
     timer=nil;
 
@@ -72,6 +54,7 @@ typedef void(^RunTimer)(void);
 }
 
 -(void)viewWillLayoutSubviews{
+    //remove
     [super viewWillLayoutSubviews];
     //[self.view setFrame:CGRectMake(600, 600, 600, 600)];
 }
@@ -84,9 +67,6 @@ typedef void(^RunTimer)(void);
     
     [self.view addSubview:self.loginViewController.view];
     self.loginViewController.sharedPSC=self.persistentStoreCoordinator;
-    
-    //added
-    self.loginViewController.hidesBottomBarWhenPushed = YES;
     self.loginViewController.delegate=self;
 }
 
@@ -101,10 +81,7 @@ typedef void(^RunTimer)(void);
     }
     
     self.settingsViewController.delegate=self;
-
     [self.view addSubview:self.settingsViewController.view];
-   // self.loginViewController.sharedPSC=self.persistentStoreCoordinator;
-    
 }
 
 #pragma mark -
@@ -113,11 +90,7 @@ typedef void(^RunTimer)(void);
 
 -(void)LoginSucceeded:(LoginViewController*)viewController user:(User*)user
 {
-    // assert([NSThread isMainThread]);
-    
     self.currentUser=user;
-    
-    //AppDelegateFileName *appDelegate (AppDegateFileAnem *) 
     
     if (!self.gameViewController) {
         self.gameViewController=[[GameViewController alloc]initWithNibName:@"GameViewController" bundle:nil];
@@ -129,14 +102,12 @@ typedef void(^RunTimer)(void);
         [self.gameViewController setLabels];
         self.gameViewController.sharedPSC=self.persistentStoreCoordinator;
         [self.gameViewController resetGame:nil];
-        
     }];
 }
 
 -(void)gameViewExitGame
 {
     [UIView transitionFromView:self.gameViewController.view toView:self.loginViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromTop completion:^(BOOL finished){
-        
     }];
 }
 
@@ -151,23 +122,11 @@ typedef void(^RunTimer)(void);
 -(void)toSettingsScreen
 {
     NSLog(@" VC: Go to settings view controller");
-    
-   // if (self.settingsViewController){
-  //      NSLog(@"instantiating SettingsViewController");
-  ///      [self presentViewController:self.settingsViewController animated:YES completion:nil];
-  //  }else{
-  //      NSLog(@"Cant instantiate SettingsViewController");
-  //  }
-    
-     [self addSettingsViewController];
-    //  [UIView transitionFromView:self.gameViewController.view toView:self.settingsViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromTop completion:^(BOOL finished){
-    //     NSLog(@"transition complete");
-    //  }];
+    [self addSettingsViewController];
 }
 
-
-
 #pragma mark - Core Data
+
 // Returns the path to the application's documents directory.
 - (NSString *)applicationDocumentsDirectory {
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -193,13 +152,11 @@ typedef void(^RunTimer)(void);
                                              selector:@selector(mergeChanges:)
                                                  name:NSManagedObjectContextDidSaveNotification
                                                object:nil];
-    
     return _managedObjectContext;
 }
 
 // Returns the managed object model for the application.
 // If the model doesn't already exist, it is created by merging all of the models found in the application bundle.
-//
 - (NSManagedObjectModel *)managedObjectModel {
     
     if (_managedObjectModel != nil) {
@@ -214,20 +171,17 @@ typedef void(^RunTimer)(void);
     
     NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Model" withExtension:@"mom"]; //was mom
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-    
     return _managedObjectModel;
 }
 
 // Returns the persistent store coordinator for the application.
 // If the coordinator doesn't already exist, it is created and the application's store added to it
-//
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
     
     if (_persistentStoreCoordinator != nil) {
         return _persistentStoreCoordinator;
     }
-    
-    // find the earthquake data in our Documents folder
+
     NSString *storePath = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:@"Model.sqlite"];
     NSURL *storeUrl = [NSURL fileURLWithPath:storePath];
     
@@ -239,8 +193,6 @@ typedef void(^RunTimer)(void);
         // You should not use this function in a shipping application, although it may be useful
         // during development. If it is not possible to recover from the error, display an alert
         // panel that instructs the user to quit the application by pressing the Home button.
-        //
-        
         // Typical reasons for an error here include:
         // The persistent store is not accessible
         // The schema for the persistent store is incompatible with current managed object model
@@ -249,7 +201,6 @@ typedef void(^RunTimer)(void);
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-    
     return _persistentStoreCoordinator;
 }
 
@@ -267,21 +218,16 @@ typedef void(^RunTimer)(void);
         [self performSelectorOnMainThread:@selector(updateMainContext:) withObject:notification waitUntilDone:NO];
     }
 }
-
 #pragma mark -
-
 #pragma mark - Add User Notifications
 -(void)addUserSuccess:(NSNotification*)notification
 {
-    
 }
 -(void)addUserExistsError:(NSNotification*)notification
 {
-    
 }
 -(void)addUserError:(NSNotification*)notification
 {
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -290,21 +236,4 @@ typedef void(^RunTimer)(void);
 }
 
 #pragma mark -
-
-//#pragma mark - Orientation
-//- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
-//{
-//    return UIInterfaceOrientationLandscapeLeft;
-//}
-//
-//- (NSUInteger)supportedInterfaceOrientations
-//{
-//    return UIInterfaceOrientationMaskLandscape;
-//}
-//- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
-///{
-//    return (UIInterfaceOrientationMaskLandscape);
-//}
-//#pragma mark -
-
 @end

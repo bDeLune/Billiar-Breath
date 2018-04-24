@@ -1,19 +1,9 @@
-//
-//  DurationGame.m
-//  BilliardBreath
-//
-//  Created by barry on 11/12/2013.
-//  Copyright (c) 2013 rocudo. All rights reserved.
-//
-
 #import "DurationGame.h"
 #import "BilliardBall.h"
 @interface DurationGame ()
 {
     AVAudioPlayer *audioPlayer;
-
 }
-
 @property(nonatomic,strong)NSDate  *startTime;
 @property(nonatomic,weak)BilliardBall  *currentBilliardBall;
 @end
@@ -29,9 +19,7 @@
         self.secondsPerballMedium=20;// equate to .5 seconds;
         self.secondsPerballHard=8;// equate to .5 seconds;
         self.isRunning=NO;
-
     }
-    
     return self;
 }
 
@@ -39,50 +27,41 @@
 {
     [super startGame];
     self.startTime=[NSDate date];
-    
     self.currentBilliardBall=[self.ballsCopy objectAtIndex:self.currentBall];
-    
     [self.currentBilliardBall start];
     [self.currentBilliardBall blowingBegan];
-    
-    
 }
+
 -(void)playHitTop
 {
     NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"IMPACT RING METAL DESEND 01" ofType:@"wav"];
     NSData *fileData = [NSData dataWithContentsOfFile:soundPath];
-    
     NSError *error = nil;
-    
     audioPlayer = [[AVAudioPlayer alloc] initWithData:fileData
                                                 error:&error];
     audioPlayer.volume=0.3;
-
     [audioPlayer prepareToPlay];
     [audioPlayer play];
     
 }
+
 -(int)nextBall
 {
     [self playHitTop];
     self.currentBall++;
     if (self.currentBall<[self.ballsCopy count]) {
-       // [self.delegate gameEnded:self];
+        //[self.delegate gameEnded:self];
         [self.currentBilliardBall stop];
         [self.currentBilliardBall blowingEnded];
         self.currentBilliardBall=[self.ballsCopy objectAtIndex:self.currentBall];
         [self.currentBilliardBall start];
         [self.currentBilliardBall blowingBegan];
         return self.currentBall;
-
     }else
     {
        // self.isRunning=NO;
-
         return -1;
     }
-    
-
 }
 
 -(void)pushBall
@@ -112,7 +91,6 @@
             break;
     }
     [self.currentBilliardBall setForce:amount*50];
-
 }
 -(void)endGame
 {

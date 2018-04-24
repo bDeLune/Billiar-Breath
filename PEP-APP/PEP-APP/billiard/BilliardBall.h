@@ -2,7 +2,6 @@
 
 @class BilliardBall;
 @protocol BilliardBallProtocol <NSObject>
-
 -(void)ballReachedFinalTarget:(BilliardBall*)ball;
 //-(void)setAudioMute:(BOOL) muteSettings;
 @end
@@ -12,10 +11,10 @@
 @property(nonatomic,strong)CAAnimation *animation;
 @property(nonatomic)CGPoint  targetPoint;
 @property(nonatomic,unsafe_unretained)id<BilliardBallProtocol>delegate;
-
 @property BOOL animationRunning;
 @property(nonatomic,weak)UIImageView  *arrow;
 @property int gaugeHeight;
+
 -(void)start;
 -(void)stop;
 -(void)setForce:(float)pforce;

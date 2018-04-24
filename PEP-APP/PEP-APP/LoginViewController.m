@@ -6,7 +6,6 @@
 @property(nonatomic,strong)NSManagedObject  *loggedInUser;
 @property(nonatomic,strong)NSOperationQueue  *addUserQueue;
 @property(nonatomic,strong)UINavigationController  *navcontroller;
-
 @end
 
 @implementation LoginViewController

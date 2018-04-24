@@ -1,19 +1,9 @@
-//
-//  Draggable.m
-//  FairHammer
-//
-//  Created by barry on 26/02/2014.
-//  Copyright (c) 2014 barry. All rights reserved.
-//
-
 #import "Draggable.h"
 
 @interface Draggable ()
 {
     CGPoint startLocation;
-
 }
-
 @end
 @implementation Draggable
 
@@ -22,18 +12,15 @@
     self = [super init];
     if (self) {
         // Initialization code
-        
     }
-    
-    
     return self;
 }
+
 -(BOOL)canBecomeFirstResponder
 {
-
     return YES;
-
 }
+
 -(id)initWithImage:(UIImage *)image
 {
     self=[super initWithImage:image];
@@ -42,10 +29,9 @@
         self.userInteractionEnabled=YES;
         [[self superview] bringSubviewToFront:self];
     }
-    
     return self;
-
 }
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -57,11 +43,12 @@
 
     return self;
 }
+
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-
     [_delegate draggable:self];
 }
+
 - (void) touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
     // Retrieve the touch point
     CGPoint pt = [[touches anyObject] locationInView:self];
@@ -70,6 +57,7 @@
     NSLog(@"y == %f",pt.y);
     [[self superview] bringSubviewToFront:self];
 }
+
 - (void) touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event {
     // Move relative to the original touch point
     CGPoint pt = [[touches anyObject] locationInView:self];
@@ -88,13 +76,5 @@
 
     [self setFrame:frame];
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end
