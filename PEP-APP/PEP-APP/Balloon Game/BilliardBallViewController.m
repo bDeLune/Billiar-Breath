@@ -293,41 +293,41 @@
 }
 -(void)startBallsPowerGame
 {
-    ballGameCount=0;
-    NSLog(@"Started ball power game!");
-    for (int i=0; i<[self.balls count]; i++) {
-        BilliardBall  *ball=[self.balls objectAtIndex:i];
-        [ball start];
-        [ball blowingBegan];
-    }
+ //   ballGameCount=0;
+  //  NSLog(@"Started ball power game!");
+  //  for (int i=0; i<[self.balls count]; i++) {
+  //      BilliardBall  *ball=[self.balls objectAtIndex:i];
+ //       [ball start];
+ //       [ball blowingBegan];
+ //   }
 }
 
 -(void)endBallsPowerGame
 {
-    for (int i=0; i<[self.balls count]; i++) {
-        BilliardBall  *ball=[self.balls objectAtIndex:i];
+ //   for (int i=0; i<[self.balls count]; i++) {
+ //       BilliardBall  *ball=[self.balls objectAtIndex:i];
         //[ball stop]; ///maybe uncomment added
-        [ball blowingEnded];
+ //       [ball blowingEnded];
         ///NSLog(@"POWER GAME BLOWING ENDED!!!");
-    }
+//    }
 }
 
 -(void)startDurationPowerGame
 {    
-    NSLog(@"STARTING DURATION GAME");
-    self.durationGame.ballsCopy=[self.balls mutableCopy];
-    [self.durationGame startGame];
+ //   NSLog(@"STARTING DURATION GAME");
+ //   self.durationGame.ballsCopy=[self.balls mutableCopy];
+ //   [self.durationGame startGame];
 }
 
 -(void)endDurationPowerGame
 {
-    NSLog(@"END DURATION GAME");
-    for (int i=0; i<[self.balls count]; i++) {
-        BilliardBall  *ball=[self.balls objectAtIndex:i];
-        [ball stop];
-        [ball blowingEnded];
-    }
-    [self.durationGame endGame];
+ //   NSLog(@"END DURATION GAME");
+ //   for (int i=0; i<[self.balls count]; i++) {
+//        BilliardBall  *ball=[self.balls objectAtIndex:i];
+ //       [ball stop];
+ ///       [ball blowingEnded];
+//    }
+ //   [self.durationGame endGame];
 }
 
 -(void)playHitTop
@@ -364,21 +364,32 @@
    //}];
     ballGameCount++;
 
-    if (self.currentGameType==gameTypePowerMode) {
-        if (ballGameCount>=[self.balls count]) {
-            NSLog(@"POWER GAME WON");
-            [self.powerGame.delegate gameWon:self.powerGame];
-        }
-    }else if (self.currentGameType==gameTypeDurationMode)
+    if (self.currentGameType==gameTypeImage) {
+     //  if (ballGameCount>=[self.balls count]) {
+      //      NSLog(@"POWER GAME WON");
+     //       [self.powerGame.delegate gameWon:self.powerGame];
+     //   }
+        
+        NSLog(@"completed Image game");
+    }else if (self.currentGameType==gameTypeDuo)
     {
-       int result= [self.durationGame nextBall];
-        if (result==-1) {
-            NSLog(@"COMPLETED DURATION MODE");
-            [self.durationGame.delegate gameWon:self.durationGame];
-        }
+      // int result= [self.durationGame nextBall];
+      //  if (result==-1) {
+      //      NSLog(@"COMPLETED DURATION MODE");
+      //      [self.durationGame.delegate gameWon:self.durationGame];
+       // }
+        NSLog(@"completed duo game");
+    }else if (self.currentGameType==gameTypeBalloon)
+    {
+        // int result= [self.durationGame nextBall];
+        //  if (result==-1) {
+        //      NSLog(@"COMPLETED DURATION MODE");
+        //      [self.durationGame.delegate gameWon:self.durationGame];
+        // }
+        NSLog(@"completed balloon game");
     }
    
-    NSLog(@"ball is done");
+   /// NSLog(@"ball is done");
 }
 
 -(void)setAudioMute: (BOOL) muteSetting{

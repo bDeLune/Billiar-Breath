@@ -2,10 +2,10 @@
 
 typedef enum gameType
 {
-    gameTypeSequence,
-    gameTypePowerMode,
-    gameTypeDurationMode
-    
+    gameTypeBalloon,
+    gameTypeImage,
+    gameTypeDuo,
+    gameTypeTest
 }gameType;
 
 typedef enum
@@ -25,7 +25,7 @@ typedef enum
 @interface AbstractGame : NSObject
 {
     NSTimer  *timer;
-    NSDate *startdate;
+    NSDate   *startdate;
 }
 @property(nonatomic,unsafe_unretained)id<GameProtocol>delegate;
 @property  int currentBall;

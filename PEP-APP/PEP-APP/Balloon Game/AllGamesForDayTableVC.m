@@ -98,27 +98,24 @@
     
     NSString  *typeString;
     if (gameType==0) {
-        typeString=@"Sequence Game";
+        typeString=@"Balloon Game";
     }else if (gameType==1)
     {
-        typeString=@"Power Game";
-        
+        typeString=@"Image Game";
     }else if (gameType==2)
     {
-        typeString=@"Duration Game";
+        typeString=@"Duo Game";
+    }else if (gameType==3)
+    {
+        typeString=@"Test Game";
     }
-    
-    
     
      NSString  *duration=[NSString stringWithFormat:@"%f",[game.duration floatValue]];
     // NSString  *strength=[NSString stringWithFormat:@"%f",[game.power floatValue]];
      cell.textLabel.text=[NSString stringWithFormat:@"%@  %@ %@",typeString,attemptDateString,game.gameDirection];
      cell.detailTextLabel.text=[NSString stringWithFormat:@"Duration :%@",duration];
     // Configure the cell...
-    
-  //  NSLog(@"this cell %@", cell.textLabel.text);
-
-    
+    //NSLog(@"this cell %@", cell.textLabel.text);
     return cell;
 }
 
