@@ -10,30 +10,23 @@
 #import "Draggable.h"
 
 @interface SettingsViewController ()<UITabBarDelegate, BTLEManagerDelegate, MidiControllerProtocol>{
-    
     UINavigationController   *navcontroller;
     Gauge    *gaugeView;
     MidiController  *midiController;
-  //  ScoreDisplayViewController  *scoreViewController;
+    //  ScoreDisplayViewController  *scoreViewController;
     NSTimer  *timer;
     BOOL  sessionRunning;
- //   Session  *currentSession;
-    
- //   UIEffectDesignerView  *particleEffect;
-    
+    //Session  *currentSession;
+    //UIEffectDesignerView  *particleEffect;
     NSTimer  *effecttimer;
     UIImageView  *bellImageView;
     UIImageView  *bg;
     Draggable  *peakholdImageView;
-    
-  //  LogoViewController  *logoviewcontroller;
+    //LogoViewController  *logoviewcontroller;
     int threshold;
-    
     AVAudioPlayer *audioPlayer;
-    
     UIButton  *togglebutton;
     BOOL   toggleIsON;
-    
     int midiinhale;
     int midiexhale;
     int currentdirection;
@@ -59,36 +52,18 @@
         self.title = @"Settings";
         self.tabBarItem.image = [UIImage imageNamed:@"second"];
         
-        arrayA=[NSMutableArray arrayWithObjects:@"Small",@"Normal",@"Big", nil];
-        arrayB=[NSMutableArray arrayWithObjects:@"Low",@"Normal",@"High",@"Very High", nil];
-        arrayC=[NSMutableArray arrayWithObjects:@"10",@"50",@"100",@"200", nil];
+     //   arrayA=[NSMutableArray arrayWithObjects:@"Small",@"Normal",@"Big", nil];
+       // arrayB=[NSMutableArray arrayWithObjects:@"Low",@"Normal",@"High",@"Very High", nil];
         
-        /*
-         #import"GPUImageVignetteFilter.h"
-         #import "GPUImageToonFilter.h"
-         #import "GPUImageToneCurveFilter.h"
-         #import "GPUImageThresholdSketchFilter.h"
-         #import "GPUImageDilationFilter.h"
-         #import "GPUImageDissolveBlendFilter.h"
-         #import "GPUImageStretchDistortionFilter.h"
-         #import "GPUImageSphereRefractionFilter.h"
-         #import "GPUImagePolkaDotFilter.h"
-         #import "GPUImagePosterizeFilter.h"
-         #import "GPUImagePixellateFilter.h"
-         #import "GPUImageHazeFilter.h"
-         #import "GPUImageErosionFilter.h"
-         */
+        imageGameSoundArray=[NSMutableArray arrayWithObjects:@"Harp",@"Synthsweep",@"Sparkles",@"Trombone", nil];
+        
+        repititionsArray=[NSMutableArray arrayWithObjects:@"10",@"50",@"100",@"200", nil];
         
         filterArray=[NSMutableArray arrayWithObjects:
                      @"Bulge",@"Swirl",@"Blur",@"Toon",
                      @"Expose",@"Polka",
                      @"Posterize",@"Pixellate",@"Contrast", nil];
-        
-        
-       
-        
-        
-        
+    
         gaugeView=[[Gauge alloc]initWithFrame:CGRectMake(370, 365, 40, GUAGE_HEIGHT)];
         gaugeView.gaugedelegate=self;
         
@@ -125,8 +100,6 @@
         [self.view addSubview:peakholdImageView];
         gaugeView.arrow=peakholdImageView;
         
-        
-        
      //   self.addGameQueue=[[NSOperationQueue alloc]init];
         self.btleManager=[BTLEManager new];
         self.btleManager.delegate=self;
@@ -135,11 +108,8 @@
         [self.btleManager setTreshold:60];
        // [self startSession];
         
-        
-        
         currentlyExhaling = false;
         [gaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
-        
         
          [gaugeView start];
 
@@ -156,18 +126,18 @@
 
 - (NSInteger)pickerView:(UIPickerView *)thePickerView numberOfRowsInComponent:(NSInteger)component {
     
-    NSLog(@"changing pickerView 0");
+    NSLog(@"changing numberOfRowsInComponent 0");
 	
-    int amount;
+    int amount = 0;
     
-    if (thePickerView==pickerViewA) {
-        amount=(int)[arrayA count];
-    }
+   // if (thePickerView==pickerViewA) {
+//amount=(int)[arrayA count];
+  //  }
     if (thePickerView==pickerViewB) {
-        amount=(int)[arrayB count];
-    }
+        amount=(int)[imageGameSoundArray count];
+        }
     if (thePickerView==pickerViewC) {
-        amount=(int)[arrayC count];
+        amount=(int)[repititionsArray count];
     }
     if (thePickerView==filterPicker) {
         amount=(int)[filterArray count];
@@ -178,18 +148,18 @@
 
 - (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     
-    NSLog(@"changing pickerView 1");
+    NSLog(@"changing pickerView titleForRow");
     
     NSString *thetitle;
     
-    if (thePickerView==pickerViewA) {
-       thetitle=[arrayA objectAtIndex:row];
-    }
+  //  if (thePickerView==pickerViewA) {
+  ///     thetitle=[arrayA objectAtIndex:row];
+  //  }
     if (thePickerView==pickerViewB) {
-        thetitle=[arrayB objectAtIndex:row];
-    }
+       thetitle=[imageGameSoundArray objectAtIndex:row];
+   }
     if (thePickerView==pickerViewC) {
-        thetitle=[arrayC objectAtIndex:row];
+        thetitle=[repititionsArray objectAtIndex:row];
     }
     if (thePickerView==filterPicker) {
         thetitle=[filterArray objectAtIndex:row];
@@ -199,29 +169,28 @@
 
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
-    NSLog(@"changing thePickerView 2 ");
+    NSLog(@"changing thePickerView didSelectRow ");
 	
     int rowint=(int)row;
-    if (thePickerView==pickerViewA) {
+ //   if (thePickerView==pickerViewA) {
         //NSLog(@"Selected : %@. Index of selected color: %i", [arrayA objectAtIndex:row], row);
         
-        [self valueASend:rowint];
-    }
+   //     [self valueASend:rowint];
+  //  }
     if (thePickerView==pickerViewB) {
-       // NSLog(@"Selected : %@. Index of selected color: %i", [arrayB objectAtIndex:row], row);
-        [self valueBSend:rowint];
+        NSLog(@"Selected : %@. Index of selected color: %i", [imageGameSoundArray objectAtIndex:row], row);
+       // [self valueBSend:rowint];
     }
     
     if (thePickerView==pickerViewC) {
-       // NSLog(@"Selected : %@. Index of selected color: %i", [arrayC objectAtIndex:row], row);
-        [self valueCSend:rowint];
+        NSLog(@"Selected : %@. Index of selected color: %i", [repititionsArray objectAtIndex:row], row);
+        //[self valueCSend:rowint];
     }
     
     if (thePickerView==filterPicker) {
         //NSLog(@"Selected : %@. Index of selected color: %i", [filterArray objectAtIndex:row], row);
         [self.settinngsDelegate setFilter:rowint];
     }
-
 }
 
 -(IBAction)changeRate:(id)sender
@@ -259,9 +228,7 @@
 }
 
 - (IBAction)exitSettingsViewController:(id)sender {
-    
     NSLog(@"SV: back button pressed");
-    
     [self.delegate exitSettingsViewController];
 }
 
@@ -274,13 +241,10 @@
             break;
         case 1:
             note=14;
-
             break;
         case 2:
             note=16;
-
             break;
-            
         default:
             break;
     }
@@ -452,18 +416,14 @@
             
         case 1:
             [gaugeView setMass:2];
-            
+
             break;
         case 2:
             [gaugeView setMass:2.5];
-            
             break;
-            
         case 3:
             [gaugeView setMass:3];
-            
             break;
-            
         default:
             break;
     }
@@ -474,6 +434,8 @@
 -(void)draggable:(Draggable *)didDrag
 {
     //900-330
+    
+    NSLog(@"did drag ");
     CGRect  frame=didDrag.frame;
     [gaugeView setBestDistanceWithY:900-frame.origin.y];
     // CGRect  newframe=[self.view convertRect:frame toView:gaugeView];
@@ -518,11 +480,11 @@
 
 -(IBAction)touchAccelerateDown:(id)sender
 {
-    [self beginNewSession];
+  //  [self beginNewSession];
     
     [gaugeView blowingBegan];
-    timer=[NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(simulateBlow) userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+  //  timer=[NSTimer timerWithTimeInterval:0.1 target:self /selector:@selector(simulateBlow) userInfo:nil repeats:YES];
+  //  [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
 }
 
 -(void)simulateBlow
@@ -561,7 +523,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
          //   [_debugTextField setText:@"\nMidi Began"];
         });
-        [self beginNewSession];
+//        [self beginNewSession];
         [gaugeView blowingBegan];
     }
 }
@@ -614,30 +576,30 @@
     }
 }
 
--(void)sendLogToOutput:(NSString*)log
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
+//-(void)sendLogToOutput:(NSString*)log
+//{
+//    dispatch_async(dispatch_get_main_queue(), ^{
    //     NSString  *string=[NSString stringWithFormat:@"\n %@",log];
   //      _debugTextField.text =[_debugTextField.text stringByAppendingString:string];
-    });
-}
+//    });
+//}
 
-#pragma mark -
-#pragma mark - Session Controls
--(void)beginNewSession
-{
-    if (!sessionRunning) {
-        sessionRunning=YES;
+//#pragma mark -
+//#pragma mark - Session Controls
+//-(void)beginNewSession
+//{
+//    if (!sessionRunning) {
+//        sessionRunning=YES;
     //    currentSession=[[Session alloc]init];
      //   self.date=[NSDate date];
      //   currentSession.sessionDate=self.date;
      ///   currentSession.username=[[NSUserDefaults standardUserDefaults]valueForKey:@"currentusername"];
-    }
-}
+//    }
+//}
 
--(void)endCurrentSessionTest
-{
-}
+//-(void)endCurrentSessionTest
+//{
+//}
 
 -(void)endCurrentSession
 {
@@ -656,10 +618,10 @@
 #pragma mark -
 #pragma mark - Animation
 
--(void)maxDistanceReached
-{
-    [self endCurrentSession];
-    [midiController pause];
+//-(void)maxDistanceReached
+//{
+ //   [self endCurrentSession];
+ //   [midiController pause];
   //  if (particleEffect) {
   ///      dispatch_async(dispatch_get_main_queue(), ^{
  //           [particleEffect removeFromSuperview];
@@ -681,7 +643,7 @@
     
     //
    // [highScoreViewController updateWithCurrentSession:currentSession];
-}
+//}
 
 -(void)killSparks
 {
@@ -708,9 +670,9 @@
     [audioPlayer play];
 }
 
--(void)sendValue:(int)note onoff:(int)onoff
-{
-    [midiController sendValue:note onoff:onoff];
-}
+//-(void)sendValue:(int)note onoff:(int)onoff
+//{
+//    [midiController sendValue:note onoff:onoff];
+//}
 
 @end

@@ -7,7 +7,7 @@
 
 @interface SettingsViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITabBarDelegate>
 {
-    IBOutlet UIPickerView *pickerViewA;
+  //  IBOutlet UIPickerView *pickerViewA;
     IBOutlet UIPickerView *pickerViewB;
     IBOutlet UIPickerView *pickerViewC;
     IBOutlet UIPickerView *filterPicker;
@@ -18,9 +18,9 @@
     IBOutlet UILabel   *btrangeBoost;
     IBOutlet UISlider  *btThresholdSlider;
     IBOutlet UISlider  *btBoostSlider;
-	NSMutableArray *arrayA;
-    NSMutableArray *arrayB;
-    NSMutableArray *arrayC;
+	//NSMutableArray *arrayA;
+    NSMutableArray *imageGameSoundArray;
+    NSMutableArray *repititionsArray;
     NSMutableArray *filterArray;
     id<SETTINGS_DELEGATE> __unsafe_unretained settinngsDelegate;
 }

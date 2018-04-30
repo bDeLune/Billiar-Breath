@@ -63,6 +63,7 @@
 		7186DEB91E4DC61D00F71F0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DEB81E4DC61D00F71F0C /* main.m */; };
 		7186DEDF1E51CA2300F71F0C /* DefaultPortrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 7186DEDE1E51CA2300F71F0C /* DefaultPortrait.png */; };
 		7186DEE11E51CACC00F71F0C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7186DEE01E51CACC00F71F0C /* Default.png */; };
+		7187879E2097862F000DD8EC /* 01Ballon.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7187879D2097862F000DD8EC /* 01Ballon.wav */; };
 		718E215A1E51DD0300E8357B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 718E21591E51DD0300E8357B /* LaunchScreen.storyboard */; };
 		718E215C1E51E43000E8357B /* icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 718E215B1E51E43000E8357B /* icon-120.png */; };
 		71A04EC3208FA8BD00AA878B /* Gauge.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A04EC1208FA8BD00AA878B /* Gauge.m */; };
@@ -298,6 +299,7 @@
 		7186DEB81E4DC61D00F71F0C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7186DEDE1E51CA2300F71F0C /* DefaultPortrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultPortrait.png; sourceTree = "<group>"; };
 		7186DEE01E51CACC00F71F0C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		7187879D2097862F000DD8EC /* 01Ballon.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 01Ballon.wav; sourceTree = "<group>"; };
 		718E21591E51DD0300E8357B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		718E215B1E51E43000E8357B /* icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-120.png"; sourceTree = "<group>"; };
 		71A04EC0208FA8BC00AA878B /* Gauge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Gauge.h; sourceTree = "<group>"; };
@@ -415,6 +417,8 @@
 		710857281E439A0A00479032 /* PEP-APP */ = {
 			isa = PBXGroup;
 			children = (
+				7186DE151E4DBF7100F71F0C /* Session.h */,
+				7186DE161E4DBF7100F71F0C /* Session.m */,
 				71A04EC7208FCE5100AA878B /* Gauge */,
 				71C9F9CA1E53341D0078070D /* Balloon Game */,
 				71C9F9CF1E53341D0078070D /* Users */,
@@ -440,6 +444,7 @@
 			isa = PBXGroup;
 			children = (
 				7186DDEE1E4DBF4100F71F0C /* Croquet ball drop bounce cement_BLASTWAVEFX_29317.mp3 */,
+				7187879D2097862F000DD8EC /* 01Ballon.wav */,
 				7186DDEF1E4DBF4100F71F0C /* Croquet ball drop bounce cement_BLASTWAVEFX_29317.wav */,
 				7186DDF01E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.mp3 */,
 				7186DDF11E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.wav */,
@@ -626,8 +631,6 @@
 				71C9F9D51E53341D0078070D /* PowerGame.m */,
 				71C9F9D61E53341D0078070D /* SequenceGame.h */,
 				71C9F9D71E53341D0078070D /* SequenceGame.m */,
-				7186DE151E4DBF7100F71F0C /* Session.h */,
-				7186DE161E4DBF7100F71F0C /* Session.m */,
 				71C9F9F81E53356C0078070D /* AddNewScoreOperation.h */,
 				71C9F9F91E53356C0078070D /* AddNewScoreOperation.m */,
 			);
@@ -904,6 +907,7 @@
 				71D1A3522074F8B700C83B63 /* UsersScreenBackground.png in Resources */,
 				7186DEB21E4DC59F00F71F0C /* Bluetooth-DISCONNECTED.png in Resources */,
 				7186DE981E4DBFA400F71F0C /* BilliardBreathAppIcon40x40.png in Resources */,
+				7187879E2097862F000DD8EC /* 01Ballon.wav in Resources */,
 				7186DE131E4DBF5F00F71F0C /* GraphViewController.xib in Resources */,
 				7186DE991E4DBFA400F71F0C /* BilliardBreathAppIcon50x50.png in Resources */,
 				71D1A3682074FBC800C83B63 /* StatsButton.png in Resources */,
