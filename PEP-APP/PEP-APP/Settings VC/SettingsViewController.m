@@ -36,7 +36,6 @@
 }
 
 @property(nonatomic,strong)BTLEManager  *btleManager;
-
 @end
 
 @implementation SettingsViewController
@@ -50,21 +49,21 @@
    
     if (self) {
         self.title = @"Settings";
-        self.tabBarItem.image = [UIImage imageNamed:@"second"];
+        
+      //  [self setSettinngsDelegate: self.parentViewController];
+        //self.tabBarItem.image = [UIImage imageNamed:@"second"];
         
      //   arrayA=[NSMutableArray arrayWithObjects:@"Small",@"Normal",@"Big", nil];
        // arrayB=[NSMutableArray arrayWithObjects:@"Low",@"Normal",@"High",@"Very High", nil];
         
-        imageGameSoundArray=[NSMutableArray arrayWithObjects:@"Harp",@"Synthsweep",@"Sparkles",@"Trombone", nil];
-        
-        repititionsArray=[NSMutableArray arrayWithObjects:@"10",@"50",@"100",@"200", nil];
-        
+        imageGameSoundArray=[NSMutableArray arrayWithObjects:@"01Ballon",@"01Bas slide",@"01bell synth", @"01droom", nil];
+        repititionsArray=[NSMutableArray arrayWithObjects:@"1",@"2",@"3", @"4",@"5",@"6",@"7",@"8", nil];
         filterArray=[NSMutableArray arrayWithObjects:
                      @"Bulge",@"Swirl",@"Blur",@"Toon",
                      @"Expose",@"Polka",
                      @"Posterize",@"Pixellate",@"Contrast", nil];
     
-        gaugeView=[[Gauge alloc]initWithFrame:CGRectMake(370, 365, 40, GUAGE_HEIGHT)];
+        gaugeView=[[Gauge alloc]initWithFrame:CGRectMake(670, 365, 40, GUAGE_HEIGHT)];
         gaugeView.gaugedelegate=self;
         
       //  scoreViewController=[[ScoreDisplayViewController alloc]init];
@@ -112,6 +111,8 @@
         [gaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
         
          [gaugeView start];
+        
+      //  self.settinngsDelegate = self;
 
     }
     return self;
@@ -148,8 +149,7 @@
 
 - (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     
-    NSLog(@"changing pickerView titleForRow");
-    
+    //NSLog(@"changing pickerView titleForRow");
     NSString *thetitle;
     
   //  if (thePickerView==pickerViewA) {
@@ -169,7 +169,7 @@
 
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
-    NSLog(@"changing thePickerView didSelectRow ");
+   // NSLog(@"changing thePickerView didSelectRow ");
 	
     int rowint=(int)row;
  //   if (thePickerView==pickerViewA) {
@@ -178,19 +178,30 @@
    //     [self valueASend:rowint];
   //  }
     if (thePickerView==pickerViewB) {
-        NSLog(@"Selected : %@. Index of selected color: %i", [imageGameSoundArray objectAtIndex:row], row);
+     //   NSLog(@"Selected : %@. Index of selected color: %i", [imageGameSoundArray objectAtIndex:row], row);
        // [self valueBSend:rowint];
+        [self.settinngsDelegate setImageSoundEffect: [imageGameSoundArray objectAtIndex:row]];
     }
     
     if (thePickerView==pickerViewC) {
-        NSLog(@"Selected : %@. Index of selected color: %i", [repititionsArray objectAtIndex:row], row);
+     //   NSLog(@"Selected : %@. Index of selected color: %i", [repititionsArray objectAtIndex:row], row);
         //[self valueCSend:rowint];
+        [self.settinngsDelegate setRepetitionCount: [repititionsArray objectAtIndex:row]];
     }
     
     if (thePickerView==filterPicker) {
-        //NSLog(@"Selected : %@. Index of selected color: %i", [filterArray objectAtIndex:row], row);
+      //  NSLog(@"Selected : %@. Index of selected color: %i", [filterArray objectAtIndex:row], row);
         [self.settinngsDelegate setFilter:rowint];
     }
+}
+
+-(void)btleManagerConnected:(BTLEManager *)manager
+{
+    
+    NSLog(@"setting view btle manager detected");
+  //  dispatch_async(dispatch_get_main_queue(), ^{
+   //     [self.btOnOfImageView setImage:[UIImage imageNamed:@"Bluetooth-CONNECTED"]];
+   // });
 }
 
 -(IBAction)changeRate:(id)sender
@@ -229,81 +240,86 @@
 
 - (IBAction)exitSettingsViewController:(id)sender {
     NSLog(@"SV: back button pressed");
-    [self.delegate exitSettingsViewController];
+    
+  //  [UIView transitionFromView:self.view toView: gameViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromTop completion:^(BOOL finished){
+  //  }];
+  //
+    
+                        [self.delegate exitSettingsViewController];
 }
 
--(void)valueASend:(NSInteger)index
-{
-    int note =0;
-    switch (index) {
-        case 0:
-            note=12;
-            break;
-        case 1:
-            note=14;
-            break;
-        case 2:
-            note=16;
-            break;
-        default:
-            break;
-    }
-    
-    [self.settinngsDelegate sendValue:note onoff:0];
-}
+//-(void)valueASend:(NSInteger)index
+//{
+ //   int note =0;
+ //   switch (index) {
+ //       case 0:
+ //           note=12;
+ ///           break;
+ //       case 1:
+ //           note=14;
+ /////           break;
+//        case 2:
+////            note=16;
+ //           break;
+///        default:
+//            break;
+ //   }
+//
+//    [self.settinngsDelegate sendValue:note onoff:0];
+///}
 
--(void)valueBSend:(NSInteger)index
-{
-    int note =0;
-    switch (index) {
-        case 0:
-            note=24;
-            break;
-        case 1:
-            note=26;
+//-(void)valueBSend:(NSInteger)index
+//{
+ //   int note =0;
+ //   switch (index) {
+ ///       case 0:
+ ///           note=24;
+ ///           break;
+ //       case 1:
+  //          note=26;
             
-            break;
-        case 2:
-            note=28;
+ //           break;
+  ///      case 2:
+  ///          note=28;
             
-            break;
-        case 3:
-            note=29;
+  //          break;
+  ///      case 3:
+  ///          note=29;
             
-            break;
+   //         break;
             
-        default:
-            break;
-    }
+   ///     default:
+    //        break;
+    //}
     
     
-    [self.settinngsDelegate sendValue:note onoff:0];
-}
--(void)valueCSend:(NSInteger)index
-{
-    int note =0;
-    switch (index) {
-        case 0:
-            note=36;
-            break;
-        case 1:
-            note=38;
+   /// [self.settinngsDelegate sendValue:note onoff:0];
+//}
+//-(void)valueCSend:(NSInteger)index
+//{
+//    int note =0;
+ ////   switch (index) {
+ ///       case 0:
+ ///           note=36;
+ //           break;
+ ///       case 1:
+ //           note=38;
             
-            break;
-        case 2:
-            note=40;
+ //           break;
+  ///      case 2:
+  //          note=40;
             
-            break;
-        case 3:
-            note=41;
+  //          break;
+ //       case 3:
+  //          note=41;
             
-            break;
+   ///         break;
             
-        default:
-            break;
-    }
-    [self.settinngsDelegate sendValue:note onoff:0];
-}
+   //     default:
+   //         break;
+  //  }
+  //  [self.settinngsDelegate sendValue:note onoff:0];
+//gmail}
 
 //TEST
 
@@ -576,13 +592,13 @@
     }
 }
 
-//-(void)sendLogToOutput:(NSString*)log
-//{
-//    dispatch_async(dispatch_get_main_queue(), ^{
+-(void)sendLogToOutput:(NSString*)log
+{
+   // dispatch_async(dispatch_get_main_queue(), ^{
    //     NSString  *string=[NSString stringWithFormat:@"\n %@",log];
-  //      _debugTextField.text =[_debugTextField.text stringByAppendingString:string];
-//    });
-//}
+      ////  _debugTextField.text =[_debugTextField.text stringByAppendingString:string];
+   // });
+}
 
 //#pragma mark -
 //#pragma mark - Session Controls
@@ -618,32 +634,30 @@
 #pragma mark -
 #pragma mark - Animation
 
-//-(void)maxDistanceReached
-//{
- //   [self endCurrentSession];
- //   [midiController pause];
+-(void)maxDistanceReached
+{
+    [self endCurrentSession];
+   // [midiController pause];
   //  if (particleEffect) {
-  ///      dispatch_async(dispatch_get_main_queue(), ^{
- //           [particleEffect removeFromSuperview];
- //           particleEffect=nil;
- //       });
-   // }
-  //  particleEffect = [UIEffectDesignerView effectWithFile:@"sparks.ped"];
-    ///CGRect frame=particleEffect.frame;
-  //  frame.origin.x=(self.view.bounds.size.width/2)-50;
+  //      dispatch_async(dispatch_get_main_queue(), ^{
+  ///          [particleEffect removeFromSuperview];
+  ///          particleEffect=nil;
+  ///      });
+  //}
+   //particleEffect = [UIEffectDesignerView effectWithFile:@"sparks.ped"];
+  //  CGRect frame=particleEffect.frame;
+  // frame.origin.x=(self.view.bounds.size.width/2)-50;
   //  frame.origin.y=gaugeView.frame.origin.y-40;
-  //  particleEffect.frame=frame;
+   /// particleEffect.frame=frame;
    // [self.view addSubview:particleEffect];
-   // effecttimer=[NSTimer timerWithTimeInterval:4 target:self selector:@selector(killSparks) userInfo:nil repeats:NO];
-   // [[NSRunLoop mainRunLoop] addTimer:effecttimer forMode:NSDefaultRunLoopMode];
-   // [self playSound];
-    //[bellImageView startAnimating];
-   // [logoviewcontroller startAnimating];
-    // [loginViewController updateUserStats:currentSession];
-    
-    //
+    effecttimer=[NSTimer timerWithTimeInterval:4 target:self selector:@selector(killSparks) userInfo:nil repeats:NO];
+    [[NSRunLoop mainRunLoop] addTimer:effecttimer forMode:NSDefaultRunLoopMode];
+    //[self playSound];
+    [bellImageView startAnimating];
+    //[logoviewcontroller startAnimating];
+   // [loginViewController updateUserStats:currentSession];
    // [highScoreViewController updateWithCurrentSession:currentSession];
-//}
+}
 
 -(void)killSparks
 {

@@ -79,6 +79,7 @@
     int currentdirection;
     bool currentlyExhaling;
     bool currentlyInhaling;
+    NSString* currentImageGameSound;
 }
 
 @property (nonatomic, retain) IBOutlet UIToolbar *myToolbar;
@@ -174,6 +175,10 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        
+         
+        
+        
         self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 160, 450, 225)];
        // self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 260, 650, 325)];
         self.midiController=[[MidiController alloc]init];
@@ -214,6 +219,7 @@
     
         imagePickerController = [[UIImagePickerController alloc] init] ;
         imagePickerController.delegate = self;
+        currentImageGameSound = @"bell";
     }
     return self;
 }
@@ -1248,14 +1254,14 @@
 
 -(void)updateimage
 {
-    NSLog(@"UPDATE IMAGE");
-    NSLog(@"self.currentGameType %u" , self.currentGameType);
+    //NSLog(@"UPDATE IMAGE");
+   // NSLog(@"self.currentGameType %u" , self.currentGameType);
     
   if (self.currentGameType == gameTypeTest) {
-      NSLog(@"Image filter not allowed in test mode! ");
+   //   NSLog(@"Image filter not allowed in test mode! ");
       return;
   }else if (self.currentGameType == gameTypeBalloon){
-       NSLog(@"Image filter not allowed in balloon mode! ");
+    //   NSLog(@"Image filter not allowed in balloon mode! ");
       return;
   }
     
@@ -1449,6 +1455,21 @@
     [stillImageFilter addTarget:imageView];
 }
 
+-(void)setRepetitionCount:(NSString*)value{
+    
+    NSLog(@"Setting balloon game repetition count to %@ ", value);
+    
+    
+}
+
+
+-(void)setImageSoundEffect:(NSString*)value{
+    NSLog(@"Setting Image sound effect to %@ ", value);
+    
+    currentImageGameSound = value;
+    
+}
+
 
 -(GPUImageFilter*)filterForIndex:(int)index
 {
@@ -1524,9 +1545,9 @@
 
 -(void) playImageGameSound {
     
-    NSLog(@"Playing image game sound");
+    NSLog(@"Playing image game sound %@", currentImageGameSound);
     
-    NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"bell" ofType:@"wav"];
+    NSString *soundPath = [[NSBundle mainBundle] pathForResource: currentImageGameSound ofType:@"wav"];
     NSData *fileData = [NSData dataWithContentsOfFile:soundPath];
     NSError *error = nil;
     audioPlayer = [[AVAudioPlayer alloc] initWithData:fileData
@@ -1541,6 +1562,8 @@
     //[self setDefaults];
     // if (!animationRunning)
     // {
+    NSLog(@"Starting mage game");
+    [self playImageGameSound];
     displayLink = [CADisplayLink displayLinkWithTarget:self
                                               selector:@selector(animate)];
     [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];

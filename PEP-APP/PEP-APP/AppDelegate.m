@@ -19,7 +19,7 @@
     // Override point for customization after application launch.
   //  temproot=[[SplashViewController alloc]initWithNibName:@"SplashViewController" bundle:nil];
    // self.window.rootViewController = temproot;
-
+  
     [self.window makeKeyAndVisible];
 
  return YES;

@@ -75,7 +75,6 @@
     anim_delay=0;
     bestDistance=0;
     isaccelerating=NO;
-
 }
 
 -(void)setBestDistanceWithY:(float)yValue
@@ -177,7 +176,7 @@
         [self stop];
         [self fallQuickly];
         NSLog(@"MEANT TO FALL QUICKLY");
-        [_gaugedelegate maxDistanceReached];
+      //  [_gaugedelegate maxDistanceReached];  ///change remvoed animation
     }
     [self setNeedsDisplay];
 }

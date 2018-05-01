@@ -14,15 +14,16 @@
     IBOutlet UISlider *rateSlider;
     IBOutlet UILabel  *thresholdLabel;
     IBOutlet UISlider *thresholdSlider;
-    IBOutlet UILabel   *btTresholdLabel;
-    IBOutlet UILabel   *btrangeBoost;
-    IBOutlet UISlider  *btThresholdSlider;
-    IBOutlet UISlider  *btBoostSlider;
+    IBOutlet UILabel  *btTresholdLabel;
+    IBOutlet UILabel  *btrangeBoost;
+    IBOutlet UISlider *btThresholdSlider;
+    IBOutlet UISlider *btBoostSlider;
 	//NSMutableArray *arrayA;
     NSMutableArray *imageGameSoundArray;
     NSMutableArray *repititionsArray;
     NSMutableArray *filterArray;
     id<SETTINGS_DELEGATE> __unsafe_unretained settinngsDelegate;
+    
 }
 
 @property (unsafe_unretained) id<SETTINGS_DELEGATE> settinngsDelegate;
@@ -31,5 +32,4 @@
 -(IBAction)changeThreshold:(id)sender;
 -(IBAction)changeBTTreshold:(id)sender;
 -(IBAction)changeBTBoostValue:(id)sender;
-
 @end
