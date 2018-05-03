@@ -10,13 +10,13 @@
 @dynamic bestDuration;
 @dynamic user;
 @dynamic gameDirection;
-@dynamic gameAngle;
-@dynamic gameDistance;
-@dynamic gameWind;
-@dynamic gameAbilityType;
-@dynamic gameHillType;
-@dynamic gameTestType;
-@dynamic gameDirectionInt;
+//g@dynamic gameAngle;
+//@dynamic gameDistance;
+//@dynamic gameWind;
+//@dynamic gameAbilityType;
+//@dynamic gameHillType;
+//@dynamic gameTestType;
+//@dynamic gameDirectionInt;
 @dynamic durationString;
 @dynamic gamePointString;
 @end

@@ -122,6 +122,4 @@ static PlotGallery *sharedPlotGallery = nil;
 {
     return [[plotSections allObjects] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 }
-
-    @end
-
+@end

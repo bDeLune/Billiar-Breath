@@ -55,9 +55,11 @@
         
      //   arrayA=[NSMutableArray arrayWithObjects:@"Small",@"Normal",@"Big", nil];
        // arrayB=[NSMutableArray arrayWithObjects:@"Low",@"Normal",@"High",@"Very High", nil];
-        
+       // NSInteger myIntegers[] = [(void)(1),2,3,4,5,6,7,8];
+       // repititionsArray = @[@1, @2, @3, @4, @5, @6, @7, @8];
         imageGameSoundArray=[NSMutableArray arrayWithObjects:@"01Ballon",@"01Bas slide",@"01bell synth", @"01droom", nil];
-        repititionsArray=[NSMutableArray arrayWithObjects:@"1",@"2",@"3", @"4",@"5",@"6",@"7",@"8", nil];
+        repititionsArray=[NSMutableArray arrayWithObjects: @"1",@"2",@"3", @"4",@"5",@"6",@"7",@"8", nil];
+        //repititionsArray=[NSMutableArray arrayWithObjects: [NSNumber numberWithInt:1],[NSNumber numberWithInt:2],[NSNumber numberWithInt:3], [NSNumber numberWithInt:4],[NSNumber numberWithInt:5],[NSNumber numberWithInt:6],[NSNumber numberWithInt:7],[NSNumber numberWithInt:8], nil];
         filterArray=[NSMutableArray arrayWithObjects:
                      @"Bulge",@"Swirl",@"Blur",@"Toon",
                      @"Expose",@"Polka",
@@ -127,7 +129,7 @@
 
 - (NSInteger)pickerView:(UIPickerView *)thePickerView numberOfRowsInComponent:(NSInteger)component {
     
-    NSLog(@"changing numberOfRowsInComponent 0");
+   // NSLog(@"changing numberOfRowsInComponent 0");
 	
     int amount = 0;
     
@@ -186,7 +188,8 @@
     if (thePickerView==pickerViewC) {
      //   NSLog(@"Selected : %@. Index of selected color: %i", [repititionsArray objectAtIndex:row], row);
         //[self valueCSend:rowint];
-        [self.settinngsDelegate setRepetitionCount: [repititionsArray objectAtIndex:row]];
+        NSInteger selectedValAsint = [[repititionsArray objectAtIndex:row] integerValue];
+        [self.settinngsDelegate setRepetitionCount: selectedValAsint];
     }
     
     if (thePickerView==filterPicker) {
@@ -429,10 +432,8 @@
         case 0:
             [gaugeView setMass:1];
             break;
-            
         case 1:
             [gaugeView setMass:2];
-
             break;
         case 2:
             [gaugeView setMass:2.5];

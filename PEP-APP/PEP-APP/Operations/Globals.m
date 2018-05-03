@@ -71,72 +71,75 @@ dispatch_semaphore_t sema;
 
 -(NSManagedObjectID*)gameIDForUser:(User*)user breathDirection:(int)direction hilltype:(int)hilltype
 {
-    NSManagedObjectContext *managedObjectContext =[[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-    managedObjectContext.persistentStoreCoordinator = self.sharedPSC;
-    NSString   *name=user.userName;
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSManagedObjectContext *context = managedObjectContext;
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSPredicate  *pred = [NSPredicate predicateWithFormat:@"userName == %@", name];
-    [fetchRequest setPredicate:pred];
+    NSLog(@"change");
+  //  NSManagedObjectContext *managedObjectContext =[[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+  //  managedObjectContext.persistentStoreCoordinator = self.sharedPSC;
+   // NSString   *name=user.userName;
+   // NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+  //  NSManagedObjectContext *context = managedObjectContext;
+  //  NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:context];
+  //  [fetchRequest setEntity:entity];
+   // NSPredicate  *pred = [NSPredicate predicateWithFormat:@"userName == %@", name];
+   // [fetchRequest setPredicate:pred];
     
-    NSError  *error;
-    NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
+   // NSError  *error;
+   // NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
     
-    if ([items count]>0) {
+  //  if ([items count]>0) {
         
-        User  *user=[items objectAtIndex:0];
-        NSSet  *game=user.game;
-        NSArray  *games=[game allObjects];
+   //     User  *user=[items objectAtIndex:0];
+   //     NSSet  *game=user.game;
+    //    NSArray  *games=[game allObjects];
         
-        for (Game *game in games)
-        {
-            if ([game.gameHillType intValue]==hilltype) {
+   //     for (Game *game in games)
+   //     {
+    //        if ([game.gameHillType intValue]==hilltype) {
                 
-                if ([game.gameDirectionInt intValue]==direction) {
-                    NSLog(@"direction == %@",game.gameDirectionInt);
+   //             if ([game.gameDirectionInt intValue]==direction) {
+   ///                 NSLog(@"direction == %@",game.gameDirectionInt);
 
-                    return game.objectID;
-                }
-            }
-        }
-    }
+    ////                return game.objectID;
+    ///            }
+   /////         }
+   ///     }
+  ///  }
     
     return nil;
 }
 
 -(Game*)gameForUser:(User*)user breathDirection:(int)direction hilltype:(int)hilltype
 {
-    NSManagedObjectContext *managedObjectContext =[[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-    managedObjectContext.persistentStoreCoordinator = self.sharedPSC;
-    NSString   *name=user.userName;
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSManagedObjectContext *context = managedObjectContext;
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSPredicate  *pred = [NSPredicate predicateWithFormat:@"userName == %@", name];
-    [fetchRequest setPredicate:pred];
     
-    NSError  *error;
-    NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
+     NSLog(@"change");
+   // NSManagedObjectContext *managedObjectContext =[[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+   // managedObjectContext.persistentStoreCoordinator = self.sharedPSC;
+   // NSString   *name=user.userName;
+   // NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    //NSManagedObjectContext *context = managedObjectContext;
+   // NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:context];
+   // [fetchRequest setEntity:entity];
+   // NSPredicate  *pred = [NSPredicate predicateWithFormat:@"userName == %@", name];
+   // [fetchRequest setPredicate:pred];
     
-    if ([items count]>0) {
+   // NSError  *error;
+   // NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
+    
+  //  if ([items count]>0) {
         
-        User  *user=[items objectAtIndex:0];
-        NSSet  *game=user.game;
-        NSArray  *games=[game allObjects];
-        for (Game *game in games)
-        {
-            NSLog(@"direction == %@",game.gameDirectionInt);
-            if ([game.gameHillType intValue]==hilltype) {
+    //    User  *user=[items objectAtIndex:0];
+   //     NSSet  *game=user.game;
+   //     NSArray  *games=[game allObjects];
+   //     for (Game *game in games)
+   //     {
+    //        NSLog(@"direction == %@",game.gameDirectionInt);
+    //        if ([game.gameHillType intValue]==hilltype) {
                 
-                if ([game.gameDirectionInt intValue]==direction) {
-                    return game;
-                }
-            }
-        }
-    }
+    //            if ([game.gameDirectionInt intValue]==direction) {
+    //                return game;
+    //            }
+    //        }
+    //    }
+   // }
     return nil;
 }
 

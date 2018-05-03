@@ -15,8 +15,9 @@
     int ballGameCount;
     AVAudioPlayer *audioPlayer;
     BOOL muteAudio;
+    int  selectedGameBallCount;
 }
-@property(nonatomic,strong)    NSMutableArray  *balls;
+@property(nonatomic,strong)  NSMutableArray  *balls;
 @property(nonatomic,strong)NSMutableArray  *animators;
 @property int currentBallININdex;
 @end
@@ -69,13 +70,38 @@
     self=[super init];
     if (self) {
         //887 * 100
+        
+        NSLog(@"balloon game ini with frame"); 
+        
         UIView  *view=[[UIView alloc]initWithFrame:frame];
         self.view=view;
         self.view.backgroundColor=[UIColor  clearColor];
         self.balls=[NSMutableArray new];
         self.animators=[NSMutableArray new];
+        
+        selectedGameBallCount = 3;
         // Set the timing functions that should be used to calculate interpolation between the first two keyframes
        // [self makeBalls];
+    }
+    return self;
+}
+
+-(id)initWithFrame:(CGRect)frame withBallCount:(int)ballCount{
+    self=[super init];
+    if (self) {
+        //887 * 100
+        
+        NSLog(@"balloon game ini with frame and ballcount %d",ballCount );
+        
+        UIView  *view=[[UIView alloc]initWithFrame:frame];
+        self.view=view;
+        self.view.backgroundColor=[UIColor  clearColor];
+        self.balls=[NSMutableArray new];
+        self.animators=[NSMutableArray new];
+        
+        selectedGameBallCount = ballCount;
+        // Set the timing functions that should be used to calculate interpolation between the first two keyframes
+        // [self makeBalls];
     }
     return self;
 }
@@ -84,7 +110,7 @@
 {
     self.currentBallININdex=0;
    __block int  startx=0;
-    for (int i=0; i<8; i++) {
+    for (int i=0; i<selectedGameBallCount; i++) {           //change: make balls here
         BilliardBall *ball=[[BilliardBall alloc]initWithFrame:CGRectMake(startx, 0, BALL_RADIUS, BALL_RADIUS)];
         [self.balls addObject:ball];
         ball.gaugeHeight=self.view.bounds.size.height;
@@ -169,6 +195,47 @@
     
     for (BilliardBall *ball in self.balls) {
      // NSLog(@"STOPPING BALLS");
+        [ball stop];
+        [ball blowingEnded];
+        [ball removeFromSuperview];
+    }
+    
+    NSLog(@"REMOVE ALL BALLS");
+    [self.balls removeAllObjects];
+    [self makeBalls];
+}
+
+-(void)resetwithBallCount:(int)ballCount
+{
+    //remove
+    selectedGameBallCount = ballCount;
+    
+    NSLog(@"BIG RESET with ballcount");
+    @try
+    {
+        NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"Croquet ball drop bounce cement_BLASTWAVEFX_29317" ofType:@"wav"];
+        NSData *fileData = [NSData dataWithContentsOfFile:soundPath];
+        NSError *error = nil;
+        audioPlayer = [[AVAudioPlayer alloc] initWithData:fileData
+                                                    error:&error];
+        [audioPlayer setNumberOfLoops:1];
+        [audioPlayer prepareToPlay];
+        audioPlayer.volume=0.3;
+        
+        NSLog(@"SOUND: reset all %hhd", muteAudio);
+        
+        if (muteAudio == 1){
+            NSLog(@"AUDIO MUTED");
+        }else{
+            [audioPlayer play];
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"COULDNT PLAY AUDIO FILE  - %@", exception.reason);
+    }
+    
+    for (BilliardBall *ball in self.balls) {
+        // NSLog(@"STOPPING BALLS");
         [ball stop];
         [ball blowingEnded];
         [ball removeFromSuperview];
@@ -270,9 +337,9 @@
         velocity=maxVelocity;
     }
     
-    int  perBall=maxVelocity/8;
+    int  perBall=maxVelocity/selectedGameBallCount;
     float perBallCount=0;
-    int numberOfBallsToMove=(velocity/maxVelocity)*8;
+    int numberOfBallsToMove=(velocity/maxVelocity)*selectedGameBallCount;
     
     for (int i=0; i<numberOfBallsToMove; i++) {
         if (perBallCount<=maxVelocity) {
@@ -389,7 +456,7 @@
         NSLog(@"completed balloon game");
   //  }
    
-   /// NSLog(@"ball is done");
+   /// chat to yo(@"ball is done");
 }
 
 -(void)setAudioMute: (BOOL) muteSetting{

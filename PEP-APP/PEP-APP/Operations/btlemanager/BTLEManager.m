@@ -240,7 +240,7 @@
     }
     
     self.isConnected=YES;
-    NSLog(@"%s",__func__);
+   // NSLog(@"%s",__func__);
     _zeroBottom_=ZERO_BOTTOM;
     _zeroTop_=ZERO_TOP;
     _samplesTaken_=0;
@@ -270,7 +270,7 @@
 }
 
 - (void) melodySmartDidDisconnectFromMelody:(MelodySmart*) melody {
-    NSLog(@"disconnected %@",melody);
+   // NSLog(@"disconnected %@",melody);
    // NSLog(@"%s",__func__);
     _isConnected=NO;
     [self.delegate btleManagerDisconnected:self];

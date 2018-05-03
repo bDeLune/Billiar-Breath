@@ -80,6 +80,7 @@
     bool currentlyExhaling;
     bool currentlyInhaling;
     NSString* currentImageGameSound;
+    int selectedBallCount;
 }
 
 @property (nonatomic, retain) IBOutlet UIToolbar *myToolbar;
@@ -175,18 +176,16 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
-         
-        
-        
-        self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 160, 450, 225)];
+        //self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 160, 450, 225)];
+        selectedBallCount = 3;
+        self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 160, 450, 225) withBallCount:selectedBallCount];
+       // -(id)initWithFrame:(CGRect)frame withBallCount:(int)ballCount{
        // self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 260, 650, 325)];
         self.midiController=[[MidiController alloc]init];
         self.midiController.delegate=self;
         [self.midiController addObserver:self forKeyPath:@"numberOfSources" options:0 context:NULL];
         // [self.midiController setup];
         self.currentGameType=gameTypeBalloon;
-        
         currentDifficulty=gameDifficultyEasy;
         [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:currentDifficulty] forKey:@"difficulty"];
         
@@ -508,9 +507,14 @@
 
 -(IBAction)resetGame:(id)sender
 {
-    NSLog(@"RESETTING GAME to gametype");
+    NSLog(@"RESETTING GAME with ballcount %d", selectedBallCount);
   //  if (gameTypeTest){
-        self.sequenceGameController=[SequenceGame new];
+
+   // self.sequenceGameController= [SequenceGame new];
+    //self.sequenceGameController= [[SequenceGame alloc] init];
+    self.sequenceGameController= [[SequenceGame alloc] initWithBallCount:selectedBallCount ];
+   // [self.sequenceGameController setBallCount: 3];
+   // self.sequenceGameController.totalBalls=3;
         self.sequenceGameController.delegate=self;
  //   }else{}
 
@@ -523,7 +527,10 @@
    // self.durationGameController=[Testgame new];
     ///self.durationGameController.delegate=self;
     //[self setThreshold:0];
-    [self.billiardViewController reset];
+    
+   //eir [self.billiardViewController reset];
+    [self.billiardViewController resetwithBallCount:selectedBallCount];
+    
     //[self test];
 }
 
@@ -1236,6 +1243,8 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    NSLog(@"view did appear!: animatedd");
+    
     if (!displayLink) {
         [self setupDisplayFiltering];
         displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateimage)];
@@ -1455,10 +1464,12 @@
     [stillImageFilter addTarget:imageView];
 }
 
--(void)setRepetitionCount:(NSString*)value{
+-(void)setRepetitionCount:(int)value{
     
-    NSLog(@"Setting balloon game repetition count to %@ ", value);
+    NSLog(@"Setting balloon game repetition count to %d ", value);
+    NSLog(@"count %d ", value);
     
+    selectedBallCount = value;
     
 }
 

@@ -8,7 +8,9 @@
 
 @interface BilliardBallViewController : UIViewController<BilliardBallProtocol>
 -(id)initWithFrame:(CGRect)frame;
+-(id)initWithFrame:(CGRect)frame withBallCount:(int)ballCount;
 -(void)reset;
+-(void)resetwithBallCount:(int)ballCount;
 -(void)shootBallToTop:(int)ballIndex withAcceleration:(float)acceleration;
 -(void)pushBallsWithVelocity:(float)velocity;
 - (CAKeyframeAnimation *)dockBounceAnimationWithIconHeight:(CGFloat)iconHeight;

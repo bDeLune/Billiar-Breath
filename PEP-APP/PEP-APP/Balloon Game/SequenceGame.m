@@ -6,6 +6,7 @@
     BOOL gamewon;
     AVAudioPlayer *audioPlayer;
     BOOL muteAudio;
+    int currentGameBallCount;
 }
 
 @end
@@ -14,19 +15,46 @@
 -(id)init
 {
     if (self==[super init]) {
-        
         self.currentBall=0;
-        self.totalBalls=8;
+        self.totalBalls=8;      //total balls
         self.totalBallsRaised=0;
         self.totalBallsAttempted=0;
         gamewon=NO;
         self.saveable=NO;
         self.halt=NO;
         self.time=0;
+        
+        NSLog(@"INIT! initialised balloon game ballcount %d", self.totalBalls);
     }
     
     return self;
 }
+
+-(id)initWithBallCount: (int)ballCount
+{
+    if (self==[super init]) {
+        self.currentBall=0;
+        self.totalBalls= ballCount;      //total balls
+        self.totalBallsRaised=0;
+        self.totalBallsAttempted=0;
+        gamewon=NO;
+        self.saveable=NO;
+        self.halt=NO;
+        self.time=0;
+        
+        NSLog(@"INIT BALLCOUNT! initialised balloon game ballcount %d", self.totalBalls);
+    }
+    
+    return self;
+}
+
+-(void)setBallCount: (float)ballCount{
+    
+    NSLog(@"setting sequence game ballcount to %f", ballCount);
+    self.totalBalls = ballCount;
+}
+
+
 -(void)playHitTop
 {
     NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"IMPACT RING METAL DESEND 01" ofType:@"wav"];

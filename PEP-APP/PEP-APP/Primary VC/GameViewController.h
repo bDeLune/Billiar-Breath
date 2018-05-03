@@ -13,7 +13,7 @@
 -(void)setThreshold:(float)value;
 -(void)setBTTreshold:(float)value;
 -(void)setBTBoost:(float)value;
--(void)setRepetitionCount:(NSString*)value;
+-(void)setRepetitionCount:(int)value;
 -(void)setImageSoundEffect:(NSString*)value;
 -(void)test:(float)value;
 @end
