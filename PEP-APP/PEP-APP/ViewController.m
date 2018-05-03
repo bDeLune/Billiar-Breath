@@ -81,6 +81,7 @@ typedef void(^RunTimer)(void);
     }
     
     self.settingsViewController.delegate=self;
+   
     [self.settingsViewController setSettinngsDelegate:self.gameViewController];
     [self.view addSubview:self.settingsViewController.view];
 }

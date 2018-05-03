@@ -49,17 +49,8 @@
    
     if (self) {
         self.title = @"Settings";
-        
-      //  [self setSettinngsDelegate: self.parentViewController];
-        //self.tabBarItem.image = [UIImage imageNamed:@"second"];
-        
-     //   arrayA=[NSMutableArray arrayWithObjects:@"Small",@"Normal",@"Big", nil];
-       // arrayB=[NSMutableArray arrayWithObjects:@"Low",@"Normal",@"High",@"Very High", nil];
-       // NSInteger myIntegers[] = [(void)(1),2,3,4,5,6,7,8];
-       // repititionsArray = @[@1, @2, @3, @4, @5, @6, @7, @8];
         imageGameSoundArray=[NSMutableArray arrayWithObjects:@"01Ballon",@"01Bas slide",@"01bell synth", @"01droom", nil];
         repititionsArray=[NSMutableArray arrayWithObjects: @"1",@"2",@"3", @"4",@"5",@"6",@"7",@"8", nil];
-        //repititionsArray=[NSMutableArray arrayWithObjects: [NSNumber numberWithInt:1],[NSNumber numberWithInt:2],[NSNumber numberWithInt:3], [NSNumber numberWithInt:4],[NSNumber numberWithInt:5],[NSNumber numberWithInt:6],[NSNumber numberWithInt:7],[NSNumber numberWithInt:8], nil];
         filterArray=[NSMutableArray arrayWithObjects:
                      @"Bulge",@"Swirl",@"Blur",@"Toon",
                      @"Expose",@"Polka",
@@ -68,17 +59,9 @@
         gaugeView=[[Gauge alloc]initWithFrame:CGRectMake(670, 365, 40, GUAGE_HEIGHT)];
         gaugeView.gaugedelegate=self;
         
-      //  scoreViewController=[[ScoreDisplayViewController alloc]init];
-      //  scoreViewController.view.frame=CGRectMake(self.view.bounds.size.width-200,
-        //                                          self.view.bounds.size.height-400,
-       //                                           200,
-        //                                          300);
-        //
-       // [self.view addSubview:scoreViewController.view];
         [self.view addSubview:gaugeView];
         
         NSArray *imageNames = @[@"bell_1.png", @"bell_2.png", @"bell_3.png", @"bell_2.png",@"bell_1.png"];
-        
         NSMutableArray *images = [[NSMutableArray alloc] init];
         for (int i = 0; i < imageNames.count; i++) {
             [images addObject:[UIImage imageNamed:[imageNames objectAtIndex:i]]];
@@ -90,7 +73,6 @@
         [self.view addSubview:bellImageView];
         peakholdImageView=[[Draggable alloc]initWithImage:[UIImage imageNamed:@"PeakHoldArrow.png"]];
         CGRect peakframe=peakholdImageView.frame;
-        // peakframe.origin.x=-100;
         peakframe.origin.y=900;
         peakframe.origin.x=251;
         
@@ -101,21 +83,16 @@
         [self.view addSubview:peakholdImageView];
         gaugeView.arrow=peakholdImageView;
         
-     //   self.addGameQueue=[[NSOperationQueue alloc]init];
-        self.btleManager=[BTLEManager new];
-        self.btleManager.delegate=self;
-        [self.btleManager startWithDeviceName:@"GroovTube" andPollInterval:0.1];
-        [self.btleManager setRangeReduction:2];
-        [self.btleManager setTreshold:60];
+       // self.btleManager=[BTLEManager new];
+       // self.btleManager.delegate=self;
+       // [self.btleManager startWithDeviceName:@"GroovTube" andPollInterval:0.1];
+       // [self.btleManager setRangeReduction:2];
+       // [self.btleManager setTreshold:60];
        // [self startSession];
         
         currentlyExhaling = false;
         [gaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
-        
-         [gaugeView start];
-        
-      //  self.settinngsDelegate = self;
-
+        [gaugeView start];
     }
     return self;
 }
@@ -130,12 +107,7 @@
 - (NSInteger)pickerView:(UIPickerView *)thePickerView numberOfRowsInComponent:(NSInteger)component {
     
    // NSLog(@"changing numberOfRowsInComponent 0");
-	
     int amount = 0;
-    
-   // if (thePickerView==pickerViewA) {
-//amount=(int)[arrayA count];
-  //  }
     if (thePickerView==pickerViewB) {
         amount=(int)[imageGameSoundArray count];
         }
@@ -655,9 +627,6 @@
     [[NSRunLoop mainRunLoop] addTimer:effecttimer forMode:NSDefaultRunLoopMode];
     //[self playSound];
     [bellImageView startAnimating];
-    //[logoviewcontroller startAnimating];
-   // [loginViewController updateUserStats:currentSession];
-   // [highScoreViewController updateWithCurrentSession:currentSession];
 }
 
 -(void)killSparks
@@ -675,6 +644,18 @@
     [bellImageView stopAnimating];
 }
 
+-(void)setSettingsDurationLabelText: (NSString*)text  {
+    
+    NSLog(@"Settings duration label text %@", text);
+    settingsDurationLabel.text = text;
+}
+
+-(void) setSettingsStrengthLabelText: (NSString*)text  {
+    
+        NSLog(@"Settings strength label text %@", text);
+    settingsStrengthLabel.text = text;
+}
+
 -(void) playSound {
     NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"bell" ofType:@"wav"];
     NSData *fileData = [NSData dataWithContentsOfFile:soundPath];
@@ -684,10 +665,5 @@
     [audioPlayer prepareToPlay];
     [audioPlayer play];
 }
-
-//-(void)sendValue:(int)note onoff:(int)onoff
-//{
-//    [midiController sendValue:note onoff:onoff];
-//}
 
 @end

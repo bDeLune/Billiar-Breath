@@ -7,8 +7,9 @@
 
 @interface SettingsViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITabBarDelegate>
 {
-  //  IBOutlet UIPickerView *pickerViewA;
     IBOutlet UIPickerView *pickerViewB;
+    IBOutlet UILabel *settingsStrengthLabel;
+    IBOutlet UILabel *settingsDurationLabel;
     IBOutlet UIPickerView *pickerViewC;
     IBOutlet UIPickerView *filterPicker;
     IBOutlet UISlider *rateSlider;
@@ -23,7 +24,6 @@
     NSMutableArray *repititionsArray;
     NSMutableArray *filterArray;
     id<SETTINGS_DELEGATE> __unsafe_unretained settinngsDelegate;
-    
 }
 
 @property (unsafe_unretained) id<SETTINGS_DELEGATE> settinngsDelegate;

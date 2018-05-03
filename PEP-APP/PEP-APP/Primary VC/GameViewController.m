@@ -64,7 +64,7 @@
     UINavigationController   *navcontroller;
   //  LoginViewViewController   *loginViewController;
   //  HighScoreViewController   *highScoreViewController;
-    Gauge    *gaugeView;
+    //Gauge    *gaugeView;
     MidiController  *midiController;
    /// ScoreDisplayViewController  *scoreViewController;
     NSTimer  *timer;
@@ -85,6 +85,7 @@
 
 @property (nonatomic, retain) IBOutlet UIToolbar *myToolbar;
 @property (nonatomic, retain) NSMutableArray *capturedImages;
+@property(nonatomic,strong)Gauge  *gaugeView;
 @property(nonatomic,strong)BTLEManager  *btleMager;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property(nonatomic,strong)NSOperationQueue  *addGameQueue;
@@ -93,9 +94,6 @@
 @property(nonatomic)gameType  currentGameType;
 @property(nonatomic,strong)Session  *currentSession;
 @property(nonatomic,strong)SequenceGame  *sequenceGameController;
-//@property(nonatomic,strong)PowerGame  *powerGameController;
-//@property(nonatomic,strong)DurationGame  *durationGameController;
-@property(nonatomic,strong)Gauge *gaugeView;
 @property(nonatomic,strong)BTLEManager  *btleManager;
 @property(nonatomic,strong)UIImageView  *btOnOfImageView;
 @property(nonatomic,strong)UserListViewController  *userList;
@@ -219,6 +217,14 @@
         imagePickerController = [[UIImagePickerController alloc] init] ;
         imagePickerController.delegate = self;
         currentImageGameSound = @"bell";
+        
+        self.gaugeView=[[Gauge alloc]initWithFrame:CGRectMake(670, 365, 40, GUAGE_HEIGHT)];
+        self.gaugeView.gaugedelegate=self;
+        
+        [self.view addSubview:self.gaugeView];
+        
+        [self.gaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
+        [self.gaugeView start];
     }
     return self;
 }
@@ -256,6 +262,8 @@
     //addedgauge
      [self.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
     
+    
+    
     if (self.midiController.toggleIsON==NO) {
         NSLog(@"INHALING AND RETURNING");
         return;
@@ -271,9 +279,9 @@
     self.midiController.previousVelocity= self.midiController.velocity;
     
     //addedgaugeview
-   //float scale=50.0f;
-   //float value=self.velocity*scale;
-   //[self.gaugeView setForce:(value)];
+   float scale=50.0f;
+   float value=self.velocity*scale;
+   [self.gaugeView setForce:(value)];
     
     [self midiNoteContinuing: self.midiController];
 }
@@ -295,6 +303,10 @@
     [self midiNoteContinuing: self.midiController];
     self.velocity=(percentOfmax)*127.0;
     isaccelerating=YES;
+    
+    float scale=50.0f;
+    float value=self.velocity*scale;
+    [self.gaugeView setForce:(value)];
 }
 
 
@@ -570,6 +582,15 @@
                 break;
         }
     }
+    
+    //added gauge
+    if (self.gaugeView.animationRunning) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //   [_debugTextField setText:@"\nMidi Began"];
+        });
+        //        [self beginNewSession];
+        [self.gaugeView blowingBegan];
+    }
 }
 
 -(void)midiNoteStopped:(MidiController*)midi
@@ -596,6 +617,13 @@
                 break;
         }
     }
+    
+    //added gauge
+  //  if (self.gaugeView.animationRunning) {
+  //      [self sendLogToOutput:@"\nMidi Stop"];
+        [self.gaugeView blowingEnded];
+       // [self endCurrentSession];
+  //  }
 }
 
 -(void)midiNoteContinuing:(MidiController*)midi

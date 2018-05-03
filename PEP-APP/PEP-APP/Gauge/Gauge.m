@@ -173,7 +173,7 @@
     }else
     {
         distance=GUAGE_HEIGHT;
-        [self stop];
+        [self stop];  //change
         [self fallQuickly];
         NSLog(@"MEANT TO FALL QUICKLY");
       //  [_gaugedelegate maxDistanceReached];  ///change remvoed animation

@@ -41,6 +41,7 @@
 @property(nonatomic,weak)IBOutlet  UILabel  *targetLabel;
 @property(nonatomic,weak)IBOutlet  UILabel  *durationLabel;
 @property(nonatomic,weak)IBOutlet  UILabel  *speedLabel;
+
 @property(nonatomic,weak)IBOutlet  UILabel  *strenghtLabel;
 @property(nonatomic,weak)IBOutlet  UILabel *currentUsersNameLabel;
 @property(nonatomic,weak)IBOutlet  UITextView *debugtext;
