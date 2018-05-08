@@ -150,7 +150,7 @@
                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
-                        <action selector="toSettingsScreen:" destination="-1" eventType="touchUpInside" id="vRw-fh-cc3"/>
+                        <action selector="toUsersScreen:" destination="-1" eventType="touchUpInside" id="QaI-gW-tvz"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ic7-MR-hHj">

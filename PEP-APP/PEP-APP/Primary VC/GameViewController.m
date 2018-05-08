@@ -377,6 +377,20 @@
 }
 
 
+- (IBAction)toUsersScreen:(id)sender {
+    
+    NSLog(@"Moving to users screen");
+    self.userList.sharedPSC=self.sharedPSC ;
+    [self.userList getListOfUsers];
+    [UIView transitionFromView:self.view toView:self.navcontroller.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished){
+        
+        self.userList.sharedPSC=self.sharedPSC;
+        self.userList.delegate=self;
+        
+    }];
+
+}
+
 -(IBAction)exitGameScreen:(id)sender
 {
     [self.delegate gameViewExitGame];

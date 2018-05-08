@@ -222,8 +222,9 @@
 }
 
 -(IBAction)goToUsersScreen:(id)sender
-
 {
+    NSLog(@"Login screen move to users");
+    
     self.userList.sharedPSC=self.sharedPSC ;
     [self.userList getListOfUsers];
     [UIView transitionFromView:self.view toView:self.navcontroller.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished){
@@ -232,8 +233,6 @@
         self.userList.delegate=self;
         
     }];
-
-
 }
 
 -(void)userListDismissRequest:(UserListViewController *)caller

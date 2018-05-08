@@ -68,6 +68,7 @@
 -(void)foreground;
 -(void)setLabels;
 
+- (IBAction)toUsersScreen:(id)sender;
 -(IBAction)exitGameScreen:(id)sender;
 -(IBAction)toggleDirection:(id)sender;
 -(IBAction)toggleGameMode:(id)sender;
