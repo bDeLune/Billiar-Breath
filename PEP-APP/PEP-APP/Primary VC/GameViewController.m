@@ -77,6 +77,7 @@
     int midiinhale;
     int midiexhale;
     int currentdirection;
+    NSNumber* currentBreathLength;
     bool currentlyExhaling;
     bool currentlyInhaling;
     NSString* currentImageGameSound;
@@ -676,6 +677,9 @@
     }
     self.currentSession.sessionSpeed=[NSNumber numberWithFloat:midi.speed];
     
+    //check
+    self.currentSession.sessionDuration = currentBreathLength;
+    
     NSString *durationtext=[NSString stringWithFormat:@"%0.1f",self.sequenceGameController.time];
     
     [[GCDQueue mainQueue]queueBlock:^{
@@ -725,6 +729,13 @@
 }
 -(void)midiNoteStoppedForSequence:(MidiController *)midi
 {
+    NSLog(@"midiNoteStoppedForSequence");
+    
+    //CHANGE
+    if (self.currentGameType == gameTypeImage) {
+        [self imageGameWon];
+    }
+    
     [self.sequenceGameController nextBall];
 }
 
@@ -941,6 +952,14 @@
   //  [self.sequenceGameController killTimer];
 //}
 
+-(void)imageGameWon
+{
+    [[GCDQueue mainQueue]queueBlock:^{
+         NSLog(@"IMAGE GAME WON");
+        [self saveCurrentSession];  //added kung
+    }];
+}
+
 -(void)gameWon:(AbstractGame *)game
 {
     NSLog(@"GAME WON");
@@ -959,8 +978,23 @@
         [self resetGame:nil];
     }];
     
-    if (self.currentGameType == gameTypeImage) {
+   /// if (self.currentGameType == gameTypeImage) {
+   //     [[GCDQueue mainQueue]queueBlock:^{
+   //         NSLog(@"IMAGE GAME WON");
+   //         [self saveCurrentSession];  //added kung
+   //     }];
+   //     return;
+    //}else
+    if (self.currentGameType == gameTypeDuo) {
         [[GCDQueue mainQueue]queueBlock:^{
+             NSLog(@"DUO GAME WON");
+            [self saveCurrentSession];  //added kung
+        }];
+        return;
+    }
+    else if (self.currentGameType == gameTypeBalloon) {
+        [[GCDQueue mainQueue]queueBlock:^{
+             NSLog(@"Balloon GAME WON");
             [self saveCurrentSession];  //added kung
         }];
         return;
@@ -1001,12 +1035,11 @@
 
 -(void)saveCurrentSession
 {
-    //NSLog(@"Save Current Session");
+    NSLog(@"ATTEMPTING TO Save Current Session: %u", self.currentGameType);
     
     self.currentSession.sessionType=[NSNumber numberWithInt:self.currentGameType];
     
     AddNewScoreOperation  *operation=[[AddNewScoreOperation alloc]initWithData:self.gameUser session:self.currentSession sharedPSC:self.sharedPSC];
-    
     
     NSLog(@"SAVING CURRENT SESSION");
     [self.addGameQueue addOperation:operation];
@@ -1132,15 +1165,6 @@
     // NSLog(@"soundpath retain count: %d", [soundPath retainCount]);
 }
 
-/*
- @property(nonatomic,strong)NSNumber  *sessionStrength;
- @property(nonatomic,strong)NSNumber  *sessionDuration;
- @property(nonatomic,strong)NSNumber  *sessionSpeed;
- @property(nonatomic,strong)NSNumber  *sessionType;
- 
- @property(nonatomic,strong)NSDate    *sessionDate;
- @property(nonatomic,strong)NSString  *username;
- */
 -(void)addTestScores
 {
     for (int i=0; i<30; i++) {
@@ -1171,7 +1195,6 @@
 //// SIMPLEIMAGE
 
 -(void)background
-
 {
     //self.btleMager.delegate=nil;
     // self.btleMager=nil;
@@ -1193,15 +1216,6 @@
     sketchamount=self.testSlider.value;
     
 }
-
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-//{
-// self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-//  if (self) {
-
-// }
-// return self;
-//}
 
 #pragma mark -
 #pragma mark UIImagePickerControllerDelegate
@@ -1260,6 +1274,8 @@
 -(void)setBTBoost:(float)value
 {
     [self.btleMager setRangeReduction:value];
+    //CHECK TEMP
+    currentBreathLength = [NSNumber numberWithFloat: value];
     NSLog(@"inner setBTBoost");
 }
 -(void)setRate:(float)value
@@ -1273,7 +1289,6 @@
     NSLog(@"inner TEST");
     self.animationrate=value;
 }
-
 
 -(void) appendToTextView: (NSString*) moreText {
     dispatch_async(dispatch_get_main_queue(), ^{

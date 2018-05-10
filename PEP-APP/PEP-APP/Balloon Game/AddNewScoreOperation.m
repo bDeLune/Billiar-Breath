@@ -30,11 +30,21 @@
 
 -(void)addTheSession
 {
+    
+    NSLog(@"ADDING THE SESSION");
+    
+    NSLog(@"SESSION DURATION %@", self.session.sessionDuration);
+    NSLog(@"SESSION STRENGTH %@", self.session.sessionStrength);
+    
     Game  *game=[NSEntityDescription insertNewObjectForEntityForName:@"Game" inManagedObjectContext:self.managedObjectContext];
     //[game setUser:self.user];
-    if ([self.session.sessionDuration floatValue]<=0.0) {
-        return;
-    }
+    
+    //CHANGE BACK - DURATION NEEDS TO BE LOGGED
+    ///SAVE THE SPEED CHOSEN BY USER
+    //if ([self.session.sessionDuration floatValue]<=0.0) {
+   //     return;
+   // }
+    
     [game setDuration:self.session.sessionDuration];
     [game setGameDate:self.session.sessionDate];
     [game setPower:self.session.sessionStrength];
@@ -52,18 +62,22 @@
     
     NSError  *error;
     NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
+    NSLog(@"ADDTHESESSION game: %@", game);
     
     if ([items count]>0) {
         User  *auser=[items objectAtIndex:0];
         [[auser mutableSetValueForKey:@"game"]addObject:game];
+        NSLog(@"ADDTHESESSION USER ARRAY: %@", auser);
     }
+    
+    
 
     if ([self.managedObjectContext hasChanges]) {
         if (![self.managedObjectContext save:&error]) {
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate.
             // You should not use this function in a shipping application, although it may be useful
-            // during development. If it is not possible to recover from the error, display an alert
+            // during developmeint. If it is not possible to recover from the error, display an alerto
             // panel that instructs the user to quit the application by pressing the Home button.
             //
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);

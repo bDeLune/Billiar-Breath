@@ -446,15 +446,15 @@
       //      [self.durationGame.delegate gameWon:self.durationGame];
        // }
   //      NSLog(@"completed duo game");
- //   }else if (self.currentGameType==gameTypeBalloon)
-  //  {
-        // int result= [self.durationGame nextBall];
-        //  if (result==-1) {
-        //      NSLog(@"COMPLETED DURATION MODE");
-        //      [self.durationGame.delegate gameWon:self.durationGame];
+  if (self.currentGameType==gameTypeBalloon)
+   {
+       // int result= [self.b nextBall];
+      //    if (result==-1) {
+              NSLog(@"COMPLETED balloon MODE");
+              //[self.durationGame.delegate gameWon:self.durationGame];
         // }
-        NSLog(@"completed balloon game");
-  //  }
+       // NSLog(@"completed  game");
+   }
    
    /// chat to yo(@"ball is done");
 }

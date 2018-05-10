@@ -255,8 +255,8 @@
     NSMutableArray  *mut=[NSMutableArray arrayWithArray:filtered];
     NSMutableArray  *temp=[NSMutableArray arrayWithArray:filtered];
     //NSMutableArray *tempcopy= [[NSMutableArray alloc] initWithObjects:unfiltered, nil];
-    //NSLog(@"gamesMatchingDate username %@", user.userName);
-    //NSLog(@"gamesMatchingDate unfiltered %@", unfiltered);
+    NSLog(@"gamesMatchingDate username %@", user.userName);
+    NSLog(@"gamesMatchingDate unfiltered %@", unfiltered);
     //[mut sortUsingDescriptors:
     //[NSArray arrayWithObjects:
     //[NSSortDescriptor sortDescriptorWithKey:@"gameDate" ascending:YES],nil]];
@@ -290,7 +290,7 @@
             [durationOnly addObject:agame];
        //}
         }
-    ///  NSLog(@"didSelectRowAtIndexPath  for username %@ durationOnlyarray %@" , user.userName , durationOnly);
+       NSLog(@"didSelectRowAtIndexPath  for username %@ durationOnlyarray %@" , user.userName , durationOnly);
     [detailViewController setUSerData:durationOnly];
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
