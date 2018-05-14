@@ -144,6 +144,10 @@
     NSLog(@"START Session");
    self.currentSession=[Session new];
    self.currentSession.sessionDate=[NSDate date];
+    self.currentSession.sessionRequiredBreathLength = [NSNumber numberWithInt:4];
+    self.currentSession.sessionAchievedBreathLength = 0;
+    self.currentSession.sessionRequiredBalloons = [NSNumber numberWithInt:selectedBallCount];
+    self.currentSession.sessionAchievedBalloons = 0;
 }
 
 #pragma mark -
@@ -262,9 +266,7 @@
     wasExhaling = false;
     //addedgauge
      [self.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
-    
-    
-    
+
     if (self.midiController.toggleIsON==NO) {
         NSLog(@"INHALING AND RETURNING");
         return;
@@ -888,6 +890,8 @@
 
 -(void)setThreshold:(int)pvalue
 {
+    
+    NSLog(@"game view controller: set threshold");
     switch (pvalue) {
         case 0:
             threshold=10;
@@ -1007,6 +1011,9 @@
     [self.sequenceGameController killTimer];
 }
 
+//PROBLEM: CURRENTLY BALLOON SAVES FOR WON BALLOON GAMES. NEEDS TO SAVE FOR ALL ATTEMPTS.
+
+
 -(void)startEffects
 {
     particleEffect = [UIEffectDesignerView effectWithFile:@"billiardwin.ped"];
@@ -1038,6 +1045,7 @@
     NSLog(@"ATTEMPTING TO Save Current Session: %u", self.currentGameType);
     
     self.currentSession.sessionType=[NSNumber numberWithInt:self.currentGameType];
+    self.currentSession.sessionRequiredBalloons = [NSNumber numberWithInt:selectedBallCount];
     
     AddNewScoreOperation  *operation=[[AddNewScoreOperation alloc]initWithData:self.gameUser session:self.currentSession sharedPSC:self.sharedPSC];
     
@@ -1276,8 +1284,18 @@
     [self.btleMager setRangeReduction:value];
     //CHECK TEMP
     currentBreathLength = [NSNumber numberWithFloat: value];
-    NSLog(@"inner setBTBoost");
+    self.animationrate=value;
+    
+    NSLog(@"inner setBTBoost to %f",value );
 }
+
+-(void)setBreathLength:(int)value
+{
+    NSLog(@"inner set breath length %d", value);
+   // self.breathLength=value;
+    self.currentSession.sessionRequiredBreathLength = [NSNumber numberWithInt:value];
+}
+
 -(void)setRate:(float)value
 {
     NSLog(@"inner setRate");
@@ -1345,8 +1363,12 @@
     // float rate = fVel/5;
     float rate = fVel;
     
-    
     //NSLog(@"stillImageFilter %@",stillImageFilter);
+    
+    NSLog(@"ANIMATIONRATEFINAL %f",targetRadius+((rate/500)*_animationrate));
+    NSLog(@"TARGETRADIUS  - %f",targetRadius);
+    NSLog(@"rate/500 -  %f",rate/500);
+    NSLog(@"((rate/500)*_animationrate) -  %f",((rate/500)*_animationrate));
     
     if (isaccelerating)
     {
@@ -1526,7 +1548,9 @@
     NSLog(@"Setting balloon game repetition count to %d ", value);
     NSLog(@"count %d ", value);
     
+    //chang: consolodate variables
     selectedBallCount = value;
+    //self.session.sessionRequiredBalloons = value;
     
 }
 

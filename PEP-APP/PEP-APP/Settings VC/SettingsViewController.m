@@ -187,6 +187,15 @@
     [self.settinngsDelegate setRate:slider.value];
 }
 
+-(IBAction)setBreathLength:(id)sender
+{
+    NSLog(@"changing breath length");
+    UISlider  *slider=(UISlider*)sender;
+    int sliderValue = (int) slider.value;
+    [self.settinngsDelegate setBreathLength:sliderValue];
+    [self setBreathLengthLabelText: [NSString stringWithFormat:@"%d",sliderValue]];
+}
+
 -(IBAction)changeThreshold:(id)sender
 {
     NSLog(@"changing threshold");
@@ -648,6 +657,12 @@
     
     NSLog(@"Settings duration label text %@", text);
     settingsDurationLabel.text = text;
+}
+
+-(void)setBreathLengthLabelText: (NSString*)text  {
+    
+    NSLog(@"breathLengthLabel label text %@", text);
+    breathLengthLabel.text = text;
 }
 
 -(void) setSettingsStrengthLabelText: (NSString*)text  {

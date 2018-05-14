@@ -12,6 +12,13 @@
         _sessionDuration=[NSNumber numberWithFloat:0.0];
         _sessionSpeed=[NSNumber numberWithFloat:0.0];
         _sessionType=[NSNumber numberWithInt:0];
+        
+        _sessionRequiredBalloons=[NSNumber numberWithInt:0];
+        _sessionAchievedBalloons=[NSNumber numberWithInt:0];
+        _sessionBreathDirection=[NSNumber numberWithInt:0];
+        _sessionRequiredBreathLength=[NSNumber numberWithInt:0];
+        _sessionAchievedBreathLength=[NSNumber numberWithInt:0];
+        _sessionBreathDirection=[NSNumber numberWithInt:0];
     }
     
     return self;
@@ -32,6 +39,13 @@
     [encoder encodeObject:_sessionSpeed forKey:@"sessionSpeed"];
     [encoder encodeObject:_username forKey:@"username"];
     [encoder encodeObject:_sessionType forKey:@"sessionType"];
+    
+    [encoder encodeObject:_sessionRequiredBalloons forKey:@"sessionRequiredBalloons"];
+    [encoder encodeObject:_sessionAchievedBalloons forKey:@"sessionAchievedBalloons"];
+    [encoder encodeObject:_sessionRequiredBreathLength forKey:@"sessionRequiredBreathLength"];
+    [encoder encodeObject:_sessionAchievedBreathLength forKey:@"sessionAchievedBreathLength"];
+    [encoder encodeObject:_sessionBreathDirection forKey:@"sessionBreathDirection"];
+    [encoder encodeObject:_sessionAppMode forKey:@"sessionAppMode"];
 }
 
 -(id)initWithCoder:(NSCoder *)decoder
@@ -41,7 +55,15 @@
     self.username = [decoder decodeObjectForKey:@"username"];
     self.sessionDuration = [decoder decodeObjectForKey:@"sessionDuration"];
     self.sessionSpeed=[decoder decodeObjectForKey:@"sessionSpeed"];
-    self.sessionSpeed=[decoder decodeObjectForKey:@"sessionType"];
+    self.sessionType=[decoder decodeObjectForKey:@"sessionType"];
+    
+    self.sessionRequiredBalloons = [decoder decodeObjectForKey:@"sessionRequiredBalloons"];
+    self.sessionAchievedBalloons = [decoder decodeObjectForKey:@"sessionAchievedBalloons"];
+    self.sessionRequiredBreathLength = [decoder decodeObjectForKey:@"sessionRequiredBreathLength"];
+    self.sessionAchievedBreathLength = [decoder decodeObjectForKey:@"sessionAchievedBreathLength"];
+    self.sessionBreathDirection=[decoder decodeObjectForKey:@"sessionBreathDirection"];
+    self.sessionAppMode=[decoder decodeObjectForKey:@"sessionAppMode"];
+ 
     return self;
 }
 

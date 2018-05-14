@@ -45,10 +45,24 @@
    //     return;
    // }
     
+    //also add
+    //sessionRequiredBalloon
+    //sessionAchievedBalloons"
+    //sessionRequiredBreathLength"
+    //sessionAchievedBreathLength"
+    //sessionBreathDirection"
+
     [game setDuration:self.session.sessionDuration];
     [game setGameDate:self.session.sessionDate];
     [game setPower:self.session.sessionStrength];
     [game setGameType:self.session.sessionType];
+    
+    [game setGameRequiredBalloons:self.session.sessionRequiredBalloons];
+    [game setGameAchievedBalloons:self.session.sessionAchievedBalloons];
+    [game setGameRequiredBreathLength:self.session.sessionRequiredBreathLength];
+    [game setGameAchievedBreathLength:self.session.sessionAchievedBreathLength];
+
+    
     NSString *direction=[[NSUserDefaults standardUserDefaults]objectForKey:@"direction"];
     [game setGameDirection:direction];
    // [game setSpeed:self.session.sessionSpeed];

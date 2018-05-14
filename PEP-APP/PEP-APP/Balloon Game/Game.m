@@ -10,13 +10,11 @@
 @dynamic bestDuration;
 @dynamic user;
 @dynamic gameDirection;
-//g@dynamic gameAngle;
-//@dynamic gameDistance;
-//@dynamic gameWind;
-//@dynamic gameAbilityType;
-//@dynamic gameHillType;
-//@dynamic gameTestType;
-//@dynamic gameDirectionInt;
 @dynamic durationString;
 @dynamic gamePointString;
+
+@dynamic gameRequiredBalloons;
+@dynamic gameAchievedBalloons;
+@dynamic gameRequiredBreathLength;
+@dynamic gameAchievedBreathLength;
 @end
