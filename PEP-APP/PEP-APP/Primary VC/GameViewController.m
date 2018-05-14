@@ -1,3 +1,8 @@
+///What constitutes game ended for image game
+//"as user complete repitions, more balloons show, up to value in settings" - is this normal bb behaviour
+//
+
+
 #import "GameViewController.h"
 #import "User.h"
 #import "BilliardBallViewController.h"

@@ -45,7 +45,6 @@
     [encoder encodeObject:_sessionRequiredBreathLength forKey:@"sessionRequiredBreathLength"];
     [encoder encodeObject:_sessionAchievedBreathLength forKey:@"sessionAchievedBreathLength"];
     [encoder encodeObject:_sessionBreathDirection forKey:@"sessionBreathDirection"];
-    [encoder encodeObject:_sessionAppMode forKey:@"sessionAppMode"];
 }
 
 -(id)initWithCoder:(NSCoder *)decoder
@@ -62,8 +61,6 @@
     self.sessionRequiredBreathLength = [decoder decodeObjectForKey:@"sessionRequiredBreathLength"];
     self.sessionAchievedBreathLength = [decoder decodeObjectForKey:@"sessionAchievedBreathLength"];
     self.sessionBreathDirection=[decoder decodeObjectForKey:@"sessionBreathDirection"];
-    self.sessionAppMode=[decoder decodeObjectForKey:@"sessionAppMode"];
- 
     return self;
 }
 

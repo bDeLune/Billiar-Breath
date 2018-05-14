@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3400" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E202" minimumToolsVersion="Xcode 4.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Game" representedClassName="Game" syncable="YES">
-        <attribute name="bestDuration" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="bestSpeed" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="bestStrength" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="duration" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="gameDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="achievedBalloons" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="achievedBreathLength" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="bestDuration" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="bestSpeed" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="bestStrength" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="gameDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="gameDirection" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gameName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="gameType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="power" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="speed" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="gameType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="power" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="requiredBalloons" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="requiredBreathLength" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="speed" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="game" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
@@ -18,7 +22,7 @@
         <relationship name="game" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Game" inverseName="user" inverseEntity="Game" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Game" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="User" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Game" positionX="0" positionY="0" width="128" height="270"/>
+        <element name="User" positionX="0" positionY="0" width="128" height="75"/>
     </elements>
 </model>

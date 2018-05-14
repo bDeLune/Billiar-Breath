@@ -10,7 +10,6 @@
 @property(nonatomic,strong)NSNumber  *sessionRequiredBreathLength;
 @property(nonatomic,strong)NSNumber  *sessionAchievedBreathLength;
 @property(nonatomic,strong)NSNumber  *sessionBreathDirection;
-@property(nonatomic,strong)NSNumber  *sessionAppMode;
 @property(nonatomic,strong)NSDate    *sessionDate;
 @property(nonatomic,strong)NSString  *username;
 -(void)updateStrength:(float)pvalue;

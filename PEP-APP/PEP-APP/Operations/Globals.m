@@ -62,8 +62,8 @@ dispatch_semaphore_t sema;
     
     if ([items count]>0) {
         
-        User  *found=[items objectAtIndex:0];
-        [found setUserAbilityType:user.userAbilityType];
+        //User  *found=[items objectAtIndex:0];
+       // [found setUserAbilityType:user.userAbilityType];
     }
     
     [self updateCoreData];
