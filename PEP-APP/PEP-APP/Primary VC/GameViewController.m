@@ -147,8 +147,8 @@
 -(void)startSession
 {   //ADDED CHECK
     NSLog(@"START Session");
-   self.currentSession=[Session new];
-   self.currentSession.sessionDate=[NSDate date];
+    self.currentSession=[Session new];
+    self.currentSession.sessionDate=[NSDate date];
     self.currentSession.sessionRequiredBreathLength = [NSNumber numberWithInt:4];
     self.currentSession.sessionAchievedBreathLength = 0;
     self.currentSession.sessionRequiredBalloons = [NSNumber numberWithInt:selectedBallCount];
@@ -186,7 +186,9 @@
     if (self) {
         //self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 160, 450, 225)];
         selectedBallCount = 3;
-        self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 160, 450, 225) withBallCount:selectedBallCount];
+        //self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 160, 450, 225) withBallCount:selectedBallCount];
+        self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 100, 250,125) withBallCount:selectedBallCount];
+        
        // -(id)initWithFrame:(CGRect)frame withBallCount:(int)ballCount{
        // self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 260, 650, 325)];
         self.midiController=[[MidiController alloc]init];
@@ -218,6 +220,8 @@
         self.tabBarItem.image = [UIImage imageNamed:@"first"];
         _animationrate=1;
         picselect=[UIButton buttonWithType:UIButtonTypeCustom];
+        //picselect.frame=CGRectMake(0, self.view.frame.size.height-120, 108, 58);
+        
         picselect.frame=CGRectMake(0, self.view.frame.size.height-120, 108, 58);
         [picselect addTarget:self action:@selector(photoButtonLibraryAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:picselect];
