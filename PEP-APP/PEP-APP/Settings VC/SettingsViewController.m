@@ -192,7 +192,7 @@
     NSLog(@"changing breath length");
     UISlider  *slider=(UISlider*)sender;
     int sliderValue = (int) slider.value;
-    [self.settinngsDelegate setBreathLength:sliderValue];
+    [self.settinngsDelegate setBreathLength:slider.value];
     [self setBreathLengthLabelText: [NSString stringWithFormat:@"%d",sliderValue]];
 }
 

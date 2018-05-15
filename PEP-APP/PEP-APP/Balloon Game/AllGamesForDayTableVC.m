@@ -1,11 +1,3 @@
-//
-//  AllGamesForDayTableVC.m
-//  BilliardBreath
-//
-//  Created by barry on 27/02/2014.
-//  Copyright (c) 2014 rocudo. All rights reserved.
-//
-
 #import "AllGamesForDayTableVC.h"
 #import "Game.h"
 @interface AllGamesForDayTableVC ()
@@ -17,20 +9,13 @@
 
 @implementation AllGamesForDayTableVC
 
-
-
-
 -(void)setUSerData:(NSArray*)games
 {
     data=games;
     
     //NSLog(@"SETTING USER DATA");
    /// NSLog(@"data %@", data);
-
-    
-    
     [self.tableView reloadData];
-
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -99,21 +84,30 @@
     NSString  *typeString;
     if (gameType==0) {
         typeString=@"Balloon Game";
+        cell.detailTextLabel.text=[NSString stringWithFormat:@"Achieved Balloons :%@",game.achievedBalloons];
+        cell.detailTextLabel.text=[NSString stringWithFormat:@"Required Balloons :%@",game.requiredBalloons];
     }else if (gameType==1)
     {
         typeString=@"Image Game";
+        cell.detailTextLabel.text=[NSString stringWithFormat:@"Achieved Breath Length :%f",[game.achievedBreathLength floatValue]];
+        cell.detailTextLabel.text=[NSString stringWithFormat:@"Required Breath Length :%f",[game.requiredBreathLength floatValue]];
     }else if (gameType==2)
     {
         typeString=@"Duo Game";
+        cell.detailTextLabel.text=[NSString stringWithFormat:@"Achieved Breath Length :%f",[game.achievedBreathLength floatValue]];
+        cell.detailTextLabel.text=[NSString stringWithFormat:@"Required Breath Length :%f",[game.requiredBreathLength floatValue]];
+        cell.detailTextLabel.text=[NSString stringWithFormat:@"Achieved Balloons :%@",game.achievedBalloons];
+        cell.detailTextLabel.text=[NSString stringWithFormat:@"Required Balloons :%@",game.requiredBalloons];
     }else if (gameType==3)
     {
         typeString=@"Test Game";
+        NSLog(@"Not adding as this is a test game");    //delete
     }
     
-     NSString  *duration=[NSString stringWithFormat:@"%f",[game.duration floatValue]];
+    NSString  *duration=[NSString stringWithFormat:@"%f",[game.duration floatValue]];
     // NSString  *strength=[NSString stringWithFormat:@"%f",[game.power floatValue]];
-     cell.textLabel.text=[NSString stringWithFormat:@"%@  %@ %@",typeString,attemptDateString,game.gameDirection];
-     cell.detailTextLabel.text=[NSString stringWithFormat:@"Duration :%@",duration];
+    cell.textLabel.text=[NSString stringWithFormat:@"%@  %@",typeString,attemptDateString];
+
     // Configure the cell...
     //NSLog(@"this cell %@", cell.textLabel.text);
     return cell;

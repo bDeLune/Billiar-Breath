@@ -1,6 +1,6 @@
 ///What constitutes game ended for image game
 //"as user complete repitions, more balloons show, up to value in settings" - is this normal bb behaviour
-//
+// Do we save after each attempt at balloon game?
 
 
 #import "GameViewController.h"
@@ -744,6 +744,8 @@
     }
     
     [self.sequenceGameController nextBall];
+    //Maybe change - check if this is in corrent location
+    self.currentSession.sessionAchievedBalloons = [NSNumber numberWithInt: self.sequenceGameController.currentBall];
 }
 
 -(void)midiNoteContinuingForSequence:(MidiController*)midi
@@ -1289,28 +1291,29 @@
     [self.btleMager setRangeReduction:value];
     //CHECK TEMP
     currentBreathLength = [NSNumber numberWithFloat: value];
-    self.animationrate=value;
+    
     
     NSLog(@"inner setBTBoost to %f",value );
 }
 
--(void)setBreathLength:(int)value
+-(void)setBreathLength:(float)value
 {
-    NSLog(@"inner set breath length %d", value);
+    NSLog(@" (animation) inner set breath length %f", value);
    // self.breathLength=value;
-    self.currentSession.sessionRequiredBreathLength = [NSNumber numberWithInt:value];
+    self.currentSession.sessionRequiredBreathLength = [NSNumber numberWithFloat:value];
+    _animationrate=value;
 }
 
 -(void)setRate:(float)value
 {
-    NSLog(@"inner setRate");
-    self.animationrate=value;
+    NSLog(@"OFF inner setRate");
+    //self.animationrate=value;
 }
 
 -(void)test:(float)value
 {
-    NSLog(@"inner TEST");
-    self.animationrate=value;
+    NSLog(@"OFF inner TEST");
+  //  self.animationrate=value;
 }
 
 -(void) appendToTextView: (NSString*) moreText {
@@ -1369,8 +1372,13 @@
     float rate = fVel;
     
     //NSLog(@"stillImageFilter %@",stillImageFilter);
+   // _animationrate = 6 - _animationrate;
     
-    NSLog(@"ANIMATIONRATEFINAL %f",targetRadius+((rate/500)*_animationrate));
+    NSLog(@"ESTIMATED TIME OF ANIMATION %f", 10 - _animationrate);
+    NSLog(@"FL Velocity %f", fVel);
+    
+    NSLog(@"OUTPUT %f",targetRadius+((rate/500)*_animationrate));
+    NSLog(@"_animationrate %f",_animationrate);
     NSLog(@"TARGETRADIUS  - %f",targetRadius);
     NSLog(@"rate/500 -  %f",rate/500);
     NSLog(@"((rate/500)*_animationrate) -  %f",((rate/500)*_animationrate));

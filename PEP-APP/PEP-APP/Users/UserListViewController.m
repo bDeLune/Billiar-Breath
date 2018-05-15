@@ -284,7 +284,7 @@
     NSMutableArray  *durationOnly=[NSMutableArray new];
     
     for (Game *agame in array) {
-       //NSLog(@"ADDING didSelectRowAtIndexPath for array %@", array);
+       NSLog(@"GAMELABEL -  ADDING didSelectRowAtIndexPath for array %@", array);
        //NSLog(@"ADDING didSelectRowAtIndexPath for agame.gameType %@", agame.gameType);
        //if ([agame.gameType intValue]==2) {
             [durationOnly addObject:agame];

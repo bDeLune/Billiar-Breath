@@ -455,8 +455,6 @@
         // }
        // NSLog(@"completed  game");
    }
-   
-   /// chat to yo(@"ball is done");
 }
 
 -(void)setAudioMute: (BOOL) muteSetting{

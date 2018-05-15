@@ -76,6 +76,8 @@
     self.halt=NO;
     //[self playHitTop];
     self.currentBall++;
+    NSLog(@"Current ball is %d", self.currentBall);
+    
     self.totalBallsAttempted++;
        // [self.delegate gameEnded:self];
        // return -1;
