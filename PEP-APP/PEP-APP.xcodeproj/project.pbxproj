@@ -17,6 +17,76 @@
 		7138E5952088FBA700C0C08F /* infoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7138E5932088FBA700C0C08F /* infoViewController.m */; };
 		7138E5962088FBA700C0C08F /* infoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7138E5942088FBA700C0C08F /* infoViewController.xib */; };
 		71693B90206937D3009F14EA /* BilliardBreath1024X1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 71693B8F206937D1009F14EA /* BilliardBreath1024X1024.png */; };
+		717D001A20B309590098893A /* page_0015.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 717D000520B309510098893A /* page_0015.jpeg */; };
+		717D001B20B309590098893A /* page_0017.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 717D000620B309510098893A /* page_0017.jpeg */; };
+		717D001C20B309590098893A /* stock-vector-cartoon-zebra-for-babies-and-little-kids-vector-picture-isolated-on-white-background-124275886.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 717D000720B309520098893A /* stock-vector-cartoon-zebra-for-babies-and-little-kids-vector-picture-isolated-on-white-background-124275886.jpg */; };
+		717D001D20B309590098893A /* page_0007.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 717D000820B309520098893A /* page_0007.jpeg */; };
+		717D001E20B309590098893A /* HighContrast2.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D000920B309530098893A /* HighContrast2.png */; };
+		717D001F20B309590098893A /* HighContrast3.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D000A20B309530098893A /* HighContrast3.png */; };
+		717D002020B309590098893A /* HighContrast6.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D000B20B309540098893A /* HighContrast6.png */; };
+		717D002120B309590098893A /* 530d4ba369a92997d3a85ac1cc9f927d.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 717D000C20B309540098893A /* 530d4ba369a92997d3a85ac1cc9f927d.jpg */; };
+		717D002220B309590098893A /* ac45b2_29230858a5974e16b462e4fed7c5afcf_mv2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 717D000D20B309550098893A /* ac45b2_29230858a5974e16b462e4fed7c5afcf_mv2.jpg */; };
+		717D002320B309590098893A /* HighContrast4.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D000E20B309560098893A /* HighContrast4.png */; };
+		717D002420B309590098893A /* HighContrast9.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D000F20B309560098893A /* HighContrast9.png */; };
+		717D002520B309590098893A /* il_570xN.335297030.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 717D001020B309560098893A /* il_570xN.335297030.jpg */; };
+		717D002620B309590098893A /* HighContrast1.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D001120B309560098893A /* HighContrast1.png */; };
+		717D002720B309590098893A /* HighContrast5.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D001220B309570098893A /* HighContrast5.png */; };
+		717D002820B309590098893A /* HighContrast8.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D001320B309570098893A /* HighContrast8.png */; };
+		717D002920B309590098893A /* HighContrast10.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D001420B309570098893A /* HighContrast10.png */; };
+		717D002A20B309590098893A /* HighContrast7.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D001520B309580098893A /* HighContrast7.png */; };
+		717D002B20B309590098893A /* page_0003.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 717D001620B309580098893A /* page_0003.jpeg */; };
+		717D002C20B309590098893A /* page_0013.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 717D001720B309580098893A /* page_0013.jpeg */; };
+		717D002D20B309590098893A /* Fisher-Price-Baby-Apps-toddlers-38.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 717D001820B309580098893A /* Fisher-Price-Baby-Apps-toddlers-38.jpg */; };
+		717D002E20B309590098893A /* page_0011.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 717D001920B309590098893A /* page_0011.jpeg */; };
+		717D003320B309620098893A /* Login-Button-Signup.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D002F20B309610098893A /* Login-Button-Signup.png */; };
+		717D003420B309620098893A /* Login-Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D003020B309620098893A /* Login-Background.png */; };
+		717D003520B309620098893A /* Login-Project.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D003120B309620098893A /* Login-Project.png */; };
+		717D003620B309620098893A /* Login-Button-Login.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D003220B309620098893A /* Login-Button-Login.png */; };
+		717D003E20B309750098893A /* Sound-ON.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D003720B309730098893A /* Sound-ON.png */; };
+		717D003F20B309750098893A /* Main-MOCKUP.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D003820B309730098893A /* Main-MOCKUP.png */; };
+		717D004020B309750098893A /* Main-Project.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D003920B309740098893A /* Main-Project.png */; };
+		717D004120B309750098893A /* Sound-OFF.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D003A20B309740098893A /* Sound-OFF.png */; };
+		717D004220B309750098893A /* Bluetooth-OFF.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D003B20B309740098893A /* Bluetooth-OFF.png */; };
+		717D004320B309750098893A /* Main-Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D003C20B309750098893A /* Main-Background.png */; };
+		717D004420B309750098893A /* Bluetooth-ON.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D003D20B309750098893A /* Bluetooth-ON.png */; };
+		717D005620B309940098893A /* 3 Navigation bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D004F20B309920098893A /* 3 Navigation bar.png */; };
+		717D005720B309940098893A /* 2 Form.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D005020B309930098893A /* 2 Form.png */; };
+		717D005820B309940098893A /* 7 PEP APP.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D005120B309930098893A /* 7 PEP APP.png */; };
+		717D005920B309940098893A /* 5 Users.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D005220B309930098893A /* 5 Users.png */; };
+		717D005A20B309940098893A /* 1 Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D005320B309930098893A /* 1 Background.png */; };
+		717D005B20B309940098893A /* 4 Info.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D005420B309940098893A /* 4 Info.png */; };
+		717D005C20B309940098893A /* 6 Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D005520B309940098893A /* 6 Settings.png */; };
+		717D006120B309CA0098893A /* PEP-App.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D005D20B309C90098893A /* PEP-App.png */; };
+		717D006220B309CA0098893A /* Users.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D005E20B309C90098893A /* Users.png */; };
+		717D006320B309CA0098893A /* Help.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D005F20B309CA0098893A /* Help.png */; };
+		717D006420B309CA0098893A /* Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D006020B309CA0098893A /* Settings.png */; };
+		717D006820B312C30098893A /* MainMode-BOTH.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D006520B312C10098893A /* MainMode-BOTH.png */; };
+		717D006920B312C30098893A /* MainMode-BALLOON.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D006620B312C20098893A /* MainMode-BALLOON.png */; };
+		717D006A20B312C30098893A /* MainMode-IMAGE.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D006720B312C30098893A /* MainMode-IMAGE.png */; };
+		717D007420B3138C0098893A /* Balloon8.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D006B20B313860098893A /* Balloon8.png */; };
+		717D007520B3138C0098893A /* Balloon0.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D006C20B313870098893A /* Balloon0.png */; };
+		717D007620B3138C0098893A /* Balloon3.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D006D20B313880098893A /* Balloon3.png */; };
+		717D007720B3138C0098893A /* Balloon1.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D006E20B313890098893A /* Balloon1.png */; };
+		717D007820B3138C0098893A /* Balloon6.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D006F20B313890098893A /* Balloon6.png */; };
+		717D007920B3138D0098893A /* Balloon4.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D007020B3138A0098893A /* Balloon4.png */; };
+		717D007A20B3138D0098893A /* Balloon7.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D007120B3138B0098893A /* Balloon7.png */; };
+		717D007B20B3138D0098893A /* Balloon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D007220B3138B0098893A /* Balloon2.png */; };
+		717D007C20B3138D0098893A /* Balloon5.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D007320B3138C0098893A /* Balloon5.png */; };
+		717D008F20B440D90098893A /* Settings-INACTIVE.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D008720B440D10098893A /* Settings-INACTIVE.png */; };
+		717D009020B440D90098893A /* PEP-App-ACTIVE.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D008820B440D20098893A /* PEP-App-ACTIVE.png */; };
+		717D009120B440D90098893A /* Users-ACTIVE.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D008920B440D30098893A /* Users-ACTIVE.png */; };
+		717D009220B440D90098893A /* Settings-ACTIVE.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D008A20B440D40098893A /* Settings-ACTIVE.png */; };
+		717D009320B440D90098893A /* Info-INACTIVE.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D008B20B440D50098893A /* Info-INACTIVE.png */; };
+		717D009420B440D90098893A /* Users-INACTIVE.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D008C20B440D60098893A /* Users-INACTIVE.png */; };
+		717D009520B440D90098893A /* PEP-App-INACTIVE.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D008D20B440D70098893A /* PEP-App-INACTIVE.png */; };
+		717D009620B440D90098893A /* Info-ACTIVE.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D008E20B440D80098893A /* Info-ACTIVE.png */; };
+		717D009920B440F00098893A /* Main-Button-Picker-ALBUM.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D009720B440EE0098893A /* Main-Button-Picker-ALBUM.png */; };
+		717D009A20B440F00098893A /* Main-Button-Picker-HICONTRAST.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D009820B440EF0098893A /* Main-Button-Picker-HICONTRAST.png */; };
+		717D00A220B44FC90098893A /* Settings-Button-INHALE.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D009D20B44FC70098893A /* Settings-Button-INHALE.png */; };
+		717D00A320B44FC90098893A /* Settings-MOCKUP.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D009E20B44FC80098893A /* Settings-MOCKUP.png */; };
+		717D00A420B44FC90098893A /* Settings-Button-EXHALE.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D009F20B44FC80098893A /* Settings-Button-EXHALE.png */; };
+		717D00A520B44FC90098893A /* Settings-Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D00A020B44FC80098893A /* Settings-Background.png */; };
+		717D00A620B44FC90098893A /* Settings-Project.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D00A120B44FC80098893A /* Settings-Project.png */; };
 		7186DDD01E4DBE0D00F71F0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7186DDCD1E4DBE0D00F71F0C /* Main.storyboard */; };
 		7186DDEB1E4DBF2400F71F0C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7186DDEA1E4DBF2400F71F0C /* LoginViewController.xib */; };
 		7186DDF41E4DBF4100F71F0C /* AllGamesForDayTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DDED1E4DBF4100F71F0C /* AllGamesForDayTableVC.m */; };
@@ -79,9 +149,6 @@
 		718E215C1E51E43000E8357B /* icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 718E215B1E51E43000E8357B /* icon-120.png */; };
 		71A04EC3208FA8BD00AA878B /* Gauge.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A04EC1208FA8BD00AA878B /* Gauge.m */; };
 		71A04EC6208FA8F800AA878B /* Draggable.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A04EC5208FA8F800AA878B /* Draggable.m */; };
-		71A74F5520AB0B510097E8C9 /* Settings in Resources */ = {isa = PBXBuildFile; fileRef = 71A74F4620AB0B510097E8C9 /* Settings */; };
-		71A74F5720AB5A970097E8C9 /* Users in Resources */ = {isa = PBXBuildFile; fileRef = 71A74F5620AB5A970097E8C9 /* Users */; };
-		71A74F5920AB5B1C0097E8C9 /* Main in Resources */ = {isa = PBXBuildFile; fileRef = 71A74F5820AB5B1C0097E8C9 /* Main */; };
 		71C9F9D81E53341D0078070D /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9F9CC1E53341D0078070D /* Game.m */; };
 		71C9F9D91E53341D0078070D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9F9CE1E53341D0078070D /* User.m */; };
 		71C9F9DA1E53341D0078070D /* AbstractGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9F9D11E53341D0078070D /* AbstractGame.m */; };
@@ -244,6 +311,76 @@
 		7138E5932088FBA700C0C08F /* infoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = infoViewController.m; sourceTree = "<group>"; };
 		7138E5942088FBA700C0C08F /* infoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = infoViewController.xib; sourceTree = "<group>"; };
 		71693B8F206937D1009F14EA /* BilliardBreath1024X1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BilliardBreath1024X1024.png; sourceTree = "<group>"; };
+		717D000520B309510098893A /* page_0015.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = page_0015.jpeg; sourceTree = "<group>"; };
+		717D000620B309510098893A /* page_0017.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = page_0017.jpeg; sourceTree = "<group>"; };
+		717D000720B309520098893A /* stock-vector-cartoon-zebra-for-babies-and-little-kids-vector-picture-isolated-on-white-background-124275886.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "stock-vector-cartoon-zebra-for-babies-and-little-kids-vector-picture-isolated-on-white-background-124275886.jpg"; sourceTree = "<group>"; };
+		717D000820B309520098893A /* page_0007.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = page_0007.jpeg; sourceTree = "<group>"; };
+		717D000920B309530098893A /* HighContrast2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HighContrast2.png; sourceTree = "<group>"; };
+		717D000A20B309530098893A /* HighContrast3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HighContrast3.png; sourceTree = "<group>"; };
+		717D000B20B309540098893A /* HighContrast6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HighContrast6.png; sourceTree = "<group>"; };
+		717D000C20B309540098893A /* 530d4ba369a92997d3a85ac1cc9f927d.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 530d4ba369a92997d3a85ac1cc9f927d.jpg; sourceTree = "<group>"; };
+		717D000D20B309550098893A /* ac45b2_29230858a5974e16b462e4fed7c5afcf_mv2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ac45b2_29230858a5974e16b462e4fed7c5afcf_mv2.jpg; sourceTree = "<group>"; };
+		717D000E20B309560098893A /* HighContrast4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HighContrast4.png; sourceTree = "<group>"; };
+		717D000F20B309560098893A /* HighContrast9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HighContrast9.png; sourceTree = "<group>"; };
+		717D001020B309560098893A /* il_570xN.335297030.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = il_570xN.335297030.jpg; sourceTree = "<group>"; };
+		717D001120B309560098893A /* HighContrast1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HighContrast1.png; sourceTree = "<group>"; };
+		717D001220B309570098893A /* HighContrast5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HighContrast5.png; sourceTree = "<group>"; };
+		717D001320B309570098893A /* HighContrast8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HighContrast8.png; sourceTree = "<group>"; };
+		717D001420B309570098893A /* HighContrast10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HighContrast10.png; sourceTree = "<group>"; };
+		717D001520B309580098893A /* HighContrast7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HighContrast7.png; sourceTree = "<group>"; };
+		717D001620B309580098893A /* page_0003.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = page_0003.jpeg; sourceTree = "<group>"; };
+		717D001720B309580098893A /* page_0013.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = page_0013.jpeg; sourceTree = "<group>"; };
+		717D001820B309580098893A /* Fisher-Price-Baby-Apps-toddlers-38.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Fisher-Price-Baby-Apps-toddlers-38.jpg"; sourceTree = "<group>"; };
+		717D001920B309590098893A /* page_0011.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = page_0011.jpeg; sourceTree = "<group>"; };
+		717D002F20B309610098893A /* Login-Button-Signup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-Button-Signup.png"; sourceTree = "<group>"; };
+		717D003020B309620098893A /* Login-Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-Background.png"; sourceTree = "<group>"; };
+		717D003120B309620098893A /* Login-Project.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-Project.png"; sourceTree = "<group>"; };
+		717D003220B309620098893A /* Login-Button-Login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-Button-Login.png"; sourceTree = "<group>"; };
+		717D003720B309730098893A /* Sound-ON.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sound-ON.png"; sourceTree = "<group>"; };
+		717D003820B309730098893A /* Main-MOCKUP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Main-MOCKUP.png"; sourceTree = "<group>"; };
+		717D003920B309740098893A /* Main-Project.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Main-Project.png"; path = "../../../../Downloads/App UI 2/Main/Main-Project.png"; sourceTree = "<group>"; };
+		717D003A20B309740098893A /* Sound-OFF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sound-OFF.png"; sourceTree = "<group>"; };
+		717D003B20B309740098893A /* Bluetooth-OFF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bluetooth-OFF.png"; sourceTree = "<group>"; };
+		717D003C20B309750098893A /* Main-Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Main-Background.png"; sourceTree = "<group>"; };
+		717D003D20B309750098893A /* Bluetooth-ON.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bluetooth-ON.png"; sourceTree = "<group>"; };
+		717D004F20B309920098893A /* 3 Navigation bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3 Navigation bar.png"; sourceTree = "<group>"; };
+		717D005020B309930098893A /* 2 Form.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2 Form.png"; sourceTree = "<group>"; };
+		717D005120B309930098893A /* 7 PEP APP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "7 PEP APP.png"; sourceTree = "<group>"; };
+		717D005220B309930098893A /* 5 Users.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "5 Users.png"; path = "../../../../Downloads/App UI 2/Users/Orig/5 Users.png"; sourceTree = "<group>"; };
+		717D005320B309930098893A /* 1 Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "1 Background.png"; path = "../../../../Downloads/App UI 2/Users/Orig/1 Background.png"; sourceTree = "<group>"; };
+		717D005420B309940098893A /* 4 Info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "4 Info.png"; sourceTree = "<group>"; };
+		717D005520B309940098893A /* 6 Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "6 Settings.png"; sourceTree = "<group>"; };
+		717D005D20B309C90098893A /* PEP-App.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PEP-App.png"; sourceTree = "<group>"; };
+		717D005E20B309C90098893A /* Users.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Users.png; sourceTree = "<group>"; };
+		717D005F20B309CA0098893A /* Help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Help.png; sourceTree = "<group>"; };
+		717D006020B309CA0098893A /* Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settings.png; sourceTree = "<group>"; };
+		717D006520B312C10098893A /* MainMode-BOTH.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MainMode-BOTH.png"; sourceTree = "<group>"; };
+		717D006620B312C20098893A /* MainMode-BALLOON.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MainMode-BALLOON.png"; sourceTree = "<group>"; };
+		717D006720B312C30098893A /* MainMode-IMAGE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MainMode-IMAGE.png"; sourceTree = "<group>"; };
+		717D006B20B313860098893A /* Balloon8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Balloon8.png; sourceTree = "<group>"; };
+		717D006C20B313870098893A /* Balloon0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Balloon0.png; sourceTree = "<group>"; };
+		717D006D20B313880098893A /* Balloon3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Balloon3.png; sourceTree = "<group>"; };
+		717D006E20B313890098893A /* Balloon1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Balloon1.png; sourceTree = "<group>"; };
+		717D006F20B313890098893A /* Balloon6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Balloon6.png; sourceTree = "<group>"; };
+		717D007020B3138A0098893A /* Balloon4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Balloon4.png; sourceTree = "<group>"; };
+		717D007120B3138B0098893A /* Balloon7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Balloon7.png; sourceTree = "<group>"; };
+		717D007220B3138B0098893A /* Balloon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Balloon2.png; sourceTree = "<group>"; };
+		717D007320B3138C0098893A /* Balloon5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Balloon5.png; sourceTree = "<group>"; };
+		717D008720B440D10098893A /* Settings-INACTIVE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings-INACTIVE.png"; sourceTree = "<group>"; };
+		717D008820B440D20098893A /* PEP-App-ACTIVE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PEP-App-ACTIVE.png"; sourceTree = "<group>"; };
+		717D008920B440D30098893A /* Users-ACTIVE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Users-ACTIVE.png"; sourceTree = "<group>"; };
+		717D008A20B440D40098893A /* Settings-ACTIVE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings-ACTIVE.png"; sourceTree = "<group>"; };
+		717D008B20B440D50098893A /* Info-INACTIVE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Info-INACTIVE.png"; sourceTree = "<group>"; };
+		717D008C20B440D60098893A /* Users-INACTIVE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Users-INACTIVE.png"; sourceTree = "<group>"; };
+		717D008D20B440D70098893A /* PEP-App-INACTIVE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PEP-App-INACTIVE.png"; sourceTree = "<group>"; };
+		717D008E20B440D80098893A /* Info-ACTIVE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Info-ACTIVE.png"; sourceTree = "<group>"; };
+		717D009720B440EE0098893A /* Main-Button-Picker-ALBUM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Main-Button-Picker-ALBUM.png"; sourceTree = "<group>"; };
+		717D009820B440EF0098893A /* Main-Button-Picker-HICONTRAST.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Main-Button-Picker-HICONTRAST.png"; sourceTree = "<group>"; };
+		717D009D20B44FC70098893A /* Settings-Button-INHALE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Settings-Button-INHALE.png"; path = "../../../../Downloads/App UI 3/Settings/Settings-Button-INHALE.png"; sourceTree = "<group>"; };
+		717D009E20B44FC80098893A /* Settings-MOCKUP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Settings-MOCKUP.png"; path = "../../../../Downloads/App UI 3/Settings/Settings-MOCKUP.png"; sourceTree = "<group>"; };
+		717D009F20B44FC80098893A /* Settings-Button-EXHALE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Settings-Button-EXHALE.png"; path = "../../../../Downloads/App UI 3/Settings/Settings-Button-EXHALE.png"; sourceTree = "<group>"; };
+		717D00A020B44FC80098893A /* Settings-Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Settings-Background.png"; path = "../../../../Downloads/App UI 3/Settings/Settings-Background.png"; sourceTree = "<group>"; };
+		717D00A120B44FC80098893A /* Settings-Project.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Settings-Project.png"; path = "../../../../Downloads/App UI 3/Settings/Settings-Project.png"; sourceTree = "<group>"; };
 		7186DDCC1E4DBE0D00F71F0C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		7186DDCD1E4DBE0D00F71F0C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7186DDEA1E4DBF2400F71F0C /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -331,9 +468,6 @@
 		71A04EC1208FA8BD00AA878B /* Gauge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Gauge.m; sourceTree = "<group>"; };
 		71A04EC4208FA8F700AA878B /* Draggable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Draggable.h; sourceTree = "<group>"; };
 		71A04EC5208FA8F800AA878B /* Draggable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Draggable.m; sourceTree = "<group>"; };
-		71A74F4620AB0B510097E8C9 /* Settings */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Settings; sourceTree = "<group>"; };
-		71A74F5620AB5A970097E8C9 /* Users */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Users; path = "../../../../Downloads/App UI/Users"; sourceTree = "<group>"; };
-		71A74F5820AB5B1C0097E8C9 /* Main */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Main; sourceTree = "<group>"; };
 		71C9F9CB1E53341D0078070D /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		71C9F9CC1E53341D0078070D /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		71C9F9CD1E53341D0078070D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -471,15 +605,17 @@
 		710857291E439A0A00479032 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				71A74F4620AB0B510097E8C9 /* Settings */,
+				717D000020B3091B0098893A /* Users */,
 				7186DDEE1E4DBF4100F71F0C /* Croquet ball drop bounce cement_BLASTWAVEFX_29317.mp3 */,
-				71A74F5620AB5A970097E8C9 /* Users */,
+				717D000120B309240098893A /* Settings */,
 				7187879D2097862F000DD8EC /* 01Ballon.wav */,
-				71A74F5820AB5B1C0097E8C9 /* Main */,
+				717D000220B3092D0098893A /* Main */,
 				7186DDEF1E4DBF4100F71F0C /* Croquet ball drop bounce cement_BLASTWAVEFX_29317.wav */,
+				717D000320B309330098893A /* Login */,
 				7186DDF01E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.mp3 */,
 				7186DDF11E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.wav */,
 				7186DE871E4DBFA400F71F0C /* BilliardBreath1024X1024.jpg */,
+				717D000420B309390098893A /* High Contrast Images */,
 				71D1A3562074F8F000C83B63 /* bell_1.png */,
 				7187879F2098A24E000DD8EC /* 01 xylofoon.wav */,
 				718787A52098A250000DD8EC /* 01Ballon.wav */,
@@ -559,6 +695,111 @@
 				710857671E439B8A00479032 /* Accelerate.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		717D000020B3091B0098893A /* Users */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Users;
+			sourceTree = "<group>";
+		};
+		717D000120B309240098893A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				717D005320B309930098893A /* 1 Background.png */,
+				717D00A020B44FC80098893A /* Settings-Background.png */,
+				717D009F20B44FC80098893A /* Settings-Button-EXHALE.png */,
+				717D009D20B44FC70098893A /* Settings-Button-INHALE.png */,
+				717D009E20B44FC80098893A /* Settings-MOCKUP.png */,
+				717D00A120B44FC80098893A /* Settings-Project.png */,
+				717D005020B309930098893A /* 2 Form.png */,
+				717D004F20B309920098893A /* 3 Navigation bar.png */,
+				717D005420B309940098893A /* 4 Info.png */,
+				717D005220B309930098893A /* 5 Users.png */,
+				717D005520B309940098893A /* 6 Settings.png */,
+				717D005120B309930098893A /* 7 PEP APP.png */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		717D000220B3092D0098893A /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				717D003B20B309740098893A /* Bluetooth-OFF.png */,
+				717D003D20B309750098893A /* Bluetooth-ON.png */,
+				717D005F20B309CA0098893A /* Help.png */,
+				717D005D20B309C90098893A /* PEP-App.png */,
+				717D006020B309CA0098893A /* Settings.png */,
+				717D005E20B309C90098893A /* Users.png */,
+				717D006C20B313870098893A /* Balloon0.png */,
+				717D006E20B313890098893A /* Balloon1.png */,
+				717D007220B3138B0098893A /* Balloon2.png */,
+				717D006D20B313880098893A /* Balloon3.png */,
+				717D008E20B440D80098893A /* Info-ACTIVE.png */,
+				717D009720B440EE0098893A /* Main-Button-Picker-ALBUM.png */,
+				717D009820B440EF0098893A /* Main-Button-Picker-HICONTRAST.png */,
+				717D008B20B440D50098893A /* Info-INACTIVE.png */,
+				717D008820B440D20098893A /* PEP-App-ACTIVE.png */,
+				717D008D20B440D70098893A /* PEP-App-INACTIVE.png */,
+				717D008A20B440D40098893A /* Settings-ACTIVE.png */,
+				717D008720B440D10098893A /* Settings-INACTIVE.png */,
+				717D008920B440D30098893A /* Users-ACTIVE.png */,
+				717D008C20B440D60098893A /* Users-INACTIVE.png */,
+				717D007020B3138A0098893A /* Balloon4.png */,
+				717D007320B3138C0098893A /* Balloon5.png */,
+				717D006F20B313890098893A /* Balloon6.png */,
+				717D007120B3138B0098893A /* Balloon7.png */,
+				717D006B20B313860098893A /* Balloon8.png */,
+				717D003C20B309750098893A /* Main-Background.png */,
+				717D003820B309730098893A /* Main-MOCKUP.png */,
+				717D006620B312C20098893A /* MainMode-BALLOON.png */,
+				717D006520B312C10098893A /* MainMode-BOTH.png */,
+				717D006720B312C30098893A /* MainMode-IMAGE.png */,
+				717D003920B309740098893A /* Main-Project.png */,
+				717D003A20B309740098893A /* Sound-OFF.png */,
+				717D003720B309730098893A /* Sound-ON.png */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		717D000320B309330098893A /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				717D003020B309620098893A /* Login-Background.png */,
+				717D003220B309620098893A /* Login-Button-Login.png */,
+				717D002F20B309610098893A /* Login-Button-Signup.png */,
+				717D003120B309620098893A /* Login-Project.png */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		717D000420B309390098893A /* High Contrast Images */ = {
+			isa = PBXGroup;
+			children = (
+				717D000C20B309540098893A /* 530d4ba369a92997d3a85ac1cc9f927d.jpg */,
+				717D000D20B309550098893A /* ac45b2_29230858a5974e16b462e4fed7c5afcf_mv2.jpg */,
+				717D001820B309580098893A /* Fisher-Price-Baby-Apps-toddlers-38.jpg */,
+				717D001120B309560098893A /* HighContrast1.png */,
+				717D000920B309530098893A /* HighContrast2.png */,
+				717D000A20B309530098893A /* HighContrast3.png */,
+				717D000E20B309560098893A /* HighContrast4.png */,
+				717D001220B309570098893A /* HighContrast5.png */,
+				717D000B20B309540098893A /* HighContrast6.png */,
+				717D001520B309580098893A /* HighContrast7.png */,
+				717D001320B309570098893A /* HighContrast8.png */,
+				717D000F20B309560098893A /* HighContrast9.png */,
+				717D001420B309570098893A /* HighContrast10.png */,
+				717D001020B309560098893A /* il_570xN.335297030.jpg */,
+				717D001620B309580098893A /* page_0003.jpeg */,
+				717D000820B309520098893A /* page_0007.jpeg */,
+				717D001920B309590098893A /* page_0011.jpeg */,
+				717D001720B309580098893A /* page_0013.jpeg */,
+				717D000520B309510098893A /* page_0015.jpeg */,
+				717D000620B309510098893A /* page_0017.jpeg */,
+				717D000720B309520098893A /* stock-vector-cartoon-zebra-for-babies-and-little-kids-vector-picture-isolated-on-white-background-124275886.jpg */,
+			);
+			name = "High Contrast Images";
 			sourceTree = "<group>";
 		};
 		7186DEA51E4DC59F00F71F0C /* btlemanager */ = {
@@ -919,67 +1160,134 @@
 			buildActionMask = 2147483647;
 			files = (
 				718787AD2098A251000DD8EC /* 01Trombone.wav in Resources */,
+				717D007720B3138C0098893A /* Balloon1.png in Resources */,
+				717D003520B309620098893A /* Login-Project.png in Resources */,
+				717D001F20B309590098893A /* HighContrast3.png in Resources */,
 				7186DE9A1E4DBFA400F71F0C /* BilliardBreathAppIcon58x58.png in Resources */,
 				7186DDF91E4DBF4100F71F0C /* AllGamesForDayTableVC.xib in Resources */,
+				717D002D20B309590098893A /* Fisher-Price-Baby-Apps-toddlers-38.jpg in Resources */,
 				7186DEA21E4DBFA400F71F0C /* BilliardBreathAppIcon152x152.png in Resources */,
+				717D009420B440D90098893A /* Users-INACTIVE.png in Resources */,
+				717D002520B309590098893A /* il_570xN.335297030.jpg in Resources */,
 				7138E5962088FBA700C0C08F /* infoViewController.xib in Resources */,
 				7186DE9E1E4DBFA400F71F0C /* BilliardBreathAppIcon100x100.png in Resources */,
 				7186DEE11E51CACC00F71F0C /* Default.png in Resources */,
+				717D002C20B309590098893A /* page_0013.jpeg in Resources */,
 				71D1A36B2074FBC800C83B63 /* Logo-Top.png in Resources */,
+				717D007620B3138C0098893A /* Balloon3.png in Resources */,
+				717D006A20B312C30098893A /* MainMode-IMAGE.png in Resources */,
 				7186DE0C1E4DBF5F00F71F0C /* billiardwin.ped in Resources */,
+				717D009A20B440F00098893A /* Main-Button-Picker-HICONTRAST.png in Resources */,
+				717D005720B309940098893A /* 2 Form.png in Resources */,
+				717D003320B309620098893A /* Login-Button-Signup.png in Resources */,
+				717D001A20B309590098893A /* page_0015.jpeg in Resources */,
+				717D003E20B309750098893A /* Sound-ON.png in Resources */,
+				717D002A20B309590098893A /* HighContrast7.png in Resources */,
+				717D005C20B309940098893A /* 6 Settings.png in Resources */,
 				718787B42098A251000DD8EC /* 01droom.wav in Resources */,
+				717D009020B440D90098893A /* PEP-App-ACTIVE.png in Resources */,
+				717D002220B309590098893A /* ac45b2_29230858a5974e16b462e4fed7c5afcf_mv2.jpg in Resources */,
 				718787B02098A251000DD8EC /* 01Ballon.wav in Resources */,
 				7186DDEB1E4DBF2400F71F0C /* LoginViewController.xib in Resources */,
+				717D006820B312C30098893A /* MainMode-BOTH.png in Resources */,
+				717D002620B309590098893A /* HighContrast1.png in Resources */,
 				7186DDF51E4DBF4100F71F0C /* Croquet ball drop bounce cement_BLASTWAVEFX_29317.mp3 in Resources */,
 				718E215C1E51E43000E8357B /* icon-120.png in Resources */,
 				71D1A3662074FBC800C83B63 /* Mercury-Vertical.png in Resources */,
 				7186DE971E4DBFA400F71F0C /* BilliardBreathAppIcon29x29.png in Resources */,
 				71693B90206937D3009F14EA /* BilliardBreath1024X1024.png in Resources */,
+				717D001E20B309590098893A /* HighContrast2.png in Resources */,
 				718E215A1E51DD0300E8357B /* LaunchScreen.storyboard in Resources */,
 				71D1A36D2074FBC800C83B63 /* Logo-Middle.png in Resources */,
 				7186DDF81E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.wav in Resources */,
+				717D007920B3138D0098893A /* Balloon4.png in Resources */,
+				717D009320B440D90098893A /* Info-INACTIVE.png in Resources */,
 				71D1A3582074F8F000C83B63 /* bell.wav in Resources */,
+				717D007B20B3138D0098893A /* Balloon2.png in Resources */,
 				71D1A36C2074FBC800C83B63 /* MainBackground.png in Resources */,
+				717D005820B309940098893A /* 7 PEP APP.png in Resources */,
+				717D005920B309940098893A /* 5 Users.png in Resources */,
+				717D007A20B3138D0098893A /* Balloon7.png in Resources */,
+				717D009620B440D90098893A /* Info-ACTIVE.png in Resources */,
+				717D004320B309750098893A /* Main-Background.png in Resources */,
+				717D004420B309750098893A /* Bluetooth-ON.png in Resources */,
+				717D009120B440D90098893A /* Users-ACTIVE.png in Resources */,
 				718787AE2098A251000DD8EC /* 01bell synth.wav in Resources */,
+				717D00A520B44FC90098893A /* Settings-Background.png in Resources */,
 				718787AB2098A251000DD8EC /* 01sirene fluit.wav in Resources */,
+				717D007820B3138C0098893A /* Balloon6.png in Resources */,
+				717D003F20B309750098893A /* Main-MOCKUP.png in Resources */,
+				717D006420B309CA0098893A /* Settings.png in Resources */,
 				71D1A3692074FBC800C83B63 /* Logo-Full.png in Resources */,
 				718787AA2098A251000DD8EC /* 01 xylofoon.wav in Resources */,
 				71D1A3672074FBC800C83B63 /* PeakHoldArrow.png in Resources */,
 				7186DE2D1E4DBF7100F71F0C /* UserListViewController.xib in Resources */,
+				717D003420B309620098893A /* Login-Background.png in Resources */,
 				718787B22098A251000DD8EC /* 01Toy Piano.wav in Resources */,
+				717D006120B309CA0098893A /* PEP-App.png in Resources */,
+				717D009220B440D90098893A /* Settings-ACTIVE.png in Resources */,
 				7186DDD01E4DBE0D00F71F0C /* Main.storyboard in Resources */,
 				7186DE141E4DBF5F00F71F0C /* Images.xcassets in Resources */,
 				7186DE111E4DBF5F00F71F0C /* GameViewController.xib in Resources */,
 				718787AC2098A251000DD8EC /* 01Bas slide.wav in Resources */,
-				71A74F5720AB5A970097E8C9 /* Users in Resources */,
 				7186DE9D1E4DBFA400F71F0C /* BilliardBreathAppIcon80x80.png in Resources */,
+				717D004220B309750098893A /* Bluetooth-OFF.png in Resources */,
 				71D1A35C2074F8F000C83B63 /* bell.mp3 in Resources */,
 				710BDDE9207D1DFE00B1E393 /* PickPhotoButton.png in Resources */,
+				717D002320B309590098893A /* HighContrast4.png in Resources */,
+				717D005620B309940098893A /* 3 Navigation bar.png in Resources */,
+				717D002020B309590098893A /* HighContrast6.png in Resources */,
+				717D00A420B44FC90098893A /* Settings-Button-EXHALE.png in Resources */,
+				717D004120B309750098893A /* Sound-OFF.png in Resources */,
+				717D008F20B440D90098893A /* Settings-INACTIVE.png in Resources */,
+				717D003620B309620098893A /* Login-Button-Login.png in Resources */,
+				717D001D20B309590098893A /* page_0007.jpeg in Resources */,
 				71D1A3522074F8B700C83B63 /* UsersScreenBackground.png in Resources */,
+				717D002820B309590098893A /* HighContrast8.png in Resources */,
 				7186DEB21E4DC59F00F71F0C /* Bluetooth-DISCONNECTED.png in Resources */,
+				717D007520B3138C0098893A /* Balloon0.png in Resources */,
+				717D007420B3138C0098893A /* Balloon8.png in Resources */,
 				7186DE981E4DBFA400F71F0C /* BilliardBreathAppIcon40x40.png in Resources */,
 				7187879E2097862F000DD8EC /* 01Ballon.wav in Resources */,
 				7186DE131E4DBF5F00F71F0C /* GraphViewController.xib in Resources */,
+				717D004020B309750098893A /* Main-Project.png in Resources */,
 				7186DE991E4DBFA400F71F0C /* BilliardBreathAppIcon50x50.png in Resources */,
+				717D002920B309590098893A /* HighContrast10.png in Resources */,
+				717D009520B440D90098893A /* PEP-App-INACTIVE.png in Resources */,
 				71D1A3682074FBC800C83B63 /* StatsButton.png in Resources */,
+				717D009920B440F00098893A /* Main-Button-Picker-ALBUM.png in Resources */,
 				7186DEB11E4DC59F00F71F0C /* Bluetooth-CONNECTED.png in Resources */,
 				7186DE9C1E4DBFA400F71F0C /* BilliardBreathAppIcon76x76.png in Resources */,
+				717D006920B312C30098893A /* MainMode-BALLOON.png in Resources */,
+				717D002E20B309590098893A /* page_0011.jpeg in Resources */,
 				7186DE0D1E4DBF5F00F71F0C /* Crowd_cheer6.wav in Resources */,
 				71D1A36A2074FBC800C83B63 /* Menu-Settings.png in Resources */,
 				7186DEA31E4DBFA400F71F0C /* BilliardBreathAppIcon167x167.png in Resources */,
+				717D007C20B3138D0098893A /* Balloon5.png in Resources */,
+				717D001C20B309590098893A /* stock-vector-cartoon-zebra-for-babies-and-little-kids-vector-picture-isolated-on-white-background-124275886.jpg in Resources */,
 				718787AF2098A251000DD8EC /* 001schuiffluit.wav in Resources */,
 				710BDDF1207E5B9400B1E393 /* SettingsViewController.xib in Resources */,
-				71A74F5920AB5B1C0097E8C9 /* Main in Resources */,
+				717D00A220B44FC90098893A /* Settings-Button-INHALE.png in Resources */,
+				717D002B20B309590098893A /* page_0003.jpeg in Resources */,
 				7186DE9F1E4DBFA400F71F0C /* BilliardBreathAppIcon114x114.png in Resources */,
+				717D006220B309CA0098893A /* Users.png in Resources */,
+				717D00A320B44FC90098893A /* Settings-MOCKUP.png in Resources */,
+				717D005A20B309940098893A /* 1 Background.png in Resources */,
 				7186DE9B1E4DBFA400F71F0C /* BilliardBreathAppIcon72x72.png in Resources */,
+				717D006320B309CA0098893A /* Help.png in Resources */,
+				717D002120B309590098893A /* 530d4ba369a92997d3a85ac1cc9f927d.jpg in Resources */,
+				717D002720B309590098893A /* HighContrast5.png in Resources */,
 				71D1A35A2074F8F000C83B63 /* bell_3.png in Resources */,
+				717D001B20B309590098893A /* page_0017.jpeg in Resources */,
+				717D00A620B44FC90098893A /* Settings-Project.png in Resources */,
 				7186DEDF1E51CA2300F71F0C /* DefaultPortrait.png in Resources */,
 				7186DDF71E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.mp3 in Resources */,
 				71D1A65A207523C900C83B63 /* giraffe.jpg in Resources */,
-				71A74F5520AB0B510097E8C9 /* Settings in Resources */,
 				71D1A3592074F8F000C83B63 /* bell_2.png in Resources */,
 				7186DEA11E4DBFA400F71F0C /* BilliardBreathAppIcon144x144.png in Resources */,
 				718787B12098A251000DD8EC /* 01spaceship.wav in Resources */,
+				717D002420B309590098893A /* HighContrast9.png in Resources */,
+				717D005B20B309940098893A /* 4 Info.png in Resources */,
 				710BDDEB207D24B600B1E393 /* giraffe-614141_1280.jpg in Resources */,
 				7186DE961E4DBFA400F71F0C /* BilliardBreath1024X1024.jpg in Resources */,
 				718787B32098A251000DD8EC /* 01harp.wav in Resources */,

@@ -93,6 +93,8 @@
     if (!gamewon) {
         if (self.totalBallsAttempted>=self.totalBalls) {
             [self.delegate gameEnded:self];
+            
+            NSLog(@"Game was completed but not won");
             return -1;
         }
     }

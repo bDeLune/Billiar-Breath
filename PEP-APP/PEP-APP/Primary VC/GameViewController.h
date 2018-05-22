@@ -69,6 +69,9 @@
 -(void)foreground;
 -(void)setLabels;
 
+@property (weak, nonatomic) IBOutlet UIImageView *bluetoothIcon; 
+@property (weak, nonatomic) IBOutlet UIButton *soundIcon;
+
 - (IBAction)toUsersScreen:(id)sender;
 -(IBAction)exitGameScreen:(id)sender;
 -(IBAction)toggleDirection:(id)sender;

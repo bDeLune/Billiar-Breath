@@ -129,15 +129,16 @@
 -(void)btleManagerConnected:(BTLEManager *)manager
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.btOnOfImageView setImage:[UIImage imageNamed:@"Bluetooth-CONNECTED"]];
+       // [self.btOnOfImageView setImage:[UIImage imageNamed:@"Bluetooth-CONNECTED"]];
+        [self.bluetoothIcon setImage:[UIImage imageNamed:@"Bluetooth-ON"]];
     });
 }
 
 -(void)btleManagerDisconnected:(BTLEManager *)manager
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        
-        [self.btOnOfImageView setImage:[UIImage imageNamed:@"Bluetooth-DISCONNECTED"]];
+        //[self.btOnOfImageView setImage:[UIImage imageNamed:@"Bluetooth-DISCONNECTED"]];
+        [self.bluetoothIcon setImage:[UIImage imageNamed:@"Bluetooth-OFF"]];
     });
 }
 
@@ -187,7 +188,9 @@
         //self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 160, 450, 225)];
         selectedBallCount = 3;
         //self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 160, 450, 225) withBallCount:selectedBallCount];
-        self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 100, 250,125) withBallCount:selectedBallCount];
+        self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(45, 100, 650,325) withBallCount:selectedBallCount];
+        
+
         
        // -(id)initWithFrame:(CGRect)frame withBallCount:(int)ballCount{
        // self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 260, 650, 325)];
@@ -210,9 +213,13 @@
         [self.btleManager setTreshold:60];
         [self startSession];
         
-        self.btOnOfImageView=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.bounds.size.width-230, 30, 100, 100)];
-        [self.btOnOfImageView setImage:[UIImage imageNamed:@"Bluetooth-DISCONNECTED"]];
-        [self.view addSubview:self.btOnOfImageView];
+        
+        [self.bluetoothIcon setImage:[UIImage imageNamed:@"Bluetooth-OFF"]];
+    
+        //change add in storyboard0
+       // self.btOnOfImageView=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.bounds.size.width-230, 30, 100, 100)];
+        //[self.btOnOfImageView setImage:[UIImage imageNamed:@"Bluetooth-DISCONNECTED"]];
+       // [self.view addSubview:self.btOnOfImageView];
         
         ///image
         sketchamount=0;
@@ -334,6 +341,19 @@
     }
     return _managedObjectContext;
 }
+- (IBAction)imagePickerPressed:(id)sender {
+    
+    NSLog(@"image picker pressed");
+    
+    
+}
+
+- (IBAction)contrastPickerPressed:(id)sender {
+    NSLog(@"contrastPickerPressed pressed");
+    
+    
+    
+}
 
 - (void)viewDidLoad
 {
@@ -418,18 +438,20 @@
 
 -(IBAction)toggleDirection:(id)sender
 {
+    
+    NSLog(@"toggling direction");
     switch (self.midiController.toggleIsON) {
         case 0:
             self.midiController.toggleIsON=YES;
             //  midiController.currentdirection=midiinhale;
-            [self.toggleDirectionButton setBackgroundImage:[UIImage imageNamed:@"BreathDirectionINHALE.png"] forState:UIControlStateNormal];
+            [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
             [[NSUserDefaults standardUserDefaults]setObject:@"inhale" forKey:@"direction"];    // Do any additional setup after loading the view from its nib.
             wasExhaling = false;
             break;
         case 1:
             self.midiController.toggleIsON=NO;
             
-            [self.toggleDirectionButton setBackgroundImage:[UIImage imageNamed:@"BreathDirectionEXHALE.png"] forState:UIControlStateNormal];
+            [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
             //  midiController.currentdirection=midiexhale;
             
             [[NSUserDefaults standardUserDefaults]setObject:@"exhale" forKey:@"direction"];    // Do any additional setup after loading the view from its nib.
@@ -456,7 +478,7 @@
     
     NSLog(@"Current game mode %u", self.currentGameType);
     
-    [self.toggleGameModeButton setBackgroundImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];
+    [self.toggleGameModeButton setImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];
     
     [self resetGame:nil];
 }
@@ -465,27 +487,34 @@
 {
     NSString  *modeString;
     
-    NSLog(@"changing mode %@", modeString);
+    NSLog(@"changing mode %d", mode);
     
     //change add new images
     switch (mode) {
         case gameTypeDuo:
            // modeString=@"ModeButtonDuo";
-            modeString=@"ModeButtonSEQUENCE";
+           // modeString=@"ModeButtonSEQUENCE";
+            NSLog(@"changing mode BALLOON");
+            modeString=@"MainMode-BALLOON";
             break;
             
         case gameTypeImage:
            // modeString=@"ModeButtonImage";
-             modeString=@"ModeButtonSEQUENCE";
+            // modeString=@"ModeButtonSEQUENCE";
+            NSLog(@"changing mode gameTypeImage");
+            modeString=@"MainMode-IMAGE";
             break;
             
         case gameTypeBalloon:
            // modeString=@"ModeButtonBalloon";
-             modeString=@"ModeButtonSEQUENCE";
+            // modeString=@"ModeButtonSEQUENCE";
+            NSLog(@"changing mode gameTypeBalloon");
+            modeString=@"MainMode-BOTH";
             break;
         case gameTypeTest:
            // modeString=@"ModeButtonTest";
-             modeString=@"ModeButtonSEQUENCE";
+             NSLog(@"changing mode gameTypeTest");
+             modeString=@"MainMode-BALLOON";
             break;
             
         default:
@@ -495,7 +524,7 @@
 }
 
 -(IBAction)presentSettings:(id)sender
-{
+{   //REMOVE
     int mode=currentDifficulty;
     
     mode++;
@@ -802,7 +831,6 @@
     if (self.sequenceGameController.allowNextBall) {
         self.sequenceGameController.halt=YES;
         
-        
         [[GCDQueue mainQueue]queueBlock:^{
             NSString  *durationtext=[NSString stringWithFormat:@"%0.1f",self.sequenceGameController.time];
             [self.durationLabel setText:durationtext];
@@ -882,11 +910,16 @@
     if (globalSoundActivated == 1){
         NSLog(@"muting sound");
         globalSoundActivated = 0;
+        UIImage *soundOnImage = [UIImage imageNamed:@"Sound-ON.png"];
+         [self.soundIcon setImage:soundOnImage forState:UIControlStateNormal];
         //   [self.billiardViewController setAudioMute: globalSoundActivated];     //change: make available
         [self.sequenceGameController setAudioMute: globalSoundActivated];
     }else if(globalSoundActivated == 0){
         NSLog(@"unmuting sound");
         globalSoundActivated = 1;
+        UIImage *soundOffImage = [UIImage imageNamed:@"Sound-OFF.png"];
+        [self.soundIcon setImage:soundOffImage forState:UIControlStateNormal];
+        //[self.soundIcon setImage:[UIImage imageNamed:@"Bluetooth-OFF"]];
     //    [self.billiardViewController setAudioMute: globalSoundActivated];
         [self.sequenceGameController setAudioMute: globalSoundActivated];
     }
@@ -1027,6 +1060,7 @@
 
 -(void)startEffects
 {
+    //change replace with bursting effect
     particleEffect = [UIEffectDesignerView effectWithFile:@"billiardwin.ped"];
     //  CGRect frame=particleEffect.frame;
     particleEffect.frame=self.view.frame;
@@ -1042,6 +1076,7 @@
 
 -(void)killSparks
 {
+    //kill bursting effect
     dispatch_async(dispatch_get_main_queue(), ^{
         [particleEffect removeFromSuperview];
         particleEffect=nil;
@@ -1066,7 +1101,7 @@
 }
 
 -(void)setTargetScore
-{
+{   //REMOVE
     NSString   *name=self.gameUser.userName;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSManagedObjectContext *context = self.managedObjectContext;
@@ -1150,7 +1185,7 @@
 
 -(void) playSound {
     
-    NSLog(@"Should be playing sound!!!!!");
+    NSLog(@"Should be playing bursting sound!!!!!");
     
     @try {
         NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"Crowd_cheer6" ofType:@"wav"];
@@ -1185,7 +1220,7 @@
 }
 
 -(void)addTestScores
-{
+{   //POSSIBLY REMOVE
     for (int i=0; i<30; i++) {
         
         Session  *sess=[[Session alloc]init];
@@ -1378,14 +1413,14 @@
     //NSLog(@"stillImageFilter %@",stillImageFilter);
    // _animationrate = 6 - _animationrate;
     
-    NSLog(@"ESTIMATED TIME OF ANIMATION %f", 10 - _animationrate);
-    NSLog(@"FL Velocity %f", fVel);
+    //NSLog(@"ESTIMATED TIME OF ANIMATION %f", 10 - _animationrate);
+   // NSLog(@"FL Velocity %f", fVel);
     
-    NSLog(@"OUTPUT %f",targetRadius+((rate/500)*_animationrate));
-    NSLog(@"_animationrate %f",_animationrate);
-    NSLog(@"TARGETRADIUS  - %f",targetRadius);
-    NSLog(@"rate/500 -  %f",rate/500);
-    NSLog(@"((rate/500)*_animationrate) -  %f",((rate/500)*_animationrate));
+   // NSLog(@"OUTPUT %f",targetRadius+((rate/500)*_animationrate));
+   // NSLog(@"_animationrate %f",_animationrate);
+   // NSLog(@"TARGETRADIUS  - %f",targetRadius);
+   // NSLog(@"rate/500 -  %f",rate/500);
+    //NSLog(@"((rate/500)*_animationrate) -  %f",((rate/500)*_animationrate));
     
     if (isaccelerating)
     {
@@ -1500,6 +1535,8 @@
     //image set
     //dispatch_async(dispatch_get_main_queue(), ^{
     sourcePicture = [[GPUImagePicture alloc] initWithImage:aImage smoothlyScaleOutput:YES];
+    
+
     stillImageFilter = [self filterForIndex:0];
     //imageView = [[GPUImageView alloc]initWithFrame:self.view.frame];
     // [self.view addSubview:imageView];
@@ -1508,6 +1545,10 @@
     imageView = [[GPUImageView alloc]initWithFrame:self.imageFilterView.frame];
     //[self.view insertSubview:imageView atIndex:0];
     [self.imageFilterView insertSubview:imageView atIndex:0];
+    
+    //check change
+    self.imageFilterView.layer.zPosition = 5;
+    imageView.layer.zPosition = 5;
     
     [sourcePicture addTarget:stillImageFilter];
     [stillImageFilter addTarget:imageView];

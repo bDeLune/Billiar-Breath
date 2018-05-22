@@ -78,6 +78,8 @@
         [self setDefaults];
         currentYPosition=frame.origin.y;
         UIImageView  *img=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Ball"]];
+        //check change
+       
         [self addSubview:img];
     }
     return self;

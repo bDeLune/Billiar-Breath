@@ -80,6 +80,12 @@
         self.animators=[NSMutableArray new];
         
         selectedGameBallCount = 3;
+        
+        //check change
+        self.view.layer.zPosition = 3;
+
+        
+        
         // Set the timing functions that should be used to calculate interpolation between the first two keyframes
        // [self makeBalls];
     }
@@ -100,6 +106,9 @@
         self.animators=[NSMutableArray new];
         
         selectedGameBallCount = ballCount;
+        
+        //check change
+        self.view.layer.zPosition = 3;
         // Set the timing functions that should be used to calculate interpolation between the first two keyframes
         // [self makeBalls];
     }
@@ -120,6 +129,8 @@
         startx+=BALL_RADIUS+10;
     }
     
+    //change: make shadow balloons here
+    
     NSLog(@"Creating Balls");
     
     [self animateBallStart];
@@ -130,11 +141,11 @@
 {
     for (ItemCount i=0; i<[self.balls count]; i++) {
         
-      //NSLog(@"ANIMATE BALL START i %lu", i);
-      //NSLog(@"[self.balls count] %lu", (unsigned long)[self.balls count]);
+        //NSLog(@"ANIMATE BALL START i %lu", i);
+        //NSLog(@"[self.balls count] %lu", (unsigned long)[self.balls count]);
         BilliardBall  *ball=[self.balls objectAtIndex:i];
         ball.alpha=0;
-     //[[GCDQueue mainQueue]queueBlock:^{
+        //[[GCDQueue mainQueue]queueBlock:^{
         CALayer *layer= ball.layer;
         [CATransaction begin];
         [CATransaction setValue:[NSNumber numberWithFloat:0.750] forKey:kCATransactionAnimationDuration];
@@ -148,8 +159,41 @@
         [ball.animation setDelegate:ball];
         ball.animation.beginTime = CACurrentMediaTime()+(0.1*i); ///WAS 0.1
         [layer addAnimation:ball.animation forKey:@"position"];
-       [CATransaction commit];
-       [ball setCenter:targetCenter];
+        [CATransaction commit];
+        [ball setCenter:targetCenter];
+        
+        //added animation
+        //find starting point of animation
+        //find speed set by user - this is the animation duration
+        //find duration of current blow (maybe not essential)
+        //if user stops blowing stop animation and set image to current image
+        //move to next ball
+        //decide if still a win even if the all balls arent completed
+        
+        //on final balloon, add extra frame to the animation (blow up)
+        
+        NSLog(@"animate ball start");
+        
+        CAKeyframeAnimation *keyframeAnimation = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
+        keyframeAnimation.values =  [NSArray arrayWithObjects:
+                                     [UIImage imageNamed:@"images.jpg"],
+                                     [UIImage imageNamed:@"images1.jpg"],
+                                     [UIImage imageNamed:@"images5.jpg"],
+                                     [UIImage imageNamed:@"index3.jpg"],
+                                     nil];
+        
+        keyframeAnimation.repeatCount = 1.0f;
+        keyframeAnimation.duration = 1; //change: use value set by user breath length
+        keyframeAnimation.delegate = self;
+        
+        //    keyframeAnimation.removedOnCompletion = YES;
+        keyframeAnimation.removedOnCompletion = NO;
+        keyframeAnimation.fillMode = kCAFillModeForwards;
+        
+        [layer addAnimation:keyframeAnimation
+                     forKey:@"girlAnimation"];
+
+        
    ///    } afterDelay:0.1];
     }
   ///   NSLog(@"COMPLETED ANIMATION!");
@@ -291,11 +335,14 @@
     {
         acceleration=0.05;
     }
+    
     [UIView animateWithDuration:0.1 animations:^{
         [ball setCenter:point];
     }];
+    
     NSLog(@"trying to shoot balls to top2");
 }
+
 
 - (void)bounce
 {
@@ -306,7 +353,7 @@
 -(void)pushBallsWithVelocity:(float)velocity
 {
     
-    //change: function may not be necessarry
+    //change: remove+g
     float maxVelocity=30;
     
     NSString * difficulty=[[NSUserDefaults standardUserDefaults]objectForKey:@"difficulty"];

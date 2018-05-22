@@ -44,10 +44,9 @@
     if ([self.usernameTextField respondsToSelector:@selector(setAttributedPlaceholder:)]) {
         UIColor *color = [UIColor lightGrayColor];
         self.usernameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter a username" attributes:@{NSForegroundColorAttributeName: color}];
-    } else {
-        NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
-        // TODO: Add fall-back code to set placeholder color.
+        //lang change
     }
+    
     [super viewDidLoad];
     
     
