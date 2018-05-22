@@ -14,6 +14,9 @@
     NSDate *start;
     float currentYPosition;
     BOOL  isstopping;
+    int timeCounter;
+    NSTimer *timer;
+    
 }
 
 @end
@@ -60,12 +63,62 @@
 
 -(void)blowingBegan
 {
+    
+    NSLog(@"BLOWING BEGAN BALLOONS!!!!");
     isstopping=NO;
     isaccelerating=YES;
+    
+    timeCounter = 0;
+    [NSTimer scheduledTimerWithTimeInterval:.5 target:self selector:@selector(timekeeper) userInfo:nil repeats:YES];
+    
+   
+}
+
+- (void)timekeeper{
+    
+    timeCounter += .5;
+    int selectedSpeedSetting = 30;
+    int percentageComplete = (timeCounter/selectedSpeedSetting)*100;
+    
+    NSLog(@"timeCounter = %d", timeCounter);
+    NSLog(@"percentageTowardsCompletion = %d", percentageComplete);
+    
+    if (percentageComplete > 0 && percentageComplete < 12.5){
+        [self.delegate setBalloonStage:self atStage: 1];
+         self.currentBalloonImage.image = [UIImage imageNamed:@"Balloon1"];
+    }else if (percentageComplete > 12.5 && percentageComplete < 25){
+        [self.delegate setBalloonStage:self atStage: 2];
+         self.currentBalloonImage.image = [UIImage imageNamed:@"Balloon2"];
+    }else if (percentageComplete > 25 && percentageComplete < 37.5){
+        [self.delegate setBalloonStage:self atStage: 3];
+         self.currentBalloonImage.image = [UIImage imageNamed:@"Balloon3"];
+    }else if(percentageComplete > 50 && percentageComplete < 62.5){
+        [self.delegate setBalloonStage:self atStage: 4];
+         self.currentBalloonImage.image = [UIImage imageNamed:@"Balloon4"];
+    }else if(percentageComplete > 62.5 && percentageComplete < 75){
+        [self.delegate setBalloonStage:self atStage: 5];
+         self.currentBalloonImage.image = [UIImage imageNamed:@"Balloon5"];
+    }else if(percentageComplete > 75 && percentageComplete < 87.5){
+        [self.delegate setBalloonStage:self atStage: 6];
+         self.currentBalloonImage.image = [UIImage imageNamed:@"Balloon6"];
+    }else if(percentageComplete > 87.5 && percentageComplete < 100){
+        [self.delegate setBalloonStage:self atStage: 7];
+         self.currentBalloonImage.image = [UIImage imageNamed:@"Balloon7"];
+    }else if(percentageComplete == 100){
+        [self.delegate setBalloonStage:self atStage: 8];
+         self.currentBalloonImage.image = [UIImage imageNamed:@"Balloon8"];
+    }
+    
+    //change - make more efficient
+    
+      //  [[GCDQueue mainQueue]queueBlock:^{
+       //     [self.delegate balloonReachedFinalTarget:self];
+       // } afterDelay:0.1];
 }
 
 -(void)blowingEnded
 {
+    [timer invalidate];
     isaccelerating=NO;
 }
 
@@ -79,12 +132,12 @@
         currentYPosition=frame.origin.y;
        // UIImageView  *img=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Balloon0"]];
         
-        UIImageView* img = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 65, 65)];
-        img.image = [UIImage imageNamed:@"Balloon0"];
+        self.currentBalloonImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 65, 65)];
+        self.currentBalloonImage.image = [UIImage imageNamed:@"Balloon0"];
         
         //check change
         
-        [self addSubview:img];
+        [self addSubview:self.currentBalloonImage];
     }
     return self;
 }
@@ -135,7 +188,7 @@
 -(void)animateForPower
 {
     // [self setForce:_midiSource.velocity*100];
-    ///NSLog(@"FORCE %f", force);
+    NSLog(@"ANIMATE FOR POWER %f", force);
     
     if (isaccelerating) {
         // force+=500;
@@ -153,6 +206,8 @@
     velocity = distance / time;
     
     time = distance / velocity;
+    
+    NSLog(@"time %f", time);
     
     distance= ceilf((0.5)* (acceleration * powf(time, 2)));
     CGRect frame=self.frame;

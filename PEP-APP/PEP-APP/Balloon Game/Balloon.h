@@ -9,6 +9,7 @@
 @class Balloon;
 @protocol BalloonProtocol <NSObject>
 -(void)balloonReachedFinalTarget:(Balloon*)ball;
+-(void)setBalloonStage:(Balloon*)balloon atStage:(int)stage;
 //-(void)setAudioMute:(BOOL) muteSettings;
 @end
 @interface Balloon : UIView <NSObject, CAAnimationDelegate>//ADDED
@@ -20,7 +21,7 @@
 @property BOOL animationRunning;
 @property(nonatomic,weak)UIImageView  *arrow;
 @property int gaugeHeight;
-
+@property UIImageView* currentBalloonImage;
 -(void)start;
 -(void)stop;
 -(void)setForce:(float)pforce;

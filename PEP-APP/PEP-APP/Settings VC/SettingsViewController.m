@@ -1,5 +1,6 @@
 #import "ViewController.h"
 #import "SettingsViewController.h"
+#import "infoViewController.h"
 #import "BTLEManager.h"
 #import "Gauge.h"
 #import <QuartzCore/QuartzCore.h>
@@ -229,7 +230,7 @@
   //  }];
   //
     
-                        [self.delegate exitSettingsViewController];
+    [self.delegate exitSettingsViewController];
 }
 
 //-(void)valueASend:(NSInteger)index
@@ -485,12 +486,31 @@
   //  [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
 }
 - (IBAction)toInfoView:(id)sender {
+    
+    NSLog(@"Going to info view");
+    
+    infoViewController *infoVC = [[infoViewController alloc]initWithNibName:@"infoViewController" bundle:nil];
+    
+    if (infoVC){
+        NSLog(@"instantiating infoVC");
+        [self presentViewController:infoVC animated:YES completion:nil];
+    }else{
+        NSLog(@"Cant instantiate infoVC");
+    }
 }
 
 - (IBAction)toUsersView:(id)sender {
-}
-
-- (IBAction)toMainView:(id)sender {
+    
+    NSLog(@"Moving to users screen");
+ //   self.userList.sharedPSC=self.sharedPSC ;
+   // [self.userList getListOfUsers];
+ //   [UIView transitionFromView:self.view toView:self.navcontroller.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished){
+        
+ //       self.userList.sharedPSC=self.sharedPSC;
+ //       self.userList.delegate=self;
+        
+//    }];
+    
 }
 
 -(void)simulateBlow

@@ -41,7 +41,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <imageView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="7QT-wR-PVR">
-                    <rect key="frame" x="0.0" y="240" width="779" height="534"/>
+                    <rect key="frame" x="0.0" y="123" width="779" height="651"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <imageView opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Main-Background.png" id="LZu-SQ-bhA">
@@ -180,12 +180,16 @@
                     <rect key="frame" x="41" y="781" width="139" height="122"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Image Picker" image="Main-Button-Picker-ALBUM.png"/>
+                    <connections>
+                        <action selector="openPhotoPicker:" destination="-1" eventType="touchUpInside" id="PEq-3z-fo9"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="r0I-hC-pUN">
                     <rect key="frame" x="232" y="781" width="129" height="122"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="High Quality Image Contrast" image="Main-Button-Picker-HICONTRAST.png"/>
                     <connections>
+                        <action selector="openHQContrastPhoto:" destination="-1" eventType="touchUpInside" id="UgQ-JC-cGc"/>
                         <action selector="photoPicker:" destination="-1" eventType="touchUpInside" id="NnX-gJ-ljy"/>
                     </connections>
                 </button>

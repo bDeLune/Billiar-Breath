@@ -229,8 +229,7 @@
 
         //picselect.frame=CGRectMake(0, self.view.frame.size.height-120, 108, 58);
         
-        
-        [self.photoPickerButton addTarget:self action:@selector(photoButtonLibraryAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.photoPickerButton addTarget:self action:@selector(photoButtonLibraryAction) forControlEvents:UIControlEventTouchUpInside];
        // [self.view addSubview:picselect];
         [self.photoPickerButton setBackgroundImage:[UIImage imageNamed:@"PickPhotoButton.png"] forState:UIControlStateNormal];
         self.capturedImages = [NSMutableArray array];
@@ -339,6 +338,17 @@
 }
 
 
+- (IBAction)openPhotoPicker:(id)sender {
+    
+    [self photoButtonLibraryAction];
+}
+
+
+- (IBAction)openHQContrastPhoto:(id)sender {
+    
+    [self photoButtonLibraryAction];
+}
+
 - (NSManagedObjectContext *)managedObjectContext {
     
     if (_managedObjectContext != nil) {
@@ -445,6 +455,7 @@
     NSLog(@"Go to settings");
     
     self.currentGameType= gameTypeTest;     //change: check if correct
+    [self resetGame:nil];
     [self.delegate toSettingsScreen];
 }
 
@@ -1316,7 +1327,7 @@
     // [self.delegate didFinishWithCamera];    // tell our delegate we are finished with the picker
 }
 
-- (IBAction)photoButtonLibraryAction:(id)sender
+- (void)photoButtonLibraryAction
 {
     NSLog(@"PHOTO LIBRARY ACTION");
     
@@ -1342,8 +1353,6 @@
     [self.btleMager setRangeReduction:value];
     //CHECK TEMP
     currentBreathLength = [NSNumber numberWithFloat: value];
-    
-    
     NSLog(@"inner setBTBoost to %f",value );
 }
 
