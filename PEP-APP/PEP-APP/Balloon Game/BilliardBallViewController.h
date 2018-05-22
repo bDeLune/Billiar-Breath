@@ -1,12 +1,13 @@
 #import <UIKit/UIKit.h>
 #import "BilliardBall.h"
+#import "Balloon.h"
 //#import "PowerGame.h"
 //#import "DurationGame.h"
 #import "AbstractGame.h"    //change: 
 #import "Game.h"
 #import "GPUImage.h"
 
-@interface BilliardBallViewController : UIViewController<BilliardBallProtocol>
+@interface BilliardBallViewController : UIViewController<BilliardBallProtocol, BalloonProtocol>
 -(id)initWithFrame:(CGRect)frame;
 -(id)initWithFrame:(CGRect)frame withBallCount:(int)ballCount;
 -(void)reset;

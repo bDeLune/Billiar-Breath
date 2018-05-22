@@ -7,6 +7,7 @@
 #import "User.h"
 #import "BilliardBallViewController.h"
 #import "BilliardBall.h"
+#import "Balloon.h"
 #import "Session.h"
 #import "SequenceGame.h"
 //#import "PowerGame.h"
@@ -186,12 +187,11 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         //self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 160, 450, 225)];
-        selectedBallCount = 3;
+        selectedBallCount = 20;
         //self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 160, 450, 225) withBallCount:selectedBallCount];
-        self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(45, 100, 650,325) withBallCount:selectedBallCount];
+        self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(10, 0, 130,220) withBallCount:selectedBallCount];
         
 
-        
        // -(id)initWithFrame:(CGRect)frame withBallCount:(int)ballCount{
        // self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 260, 650, 325)];
         self.midiController=[[MidiController alloc]init];
@@ -386,6 +386,8 @@
     targetRadius=0;
     defaultScale=1.5;
     defaultRadius=0;
+    
+   
 }
 
 - (void)didReceiveMemoryWarning

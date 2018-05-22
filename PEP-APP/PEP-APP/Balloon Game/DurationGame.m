@@ -1,11 +1,13 @@
 #import "DurationGame.h"
 #import "BilliardBall.h"
+#import "Balloon.h"
 @interface DurationGame ()
 {
     AVAudioPlayer *audioPlayer;
 }
 @property(nonatomic,strong)NSDate  *startTime;
 @property(nonatomic,weak)BilliardBall  *currentBilliardBall;
+@property(nonatomic,weak)BilliardBall  *currentBalloon;
 @end
 
 @implementation DurationGame

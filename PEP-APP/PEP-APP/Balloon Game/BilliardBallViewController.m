@@ -1,12 +1,15 @@
 #import <AVFoundation/AVFoundation.h>
 #import "BilliardBallViewController.h"
 #import "BilliardBall.h"
+#import "Balloon.h"
 #import "CAKeyframeAnimation+AHEasing.h"
 #import "EasingDeclarations.h"
 #import "easing.h"
 #import "GCDQueue.h"
 #define NUM_BALLS  8
 #define BALL_RADIUS  80
+
+#define BALLOON_RADIUS  30
 
 @interface BilliardBallViewController ()<UICollisionBehaviorDelegate>
 {
@@ -18,6 +21,7 @@
     int  selectedGameBallCount;
 }
 @property(nonatomic,strong)  NSMutableArray  *balls;
+@property(nonatomic,strong)  NSMutableArray  *emptyBalloons;
 @property(nonatomic,strong)NSMutableArray  *animators;
 @property int currentBallININdex;
 @end
@@ -103,6 +107,9 @@
         self.view=view;
         self.view.backgroundColor=[UIColor  clearColor];
         self.balls=[NSMutableArray new];
+        
+        self.emptyBalloons=[NSMutableArray new];
+        
         self.animators=[NSMutableArray new];
         
         selectedGameBallCount = ballCount;
@@ -119,17 +126,28 @@
 {
     self.currentBallININdex=0;
    __block int  startx=0;
+    __block int  emptyBalloonstartx=0;
     for (int i=0; i<selectedGameBallCount; i++) {           //change: make balls here
-        BilliardBall *ball=[[BilliardBall alloc]initWithFrame:CGRectMake(startx, 0, BALL_RADIUS, BALL_RADIUS)];
-        [self.balls addObject:ball];
-        ball.gaugeHeight=self.view.bounds.size.height;
-        ball.delegate=self;
+      //  BilliardBall *ball=[[BilliardBall alloc]initWithFrame:CGRectMake(startx, 0, BALL_RADIUS, BALL_RADIUS)];
+       // [self.balls addObject:ball];
+       // ball.gaugeHeight=self.view.bounds.size.height;
+      //  ball.delegate=self;
         // [self addFallAnimationForLayer:ball.layer];
-        [self.view addSubview:ball];
-        startx+=BALL_RADIUS+10;
+      //  [self.view addSubview:ball];
+      //  startx+=BALL_RADIUS+10;
     }
     
-    //change: make shadow balloons here
+    for (int i=0; i<selectedGameBallCount; i++) {           //change: make balls here
+        
+        Balloon *balloon=[[Balloon alloc]initWithFrame:CGRectMake(startx, 0, BALLOON_RADIUS, BALLOON_RADIUS)];
+        [self.balls addObject:balloon];
+        balloon.gaugeHeight=self.view.bounds.size.height;
+        balloon.delegate=self;
+        // [self addFallAnimationForLayer:ball.layer];
+        [self.view addSubview:balloon];
+        startx+=BALLOON_RADIUS+6;
+    }
+    
     
     NSLog(@"Creating Balls");
     
