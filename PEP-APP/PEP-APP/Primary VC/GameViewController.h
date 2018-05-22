@@ -71,15 +71,16 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *bluetoothIcon; 
 @property (weak, nonatomic) IBOutlet UIButton *soundIcon;
+@property (weak, nonatomic) IBOutlet UIButton *photoPickerButton;
+@property (weak, nonatomic) IBOutlet UIButton *HQPhotoPickerButton;
 
-- (IBAction)toUsersScreen:(id)sender;
+-(IBAction)toUsersScreen:(id)sender;
 -(IBAction)exitGameScreen:(id)sender;
 -(IBAction)toggleDirection:(id)sender;
 -(IBAction)toggleGameMode:(id)sender;
 -(IBAction)presentSettings:(id)sender;
 -(IBAction)resetGame:(id)sender;
 //@property (weak, nonatomic) IBOutlet UITabBarItem *changeGameMode;
-
 //@property (weak, nonatomic) IBOutlet UITabBarItem *goToUsersScreen;
 -(IBAction)testButtonDown:(id)sender;
 -(IBAction)testButtonUp:(id)sender;

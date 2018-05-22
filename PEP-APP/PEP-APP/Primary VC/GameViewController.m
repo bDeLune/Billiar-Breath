@@ -53,7 +53,7 @@
     CFTimeInterval lastDrawTime;
     CGFloat drawProgress;
     int inorout;
-    UIButton  *picselect;
+    //UIButton  *picselect;
     UIPopoverController *popover;
     UIImagePickerController *imagePickerController;
     UIButton  *togglebutton;
@@ -212,8 +212,6 @@
         [self.btleManager setRangeReduction:2];
         [self.btleManager setTreshold:60];
         [self startSession];
-        
-        
         [self.bluetoothIcon setImage:[UIImage imageNamed:@"Bluetooth-OFF"]];
     
         //change add in storyboard0
@@ -226,29 +224,41 @@
         self.title = @"Groov";
         self.tabBarItem.image = [UIImage imageNamed:@"first"];
         _animationrate=1;
-        picselect=[UIButton buttonWithType:UIButtonTypeCustom];
+       // picselect=[UIButton buttonWithType:UIButtonTypeCustom];
+        //picselect.frame=CGRectMake(0, self.view.frame.size.height-120, 108, 58);
+
         //picselect.frame=CGRectMake(0, self.view.frame.size.height-120, 108, 58);
         
-        picselect.frame=CGRectMake(0, self.view.frame.size.height-120, 108, 58);
-        [picselect addTarget:self action:@selector(photoButtonLibraryAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:picselect];
-        [picselect setBackgroundImage:[UIImage imageNamed:@"PickPhotoButton.png"] forState:UIControlStateNormal];
+        
+        [self.photoPickerButton addTarget:self action:@selector(photoButtonLibraryAction:) forControlEvents:UIControlEventTouchUpInside];
+       // [self.view addSubview:picselect];
+        [self.photoPickerButton setBackgroundImage:[UIImage imageNamed:@"PickPhotoButton.png"] forState:UIControlStateNormal];
         self.capturedImages = [NSMutableArray array];
     
         imagePickerController = [[UIImagePickerController alloc] init] ;
         imagePickerController.delegate = self;
         currentImageGameSound = @"bell";
         
-        self.gaugeView=[[Gauge alloc]initWithFrame:CGRectMake(670, 365, 40, GUAGE_HEIGHT)];
+        self.gaugeView=[[Gauge alloc]initWithFrame:CGRectMake(170, 165, 40, GUAGE_HEIGHT) ];
         self.gaugeView.gaugedelegate=self;
         
         [self.view addSubview:self.gaugeView];
         
         [self.gaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
         [self.gaugeView start];
+        
+        //must add test gauge
+      //  self.gaugeView=[[Gauge alloc]initWithFrame:CGRectMake(170, 165, 40, GUAGE_HEIGHT)];
+       // self.gaugeView.gaugedelegate=self;
+        
+       // [self.view addSubview:self.gaugeView];
+        
+       // [self.gaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
+      //  [self.gaugeView start];
     }
     return self;
 }
+
 
 //FIND ALLOW BREATH FUNCTION
 -(void)btleManagerBreathBegan:(BTLEManager*)manager{
@@ -1726,6 +1736,7 @@
 -(void)setResitance:(int)pvalue
 {
     NSLog(@"Setting setResitance to %d", pvalue);
+    //maybe remove
     
     switch (pvalue) {
         case 0:

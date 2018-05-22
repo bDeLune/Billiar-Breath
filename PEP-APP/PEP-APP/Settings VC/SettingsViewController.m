@@ -484,6 +484,14 @@
   //  timer=[NSTimer timerWithTimeInterval:0.1 target:self /selector:@selector(simulateBlow) userInfo:nil repeats:YES];
   //  [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
 }
+- (IBAction)toInfoView:(id)sender {
+}
+
+- (IBAction)toUsersView:(id)sender {
+}
+
+- (IBAction)toMainView:(id)sender {
+}
 
 -(void)simulateBlow
 {

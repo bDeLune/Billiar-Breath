@@ -7,6 +7,7 @@
 
 @interface SettingsViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITabBarDelegate>
 {
+    IBOutlet UISlider *speedSlider;
     IBOutlet UISlider *breathLengthSlider;
     IBOutlet UIPickerView *pickerViewB;
     IBOutlet UILabel *settingsStrengthLabel;

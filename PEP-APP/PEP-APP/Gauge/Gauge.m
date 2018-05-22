@@ -32,36 +32,82 @@
 {
     mass=value;
 }
+
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
-        [self setDefaults];
-        
-        displayLink = [CADisplayLink displayLinkWithTarget:self
-                                                  selector:@selector(animate)];
-        
-        start=[NSDate date];
-        animationObject=[[UIView alloc]initWithFrame:self.bounds];
-        [animationObject setBackgroundColor:[UIColor blueColor]];
-        animationObject.layer.cornerRadius=16;
-        [self addSubview:animationObject];
-        
-        isaccelerating=false;
-        self.backgroundColor=[UIColor clearColor];
-        self.layer.cornerRadius=16;
-        
-        mass=1;
-        force=15;
-       /** if (!animationRunning)
-        {
-            [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
-            animationRunning = YES;
-        }**/
+
+            // Initialization code
+            [self setDefaults];
+            displayLink = [CADisplayLink displayLinkWithTarget:self
+                                                      selector:@selector(animate)];
+            
+            start=[NSDate date];
+            animationObject=[[UIView alloc]initWithFrame:self.bounds];
+            
+            UIColor* customColour = RGB(00, 33, 66);
+            [animationObject setBackgroundColor:customColour];
+            animationObject.layer.cornerRadius=16;
+            [self addSubview:animationObject];
+            
+            isaccelerating=false;
+            self.backgroundColor=[UIColor clearColor];
+            self.layer.cornerRadius=16;
+            
+            mass=1;
+            force=15;
+            /** if (!animationRunning)
+             {
+             [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+             animationRunning = YES;
+             }**/
     }
     return self;
 }
+
+
+
+- (id)initWithFrame:(CGRect)frame withOrientation:(NSString*)orientation
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        
+        if ([orientation isEqual: @"Vertical"]){
+            NSLog(@"Initialising Vertical frame");
+            // Initialization code
+            [self setDefaults];
+            displayLink = [CADisplayLink displayLinkWithTarget:self
+                                                      selector:@selector(animate)];
+            
+            start=[NSDate date];
+            animationObject=[[UIView alloc]initWithFrame:self.bounds];
+
+            UIColor* customColour = RGB(00, 33, 66);
+            [animationObject setBackgroundColor:customColour];
+            animationObject.layer.cornerRadius=16;
+            [self addSubview:animationObject];
+            
+            isaccelerating=false;
+            self.backgroundColor=[UIColor clearColor];
+            self.layer.cornerRadius=16;
+            
+            mass=1;
+            force=15;
+           /** if (!animationRunning)
+            {
+                [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+                animationRunning = YES;
+            }**/
+        }else if ([orientation isEqual: @"Horizontal"]){
+            NSLog(@"Initialising Horizontal frame");
+        }
+    }
+    return self;
+}
+
+
 -(void)setDefaults
 {
     velocity=0.0;

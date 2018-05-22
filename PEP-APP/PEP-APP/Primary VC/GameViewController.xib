@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GameViewController">
             <connections>
+                <outlet property="HQPhotoPickerButton" destination="r0I-hC-pUN" id="CJu-aa-tbf"/>
                 <outlet property="backToLoginButton" destination="OpF-Up-0wA" id="GDI-p4-Deo"/>
                 <outlet property="billiardBallView" destination="Kzq-xs-lx8" id="CFL-Hp-qKv"/>
                 <outlet property="bluetoothIcon" destination="vWa-Qa-fCA" id="P6u-Cw-3ls"/>
@@ -20,6 +21,7 @@
                 <outlet property="debugtext" destination="pwD-YL-Hh8" id="BnY-Qj-T65"/>
                 <outlet property="durationLabel" destination="Ke9-1k-1RZ" id="eCA-Mf-6xN"/>
                 <outlet property="imageFilterView" destination="7QT-wR-PVR" id="Kem-6f-db4"/>
+                <outlet property="photoPickerButton" destination="4zb-9A-9kV" id="7zB-DB-GwV"/>
                 <outlet property="resetGameButton" destination="ecC-LK-npv" id="RFR-ZD-wef"/>
                 <outlet property="soundIcon" destination="cH9-86-mp6" id="NOp-du-9WI"/>
                 <outlet property="speedLabel" destination="FSE-oq-oRC" id="Qb6-Vn-Sav"/>
@@ -39,7 +41,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <imageView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="7QT-wR-PVR">
-                    <rect key="frame" x="1" y="86" width="792" height="687"/>
+                    <rect key="frame" x="0.0" y="86" width="779" height="687"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <imageView opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Main-Background.png" id="LZu-SQ-bhA">
@@ -82,21 +84,21 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0:0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ke9-1k-1RZ">
+                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0:0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ke9-1k-1RZ">
                     <rect key="frame" x="137" y="647" width="118" height="49"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="41"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0:0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7Fi-Eh-iAy">
+                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0:0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7Fi-Eh-iAy">
                     <rect key="frame" x="41" y="652" width="118" height="49"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Bluetooth-ON.png" id="vWa-Qa-fCA">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Bluetooth-OFF.png" id="vWa-Qa-fCA">
                     <rect key="frame" x="20" y="34" width="110" height="92"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -178,16 +180,13 @@
                     <rect key="frame" x="41" y="781" width="139" height="122"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Image Picker" image="Main-Button-Picker-ALBUM.png"/>
-                    <connections>
-                        <action selector="imagePickerPressed:" destination="-1" eventType="touchUpInside" id="zA9-6c-R3g"/>
-                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="r0I-hC-pUN">
                     <rect key="frame" x="232" y="781" width="129" height="122"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="High Quality Image Contrast" image="Main-Button-Picker-HICONTRAST.png"/>
                     <connections>
-                        <action selector="contrastPickerPressed:" destination="-1" eventType="touchUpInside" id="8tx-zA-wmk"/>
+                        <action selector="photoPicker:" destination="-1" eventType="touchUpInside" id="NnX-gJ-ljy"/>
                     </connections>
                 </button>
                 <button autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sMc-Ax-JxV">
@@ -207,7 +206,7 @@
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
     </objects>
     <resources>
-        <image name="Bluetooth-ON.png" width="108" height="147"/>
+        <image name="Bluetooth-OFF.png" width="108" height="147"/>
         <image name="DifficultyButtonLOW" width="145" height="58"/>
         <image name="Help.png" width="160" height="120"/>
         <image name="LoginButton" width="261" height="58"/>
