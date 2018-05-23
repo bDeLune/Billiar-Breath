@@ -1,6 +1,7 @@
 #import "GameViewController.h"
 #import "User.h"
 #import "BilliardBallViewController.h"
+#import "SettingsViewController.h"
 #import "BilliardBall.h"
 #import "Balloon.h"
 #import "Session.h"
@@ -16,10 +17,10 @@
 #import "BTLEManager.h"
 #import "UserListViewController.h"
 #import "infoViewController.h"
-#import "Gauge.h"
 #import <QuartzCore/QuartzCore.h>
 #import <AudioToolbox/AudioToolbox.h>
-#import "Gauge.h"
+//#import "MainGauge.h"
+//#import "Gauge.h"
 //#import "ScoreDisplayViewController.h"
 #import "Session.h"
 #import "UIEffectDesignerView.h"
@@ -88,11 +89,14 @@
 
 @property (nonatomic, retain) IBOutlet UIToolbar *myToolbar;
 @property (nonatomic, retain) NSMutableArray *capturedImages;
+@property (weak, nonatomic) IBOutlet UIImageView *MainGaugeWindow;
+@property(nonatomic,strong)MainGauge  *mainGaugeView;
 @property(nonatomic,strong)Gauge  *gaugeView;
 @property(nonatomic,strong)BTLEManager  *btleMager;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property(nonatomic,strong)NSOperationQueue  *addGameQueue;
 @property(nonatomic,strong)BilliardBallViewController  *billiardViewController;
+@property(nonatomic,strong)SettingsViewController  *settingsViewController;
 @property(nonatomic,strong)MidiController  *midiController;
 @property(nonatomic)gameType  currentGameType;
 @property(nonatomic,strong)Session  *currentSession;
@@ -237,13 +241,21 @@
         imagePickerController.delegate = self;
         currentImageGameSound = @"bell";
         
-        self.gaugeView=[[Gauge alloc]initWithFrame:CGRectMake(170, 165, 40, GUAGE_HEIGHT) ];
-        self.gaugeView.gaugedelegate=self;
-        
-        [self.view addSubview:self.gaugeView];
-        
-        [self.gaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
-        [self.gaugeView start];
+        self.mainGaugeView=[[MainGauge alloc]initWithFrame:CGRectMake(445, 20, 40, MAINGUAGE_HEIGHT) ];
+        self.mainGaugeView.MainGaugeDelegate=self;
+        [self.view addSubview:self.mainGaugeView ];
+        [self.view sendSubviewToBack:self.mainGaugeView];
+        [self.mainGaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
+        [self.mainGaugeView start];
+       // self.mainGaugeView.alpha = 1;
+
+       // self.gaugeView=[[Gauge alloc]initWithFrame:CGRectMake(90, 190, 90, GUAGE_HEIGHT) ];
+       // self.gaugeView.GaugeDelegate=self;
+        //[self.view addSubview:self.gaugeView ];
+        //[self.view sendt:self.gaugeView];
+       // [self.gaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
+      //  [self.gaugeView start];
+      
         
         //must add test gauge
       //  self.gaugeView=[[Gauge alloc]initWithFrame:CGRectMake(170, 165, 40, GUAGE_HEIGHT)];
@@ -273,6 +285,11 @@
     }else{
         NSLog(@"FIRST MIDI NOTE BEGAN DISALLOWED!");
     }
+
+   /// if (gameTypeTest){
+    //[self.settingsViewController testGaugeBegan];
+    //}
+
 }
 
 -(void)btleManagerBreathStopped:(BTLEManager*)manager{
@@ -287,6 +304,10 @@
     [self midiNoteStopped:nil];
     isaccelerating=NO;
     self.breathGauge.progress = 0;
+    
+    ///if (gameTypeTest){
+      //  [self.settingsViewController testGaugeStopped];
+   // }
 }
 
 
@@ -294,7 +315,13 @@
     
     wasExhaling = false;
     //addedgauge
-     [self.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
+     [self.mainGaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
+    
+    [self.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
+    
+    //[self.settingsViewController.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
+    
+    [[self.settingsViewController gaugeView] setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
 
     if (self.midiController.toggleIsON==NO) {
         NSLog(@"INHALING AND RETURNING");
@@ -313,7 +340,15 @@
     //addedgaugeview
    float scale=50.0f;
    float value=self.velocity*scale;
+   [self.mainGaugeView setForce:(value)];
    [self.gaugeView setForce:(value)];
+   //[self.settingsViewController.gaugeView setForce:(value)];
+    [[self.settingsViewController gaugeView] setForce:(value)];
+    
+   // [self.settingsViewController testGaugeInhale: percentOfmax];
+
+
+
     
     [self midiNoteContinuing: self.midiController];
 }
@@ -338,7 +373,12 @@
     
     float scale=50.0f;
     float value=self.velocity*scale;
+    [self.mainGaugeView setForce:(value)];
     [self.gaugeView setForce:(value)];
+    //[self.settingsViewController.gaugeView setForce:(value)];
+    [[self.settingsViewController gaugeView] setForce:(value)];
+    
+   // [self.settingsViewController testGaugeExhale: percentOfmax];
 }
 
 
@@ -384,9 +424,14 @@
     [super viewDidLoad];
     [self.view addSubview:self.billiardViewController.view];
     [[NSUserDefaults standardUserDefaults]setObject:@"exhale" forKey:@"direction"];
+    
     self.userList=[[UserListViewController alloc]initWithNibName:@"UserListViewController" bundle:nil];
     self.userList.sharedPSC=self.sharedPSC;
     self.navcontroller=[[UINavigationController alloc]initWithRootViewController:self.userList];
+    
+    self.settingsViewController=[[SettingsViewController alloc]initWithNibName:@"SettingsViewController" bundle:nil];
+    //self.settingsViewController = [[SettingsViewController alloc] init];
+    //self.navcontroller=[[UINavigationController alloc]initWithRootViewController:self.settingsViewController];
     
     self.currentGameType = gameTypeBalloon;
     
@@ -457,15 +502,29 @@
 - (IBAction)goToSettings:(id)sender {
     
     NSLog(@"Go to settings");
+   // [self.mainGaugeView stopGauge];
+    self.currentGameType = gameTypeTest;
+    self.billiardViewController.currentGameType = self.currentGameType;
     
-    self.currentGameType= gameTypeTest;     //change: check if correct
+    NSLog(@"Current game mode %u", self.currentGameType);
+
+    [self.toggleGameModeButton setImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];
+        //change: check if correct
     [self resetGame:nil];
+    
+    //self.settingsViewController = [[SettingsViewController alloc] init];
+    //[self.navigationController pushViewController:self.settingsViewController  animated:YES];
+
+   //[UIView transitionFromView:self.view toView:self.settingsViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished){
+        //self.userList.sharedPSC=self.sharedPSC;
+        //self.userList.delegate=self;
+    //}];
+    
     [self.delegate toSettingsScreen];
 }
 
 -(IBAction)toggleDirection:(id)sender
 {
-    
     NSLog(@"toggling direction");
     switch (self.midiController.toggleIsON) {
         case 0:
@@ -666,12 +725,28 @@
     }
     
     //added gauge
+    if (self.mainGaugeView.animationRunning) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //   [_debugTextField setText:@"\nMidi Began"];
+        });
+        //        [self beginNewSession];
+        [self.mainGaugeView blowingBegan];
+    }
+    
     if (self.gaugeView.animationRunning) {
         dispatch_async(dispatch_get_main_queue(), ^{
             //   [_debugTextField setText:@"\nMidi Began"];
         });
         //        [self beginNewSession];
         [self.gaugeView blowingBegan];
+    }
+    
+    if (self.settingsViewController.gaugeView.animationRunning) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //   [_debugTextField setText:@"\nMidi Began"];
+        });
+        //        [self beginNewSession];
+        [[self.settingsViewController gaugeView] blowingBegan];
     }
 }
 
@@ -703,8 +778,11 @@
     //added gauge
   //  if (self.gaugeView.animationRunning) {
   //      [self sendLogToOutput:@"\nMidi Stop"];
+        [self.mainGaugeView blowingEnded];
         [self.gaugeView blowingEnded];
-       // [self endCurrentSession];
+    //    [self.settingsViewController.gaugeView blowingEnded];
+        [[self.settingsViewController gaugeView] blowingEnded];
+    // [self endCurrentSession];
   //  }
 }
 
@@ -1392,6 +1470,13 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     NSLog(@"view did appear!: animatedd");
+    //[self.mainGaugeView start]; //change: is this correct
+    self.currentGameType= gameTypeBalloon;
+    self.billiardViewController.currentGameType = self.currentGameType;
+    NSLog(@"Current game mode %u", self.currentGameType);
+    
+    [self.toggleGameModeButton setImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];
+    //change: check if correct
     
     if (!displayLink) {
         [self setupDisplayFiltering];
@@ -1756,16 +1841,16 @@
     
     switch (pvalue) {
         case 0:
-            [self.gaugeView setMass:1];
+            [self.mainGaugeView setMass:1];
             break;
         case 1:
-            [self.gaugeView setMass:2];
+            [self.mainGaugeView setMass:2];
             break;
         case 2:
-            [self.gaugeView setMass:2.5];
+            [self.mainGaugeView setMass:2.5];
             break;
         case 3:
-            [self.gaugeView setMass:3];
+            [self.mainGaugeView  setMass:3];
             break;
         default:
             break;

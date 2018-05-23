@@ -71,7 +71,7 @@
      [mutable sortUsingSelector:@selector(compare:)];
     
      NSArray  *reverse=[[mutable reverseObjectEnumerator]allObjects];
-     //NSLog(@"MY BIG SORTED ARRAY %@", sortedArray);
+     //gmaNSLog(@"MY BIG SORTED ARRAY %@", sortedArray);
      //NSLog(@"MY BIG SORTED ARRAY %@", mutable);
     return mutable; //added was datestrings
     

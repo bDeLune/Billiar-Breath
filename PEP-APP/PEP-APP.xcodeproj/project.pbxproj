@@ -88,6 +88,7 @@
 		717D00A620B44FC90098893A /* Settings-Project.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D00A120B44FC80098893A /* Settings-Project.png */; };
 		717D00A820B4644B0098893A /* Settings-Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D00A720B4644A0098893A /* Settings-Background.png */; };
 		717D00AF20B474CF0098893A /* Balloon.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D00AE20B474CF0098893A /* Balloon.m */; };
+		717D00B220B5CDF50098893A /* MainGauge.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D00B120B5CDF50098893A /* MainGauge.m */; };
 		7186DDD01E4DBE0D00F71F0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7186DDCD1E4DBE0D00F71F0C /* Main.storyboard */; };
 		7186DDEB1E4DBF2400F71F0C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7186DDEA1E4DBF2400F71F0C /* LoginViewController.xib */; };
 		7186DDF41E4DBF4100F71F0C /* AllGamesForDayTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DDED1E4DBF4100F71F0C /* AllGamesForDayTableVC.m */; };
@@ -384,6 +385,8 @@
 		717D00A720B4644A0098893A /* Settings-Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Settings-Background.png"; path = "../../../../Downloads/Settings-Background.png"; sourceTree = "<group>"; };
 		717D00AD20B474CE0098893A /* Balloon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Balloon.h; sourceTree = "<group>"; };
 		717D00AE20B474CF0098893A /* Balloon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Balloon.m; sourceTree = "<group>"; };
+		717D00B020B5CDF50098893A /* MainGauge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainGauge.h; sourceTree = "<group>"; };
+		717D00B120B5CDF50098893A /* MainGauge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainGauge.m; sourceTree = "<group>"; };
 		7186DDCC1E4DBE0D00F71F0C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		7186DDCD1E4DBE0D00F71F0C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7186DDEA1E4DBF2400F71F0C /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -834,8 +837,6 @@
 			isa = PBXGroup;
 			children = (
 				71A04EC4208FA8F700AA878B /* Draggable.h */,
-				71A04EC0208FA8BC00AA878B /* Gauge.h */,
-				71A04EC1208FA8BD00AA878B /* Gauge.m */,
 				71A04EC5208FA8F800AA878B /* Draggable.m */,
 			);
 			path = Gauge;
@@ -882,6 +883,8 @@
 			children = (
 				71D1A3722074FE5300C83B63 /* SettingsViewController.h */,
 				71D1A3712074FE5200C83B63 /* SettingsViewController.m */,
+				71A04EC0208FA8BC00AA878B /* Gauge.h */,
+				71A04EC1208FA8BD00AA878B /* Gauge.m */,
 				710BDDEF207E48B700B1E393 /* SettingsViewController.xib */,
 			);
 			path = "Settings VC";
@@ -891,6 +894,8 @@
 			isa = PBXGroup;
 			children = (
 				7186DE281E4DBF7100F71F0C /* GameViewController.h */,
+				717D00B020B5CDF50098893A /* MainGauge.h */,
+				717D00B120B5CDF50098893A /* MainGauge.m */,
 				7186DE291E4DBF7100F71F0C /* GameViewController.m */,
 				7186DE051E4DBF5F00F71F0C /* GameViewController.xib */,
 			);
@@ -1332,6 +1337,7 @@
 				7186DE2E1E4DBF7100F71F0C /* PiNumberFormatter.m in Sources */,
 				71C9FA201E5344EB0078070D /* UserListViewController.m in Sources */,
 				7186DE101E4DBF5F00F71F0C /* HeaderView.m in Sources */,
+				717D00B220B5CDF50098893A /* MainGauge.m in Sources */,
 				7186DE321E4DBF7100F71F0C /* LoginViewController.m in Sources */,
 				71C9F9E71E5334A90078070D /* CAKeyframeAnimation+AHEasing.m in Sources */,
 				7186DE331E4DBF7100F71F0C /* GameViewController.m in Sources */,

@@ -365,7 +365,7 @@
         [ball setCenter:point];
     }];
     
-    NSLog(@"trying to shoot balls to top2");
+    //NSLog(@"trying to shoot balls to top2");
 }
 
 
@@ -383,7 +383,7 @@
     
     NSString * difficulty=[[NSUserDefaults standardUserDefaults]objectForKey:@"difficulty"];
     
-    NSLog(@"PUSHING BALLS - - -  NSString DIFFICULTY IS %@", difficulty);
+   // NSLog(@"PUSHING BALLS - - -  NSString DIFFICULTY IS %@", difficulty);
     
     int difficultyAsInt = [difficulty intValue];
     
@@ -432,7 +432,7 @@
 }
 
 -(void)blowStarted: (int)currentBallNo atSpeed:(int)speed{
-    NSLog(@"BLOWBGGG! started timer");
+   // NSLog(@"BLOWBGGG! started timer");
     isaccelerating=YES;
     currentBall = currentBallNo;
     selectedSpeedSetting = speed;
@@ -447,7 +447,7 @@
 }
 
 -(void)blowEnded{
-    NSLog(@"BLOWEEEE ended timer!");
+   // NSLog(@"BLOWEEEE ended timer!");
     if ([_timer isValid]) {
         [_timer invalidate];
     }
@@ -462,11 +462,11 @@
     
     //int selectedSpeedSetting = 6;
     int percentageComplete = (fabs(timeElapsed)/selectedSpeedSetting)*100;
-    NSLog(@"timeElapsedfbs = %f", fabs(timeElapsed));
-    NSLog(@"timeElapsed = %f", timeElapsed);
-    NSLog(@"timeCounter = %f", timeCounter);
-    NSLog(@"currentBall = %d", currentBall);
-    NSLog(@"percentageTowardsCompletion = %d", percentageComplete);
+   // NSLog(@"timeElapsedfbs = %f", fabs(timeElapsed));
+   // NSLog(@"timeElapsed = %f", timeElapsed);
+   // NSLog(@"timeCounter = %f", timeCounter);
+   // NSLog(@"currentBall = %d", currentBall);
+   // NSLog(@"percentageTowardsCompletion = %d", percentageComplete);
     Balloon  *ball=[self.balls objectAtIndex: currentBall];
     
     if (percentageComplete > 0 && percentageComplete < 12.5){
