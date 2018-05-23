@@ -1,8 +1,3 @@
-///What constitutes game ended for image game
-//"as user complete repitions, more balloons show, up to value in settings" - is this normal bb behaviour
-// Do we save after each attempt at balloon game?
-
-
 #import "GameViewController.h"
 #import "User.h"
 #import "BilliardBallViewController.h"
@@ -88,6 +83,7 @@
     bool currentlyInhaling;
     NSString* currentImageGameSound;
     int selectedBallCount;
+    int selectedSpeed;
 }
 
 @property (nonatomic, retain) IBOutlet UIToolbar *myToolbar;
@@ -101,12 +97,12 @@
 @property(nonatomic)gameType  currentGameType;
 @property(nonatomic,strong)Session  *currentSession;
 @property(nonatomic,strong)SequenceGame  *sequenceGameController;
-@property(nonatomic,strong)BTLEManager  *btleManager;
-@property(nonatomic,strong)UIImageView  *btOnOfImageView;
-@property(nonatomic,strong)UserListViewController  *userList;
+@property(nonatomic,strong) BTLEManager  *btleManager;
+@property(nonatomic,strong) UIImageView  *btOnOfImageView;
+@property(nonatomic,strong) UserListViewController  *userList;
 @property (weak, nonatomic) IBOutlet UIImageView *imageFilterView;
 @property (weak, nonatomic) IBOutlet UIImageView *billiardBallView;
-@property(nonatomic,strong)UINavigationController *navcontroller;
+@property(nonatomic,strong) UINavigationController *navcontroller;
 @property (strong, nonatomic) UITabBarController *tabBarController;
 @end
 
@@ -200,6 +196,9 @@
         // [self.midiController setup];
         self.currentGameType=gameTypeBalloon;
         currentDifficulty=gameDifficultyEasy;
+        selectedSpeed = 3;
+        
+        
         [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:currentDifficulty] forKey:@"difficulty"];
         
         NSLog(@"CURRENT DIFFICULTY %u", currentDifficulty);
@@ -267,6 +266,8 @@
         return;
     }
     
+    [self.billiardViewController blowStarted: self.sequenceGameController.currentBall atSpeed:selectedSpeed];
+    
     if ((self.midiController.toggleIsON == 0 && wasExhaling == 1) || (self.midiController.toggleIsON == 1 && wasExhaling == 0)){
         [self midiNoteBegan:nil];
     }else{
@@ -279,6 +280,9 @@
     if ([self.midiController allowBreath]==NO) {
         return;
     }
+    
+    //added late
+    [self.billiardViewController blowEnded];
     
     [self midiNoteStopped:nil];
     isaccelerating=NO;
@@ -860,8 +864,8 @@
             
             if (midi.velocity!=127) {
                 [self.strenghtLabel setText:[NSString stringWithFormat:@"%0.0f",midi.velocity]];
-                
             }
+            
             if (midi.speed!=0) {
                 NSLog(@"trying to shoot balls to top");
                 [self.billiardViewController shootBallToTop:self.sequenceGameController.currentBall withAcceleration:midi.speed];
@@ -1360,6 +1364,7 @@
 {
     NSLog(@" (animation) inner set breath length %f", value);
    // self.breathLength=value;
+    selectedSpeed = (int)value;
     self.currentSession.sessionRequiredBreathLength = [NSNumber numberWithFloat:value];
     _animationrate=value;
 }

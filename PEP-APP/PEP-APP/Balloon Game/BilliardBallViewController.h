@@ -14,6 +14,9 @@
 -(void)resetwithBallCount:(int)ballCount;
 -(void)shootBallToTop:(int)ballIndex withAcceleration:(float)acceleration;
 -(void)pushBallsWithVelocity:(float)velocity;
+-(void)blowStarted: (int)currentBallNo atSpeed:(int)speed;
+-(void)blowEnded;
+-(void)timerFired:(NSTimer *)timer;
 - (CAKeyframeAnimation *)dockBounceAnimationWithIconHeight:(CGFloat)iconHeight;
 //-(void)startBallsPowerGame;
 //-(void)endBallsPowerGame;

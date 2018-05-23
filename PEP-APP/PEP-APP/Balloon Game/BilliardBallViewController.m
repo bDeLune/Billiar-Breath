@@ -19,11 +19,18 @@
     AVAudioPlayer *audioPlayer;
     BOOL muteAudio;
     int  selectedGameBallCount;
+    int  selectedSpeedSetting;
+    float timeCounter;
+    NSTimer* _timer;
+    BOOL isaccelerating;
+    int currentBall;
+    NSDate* start;
 }
 @property(nonatomic,strong)  NSMutableArray  *balls;
 @property(nonatomic,strong)  NSMutableArray  *emptyBalloons;
-@property(nonatomic,strong)NSMutableArray  *animators;
+@property(nonatomic,strong) NSMutableArray  *animators;
 @property int currentBallININdex;
+
 @end
 
 @implementation BilliardBallViewController
@@ -109,9 +116,7 @@
         self.balls=[NSMutableArray new];
         
         self.emptyBalloons=[NSMutableArray new];
-        
         self.animators=[NSMutableArray new];
-        
         selectedGameBallCount = ballCount;
         
         //check change
@@ -190,26 +195,26 @@
         
         //on final balloon, add extra frame to the animation (blow up)
         
-        NSLog(@"animate ball start");
+       // NSLog(@"animate ball start");
         
-        CAKeyframeAnimation *keyframeAnimation = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
-        keyframeAnimation.values =  [NSArray arrayWithObjects:
-                                     [UIImage imageNamed:@"images.jpg"],
-                                     [UIImage imageNamed:@"images1.jpg"],
-                                     [UIImage imageNamed:@"images5.jpg"],
-                                     [UIImage imageNamed:@"index3.jpg"],
-                                     nil];
-        
-        keyframeAnimation.repeatCount = 1.0f;
-        keyframeAnimation.duration = 1; //change: use value set by user breath length
-        keyframeAnimation.delegate = self;
+      ///  CAKeyframeAnimation *keyframeAnimation = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
+      ///  keyframeAnimation.values =  [NSArray arrayWithObjects:
+         //                            [UIImage imageNamed:@"images.jpg"],
+          //                           [UIImage imageNamed:@"images1.jpg"],
+         //                            [UIImage imageNamed:@"images5.jpg"],
+        //                             [UIImage imageNamed:@"index3.jpg"],
+        //                             nil];
+      
+      ////  keyframeAnimation.repeatCount = 1.0f;
+      //  keyframeAnimation.duration = 1; //change: use value set by user breath //length
+       /// keyframeAnimation.delegate = self;
         
         //    keyframeAnimation.removedOnCompletion = YES;
-        keyframeAnimation.removedOnCompletion = NO;
-        keyframeAnimation.fillMode = kCAFillModeForwards;
+       // keyframeAnimation.removedOnCompletion = NO;
+       // keyframeAnimation.fillMode = kCAFillModeForwards;
         
-        [layer addAnimation:keyframeAnimation
-                     forKey:@"girlAnimation"];
+      //  [layer addAnimation:keyframeAnimation
+       //              forKey:@"girlAnimation"];
 
         
    ///    } afterDelay:0.1];
@@ -341,6 +346,8 @@
     ///NSLog(@"Shooting balls to top BALLINDEX %d", ballIndex);
     ///  NSLog(@"Shooting balls to top [self.balls count] %d", [self.balls count]);
     NSLog(@"trying to shoot balls to top1");
+    return;//added
+    
     if (ballIndex>=[self.balls count]) {
         return;
     }
@@ -423,6 +430,78 @@
     }
      //NSLog(@"BLOWING ENDED maxvelocity %f!!!", maxVelocity);
 }
+
+-(void)blowStarted: (int)currentBallNo atSpeed:(int)speed{
+    NSLog(@"BLOWBGGG! started timer");
+    isaccelerating=YES;
+    currentBall = currentBallNo;
+    selectedSpeedSetting = speed;
+    timeCounter = 0;
+    if (!_timer) {
+        _timer = [NSTimer scheduledTimerWithTimeInterval:.01 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
+        
+        start = [NSDate date];
+        // do stuff...
+       
+    }
+}
+
+-(void)blowEnded{
+    NSLog(@"BLOWEEEE ended timer!");
+    if ([_timer isValid]) {
+        [_timer invalidate];
+    }
+    _timer = nil;
+    isaccelerating=NO;
+}
+
+- (void)timerFired:(NSTimer *)timer{
+    
+    timeCounter += .01;
+    NSTimeInterval timeElapsed = [start timeIntervalSinceNow];
+    
+    //int selectedSpeedSetting = 6;
+    int percentageComplete = (fabs(timeElapsed)/selectedSpeedSetting)*100;
+    NSLog(@"timeElapsedfbs = %f", fabs(timeElapsed));
+    NSLog(@"timeElapsed = %f", timeElapsed);
+    NSLog(@"timeCounter = %f", timeCounter);
+    NSLog(@"currentBall = %d", currentBall);
+    NSLog(@"percentageTowardsCompletion = %d", percentageComplete);
+    Balloon  *ball=[self.balls objectAtIndex: currentBall];
+    
+    if (percentageComplete > 0 && percentageComplete < 12.5){
+        //[self.delegate setBalloonStage:self atStage: 1];
+        ball.currentBalloonImage.image = [UIImage imageNamed:@"Balloon1"];
+    }else if (percentageComplete > 12.5 && percentageComplete < 25){
+        // [self.delegate setBalloonStage:self atStage: 2];
+        ball.currentBalloonImage.image = [UIImage imageNamed:@"Balloon2"];
+    }else if (percentageComplete > 25 && percentageComplete < 37.5){
+        //[self.delegate setBalloonStage:self atStage: 3];
+        ball.currentBalloonImage.image = [UIImage imageNamed:@"Balloon3"];
+    }else if(percentageComplete > 50 && percentageComplete < 62.5){
+        //[self.delegate setBalloonStage:self atStage: 4];
+        ball.currentBalloonImage.image = [UIImage imageNamed:@"Balloon4"];
+    }else if(percentageComplete > 62.5 && percentageComplete < 75){
+        // [self.delegate setBalloonStage:self atStage: 5];
+        ball.currentBalloonImage.image = [UIImage imageNamed:@"Balloon5"];
+    }else if(percentageComplete > 75 && percentageComplete < 87.5){
+        // [self.delegate setBalloonStage:self atStage: 6];
+        ball.currentBalloonImage.image = [UIImage imageNamed:@"Balloon6"];
+    }else if(percentageComplete > 87.5 && percentageComplete < 100){
+        // [self.delegate setBalloonStage:self atStage: 7];
+        ball.currentBalloonImage.image = [UIImage imageNamed:@"Balloon7"];
+    }else if(percentageComplete >= 100){
+        // [self.delegate setBalloonStage:self atStage: 8];
+        ball.currentBalloonImage.image = [UIImage imageNamed:@"Balloon8"];
+    }
+    
+    //change - make more efficient
+    
+    //  [[GCDQueue mainQueue]queueBlock:^{
+    //     [self.delegate balloonReachedFinalTarget:self];
+    // } afterDelay:0.1];
+}
+
 //-(void)startBallsPowerGame
 //{
  //   ballGameCount=0;

@@ -69,6 +69,7 @@
 -(void)foreground;
 -(void)setLabels;
 
+
 @property (weak, nonatomic) IBOutlet UIImageView *bluetoothIcon; 
 @property (weak, nonatomic) IBOutlet UIButton *soundIcon;
 @property (weak, nonatomic) IBOutlet UIButton *photoPickerButton;
