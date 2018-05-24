@@ -7,6 +7,7 @@
 #import "MidiController.h"
 #import "GPUImage.h"
 
+
 @protocol SETTINGS_DELEGATE
 -(void)sendValue:(int)note onoff:(int)onoff;
 -(void)setFilter:(int)index;
@@ -18,6 +19,8 @@
 -(void)setBreathLength:(float)value;
 -(void)setImageSoundEffect:(NSString*)value;
 -(void)test:(float)value;
+-(void)setSpeed:(float)value;
+
 @end
 
 @protocol GameViewProtocol <NSObject>

@@ -6,14 +6,16 @@
 -(void)exitSettingsViewController;
 @end
 
-@interface SettingsViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITabBarDelegate, GaugeProtocol>
+@interface SettingsViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITabBarDelegate, GaugeProtocol, SETTINGS_DELEGATE>
 {
     IBOutlet UISlider *speedSlider;
     IBOutlet UISlider *breathLengthSlider;
     IBOutlet UIPickerView *pickerViewB;
     IBOutlet UILabel *settingsStrengthLabel;
     IBOutlet UILabel *settingsDurationLabel;
+    IBOutlet UIImageView *whiteBackground;
     IBOutlet UIPickerView *pickerViewC;
+    IBOutlet UIImageView *backgroundImage;
     IBOutlet UIPickerView *filterPicker;
     IBOutlet UILabel *breathLengthLabel;
     IBOutlet UISlider *rateSlider;
@@ -38,8 +40,10 @@
 -(IBAction)changeThreshold:(id)sender;
 -(IBAction)changeBTTreshold:(id)sender;
 -(IBAction)changeBTBoostValue:(id)sender;
--(void)testGaugeInhale: (float)percent;
--(void)testGaugeExhale: (float)percent;
--(void)testGaugeBegan;
--(void)testGaugeStopped;
+-(void)setSettingsStrengthLabelText: (NSString*)text;
+-(void)setSettingsDurationLabelText: (NSString*)text;
+//-(void)testGaugeInhale: (float)percent;
+//-(void)testGaugeExhale: (float)percent;
+//-(void)testGaugeBegan;
+//-(void)testGaugeStopped;
 @end

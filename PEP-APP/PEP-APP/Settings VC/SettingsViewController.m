@@ -57,14 +57,18 @@
                      @"Expose",@"Polka",
                      @"Posterize",@"Pixellate",@"Contrast", nil];
         
-        self.gaugeView=[[Gauge alloc]initWithFrame:CGRectMake(290, 120, 90, GUAGE_HEIGHT) ];
+        self.gaugeView=[[Gauge alloc]initWithFrame:CGRectMake(90, 155, 90, GUAGE_HEIGHT) ];
         self.gaugeView.GaugeDelegate=self;
-        [self.view addSubview:self.gaugeView ];
+        [self.view addSubview:self.gaugeView];
+        [self.view sendSubviewToBack:self.gaugeView];
+        [self.view sendSubviewToBack:whiteBackground];
+        
         [self.gaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
         [self.gaugeView start];
         
         NSArray *imageNames = @[@"bell_1.png", @"bell_2.png", @"bell_3.png", @"bell_2.png",@"bell_1.png"];
-        NSMutableArray *images = [[NSMutableArray alloc] init];
+        NSMutableArray *images = [[NSMutableArray
+                                   alloc] init];
         for (int i = 0; i < imageNames.count; i++) {
             [images addObject:[UIImage imageNamed:[imageNames objectAtIndex:i]]];
         }
@@ -74,6 +78,8 @@
         bellImageView.animationDuration = 0.7;
         
         [self.view addSubview:bellImageView];
+        
+        [speedSlider setValue:4 animated:YES];
         //peakholdImageView=[[Draggable alloc]initWithImage:[UIImage imageNamed:@"PeakHoldArrow.png"]];
        // CGRect peakframe=peakholdImageView.frame;
        /// peakframe.origin.y=900;
@@ -200,8 +206,13 @@
     NSLog(@"changing breath length");
     UISlider  *slider=(UISlider*)sender;
     int sliderValue = (int) slider.value;
+    
     [self.settinngsDelegate setBreathLength:slider.value];
-    [self setBreathLengthLabelText: [NSString stringWithFormat:@"%d",sliderValue]];
+    
+    [self.settinngsDelegate setSpeed:slider.value];
+    
+    
+    //[self setBreathLengthLabelText: [NSString stringWithFormat:@"%d",sliderValue]];
 }
 
 -(IBAction)changeThreshold:(id)sender
@@ -216,9 +227,7 @@
     NSLog(@"changing changeBTTreshold");
     
     [self.settinngsDelegate setBTTreshold:btThresholdSlider.value];
-
     [btTresholdLabel setText:[NSString stringWithFormat:@"%f",btThresholdSlider.value]];
-    
     [self.settinngsDelegate test:btThresholdSlider.value];
 
 }
@@ -338,35 +347,35 @@
   //  }
 }
 
--(void)testGaugeStopped{
-    [self midiNoteStopped:nil];
-}
+//-(void)testGaugeStopped{
+ //   [self midiNoteStopped:nil];
+//}
 
--(void)testGaugeBegan{
-      [self midiNoteBegan:nil];
-}
+//-(void)testGaugeBegan{
+//      [self midiNoteBegan:nil];
+//}
 
--(void)testGaugeExhale: (float)percent{
+//-(void)testGaugeExhale: (float)percent{
 
-currentlyExhaling = true;
-currentlyInhaling = false;
+//currentlyExhaling = true;
+//currentlyInhaling = false;
 
 //-(void)setBreathToggleAsExhale:(bool)value isExhaling: (bool)value2;
-[self.gaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
+//[self.gaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
 
-if (midiController.toggleIsON) {
-    return;
-}
+//if (midiController.toggleIsON) {
+//    return;
+//}
 
-float  vel=127.0*percent;
+//float  vel=127.0*percent;
 
-if (vel<threshold) {
-    return;
-}
-if (vel==127) {
-    return;
-}
-}
+///if (vel<threshold) {
+////    return;
+/////}
+///if (vel==127) {
+///    return;
+//}
+//}
 
 -(void)testGaugeInhale: (float)percent{
     currentlyExhaling = false;
@@ -735,10 +744,10 @@ if (vel==127) {
     breathLengthLabel.text = text;
 }
 
--(void) setSettingsStrengthLabelText: (NSString*)text  {
+-(void)setSettingsStrengthLabelText: (NSString*)text  {
     
-        NSLog(@"Settings strength label text %@", text);
-        settingsStrengthLabel.text = text;
+    NSLog(@"Settings strength label text %@", text);
+    settingsStrengthLabel.text = text;
 }
 
 -(void) playSound {

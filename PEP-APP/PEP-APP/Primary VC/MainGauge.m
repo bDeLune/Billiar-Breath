@@ -159,7 +159,7 @@
 
 -(void)blowingBegan
 {
-    NSLog(@"MAIN GAUGE BLOW BEGAN isaccelerating %hhd", isaccelerating);
+    //NSLog(@"MAIN GAUGE BLOW BEGAN isaccelerating %hhd", isaccelerating);
     isaccelerating=YES;
 }
 
@@ -200,6 +200,8 @@
         frame.origin.x=0;
         frame.size.height=100;
         frame.size.width=distance;
+        
+        //NSLog(@"MAIN GAUGE BLOW BEGAN isaccelerating %f", distance);
         
         if (distance>bestDistance) {
        //     NSLog(@"USING THIS");

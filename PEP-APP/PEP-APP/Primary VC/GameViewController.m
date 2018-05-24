@@ -96,11 +96,11 @@
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property(nonatomic,strong)NSOperationQueue  *addGameQueue;
 @property(nonatomic,strong)BilliardBallViewController  *billiardViewController;
-@property(nonatomic,strong)SettingsViewController  *settingsViewController;
-@property(nonatomic,strong)MidiController  *midiController;
-@property(nonatomic)gameType  currentGameType;
-@property(nonatomic,strong)Session  *currentSession;
-@property(nonatomic,strong)SequenceGame  *sequenceGameController;
+@property(nonatomic,strong) SettingsViewController  *settingsViewController;
+@property(nonatomic,strong) MidiController  *midiController;
+@property(nonatomic) gameType  currentGameType;
+@property(nonatomic,strong) Session  *currentSession;
+@property(nonatomic,strong) SequenceGame  *sequenceGameController;
 @property(nonatomic,strong) BTLEManager  *btleManager;
 @property(nonatomic,strong) UIImageView  *btOnOfImageView;
 @property(nonatomic,strong) UserListViewController  *userList;
@@ -187,7 +187,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         //self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 160, 450, 225)];
-        selectedBallCount = 20;
+        selectedBallCount = 15;
+        ///change: save in user defaults
+        
         //self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 160, 450, 225) withBallCount:selectedBallCount];
         self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(10, 0, 130,220) withBallCount:selectedBallCount];
         
@@ -221,6 +223,12 @@
        // self.btOnOfImageView=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.bounds.size.width-230, 30, 100, 100)];
         //[self.btOnOfImageView setImage:[UIImage imageNamed:@"Bluetooth-DISCONNECTED"]];
        // [self.view addSubview:self.btOnOfImageView];
+        self.settingsViewController = [[SettingsViewController alloc]initWithNibName:@"SettingsViewController" bundle:nil];
+        
+        self.settingsViewController.delegate=self;
+        
+        [self.settingsViewController setSettinngsDelegate:self];
+        
         
         ///image
         sketchamount=0;
@@ -239,7 +247,9 @@
     
         imagePickerController = [[UIImagePickerController alloc] init] ;
         imagePickerController.delegate = self;
+        
         currentImageGameSound = @"bell";
+        //change: set in user defaults
         
         self.mainGaugeView=[[MainGauge alloc]initWithFrame:CGRectMake(445, 20, 40, MAINGUAGE_HEIGHT) ];
         self.mainGaugeView.MainGaugeDelegate=self;
@@ -319,9 +329,9 @@
     
     [self.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
     
-    //[self.settingsViewController.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
+    [self.settingsViewController.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
     
-    [[self.settingsViewController gaugeView] setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
+    //[[self.settingsViewController gaugeView] setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
 
     if (self.midiController.toggleIsON==NO) {
         NSLog(@"INHALING AND RETURNING");
@@ -342,8 +352,8 @@
    float value=self.velocity*scale;
    [self.mainGaugeView setForce:(value)];
    [self.gaugeView setForce:(value)];
-   //[self.settingsViewController.gaugeView setForce:(value)];
-    [[self.settingsViewController gaugeView] setForce:(value)];
+   [self.settingsViewController.gaugeView setForce:(value)];
+    //[[self.settingsViewController gaugeView] setForce:(value)];
     
    // [self.settingsViewController testGaugeInhale: percentOfmax];
 
@@ -375,8 +385,8 @@
     float value=self.velocity*scale;
     [self.mainGaugeView setForce:(value)];
     [self.gaugeView setForce:(value)];
-    //[self.settingsViewController.gaugeView setForce:(value)];
-    [[self.settingsViewController gaugeView] setForce:(value)];
+    [self.settingsViewController.gaugeView setForce:(value)];
+    //[[self.settingsViewController gaugeView] setForce:(value)];
     
    // [self.settingsViewController testGaugeExhale: percentOfmax];
 }
@@ -520,7 +530,16 @@
         //self.userList.delegate=self;
     //}];
     
-    [self.delegate toSettingsScreen];
+   // [self.delegate toSettingsScreen];
+    
+    //infoViewController *infoVC = [[infoViewController alloc]initWithNibName:@"infoViewController" bundle:nil];
+    
+    if (self.settingsViewController){
+        NSLog(@"instantiating settingsViewController");
+        [self presentViewController:self.settingsViewController animated:YES completion:nil];
+    }else{
+        NSLog(@"Cant instantiate self.settingsViewController");
+    }
 }
 
 -(IBAction)toggleDirection:(id)sender
@@ -600,7 +619,7 @@
         case gameTypeTest:
            // modeString=@"ModeButtonTest";
              NSLog(@"changing mode gameTypeTest");
-             modeString=@"MainMode-BALLOON";
+            modeString=@"MainMode-BALLOON";//change: set to none
             break;
             
         default:
@@ -694,6 +713,10 @@
     // NSLog(@"MIDI NOTES BEGAN");
     // NSLog(@"self.midiController.toggleIsON %hhd", self.midiController.toggleIsON);
     // NSLog(@"wasExhaling %d", wasExhaling);
+    self.sequenceGameController.time = 0;
+    [self.settingsViewController setSettingsStrengthLabelText:@"0"];
+    [self.settingsViewController setSettingsDurationLabelText:[NSString stringWithFormat:@"%0.0f",self.sequenceGameController.time]];
+    
     
     if ((self.midiController.toggleIsON == 0 && wasExhaling == 1) || (self.midiController.toggleIsON == 1 && wasExhaling == 0)){
         
@@ -780,8 +803,8 @@
   //      [self sendLogToOutput:@"\nMidi Stop"];
         [self.mainGaugeView blowingEnded];
         [self.gaugeView blowingEnded];
-    //    [self.settingsViewController.gaugeView blowingEnded];
-        [[self.settingsViewController gaugeView] blowingEnded];
+       [self.settingsViewController.gaugeView blowingEnded];
+        //[[self.settingsViewController gaugeView] blowingEnded];
     // [self endCurrentSession];
   //  }
 }
@@ -797,6 +820,13 @@
    // float scale=50.0f;
   //  float value=midi.velocity*scale;
   //  [self.gaugeView setForce:(value)];
+//[self.strenghtLabel setText:[NSString stringWithFormat:@"%0.0f",midi.velocity]];
+
+    [self.settingsViewController setSettingsStrengthLabelText:[NSString stringWithFormat:@"%0.0f",midi.velocity]];
+    [self.settingsViewController setSettingsDurationLabelText:[NSString stringWithFormat:@"%0.0f",self.sequenceGameController.time]];
+    
+    
+    //NSString *durationtext=[NSString stringWithFormat:@"%0.1f",self.sequenceGameController.time];
     
     
     /// NSLog(@"Midi Continue\n");
@@ -825,7 +855,7 @@
     //check
     self.currentSession.sessionDuration = currentBreathLength;
     
-    NSString *durationtext=[NSString stringWithFormat:@"%0.1f",self.sequenceGameController.time];
+
     
     [[GCDQueue mainQueue]queueBlock:^{
         if (midi.velocity!=127) {
@@ -839,7 +869,7 @@
         switch (self.currentGameType) {
             case gameTypeDuo:
                // [self midiNoteContinuingForPower:midi]; //MAYBE
-                [self.strenghtLabel setText:[NSString stringWithFormat:@"%0.0f",midi.velocity]];
+
                 [self midiNoteContinuingForSequence:midi];
                 break;
             case gameTypeImage:
@@ -1440,7 +1470,7 @@
 
 -(void)setBreathLength:(float)value
 {
-    NSLog(@" (animation) inner set breath length %f", value);
+    NSLog(@" inner set breath length %f", value);
    // self.breathLength=value;
     selectedSpeed = (int)value;
     self.currentSession.sessionRequiredBreathLength = [NSNumber numberWithFloat:value];
@@ -1714,7 +1744,7 @@
 
 -(void)setRepetitionCount:(int)value{
     
-    NSLog(@"Setting balloon game repetition count to %d ", value);
+    NSLog(@"inner Setting balloon game repetition count to %d ", value);
     NSLog(@"count %d ", value);
     
     //chang: consolodate variables

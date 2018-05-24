@@ -21,7 +21,7 @@ typedef void(^RunTimer)(void);
 @property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
 @property(nonatomic,strong) LoginViewController  *loginViewController;
 @property(nonatomic,strong) GameViewController  *gameViewController;
-@property(nonatomic,strong) SettingsViewController *settingsViewController;
+//@property(nonatomic,strong) SettingsViewController *settingsViewController;
 @property(nonatomic,strong) User  *currentUser;
 @property(nonatomic,strong) Game  *currentGame;
 @property(nonatomic,strong) UIImageView *startupImageView;
@@ -74,16 +74,16 @@ typedef void(^RunTimer)(void);
 {
     NSLog(@"VC: Adding settings view controller ");
     
-    if (!self.settingsViewController) {
-        self.settingsViewController=[[SettingsViewController alloc]initWithNibName:@"SettingsViewController" bundle:nil];
-    }else{
-        NSLog(@"Cant instantiate SettingsViewController/already instantiated");
-    }
+   // if (!self.settingsViewController) {
+   //     self.settingsViewController=[[SettingsViewController alloc]initWithNibName:@"SettingsViewController" bundle:nil];
+   // }else{
+   //     NSLog(@"Cant instantiate SettingsViewController/already instantiated");
+   // }
     
-    self.settingsViewController.delegate=self;
+   // self.settingsViewController.delegate=self;
    
-    [self.settingsViewController setSettinngsDelegate:self.gameViewController];
-    [self.view addSubview:self.settingsViewController.view];
+   // [self.settingsViewController setSettinngsDelegate:self.gameViewController];
+   // [self.view addSubview:self.settingsViewController.view];
 }
 
 #pragma mark -
@@ -117,14 +117,14 @@ typedef void(^RunTimer)(void);
 {
     NSLog(@"inner back button pressed");
     
-    [UIView transitionFromView:self.settingsViewController.view toView:self.gameViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromTop completion:^(BOOL finished){
-    }];
+  //  [UIView transitionFromView:self.settingsViewController.view toView:self.gameViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromTop completion:^(BOOL finished){
+   // }];
 }
 
 -(void)toSettingsScreen
 {
     NSLog(@" VC: Go to settings view controller");
-    [self addSettingsViewController];
+    //[self addSettingsViewController];
 }
 
 #pragma mark - Core Data

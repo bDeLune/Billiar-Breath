@@ -51,6 +51,7 @@
         [animationObject setBackgroundColor:customColour];
         animationObject.layer.cornerRadius=16;
         [self addSubview:animationObject];
+        [self sendSubviewToBack:animationObject];
         
         isaccelerating=false;
         self.backgroundColor=[UIColor clearColor];
@@ -87,7 +88,7 @@
             UIColor* customColour = RGB(00, 33, 66);
             [animationObject setBackgroundColor:customColour];
             animationObject.layer.cornerRadius=16;
-            animationObject.alpha = 0.01;
+            //animationObject.alpha = 0.01;
             [self addSubview:animationObject];
             
             isaccelerating=false;
@@ -159,7 +160,7 @@
 
 -(void)blowingBegan
 {
-    NSLog(@"SETTINGS GAUGE BLOW BEGAN isaccelerating %hhd", isaccelerating);
+    //NSLog(@"SETTINGS GAUGE BLOW BEGAN isaccelerating %hhd", isaccelerating);
     isaccelerating=YES;
 }
 
@@ -198,9 +199,9 @@
     if (distance<GUAGE_HEIGHT) {
         CGRect frame=animationObject.frame;
         frame.origin.y=self.bounds.size.height-distance;
-        frame.size.height= distance;
+        frame.size.height= 1 + distance;
         //frame.size.width=20;
-        
+       // NSLog(@"SETTINGS GAUGE BLOW BEGAN isaccelerating %f", distance);
         if (distance>bestDistance) {
             //     NSLog(@"USING THIS");
             CGRect frame2=_arrow.frame;
@@ -264,10 +265,10 @@
 {
     //change: stop animation when in other view
     //  NSLog(@"MAIN GAUGE STOP");
-    if (_animationRunning) {
-        [displayLink invalidate];
-        _animationRunning=NO;
-    }
+   // if (_animationRunning) {
+   //     [displayLink invalidate];
+   //     _animationRunning=NO;
+  //  }
 }
 
 
