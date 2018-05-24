@@ -113,6 +113,14 @@
                         <action selector="presentSettings:" destination="-1" eventType="touchUpInside" id="4cB-px-hBa"/>
                     </connections>
                 </button>
+                <button autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sMc-Ax-JxV">
+                    <rect key="frame" x="611" y="911" width="148" height="102"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="toInfoView" image="Help.png"/>
+                    <connections>
+                        <action selector="goToInfoView:" destination="-1" eventType="touchUpInside" id="Cl2-jg-meA"/>
+                    </connections>
+                </button>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="pwD-YL-Hh8">
                     <rect key="frame" x="535" y="123" width="224" height="109"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -146,10 +154,10 @@
                         <action selector="goToSettings:" destination="-1" eventType="touchUpInside" id="wzK-Wd-7Ax"/>
                     </connections>
                 </button>
-                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Users Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Uk2-5k-71G">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Users Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Uk2-5k-71G">
                     <rect key="frame" x="289" y="20" width="150" height="127"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="50"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -198,14 +206,6 @@
                     <rect key="frame" x="419" y="0.0" width="360" height="128"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <button autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sMc-Ax-JxV">
-                    <rect key="frame" x="611" y="911" width="148" height="102"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="info" image="Help.png"/>
-                    <connections>
-                        <action selector="goToInfoView:" destination="-1" eventType="touchUpInside" id="yZy-tt-SHm"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>

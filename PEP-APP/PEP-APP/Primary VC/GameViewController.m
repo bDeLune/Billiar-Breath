@@ -122,6 +122,26 @@
     }];
 }
 
+-(void)settingsModeDismissRequest:(SettingsViewController *)caller
+{
+    
+    NSLog(@"Dismissing settings mode");
+    [[GCDQueue mainQueue]queueBlock:^{
+        [UIView transitionFromView:caller.view toView:self.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished){
+           // self.userList.sharedPSC=self.sharedPSC;
+           // self.userList.delegate=self;
+        }];
+    }];
+}
+
+
+
+-(void)dismissSettingsMode:(id <SETTINGS_DELEGATE>)dismiss;
+{
+    [dismiss returnToGameView];
+    
+}
+
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
     NSLog(@"CLICKED TAB BAR ITEM");
     NSLog(@"%@", item);
@@ -223,11 +243,7 @@
        // self.btOnOfImageView=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.bounds.size.width-230, 30, 100, 100)];
         //[self.btOnOfImageView setImage:[UIImage imageNamed:@"Bluetooth-DISCONNECTED"]];
        // [self.view addSubview:self.btOnOfImageView];
-        self.settingsViewController = [[SettingsViewController alloc]initWithNibName:@"SettingsViewController" bundle:nil];
-        
-        self.settingsViewController.delegate=self;
-        
-        [self.settingsViewController setSettinngsDelegate:self];
+
         
         
         ///image
@@ -439,7 +455,9 @@
     self.userList.sharedPSC=self.sharedPSC;
     self.navcontroller=[[UINavigationController alloc]initWithRootViewController:self.userList];
     
-    self.settingsViewController=[[SettingsViewController alloc]initWithNibName:@"SettingsViewController" bundle:nil];
+    self.settingsViewController = [[SettingsViewController alloc]initWithNibName:@"SettingsViewController" bundle:nil];
+    self.settingsViewController.delegate=self;
+    [self.settingsViewController setSettinngsDelegate:self];
     //self.settingsViewController = [[SettingsViewController alloc] init];
     //self.navcontroller=[[UINavigationController alloc]initWithRootViewController:self.settingsViewController];
     
@@ -536,7 +554,8 @@
     
     if (self.settingsViewController){
         NSLog(@"instantiating settingsViewController");
-        [self presentViewController:self.settingsViewController animated:YES completion:nil];
+        //[self presentViewController:self.settingsViewController animated:YES completion:nil];
+        [self.view.window.rootViewController presentViewController:self.settingsViewController animated:YES completion:nil];
     }else{
         NSLog(@"Cant instantiate self.settingsViewController");
     }
@@ -1472,6 +1491,15 @@
 {
     NSLog(@" inner set breath length %f", value);
    // self.breathLength=value;
+    selectedSpeed = (int)value;
+    self.currentSession.sessionRequiredBreathLength = [NSNumber numberWithFloat:value];
+    _animationrate=value;
+}
+
+-(void)setSpeed:(float)value
+{
+    NSLog(@" inner set breath speed %f", value);
+    // self.breathLength=value;
     selectedSpeed = (int)value;
     self.currentSession.sessionRequiredBreathLength = [NSNumber numberWithFloat:value];
     _animationrate=value;

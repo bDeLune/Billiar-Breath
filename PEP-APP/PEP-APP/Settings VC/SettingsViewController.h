@@ -35,15 +35,10 @@
 @property (unsafe_unretained) id<SETTINGS_DELEGATE> settinngsDelegate;
 @property(nonatomic,unsafe_unretained)id<SettingsViewProtocol>delegate;
 @property(nonatomic,strong)Gauge  *gaugeView;
-+(Gauge*) getSettingsGauge;
 -(IBAction)changeRate:(id)sender;
 -(IBAction)changeThreshold:(id)sender;
 -(IBAction)changeBTTreshold:(id)sender;
 -(IBAction)changeBTBoostValue:(id)sender;
 -(void)setSettingsStrengthLabelText: (NSString*)text;
 -(void)setSettingsDurationLabelText: (NSString*)text;
-//-(void)testGaugeInhale: (float)percent;
-//-(void)testGaugeExhale: (float)percent;
-//-(void)testGaugeBegan;
-//-(void)testGaugeStopped;
 @end

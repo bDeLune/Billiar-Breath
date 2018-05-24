@@ -6,7 +6,7 @@
 #import "AbstractGame.h"
 #import "MidiController.h"
 #import "GPUImage.h"
-
+@class SettingsViewController;
 
 @protocol SETTINGS_DELEGATE
 -(void)sendValue:(int)note onoff:(int)onoff;
@@ -20,7 +20,9 @@
 -(void)setImageSoundEffect:(NSString*)value;
 -(void)test:(float)value;
 -(void)setSpeed:(float)value;
-
+//-(void)settingsModeDismissRequest:(SettingsViewController*)caller;
+-(void)returnToGameView;
+-(void)settingsModeDismissRequest:(SettingsViewController*)caller;
 @end
 
 @protocol GameViewProtocol <NSObject>
@@ -78,6 +80,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *soundIcon;
 @property (weak, nonatomic) IBOutlet UIButton *photoPickerButton;
 @property (weak, nonatomic) IBOutlet UIButton *HQPhotoPickerButton;
+
+-(void)dismissSettingsMode:(id <SETTINGS_DELEGATE>)dismiss;
+
 
 -(IBAction)toUsersScreen:(id)sender;
 -(IBAction)exitGameScreen:(id)sender;
