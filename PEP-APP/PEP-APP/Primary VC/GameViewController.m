@@ -53,6 +53,7 @@
     //UIButton  *picselect;
     UIPopoverController *popover;
     UIImagePickerController *imagePickerController;
+    UIImagePickerController *hqImagePickerController;
     UIButton  *togglebutton;
     BOOL   toggleIsON;
     float mass;
@@ -89,6 +90,7 @@
 
 @property (nonatomic, retain) IBOutlet UIToolbar *myToolbar;
 @property (nonatomic, retain) NSMutableArray *capturedImages;
+@property (nonatomic, retain) NSMutableArray *hqImages;
 @property (weak, nonatomic) IBOutlet UIImageView *MainGaugeWindow;
 @property(nonatomic,strong)MainGauge  *mainGaugeView;
 @property(nonatomic,strong)Gauge  *gaugeView;
@@ -134,23 +136,14 @@
     }];
 }
 
-
-
 -(void)dismissSettingsMode:(id <SETTINGS_DELEGATE>)dismiss;
 {
     [dismiss returnToGameView];
-    
-}
-
-- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
-    NSLog(@"CLICKED TAB BAR ITEM");
-    NSLog(@"%@", item);
 }
 
 -(void)btleManagerConnected:(BTLEManager *)manager
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-       // [self.btOnOfImageView setImage:[UIImage imageNamed:@"Bluetooth-CONNECTED"]];
         [self.bluetoothIcon setImage:[UIImage imageNamed:@"Bluetooth-ON"]];
     });
 }
@@ -158,7 +151,6 @@
 -(void)btleManagerDisconnected:(BTLEManager *)manager
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        //[self.btOnOfImageView setImage:[UIImage imageNamed:@"Bluetooth-DISCONNECTED"]];
         [self.bluetoothIcon setImage:[UIImage imageNamed:@"Bluetooth-OFF"]];
     });
 }
@@ -167,7 +159,7 @@
 #pragma mark - Session
 
 -(void)startSession
-{   //ADDED CHECK
+{
     NSLog(@"START Session");
     self.currentSession=[Session new];
     self.currentSession.sessionDate=[NSDate date];
@@ -206,30 +198,22 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        //self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 160, 450, 225)];
-        selectedBallCount = 15;
-        ///change: save in user defaults
-        
-        //self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 160, 450, 225) withBallCount:selectedBallCount];
-        self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(10, 0, 130,220) withBallCount:selectedBallCount];
-        
 
-       // -(id)initWithFrame:(CGRect)frame withBallCount:(int)ballCount{
-       // self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(25, 260, 650, 325)];
+        selectedBallCount = 15;
+        currentDifficulty=gameDifficultyEasy;
+        selectedSpeed = 3;
+        wasExhaling = true;
+        
+        self.billiardViewController=[[BilliardBallViewController alloc]initWithFrame:CGRectMake(10, 0, 130,220) withBallCount:selectedBallCount];
+    
         self.midiController=[[MidiController alloc]init];
         self.midiController.delegate=self;
         [self.midiController addObserver:self forKeyPath:@"numberOfSources" options:0 context:NULL];
-        // [self.midiController setup];
         self.currentGameType=gameTypeBalloon;
-        currentDifficulty=gameDifficultyEasy;
-        selectedSpeed = 3;
-        
+        [self.toggleGameModeButton setImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];
         
         [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:currentDifficulty] forKey:@"difficulty"];
-        
-        NSLog(@"CURRENT DIFFICULTY %u", currentDifficulty);
-        wasExhaling = true;
-        
+    
         self.addGameQueue=[[NSOperationQueue alloc]init];
         self.btleManager=[BTLEManager new];
         self.btleManager.delegate=self;
@@ -239,30 +223,22 @@
         [self startSession];
         [self.bluetoothIcon setImage:[UIImage imageNamed:@"Bluetooth-OFF"]];
     
-        //change add in storyboard0
-       // self.btOnOfImageView=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.bounds.size.width-230, 30, 100, 100)];
-        //[self.btOnOfImageView setImage:[UIImage imageNamed:@"Bluetooth-DISCONNECTED"]];
-       // [self.view addSubview:self.btOnOfImageView];
-
-        
-        
-        ///image
         sketchamount=0;
         self.title = @"Groov";
-        self.tabBarItem.image = [UIImage imageNamed:@"first"];
+        //self.tabBarItem.image = [UIImage imageNamed:@"first"];
         _animationrate=1;
-       // picselect=[UIButton buttonWithType:UIButtonTypeCustom];
-        //picselect.frame=CGRectMake(0, self.view.frame.size.height-120, 108, 58);
-
-        //picselect.frame=CGRectMake(0, self.view.frame.size.height-120, 108, 58);
         
         [self.photoPickerButton addTarget:self action:@selector(photoButtonLibraryAction) forControlEvents:UIControlEventTouchUpInside];
-       // [self.view addSubview:picselect];
-        [self.photoPickerButton setBackgroundImage:[UIImage imageNamed:@"PickPhotoButton.png"] forState:UIControlStateNormal];
         self.capturedImages = [NSMutableArray array];
+        
+        [self.HQPhotoPickerButton addTarget:self action:@selector(photoButtonBundleAction) forControlEvents:UIControlEventTouchUpInside];
+        self.hqImages = [NSMutableArray array];
     
         imagePickerController = [[UIImagePickerController alloc] init] ;
         imagePickerController.delegate = self;
+        
+        hqImagePickerController = [[UIImagePickerController alloc] init] ;
+        hqImagePickerController.delegate = self;
         
         currentImageGameSound = @"bell";
         //change: set in user defaults
@@ -273,24 +249,6 @@
         [self.view sendSubviewToBack:self.mainGaugeView];
         [self.mainGaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
         [self.mainGaugeView start];
-       // self.mainGaugeView.alpha = 1;
-
-       // self.gaugeView=[[Gauge alloc]initWithFrame:CGRectMake(90, 190, 90, GUAGE_HEIGHT) ];
-       // self.gaugeView.GaugeDelegate=self;
-        //[self.view addSubview:self.gaugeView ];
-        //[self.view sendt:self.gaugeView];
-       // [self.gaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
-      //  [self.gaugeView start];
-      
-        
-        //must add test gauge
-      //  self.gaugeView=[[Gauge alloc]initWithFrame:CGRectMake(170, 165, 40, GUAGE_HEIGHT)];
-       // self.gaugeView.gaugedelegate=self;
-        
-       // [self.view addSubview:self.gaugeView];
-        
-       // [self.gaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
-      //  [self.gaugeView start];
     }
     return self;
 }
@@ -298,8 +256,6 @@
 
 //FIND ALLOW BREATH FUNCTION
 -(void)btleManagerBreathBegan:(BTLEManager*)manager{
-    
-    /// NSLog(@"allow == %i",[self.midiController allowBreath]);
     if ([self.midiController allowBreath]==NO) {
         return;
     }
@@ -311,72 +267,46 @@
     }else{
         NSLog(@"FIRST MIDI NOTE BEGAN DISALLOWED!");
     }
-
-   /// if (gameTypeTest){
-    //[self.settingsViewController testGaugeBegan];
-    //}
-
 }
 
 -(void)btleManagerBreathStopped:(BTLEManager*)manager{
-    /// NSLog(@"allow == %i",[self.midiController allowBreath]);
     if ([self.midiController allowBreath]==NO) {
         return;
     }
-    
     //added late
     [self.billiardViewController blowEnded];
     
     [self midiNoteStopped:nil];
     isaccelerating=NO;
     self.breathGauge.progress = 0;
-    
-    ///if (gameTypeTest){
-      //  [self.settingsViewController testGaugeStopped];
-   // }
 }
-
 
 -(void)btleManager:(BTLEManager*)manager inhaleWithValue:(float)percentOfmax{
     
     wasExhaling = false;
-    //addedgauge
-     [self.mainGaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
+    [self.mainGaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
     
     [self.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
     
     [self.settingsViewController.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
-    
-    //[[self.settingsViewController gaugeView] setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
 
     if (self.midiController.toggleIsON==NO) {
         NSLog(@"INHALING AND RETURNING");
         return;
     }
     self.breathGauge.progress = percentOfmax;
-    //currentdirection=midiinhale;
-    //self.velocity=(percentOfmax/10.0)*127.0;
     self.velocity=(percentOfmax)*127.0;
     isaccelerating=YES;
-    //  NSLog(@"inhaleWithValue %f",percentOfmax);
     self.midiController.velocity=127.0*percentOfmax;
     self.midiController.speed= (fabs( self.midiController.velocity- self.midiController.previousVelocity));
     self.midiController.previousVelocity= self.midiController.velocity;
     
-    //addedgaugeview
    float scale=50.0f;
    float value=self.velocity*scale;
    [self.mainGaugeView setForce:(value)];
    [self.gaugeView setForce:(value)];
    [self.settingsViewController.gaugeView setForce:(value)];
-    //[[self.settingsViewController gaugeView] setForce:(value)];
-    
-   // [self.settingsViewController testGaugeInhale: percentOfmax];
-
-
-
-    
-    [self midiNoteContinuing: self.midiController];
+[self midiNoteContinuing: self.midiController];
 }
 
 -(void)btleManager:(BTLEManager*)manager exhaleWithValue:(float)percentOfmax{
@@ -402,21 +332,16 @@
     [self.mainGaugeView setForce:(value)];
     [self.gaugeView setForce:(value)];
     [self.settingsViewController.gaugeView setForce:(value)];
-    //[[self.settingsViewController gaugeView] setForce:(value)];
-    
-   // [self.settingsViewController testGaugeExhale: percentOfmax];
 }
-
 
 - (IBAction)openPhotoPicker:(id)sender {
     
     [self photoButtonLibraryAction];
 }
 
-
 - (IBAction)openHQContrastPhoto:(id)sender {
     
-    [self photoButtonLibraryAction];
+    [self photoButtonBundleAction];
 }
 
 - (NSManagedObjectContext *)managedObjectContext {
@@ -430,19 +355,6 @@
         [_managedObjectContext setPersistentStoreCoordinator:self.sharedPSC];
     }
     return _managedObjectContext;
-}
-- (IBAction)imagePickerPressed:(id)sender {
-    
-    NSLog(@"image picker pressed");
-    
-    
-}
-
-- (IBAction)contrastPickerPressed:(id)sender {
-    NSLog(@"contrastPickerPressed pressed");
-    
-    
-    
 }
 
 - (void)viewDidLoad
@@ -458,11 +370,8 @@
     self.settingsViewController = [[SettingsViewController alloc]initWithNibName:@"SettingsViewController" bundle:nil];
     self.settingsViewController.delegate=self;
     [self.settingsViewController setSettinngsDelegate:self];
-    //self.settingsViewController = [[SettingsViewController alloc] init];
-    //self.navcontroller=[[UINavigationController alloc]initWithRootViewController:self.settingsViewController];
-    
+
     self.currentGameType = gameTypeBalloon;
-    
     CGRect frame = self.view.frame;
     [self.navcontroller.view setFrame:frame];
     self.breathGauge.progress = 0;
@@ -473,14 +382,6 @@
     targetRadius=0;
     defaultScale=1.5;
     defaultRadius=0;
-    
-   
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)setLabels
@@ -488,15 +389,11 @@
     [self managedObjectContext];
     [[GCDQueue mainQueue]queueBlock:^{
         self.currentUsersNameLabel.text=[self.gameUser valueForKey:@"userName"];
-        // [self setTargetScore];
     }];
 }
 #pragma - UIControls
 
 - (IBAction)goToInfoView:(id)sender {
-    
-    NSLog(@"Going to info view");
-    
     infoViewController *infoVC = [[infoViewController alloc]initWithNibName:@"infoViewController" bundle:nil];
     
     if (infoVC){
@@ -507,19 +404,15 @@
     }
 }
 
-
 - (IBAction)toUsersScreen:(id)sender {
-    
     NSLog(@"Moving to users screen");
     self.userList.sharedPSC=self.sharedPSC ;
     [self.userList getListOfUsers];
     [UIView transitionFromView:self.view toView:self.navcontroller.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished){
-        
         self.userList.sharedPSC=self.sharedPSC;
         self.userList.delegate=self;
         
     }];
-
 }
 
 -(IBAction)exitGameScreen:(id)sender
@@ -528,29 +421,12 @@
 }
 
 - (IBAction)goToSettings:(id)sender {
-    
-    NSLog(@"Go to settings");
    // [self.mainGaugeView stopGauge];
     self.currentGameType = gameTypeTest;
     self.billiardViewController.currentGameType = self.currentGameType;
-    
-    NSLog(@"Current game mode %u", self.currentGameType);
 
     [self.toggleGameModeButton setImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];
-        //change: check if correct
     [self resetGame:nil];
-    
-    //self.settingsViewController = [[SettingsViewController alloc] init];
-    //[self.navigationController pushViewController:self.settingsViewController  animated:YES];
-
-   //[UIView transitionFromView:self.view toView:self.settingsViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished){
-        //self.userList.sharedPSC=self.sharedPSC;
-        //self.userList.delegate=self;
-    //}];
-    
-   // [self.delegate toSettingsScreen];
-    
-    //infoViewController *infoVC = [[infoViewController alloc]initWithNibName:@"infoViewController" bundle:nil];
     
     if (self.settingsViewController){
         NSLog(@"instantiating settingsViewController");
@@ -567,18 +443,14 @@
     switch (self.midiController.toggleIsON) {
         case 0:
             self.midiController.toggleIsON=YES;
-            //  midiController.currentdirection=midiinhale;
             [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
-            [[NSUserDefaults standardUserDefaults]setObject:@"inhale" forKey:@"direction"];    // Do any additional setup after loading the view from its nib.
+            [[NSUserDefaults standardUserDefaults]setObject:@"inhale" forKey:@"direction"];
             wasExhaling = false;
             break;
         case 1:
             self.midiController.toggleIsON=NO;
-            
             [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
-            //  midiController.currentdirection=midiexhale;
-            
-            [[NSUserDefaults standardUserDefaults]setObject:@"exhale" forKey:@"direction"];    // Do any additional setup after loading the view from its nib.
+            [[NSUserDefaults standardUserDefaults]setObject:@"exhale" forKey:@"direction"];
             wasExhaling = true;
             break;
         default:
@@ -590,10 +462,9 @@
 {
     NSLog(@"Toggling game mode");
     int mode=self.currentGameType;
-    
     mode++;
     
-    if (mode>2) {   //check if correct
+    if (mode>2) {
         mode=gameTypeBalloon;
     }
     
@@ -618,8 +489,8 @@
         case gameTypeDuo:
            // modeString=@"ModeButtonDuo";
            // modeString=@"ModeButtonSEQUENCE";
-            NSLog(@"changing mode BALLOON");
-            modeString=@"MainMode-BALLOON";
+            NSLog(@"changing mode duo");
+            modeString=@"MainMode-BOTH";
             break;
             
         case gameTypeImage:
@@ -633,14 +504,12 @@
            // modeString=@"ModeButtonBalloon";
             // modeString=@"ModeButtonSEQUENCE";
             NSLog(@"changing mode gameTypeBalloon");
-            modeString=@"MainMode-BOTH";
+            modeString=@"MainMode-BALLOON";
             break;
         case gameTypeTest:
-           // modeString=@"ModeButtonTest";
              NSLog(@"changing mode gameTypeTest");
-            modeString=@"MainMode-BALLOON";//change: set to none
+            modeString=@"MainMode-BALLOON";
             break;
-            
         default:
             break;
     }
@@ -1003,61 +872,6 @@
     }
 }
 
-//#pragma - Duration
-////-(void)midiNoteBeganForDuration:(MidiController *)midi
-///{
-    ///  NSLog(@"MIDI NOTES midiNoteBeganForDuration");
-    //self.billiardViewController.durationGame=self.durationGameController;
-   // [self.billiardViewController startDurationPowerGame];
-    
-//}
-//-(void)midiNoteStoppedForDuration:(MidiController *)midi
-//{
-    ///NSLog(@"MIDI NOTES midiNoteStoppedForDuration");
-  //  [[GCDQueue mainQueue]queueBlock:^{
-   //     [self.billiardViewController endDurationPowerGame];
-   //     [self resetGame:nil];
-  //  }];
-  //  [self saveCurrentSession];
-//}
-
-
-//-(void)midiNoteContinuingForDuration:(MidiController*)midi
-//{
-  //  [[GCDQueue mainQueue]queueBlock:^{
- ///       [self.durationGameController pushBall];
- //   }];
-//}
-
-//#pragma - Power
-
-//-(void)midiNoteBeganForPower:(MidiController *)midi
-//{
-    ///   NSLog(@"MIDI NOTES BEGAN FOR POWER");
-  //'/  self.billiardViewController.powerGame=self.powerGameController;
-  ///  [self.billiardViewController startBallsPowerGame];
-//}
-
-
-//-(void)midiNoteStoppedForPower:(MidiController *)midi
-//{
-  ///  if ((self.midiController.toggleIsON == false && wasExhaling == true) || (self.midiController.toggleIsON == true && wasExhaling == false)){
-        
- //       NSLog(@"MIDI NOTES STOPPED FOR POWER");
-    
-///       [[GCDQueue mainQueue]queueBlock:^{
- ///           [self.billiardViewController endBallsPowerGame];
-            
-            ///  [self saveCurrentSession];
- //           [self resetGame:nil];
- ///       }];
-        
-        /// [self saveCurrentSession];
-//    }else{
- ///       NSLog(@"MIDI NOTE DISALLOWED - B");
-//    }
-//}
-
 - (IBAction)toggleMuteSound:(id)sender {
     
     NSLog(@"toggle sound");
@@ -1086,35 +900,6 @@
     }];
 }
 
--(void)setThreshold:(int)pvalue
-{
-    
-    NSLog(@"game view controller: set threshold");
-    switch (pvalue) {
-        case 0:
-            threshold=10;
-            NSLog(@"SETTING DIFFICULTY THRESHOLD TO 0 or %d", threshold);
-            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:0] forKey:@"difficulty"];
-            [self.settingsButton setBackgroundImage:[UIImage imageNamed:@"DifficultyButtonLOW"] forState:UIControlStateNormal];
-            break;
-            
-        case 1:
-            threshold=25;
-            NSLog(@"SETTING DIFFICULTY THRESHOLD TO 1 or %d", threshold);
-            [self.settingsButton setBackgroundImage:[UIImage imageNamed:@"DifficultyButtonMEDIUM"] forState:UIControlStateNormal];
-            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:1] forKey:@"difficulty"];
-            break;
-        case 2:
-            threshold=50;
-            NSLog(@"SETTING DIFFICULTY THRESHOLD TO 2 or %d", threshold);
-            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:2] forKey:@"difficulty"];
-            [self.settingsButton setBackgroundImage:[UIImage imageNamed:@"DifficultyButtonHIGH"] forState:UIControlStateNormal];
-            break;
-        default:
-            break;
-    }
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
 
 -(void)gameEnded:(AbstractGame *)game
 {
@@ -1128,31 +913,6 @@
     
     [self.sequenceGameController killTimer];
 }
--(void)gameStarted:(AbstractGame *)game
-{
-    
-}
-
-//-(void)gameWonDuration
-//{
-    
-  //  if (particleEffect) {
-  ///      return;
- //   }
-    
-    // self.durationGameController.isRunning=NO;
-  //  [[GCDQueue mainQueue]queueBlock:^{
-  //      [self playSound];
-  //      [self startEffects];
-        /// [self resetGame:nil];
- //   }];
-    // UIEffectDesignerView* effectView = [UIEffectDesignerView effectWithFile:@"billiardwin.ped"];
-    // [self.view addSubview:effectView];
-    // if (game.saveable) {
-    //[self saveCurrentSession];
-    // }
-  //  [self.sequenceGameController killTimer];
-//}
 
 -(void)imageGameWon
 {
@@ -1179,14 +939,7 @@
         [self startEffects];
         [self resetGame:nil];
     }];
-    
-   /// if (self.currentGameType == gameTypeImage) {
-   //     [[GCDQueue mainQueue]queueBlock:^{
-   //         NSLog(@"IMAGE GAME WON");
-   //         [self saveCurrentSession];  //added kung
-   //     }];
-   //     return;
-    //}else
+
     if (self.currentGameType == gameTypeDuo) {
         [[GCDQueue mainQueue]queueBlock:^{
              NSLog(@"DUO GAME WON");
@@ -1202,15 +955,8 @@
         return;
     }
     
-    if (game.saveable) {
-        ///
-    }
-    
     [self.sequenceGameController killTimer];
 }
-
-//PROBLEM: CURRENTLY BALLOON SAVES FOR WON BALLOON GAMES. NEEDS TO SAVE FOR ALL ATTEMPTS.
-
 
 -(void)startEffects
 {
@@ -1254,89 +1000,6 @@
     [self startSession];
 }
 
--(void)setTargetScore
-{   //REMOVE
-    NSString   *name=self.gameUser.userName;
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSManagedObjectContext *context = self.managedObjectContext;
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSPredicate  *pred = [NSPredicate predicateWithFormat:@"userName == %@", name];
-    [fetchRequest setPredicate:pred];
-    
-    NSError  *error;
-    NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
-    
-    if ([items count]>0) {
-        
-        User  *user=[items objectAtIndex:0];
-        NSSet  *game=user.game;
-        NSArray  *games=[game allObjects];
-        //  NSArray *sortedArray;
-        /**sortedArray = [games sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-         NSNumber *first = [(Game*)a power];
-         NSNumber *second = [(Game*)b power];
-         return [first compare:second];
-         }];**/
-        
-        float highestNumber=0;
-        
-        for (Game *game in games)
-        {
-            if ([game.power floatValue] > highestNumber) {
-                highestNumber = [game.power floatValue];
-            }
-        }
-        
-        
-        float value=highestNumber;
-        [[GCDQueue mainQueue]queueBlock:^{
-            [self.targetLabel setText:[NSString stringWithFormat:@"%0.0f",value]];
-            
-        }];
-        
-    }
-    
-}
--(IBAction)testButtonDown:(id)sender
-{
-    
-    // [self midiNoteBeganForDuration:nil];
-    // [self testContinueStart];
-    //  [self startSession];
-    [self addTestScores];
-}
-
--(IBAction)testButtonUp:(id)sender
-
-{
-    // [self saveCurrentSession];
-    // [self midiNoteStoppedForDuration:nil];
-    // [self testContinueStop];
-}
-
-//-(void)testContinueStop
-//{
-//    [testDurationDisplayLink invalidate];
-//    testDurationDisplayLink=nil;
-//
-//}
-//-(void)testContinueStart
-//{
-    //  [self stop];
-//    [self midiNoteBeganForPower:Nil];
-//    testDurationDisplayLink = [CADisplayLink displayLinkWithTarget:self
-  //                                                        selector:@selector(animateForTestDuration)];
-//    [testDurationDisplayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
-    
-//}
-
-//-(void)animateForTestDuration
-//{
-    //[self midiNoteContinuingForDuration:nil];
-//    [self midiNoteContinuingForPower:nil];
-//}
-
 -(void) playSound {
     
     NSLog(@"Should be playing bursting sound!!!!!");
@@ -1367,10 +1030,6 @@
     @finally {
         
     }
-    
-    
-    //[soundPath release];
-    // NSLog(@"soundpath retain count: %d", [soundPath retainCount]);
 }
 
 -(void)addTestScores
@@ -1399,26 +1058,6 @@
     }
 }
 
-
-//// SIMPLEIMAGE
-
--(void)background
-{
-    //self.btleMager.delegate=nil;
-    // self.btleMager=nil;
-    // [displayLink invalidate];
-    // displayLink=nil;
-}
-
--(void)foreground
-{
-    //  self.btleMager=[BTLEManager new];
-    //  self.btleMager.delegate=self;
-    //   [self.btleMager startWithDeviceName:@"GroovTube 2.0" andPollInterval:0.1];
-    //[self.btleMager setTreshold:60];
-    
-}
-
 -(IBAction)sliderchanged:(id)sender
 {
     sketchamount=self.testSlider.value;
@@ -1432,7 +1071,9 @@
 //
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    NSLog(@"PHOTO LIBRARY ACTION - imagePickerController");
+    NSLog(@"PHOTO LIBRARY did pick ACTION - imagePickerController");
+    
+    NSLog(@"picker %@", picker);
     
     UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
     [self setupDisplayFilteringWithImage:image];
@@ -1455,6 +1096,7 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
+    [picker dismissModalViewControllerAnimated:NO];
     // [self.delegate didFinishWithCamera];    // tell our delegate we are finished with the picker
 }
 
@@ -1464,6 +1106,18 @@
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         popover = [[UIPopoverController alloc] initWithContentViewController:imagePickerController];
+        [popover presentPopoverFromRect:CGRectMake(0, 0, 500, 500) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    } else {
+        //[self presentModalViewController:imagePickerController animated:YES];
+    }
+}
+
+- (void)photoButtonBundleAction
+{
+    NSLog(@"PHOTO Bundle ACTION");
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        popover = [[UIPopoverController alloc] initWithContentViewController:hqImagePickerController];
         [popover presentPopoverFromRect:CGRectMake(0, 0, 500, 500) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     } else {
         //[self presentModalViewController:imagePickerController animated:YES];
@@ -1554,7 +1208,7 @@
 
 -(void)updateimage
 {
-    //NSLog(@"UPDATE IMAGE");
+  
    // NSLog(@"self.currentGameType %u" , self.currentGameType);
     
   if (self.currentGameType == gameTypeTest) {
@@ -1564,7 +1218,7 @@
     //   NSLog(@"Image filter not allowed in balloon mode! ");
       return;
   }
-    
+      NSLog(@"UPDATE IMAGE");
     //change: is this the best place to do this?
     
     
@@ -1837,6 +1491,8 @@
 
 -(void)animate
 {
+    NSLog(@"animating");
+    
     self.velocity+=0.1;
     if (self.velocity<threshold) {
         return;

@@ -42,7 +42,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <imageView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="7QT-wR-PVR">
-                    <rect key="frame" x="0.0" y="136" width="779" height="638"/>
+                    <rect key="frame" x="0.0" y="75" width="779" height="733"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <imageView opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Main-Background.png" id="LZu-SQ-bhA">
@@ -199,7 +199,6 @@
                     <state key="normal" title="High Quality Image Contrast" image="Main-Button-Picker-HICONTRAST.png"/>
                     <connections>
                         <action selector="openHQContrastPhoto:" destination="-1" eventType="touchUpInside" id="UgQ-JC-cGc"/>
-                        <action selector="photoPicker:" destination="-1" eventType="touchUpInside" id="NnX-gJ-ljy"/>
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="r3m-4U-DNu">
