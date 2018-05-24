@@ -241,6 +241,7 @@
     
     //    }];
     
+    [self.settinngsDelegate settingsModeDismissRequest:self];
 }
 #pragma mark -
 #pragma mark - Midi Delegate

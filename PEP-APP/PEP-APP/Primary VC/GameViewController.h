@@ -23,6 +23,7 @@
 //-(void)settingsModeDismissRequest:(SettingsViewController*)caller;
 -(void)returnToGameView;
 -(void)settingsModeDismissRequest:(SettingsViewController*)caller;
+-(void)settingsModeToUser:(SettingsViewController*)caller;
 @end
 
 @protocol GameViewProtocol <NSObject>
@@ -31,8 +32,6 @@
 @end
 
 @interface GameViewController : UIViewController<MidiControllerProtocol,GameProtocol,MainGaugeProtocol,  SETTINGS_DELEGATE,UINavigationControllerDelegate,DraggableDelegate, UIImagePickerControllerDelegate, UITabBarDelegate>{
-    
-   // GPUImagePicture *sourcePicture;
     GPUImageOutput<GPUImageInput> *sepiaFilter, *sepiaFilter2;
     UISlider *imageSlider;
 }
@@ -75,15 +74,13 @@
 -(void)foreground;
 -(void)setLabels;
 
-
 @property (weak, nonatomic) IBOutlet UIImageView *bluetoothIcon; 
 @property (weak, nonatomic) IBOutlet UIButton *soundIcon;
 @property (weak, nonatomic) IBOutlet UIButton *photoPickerButton;
 @property (weak, nonatomic) IBOutlet UIButton *HQPhotoPickerButton;
 
 -(void)dismissSettingsMode:(id <SETTINGS_DELEGATE>)dismiss;
-
-
+-(void)settingsModeToUser:(id <SETTINGS_DELEGATE>)dismiss;
 -(IBAction)toUsersScreen:(id)sender;
 -(IBAction)exitGameScreen:(id)sender;
 -(IBAction)toggleDirection:(id)sender;

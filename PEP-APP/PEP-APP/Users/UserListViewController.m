@@ -7,13 +7,16 @@
 #import "CurvedScatterPlot.h"
 #import "AllGamesForDayTableVC.h"
 #import "GCDQueue.h"
+#import "infoViewController.h"
+#import "SettingsViewController.h"
 
 @interface UserListViewController()<UIActionSheetDelegate,HeaderViewProtocl>
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) UIBarButtonItem *activityIndicator;
 @property (nonatomic) NSMutableArray *userList;
-@property(nonatomic,strong)GraphViewController  *graph;
+//@property(nonatomic,strong)GraphViewController  *graph;
+@property (weak, nonatomic) IBOutlet UIView *tableViewContainer;
 @property(nonatomic,assign)User  *deleteUser;
 @end
 @implementation UserListViewController
@@ -101,6 +104,12 @@
     
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    
+    //[self.tableViewContainer setFrame:CGRectMake(100, 100, 100, 100)];
+    [self.tableView setFrame:CGRectMake(50, 0, 900, 900)];
+}
+
 - (void)viewDidLoad
 {
     self.userList=[NSMutableArray new];
@@ -114,24 +123,52 @@
     // [[self view] addGestureRecognizer:recognizer];
     
     // UIImage *backButtonImage = [UIImage imageNamed:@"back-button"];
-    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [backButton setTitle:@"Back" forState:UIControlStateNormal];
+   // UIButton *backButton = [UIButton buttonWithType:UIButtonTypeSystem];
+   // [backButton setTitle:@"Back" forState:UIControlStateNormal];
     
     // [backButton setImage:backButtonImage forState:UIControlStateNormal];
-    backButton.frame = CGRectMake(0, 0, 50, 40);
+    //backButton.frame = CGRectMake(0, 0, 50, 40);
     
-    [backButton addTarget:self
-                   action:@selector(goBack)
-         forControlEvents:UIControlEventTouchUpInside];
+    //[backButton addTarget:self
+    //               action:@selector(goBack)
+    //     forControlEvents:UIControlEventTouchUpInside];
     
-    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    self.navigationItem.leftBarButtonItem = backBarButtonItem;
+    //UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] ////initWithCustomView:backButton];
+    //self.navigationItem.leftBarButtonItem = backBarButtonItem;
+
 }
 
 -(void)goBack
 {
     [self.delegate userListDismissRequest:self];
 }
+
+- (IBAction)goToInfoView:(id)sender {
+
+    infoViewController *infoVC = [[infoViewController alloc]initWithNibName:@"infoViewController" bundle:nil];
+    
+    if (infoVC){
+        NSLog(@"instantiating infoVC");
+        [self presentViewController:infoVC animated:YES completion:nil];
+    }else{
+        NSLog(@"Cant instantiate infoVC");
+    }
+}
+
+- (IBAction)goToSettingsView:(id)sender {
+    
+    SettingsViewController *settingsView =
+    [[SettingsViewController alloc]
+     initWithNibName:@"SettingsViewController" bundle:nil];
+    
+    [self.view.window.rootViewController presentViewController:settingsView animated:YES completion:nil];
+}
+
+- (IBAction)goToMainView:(id)sender {
+
+    [self.delegate userListDismissRequest:self];
+}
+
 
 -(void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer {
     NSLog(@"Swipe received.");
@@ -272,6 +309,7 @@
     return filtered;  //was array added
 }
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     User  *user=[self.userList objectAtIndex:indexPath.section];
@@ -371,7 +409,7 @@
     //[self.managedObjectContext deleteObject:user];
     //[self.managedObjectContext save:nil];
     //if (!self.graph) {
-    self.graph=[[GraphViewController alloc]initWithNibName:@"GraphViewController" bundle:nil];
+   // self.graph=[[GraphViewController alloc]initWithNibName:@"GraphViewController" bundle:nil];
     // }
     User *user=[self.userList objectAtIndex:header.section];
     NSArray * src=[user.game allObjects];
@@ -394,14 +432,14 @@
         return;
     }
     
-    NSLog(@"CREATING GRAPH!");
-    CurvedScatterPlot  *plot=[[CurvedScatterPlot alloc]init];
-    [plot setUser:user];
+   // NSLog(@"CREATING GRAPH!");
+   // CurvedScatterPlot  *plot=[[CurvedScatterPlot alloc]init];
+   // [plot setUser:user];
     
-    [[GCDQueue mainQueue]queueBlock:^{
-        [self.graph setDetailItem:plot];
-    }];
-    [self.navigationController pushViewController:self.graph animated:YES];
+   // [[GCDQueue mainQueue]queueBlock:^{
+   //     [self.graph setDetailItem:plot];
+   // }];
+  //  [self.navigationController pushViewController:self.graph animated:YES];
 }
 
 // merge changes to main context,fetchedRequestController will automatically monitor the changes and update tableview.
@@ -466,4 +504,6 @@
 - (BOOL)prefersStatusBarHidden {
     return YES;
 }
+
+
 @end

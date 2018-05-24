@@ -136,6 +136,18 @@
     }];
 }
 
+-(void)settingsModeToUser:(id<SETTINGS_DELEGATE>)dismiss
+{
+    
+    NSLog(@"SETTINGS INNER - Dismissing settings mode");
+    [[GCDQueue mainQueue]queueBlock:^{
+        [UIView transitionFromView:self.view toView:self.userList.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished){
+            // self.userList.sharedPSC=self.sharedPSC;
+            // self.userList.delegate=self;
+        }];
+    }];
+}
+
 -(void)dismissSettingsMode:(id <SETTINGS_DELEGATE>)dismiss;
 {
     [dismiss returnToGameView];
@@ -739,15 +751,11 @@
         
     }
     self.currentSession.sessionSpeed=[NSNumber numberWithFloat:midi.speed];
-    
     //check
     self.currentSession.sessionDuration = currentBreathLength;
-    
-
-    
     [[GCDQueue mainQueue]queueBlock:^{
         if (midi.velocity!=127) {
-            
+        
         }
         // if (midi.speed!=0) {
         //  [self.speedLabel setText:[NSString stringWithFormat:@"%0.0f",midi.speed]];
@@ -1197,9 +1205,11 @@
         animationRunning = YES;
         [displayLink setFrameInterval:8];
         //[self makeTimer];
+       // acceleration=0.1;
         acceleration=0.1;
+        
         distance=0;
-        time=0;
+        //time=sele;
         //      [self toggleDirection:nil];
         //      [self toggleDirection:nil];
     }
@@ -1240,7 +1250,9 @@
    // NSLog(@"FL Velocity %f", fVel);
     
    // NSLog(@"OUTPUT %f",targetRadius+((rate/500)*_animationrate));
-   // NSLog(@"_animationrate %f",_animationrate);
+    NSLog(@"_animationrate %f",_animationrate);
+    
+   // _animationrate = _animationrate;
    // NSLog(@"TARGETRADIUS  - %f",targetRadius);
    // NSLog(@"rate/500 -  %f",rate/500);
     //NSLog(@"((rate/500)*_animationrate) -  %f",((rate/500)*_animationrate));
@@ -1274,7 +1286,9 @@
     if (targetRadius>1) {
         targetRadius=1;
     }
-    // NSLog(@"target radius %f",targetRadius);
+     NSLog(@"target radius %f",targetRadius);
+    
+    
     
     if ([stillImageFilter isKindOfClass:[GPUImageBulgeDistortionFilter class]])
         
