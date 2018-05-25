@@ -57,6 +57,7 @@
 
 -(void)playHitTop
 {
+    
     NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"IMPACT RING METAL DESEND 01" ofType:@"wav"];
     NSData *fileData = [NSData dataWithContentsOfFile:soundPath];
     NSError *error = nil;
@@ -67,7 +68,7 @@
     [audioPlayer prepareToPlay];
     NSLog(@"SOUND: playing hit top SEQ %hhd", muteAudio);
     if (muteAudio == 0){
-        [audioPlayer play];
+        //[audioPlayer play];
     }
 }
 

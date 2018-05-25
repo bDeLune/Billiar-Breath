@@ -145,6 +145,13 @@
     for (int i=0; i<selectedGameBallCount; i++) {           //change: make balls here
         
         Balloon *balloon=[[Balloon alloc]initWithFrame:CGRectMake(startx, 0, BALLOON_RADIUS, BALLOON_RADIUS)];
+        BOOL allowAnimate = 1;
+        
+        if (_currentGameType == gameTypeTest || _currentGameType == gameTypeImage ){
+            allowAnimate = 0;
+        }
+        
+        [balloon setSpeed:selectedSpeedSetting allowAnimate: allowAnimate];
         [self.balls addObject:balloon];
         balloon.gaugeHeight=self.view.bounds.size.height;
         balloon.delegate=self;
@@ -436,6 +443,12 @@
     isaccelerating=YES;
     currentBall = currentBallNo;
     selectedSpeedSetting = speed;
+    
+    if (self.currentGameType == gameTypeTest || self.currentGameType == gameTypeImage){
+        return;
+    }
+    
+    
     timeCounter = 0;
     if (!_timer) {
         _timer = [NSTimer scheduledTimerWithTimeInterval:.01 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];

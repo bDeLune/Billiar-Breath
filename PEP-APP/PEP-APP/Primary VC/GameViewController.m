@@ -238,7 +238,11 @@
         sketchamount=0;
         self.title = @"Groov";
         //self.tabBarItem.image = [UIImage imageNamed:@"first"];
-        _animationrate=1;
+        //_animationrate=1;
+        // _animationrate = _animationrate/selectedSpeed;
+        
+        
+        _animationrate=selectedSpeed;
         
         [self.photoPickerButton addTarget:self action:@selector(photoButtonLibraryAction) forControlEvents:UIControlEventTouchUpInside];
         self.capturedImages = [NSMutableArray array];
@@ -252,7 +256,7 @@
         hqImagePickerController = [[UIImagePickerController alloc] init] ;
         hqImagePickerController.delegate = self;
         
-        currentImageGameSound = @"bell";
+        currentImageGameSound = @"bell synth";
         //change: set in user defaults
         
         self.mainGaugeView=[[MainGauge alloc]initWithFrame:CGRectMake(445, 20, 40, MAINGUAGE_HEIGHT) ];
@@ -387,6 +391,7 @@
     CGRect frame = self.view.frame;
     [self.navcontroller.view setFrame:frame];
     self.breathGauge.progress = 0;
+    globalSoundActivated = 1;
     midiinhale=61;
     midiexhale=73;
     velocity=0;
@@ -628,6 +633,7 @@
                 [self midiNoteBeganForSequence:midi];
                 self.billiardViewController.currentGameType=gameTypeDuo;
                /// [self midiNoteBeganForDuration:midi];
+                [self playImageGameSound];
                 break;
             case gameTypeImage:
                // [self midiNoteBeganForPower:midi];
@@ -636,6 +642,7 @@
                 break;
             case gameTypeBalloon:
                 [self midiNoteBeganForSequence:midi];
+                 [self playGameSound];
                 self.billiardViewController.currentGameType=gameTypeBalloon;
                 break;
             case gameTypeTest:
@@ -775,7 +782,7 @@
                 break;
             case gameTypeBalloon:
                // [self midiNoteContinuingForPower:midi]; //MAYBE
-                [self.strenghtLabel setText:[NSString stringWithFormat:@"%0.0f",midi.velocity]];
+                //[self.strenghtLabel setText:[NSString stringWithFormat:@"%0.0f",midi.velocity]];
                 [self midiNoteContinuingForSequence:midi];
                 break;
             case gameTypeTest:
@@ -793,19 +800,38 @@
 
 -(void)midiNoteBeganForSequence:(MidiController *)midi
 {
-    self.sequenceGameController.currentSpeed=-1;
+    
+
+    
+    self.sequenceGameController.currentSpeed= -1;
+    self.sequenceGameController.time = 0; //added
     // if (self.sequenceGameController.currentBall==0) {
+    
+    if (_currentGameType == gameTypeImage || _currentGameType == gameTypeTest ){
+        NSLog(@"DISALLOWING - SEQUENCE GAME NOT ACTIVE");
+        return;
+    }
+
     [self.sequenceGameController startTimer];
     // }//ADDED
 }
 -(void)midiNoteStoppedForSequence:(MidiController *)midi
 {
-    NSLog(@"midiNoteStoppedForSequence");
     
+    if (_currentGameType == gameTypeImage || _currentGameType == gameTypeTest ){
+        NSLog(@"DISALLOWING - SEQUENCE GAME NOT ACTIVE");
+        return;
+    }
+    
+    NSLog(@"midiNoteStoppedForSequence");
+    NSLog(@"self.sequenceGameController.time %f", self.sequenceGameController.time);
+    //[self.settingsViewController setSettingsDurationLabelText:[NSString stringWithFormat:@"%0.0f",self.sequenceGameController.time]];
     //CHANGE
-    if (self.currentGameType == gameTypeImage) {
+    if (self.currentGameType == gameTypeImage ) {
         [self imageGameWon];
     }
+    
+    [self.sequenceGameController killTimer];  //only for testing purposes
     
     [self.sequenceGameController nextBall];
     //Maybe change - check if this is in corrent location
@@ -828,7 +854,15 @@
     switch (difficulty) {
         case 0: //was gameDifficultyEasy:
             // NSLog(@"MIDI NOTE BLOWING difficulty 0");
+            
+            
+            if (_currentGameType == gameTypeImage || _currentGameType == gameTypeTest){
+                NSLog(@"DISALLOWING - SEQUENCE GAME NOT ACTIVE");
+                return;
+            }
+            
             [self.sequenceGameController setAllowNextBall:YES];
+           
             NSLog(@"Sequence small");
             break;
         case 1: //added was gameDifficultMedium:
@@ -1042,6 +1076,8 @@
 
 -(void)addTestScores
 {   //POSSIBLY REMOVE
+    
+    NSLog(@"ADD TEST SCORES!");
     for (int i=0; i<30; i++) {
         
         Session  *sess=[[Session alloc]init];
@@ -1153,9 +1189,9 @@
 {
     NSLog(@" inner set breath length %f", value);
    // self.breathLength=value;
-    selectedSpeed = (int)value;
+    selectedSpeed = (int) (value + 0.5);
     self.currentSession.sessionRequiredBreathLength = [NSNumber numberWithFloat:value];
-    _animationrate=value;
+    _animationrate= (int) (value + 0.5);
 }
 
 -(void)setSpeed:(float)value
@@ -1203,7 +1239,7 @@
         displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateimage)];
         [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
         animationRunning = YES;
-        [displayLink setFrameInterval:8];
+        [displayLink setFrameInterval:6];//60 times in one second       //was 8
         //[self makeTimer];
        // acceleration=0.1;
         acceleration=0.1;
@@ -1228,7 +1264,7 @@
     //   NSLog(@"Image filter not allowed in balloon mode! ");
       return;
   }
-      NSLog(@"UPDATE IMAGE");
+    //  NSLog(@"UPDATE IMAGE");
     //change: is this the best place to do this?
     
     
@@ -1241,7 +1277,10 @@
     
     float fVel= (float)self.velocity;
     // float rate = fVel/5;
-    float rate = fVel;
+    
+    //CHANGED
+    //float rate = fVel;
+    float rate = 10;
     
     //NSLog(@"stillImageFilter %@",stillImageFilter);
    // _animationrate = 6 - _animationrate;
@@ -1250,26 +1289,39 @@
    // NSLog(@"FL Velocity %f", fVel);
     
    // NSLog(@"OUTPUT %f",targetRadius+((rate/500)*_animationrate));
-    NSLog(@"_animationrate %f",_animationrate);
+    //NSLog(@"_animationrate %f",_animationrate);
+    //NSLog(@"THRESH %d",threshold);
     
+   
    // _animationrate = _animationrate;
-   // NSLog(@"TARGETRADIUS  - %f",targetRadius);
+    //NSLog(@"selectedspeed  - %d",selectedSpeed);
    // NSLog(@"rate/500 -  %f",rate/500);
     //NSLog(@"((rate/500)*_animationrate) -  %f",((rate/500)*_animationrate));
     
     if (isaccelerating)
     {
         //    NSLog(@"isaccelerating == %hhd",isaccelerating);
+        
+        //this is called ten times a second
+        //animation rate is 3
+        //need targetradius to be 100% over 3 seconds
+        
+        
         if (self.velocity>=threshold) {
             
-            targetRadius=targetRadius+((rate/500)*_animationrate);
+            float newRate = .1/_animationrate;
+         //   NSLog(@"RATE:  %f",newRate);
+          //   NSLog(@"_animationrate:  %f",_animationrate);
+          //  NSLog(@"targetRadius:  %f",targetRadius);
+            //targetRadius=targetRadius+((rate/500)*_animationrate);
+            targetRadius=targetRadius+newRate;
         }
         
     }else
     {
         //force-=force*0.03;
         // targetRadius=targetRadius-((35.0/500)*_animationrate);
-        targetRadius=targetRadius-((40.0/500)*_animationrate);
+        targetRadius=targetRadius-(40.0/500);
     }
     
     // NSLog(@"targetRadius == %f",targetRadius);
@@ -1286,7 +1338,7 @@
     if (targetRadius>1) {
         targetRadius=1;
     }
-     NSLog(@"target radius %f",targetRadius);
+    // NSLog(@"target radius %f",targetRadius);
     
     
     
@@ -1535,14 +1587,57 @@
 -(void) playImageGameSound {
     
     NSLog(@"Playing image game sound %@", currentImageGameSound);
+    NSLog(@" image game speed %d", selectedSpeed);
+    NSString* imageName = @"";
     
-    NSString *soundPath = [[NSBundle mainBundle] pathForResource: currentImageGameSound ofType:@"wav"];
+    if (_currentGameType == gameTypeBalloon){
+        imageName = [NSString stringWithFormat:@"%dBallon", selectedSpeed];
+    }else{
+        imageName = [NSString stringWithFormat:@"%d%@", selectedSpeed, currentImageGameSound];
+    }
+    
+    NSLog(@"Playing sound:  %@", imageName);
+    
+    NSString *soundPath = [[NSBundle mainBundle] pathForResource: imageName ofType:@"wav"];
     NSData *fileData = [NSData dataWithContentsOfFile:soundPath];
     NSError *error = nil;
     audioPlayer = [[AVAudioPlayer alloc] initWithData:fileData
                                                 error:&error];
     [audioPlayer prepareToPlay];
-    [audioPlayer play];
+    
+    if (globalSoundActivated == 1){
+        [audioPlayer play];
+    }else{
+        NSLog(@"Global sound set to off");
+    }
+}
+
+-(void) playGameSound {
+    
+    NSLog(@"Playing image game sound %@", currentImageGameSound);
+    NSLog(@" image game speed %d", selectedSpeed);
+    NSString* imageName = @"";
+    
+    if (_currentGameType == gameTypeBalloon){
+        imageName = [NSString stringWithFormat:@"%dBallon", selectedSpeed];
+    }else{
+        imageName = [NSString stringWithFormat:@"%d%@", selectedSpeed, currentImageGameSound];
+    }
+
+    NSLog(@"Playing sound:  %@", imageName);
+    
+    NSString *soundPath = [[NSBundle mainBundle] pathForResource: imageName ofType:@"wav"];
+    NSData *fileData = [NSData dataWithContentsOfFile:soundPath];
+    NSError *error = nil;
+    audioPlayer = [[AVAudioPlayer alloc] initWithData:fileData
+                                                error:&error];
+    [audioPlayer prepareToPlay];
+    
+    if (globalSoundActivated == 1){
+        [audioPlayer play];
+    }else{
+        NSLog(@"Global sound set to off");
+    }
 }
 
 -(void)start
@@ -1552,7 +1647,7 @@
     // if (!animationRunning)
     // {
     NSLog(@"Starting mage game");
-    [self playImageGameSound];
+    //[self playImageGameSound];
     displayLink = [CADisplayLink displayLinkWithTarget:self
                                               selector:@selector(animate)];
     [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];

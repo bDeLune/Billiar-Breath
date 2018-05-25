@@ -22,11 +22,14 @@
 @property(nonatomic,weak)UIImageView  *arrow;
 @property int gaugeHeight;
 @property UIImageView* currentBalloonImage;
+
+
 -(void)start;
 -(void)stop;
 -(void)setForce:(float)pforce;
 -(void)setMass:(float)value;
 -(void)blowingBegan;
 -(void)blowingEnded;
+-(void) setSpeed:(int)speed allowAnimate:(BOOL)allow;
 
 @end

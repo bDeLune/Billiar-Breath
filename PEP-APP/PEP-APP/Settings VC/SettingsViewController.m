@@ -44,7 +44,7 @@
    
     if (self) {
         self.title = @"Settings";
-        imageGameSoundArray=[NSMutableArray arrayWithObjects:@"01Ballon",@"01Bas slide",@"01bell synth", @"01droom", nil];
+        imageGameSoundArray=[NSMutableArray arrayWithObjects:@"Ballon",@"schuiffluit",@"spaceship",@"Bas slide",@"bell synth", @"droom", @"sirene fluit", @"xylofoon", @"Toy Piano", @"harp", nil];
         repititionsArray=[NSMutableArray arrayWithObjects: @"1",@"2",@"3", @"4",@"5",@"6",@"7",@"8", nil];
         filterArray=[NSMutableArray arrayWithObjects:
                      @"Bulge",@"Swirl",@"Blur",@"Toon",
@@ -248,18 +248,18 @@
 
 -(void)setSettingsDurationLabelText: (NSString*)text  {
     
-    NSLog(@"Settings duration label text %@", text);
+   // NSLog(@"Settings duration label text %@", text);
     settingsDurationLabel.text = text;
 }
 
 -(void)setSettingsStrengthLabelText: (NSString*)text  {
     
-    NSLog(@"Settings strength label text %@", text);
+  //  NSLog(@"Settings strength label text %@", text);
     settingsStrengthLabel.text = text;
 }
 
 -(void) playSound {
-    NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"bell" ofType:@"wav"];
+    NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"bell synth" ofType:@"wav"];
     NSData *fileData = [NSData dataWithContentsOfFile:soundPath];
     NSError *error = nil;
     audioPlayer = [[AVAudioPlayer alloc] initWithData:fileData

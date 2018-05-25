@@ -16,7 +16,8 @@
     BOOL  isstopping;
     int timeCounter;
     NSTimer *timer;
-    
+    int selectedSpeed;
+    BOOL allowBalloonAnimation;
 }
 
 @end
@@ -74,11 +75,27 @@
    
 }
 
+-(void) setSpeed:(int)speed allowAnimate:(BOOL)allow{
+    
+    allowBalloonAnimation = allow;
+    selectedSpeed = speed;
+    
+}
+
 - (void)timekeeper{
     
     timeCounter += .5;
-    int selectedSpeedSetting = 30;
+    int selectedSpeedSetting = selectedSpeed;
     int percentageComplete = (timeCounter/selectedSpeedSetting)*100;
+    
+    NSLog(@"Anmatiig balloon");
+    NSLog(@"selectedSpeed %d",selectedSpeed);
+    NSLog(@"allowBalloonAnimation %hhd",allowBalloonAnimation);
+    
+    if (allowBalloonAnimation == 0){
+        
+        NSLog(@"Balloon animation deactivated");
+    }
     
     NSLog(@"timeCounter = %d", timeCounter);
     NSLog(@"percentageTowardsCompletion = %d", percentageComplete);
