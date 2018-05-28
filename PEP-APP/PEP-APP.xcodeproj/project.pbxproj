@@ -134,6 +134,8 @@
 		717D013420B851BD0098893A /* 5Ballon.wav in Resources */ = {isa = PBXBuildFile; fileRef = 717D012E20B851BC0098893A /* 5Ballon.wav */; };
 		717D013520B851BD0098893A /* 4Ballon.wav in Resources */ = {isa = PBXBuildFile; fileRef = 717D012F20B851BC0098893A /* 4Ballon.wav */; };
 		717D013620B851BD0098893A /* 6Ballon.wav in Resources */ = {isa = PBXBuildFile; fileRef = 717D013020B851BD0098893A /* 6Ballon.wav */; };
+		717D013920B868E30098893A /* User-Project.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D013820B868E20098893A /* User-Project.png */; };
+		717D013B20B86CFE0098893A /* Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D013A20B86CFD0098893A /* Splash.png */; };
 		7186DDD01E4DBE0D00F71F0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7186DDCD1E4DBE0D00F71F0C /* Main.storyboard */; };
 		7186DDEB1E4DBF2400F71F0C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7186DDEA1E4DBF2400F71F0C /* LoginViewController.xib */; };
 		7186DDF41E4DBF4100F71F0C /* AllGamesForDayTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DDED1E4DBF4100F71F0C /* AllGamesForDayTableVC.m */; };
@@ -462,6 +464,8 @@
 		717D012E20B851BC0098893A /* 5Ballon.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 5Ballon.wav; sourceTree = "<group>"; };
 		717D012F20B851BC0098893A /* 4Ballon.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 4Ballon.wav; sourceTree = "<group>"; };
 		717D013020B851BD0098893A /* 6Ballon.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 6Ballon.wav; sourceTree = "<group>"; };
+		717D013820B868E20098893A /* User-Project.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "User-Project.png"; sourceTree = "<group>"; };
+		717D013A20B86CFD0098893A /* Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Splash.png; sourceTree = "<group>"; };
 		7186DDCC1E4DBE0D00F71F0C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		7186DDCD1E4DBE0D00F71F0C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7186DDEA1E4DBF2400F71F0C /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -682,6 +686,7 @@
 				71D1A3562074F8F000C83B63 /* bell_1.png */,
 				71D1A3602074FBC800C83B63 /* Logo-Full.png */,
 				71D1A3642074FBC800C83B63 /* Logo-Middle.png */,
+				717D013820B868E20098893A /* User-Project.png */,
 				710BDDEA207D24B600B1E393 /* giraffe-614141_1280.jpg */,
 				71D1A3622074FBC800C83B63 /* Logo-Top.png */,
 				71D1A3632074FBC800C83B63 /* MainBackground.png */,
@@ -703,6 +708,7 @@
 				7186DE891E4DBFA400F71F0C /* BilliardBreathAppIcon40x40.png */,
 				7186DE8A1E4DBFA400F71F0C /* BilliardBreathAppIcon50x50.png */,
 				71693B8F206937D1009F14EA /* BilliardBreath1024X1024.png */,
+				717D013A20B86CFD0098893A /* Splash.png */,
 				7186DE8B1E4DBFA400F71F0C /* BilliardBreathAppIcon58x58.png */,
 				7186DEB81E4DC61D00F71F0C /* main.m */,
 				718E215B1E51E43000E8357B /* icon-120.png */,
@@ -1307,6 +1313,7 @@
 				717D010420B8515D0098893A /* 4harp.wav in Resources */,
 				717D005920B309940098893A /* 5 Users.png in Resources */,
 				717D007A20B3138D0098893A /* Balloon7.png in Resources */,
+				717D013B20B86CFE0098893A /* Splash.png in Resources */,
 				717D009620B440D90098893A /* Info-ACTIVE.png in Resources */,
 				717D013220B851BD0098893A /* 1Ballon.wav in Resources */,
 				717D004320B309750098893A /* Main-Background.png in Resources */,
@@ -1386,6 +1393,7 @@
 				717D00BC20B850C30098893A /* 4xylofoon.wav in Resources */,
 				717D013620B851BD0098893A /* 6Ballon.wav in Resources */,
 				717D010520B8515D0098893A /* 3harp.wav in Resources */,
+				717D013920B868E30098893A /* User-Project.png in Resources */,
 				717D006220B309CA0098893A /* Users.png in Resources */,
 				717D012720B851A50098893A /* 5Bas slide.wav in Resources */,
 				717D00A320B44FC90098893A /* Settings-MOCKUP.png in Resources */,

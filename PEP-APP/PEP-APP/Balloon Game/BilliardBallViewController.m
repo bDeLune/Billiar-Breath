@@ -623,6 +623,7 @@
 -(void)setAudioMute: (BOOL) muteSetting{
     NSLog(@"setting inner audio mute %hhd", muteSetting);
     muteAudio = muteSetting;
+    
 }
 
 @end

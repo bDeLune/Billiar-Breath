@@ -917,16 +917,16 @@
 - (IBAction)toggleMuteSound:(id)sender {
     
     NSLog(@"toggle sound");
-    if (globalSoundActivated == 1){
+    if (globalSoundActivated == 0){
         NSLog(@"muting sound");
-        globalSoundActivated = 0;
+        globalSoundActivated = 1;
         UIImage *soundOnImage = [UIImage imageNamed:@"Sound-ON.png"];
          [self.soundIcon setImage:soundOnImage forState:UIControlStateNormal];
         //   [self.billiardViewController setAudioMute: globalSoundActivated];     //change: make available
         [self.sequenceGameController setAudioMute: globalSoundActivated];
-    }else if(globalSoundActivated == 0){
+    }else if(globalSoundActivated == 1){
         NSLog(@"unmuting sound");
-        globalSoundActivated = 1;
+        globalSoundActivated = 0;
         UIImage *soundOffImage = [UIImage imageNamed:@"Sound-OFF.png"];
         [self.soundIcon setImage:soundOffImage forState:UIControlStateNormal];
         //[self.soundIcon setImage:[UIImage imageNamed:@"Bluetooth-OFF"]];
@@ -1239,7 +1239,7 @@
         displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateimage)];
         [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
         animationRunning = YES;
-        [displayLink setFrameInterval:6];//60 times in one second       //was 8
+        [displayLink setFrameInterval:3];//60 times in one second       //was 8
         //[self makeTimer];
        // acceleration=0.1;
         acceleration=0.1;
@@ -1309,10 +1309,13 @@
         
         if (self.velocity>=threshold) {
             
-            float newRate = .1/_animationrate;
-         //   NSLog(@"RATE:  %f",newRate);
-          //   NSLog(@"_animationrate:  %f",_animationrate);
-          //  NSLog(@"targetRadius:  %f",targetRadius);
+            //float newRate = .1/_animationrate;
+            float newRate = .05/_animationrate;
+            //float newRate2 = _animationrate/.1;
+            NSLog(@"RATE:  %f",newRate);
+           // NSLog(@"RATE2:  %f",newRate2);
+           // NSLog(@"_animationrate:  %f",_animationrate);
+           // NSLog(@"targetRadius:  %f",targetRadius);
             //targetRadius=targetRadius+((rate/500)*_animationrate);
             targetRadius=targetRadius+newRate;
         }

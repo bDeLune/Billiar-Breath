@@ -54,6 +54,8 @@
     self.userList.sharedPSC=self.sharedPSC;
     
     self.navcontroller=[[UINavigationController alloc]initWithRootViewController:self.userList];
+    
+    [self.navigationController pushViewController:self.userList  animated:YES];
 
     //CGRect  frame=self.view.frame;
     

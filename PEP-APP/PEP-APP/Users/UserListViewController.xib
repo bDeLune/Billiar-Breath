@@ -11,64 +11,70 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserListViewController">
             <connections>
-                <outlet property="tableViewContainer" destination="iLe-PM-jMp" id="MOw-d9-Eqo"/>
-                <outlet property="view" destination="8" id="11"/>
+                <outlet property="backgroundColouredImage" destination="w5C-GN-fny" id="FHD-hm-HaT"/>
+                <outlet property="tableView" destination="8" id="YC8-Gu-5c7"/>
+                <outlet property="view" destination="iLe-PM-jMp" id="Eeh-FD-IiT"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <viewController id="bv8-3M-Nbq">
-            <view key="view" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="center" id="iLe-PM-jMp">
-                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                <subviews>
-                    <tableView opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFit" misplaced="YES" indicatorStyle="black" bouncesZoom="NO" style="grouped" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="8">
-                        <rect key="frame" x="78" y="97" width="630" height="831"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <inset key="separatorInset" minX="75" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <connections>
-                            <outlet property="dataSource" destination="-1" id="9"/>
-                            <outlet property="delegate" destination="-1" id="10"/>
-                        </connections>
-                    </tableView>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="X6n-oV-M99">
-                        <rect key="frame" x="34" y="910" width="164" height="110"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <state key="normal" title="Button" image="PEP-App-INACTIVE.png"/>
-                        <connections>
-                            <action selector="goToMainView:" destination="-1" eventType="touchUpInside" id="tQQ-bf-VMb"/>
-                        </connections>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uY5-eg-JKH">
-                        <rect key="frame" x="212" y="910" width="164" height="110"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <state key="normal" title="Button" image="Users-ACTIVE.png"/>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ydw-GS-WEI">
-                        <rect key="frame" x="565" y="896" width="164" height="110"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <state key="normal" title="Button" image="Info-INACTIVE.png"/>
-                        <connections>
-                            <action selector="goToInfoView:" destination="-1" eventType="touchUpInside" id="Rhm-2m-wcT"/>
-                        </connections>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0rH-W6-1Ax">
-                        <rect key="frame" x="375" y="897" width="164" height="110"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <state key="normal" title="Button" image="Settings-INACTIVE.png"/>
-                        <connections>
-                            <action selector="goToSettingsView:" destination="-1" eventType="touchUpInside" id="FD1-x3-Ryb"/>
-                        </connections>
-                    </button>
-                </subviews>
-                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-            </view>
-        </viewController>
+        <view opaque="NO" clearsContextBeforeDrawing="NO" contentMode="center" id="iLe-PM-jMp">
+            <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFill" misplaced="YES" indicatorStyle="black" bouncesZoom="NO" style="grouped" separatorInsetReference="fromAutomaticInsets" allowsSelectionDuringEditing="YES" rowHeight="42" sectionHeaderHeight="18" sectionFooterHeight="18" id="8">
+                    <rect key="frame" x="90" y="185" width="618" height="660"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <inset key="separatorInset" minX="75" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="9"/>
+                        <outlet property="delegate" destination="-1" id="10"/>
+                    </connections>
+                </tableView>
+                <imageView opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User-Project.png" id="w5C-GN-fny">
+                    <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="X6n-oV-M99">
+                    <rect key="frame" x="58" y="922" width="118" height="102"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="PEP-App-INACTIVE.png"/>
+                    <connections>
+                        <action selector="goToMainView:" destination="-1" eventType="touchUpInside" id="tQQ-bf-VMb"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uY5-eg-JKH">
+                    <rect key="frame" x="241" y="925" width="117" height="99"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="Users-ACTIVE.png"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0rH-W6-1Ax">
+                    <rect key="frame" x="408" y="922" width="111" height="102"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="Settings-INACTIVE.png"/>
+                    <connections>
+                        <action selector="goToSettingsView:" destination="-1" eventType="touchUpInside" id="FD1-x3-Ryb"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ydw-GS-WEI">
+                    <rect key="frame" x="603" y="922" width="105" height="98"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="Info-INACTIVE.png"/>
+                    <connections>
+                        <action selector="goToInfoView:" destination="-1" eventType="touchUpInside" id="Rhm-2m-wcT"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+        </view>
     </objects>
     <resources>
         <image name="Info-INACTIVE.png" width="110" height="110"/>
         <image name="PEP-App-INACTIVE.png" width="110" height="110"/>
         <image name="Settings-INACTIVE.png" width="110" height="110"/>
+        <image name="User-Project.png" width="1536" height="2048"/>
         <image name="Users-ACTIVE.png" width="110" height="110"/>
     </resources>
 </document>

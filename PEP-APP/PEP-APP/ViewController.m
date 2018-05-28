@@ -37,6 +37,7 @@ typedef void(^RunTimer)(void);
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addUserSuccess:) name:kAddNewUserOperationUserAdded object:nil];
     [self managedObjectContext];
     [self addUserLoginViewController];
+    
 }
 
 -(void)removeStartupImage:(NSTimer*)timer

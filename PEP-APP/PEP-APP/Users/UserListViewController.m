@@ -17,18 +17,30 @@
 @property (nonatomic) NSMutableArray *userList;
 //@property(nonatomic,strong)GraphViewController  *graph;
 @property (weak, nonatomic) IBOutlet UIView *tableViewContainer;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic,assign)User  *deleteUser;
 @end
 @implementation UserListViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+//- (id)initWithStyle:(UITableViewStyle)style
+//{
+//    self = [super initWithStyle:style];
+//    if (self) {
+//        // Custom initialization
+//    }
+//    return self;
+//}
+
+- (id)init
 {
-    self = [super initWithStyle:style];
+    self = [super init];
     if (self) {
         // Custom initialization
     }
     return self;
 }
+
+
 -(NSArray*)sortedDateArrayForUser:(User*)user
 {
     /* NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -105,16 +117,20 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated{
+    [self.backgroundColouredImage bringSubviewToFront:self.view];
+        [self.backgroundColouredImage sendSubviewToBack:self.tableView];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     
     //[self.tableViewContainer setFrame:CGRectMake(100, 100, 100, 100)];
-    [self.tableView setFrame:CGRectMake(50, 0, 900, 900)];
+    //[self.tableView setFrame:CGRectMake(150, 0, 900, 900)];
 }
 
 - (void)viewDidLoad
 {
     self.userList=[NSMutableArray new];
     [self managedObjectContext];
-    [super viewDidLoad];
+    //[super viewDidLoad];
     [self getListOfUsers];
     
     UISwipeGestureRecognizer *recognizer;
@@ -135,6 +151,10 @@
     
     //UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] ////initWithCustomView:backButton];
     //self.navigationItem.leftBarButtonItem = backBarButtonItem;
+    [self.backgroundColouredImage bringSubviewToFront:self.view];
+        [self.backgroundColouredImage sendSubviewToBack:self.tableView];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
 
 }
 
@@ -206,6 +226,8 @@
     NSString  *title=[user valueForKey:@"userName"];
     return title;
 }
+
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
    //NSLog(@"Number of users - %lu", (unsigned long)[self.userList count]);
@@ -310,6 +332,7 @@
 }
 
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     User  *user=[self.userList objectAtIndex:indexPath.section];
@@ -368,7 +391,7 @@
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     // CGFloat width = CGRectGetWidth(tableView.bounds);
     //  CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
-    HeaderView  *header=[[HeaderView alloc]initWithFrame:CGRectMake(0, 0, 550, 30)];
+    HeaderView  *header=[[HeaderView alloc]initWithFrame:CGRectMake(0, 50, 570, 10)];
     header.section=section;
     header.user=[self.userList objectAtIndex:section];
     header.delegate=self;
@@ -376,6 +399,8 @@
     
     return header;
 }
+
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -406,6 +431,8 @@
 }
 -(void)viewHistoricalData:(HeaderView *)header
 {
+    
+
     //[self.managedObjectContext deleteObject:user];
     //[self.managedObjectContext save:nil];
     //if (!self.graph) {
