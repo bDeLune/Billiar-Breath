@@ -27,6 +27,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import "Draggable.h"
 
+#import "JPImagePickerController.h"
+
 @interface GameViewController ()<BTLEManagerDelegate, UITabBarDelegate,UITabBarControllerDelegate, SETTINGS_DELEGATE>
 {
     int threshold;
@@ -97,8 +99,8 @@
 @property(nonatomic,strong)BTLEManager  *btleMager;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property(nonatomic,strong)NSOperationQueue  *addGameQueue;
-@property(nonatomic,strong)BilliardBallViewController  *billiardViewController;
-@property(nonatomic,strong) SettingsViewController  *settingsViewController;
+@property(nonatomic,strong) BilliardBallViewController  *billiardViewController;
+
 @property(nonatomic,strong) MidiController  *midiController;
 @property(nonatomic) gameType  currentGameType;
 @property(nonatomic,strong) Session  *currentSession;
@@ -109,10 +111,15 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageFilterView;
 @property (weak, nonatomic) IBOutlet UIImageView *billiardBallView;
 @property(nonatomic,strong) UINavigationController *navcontroller;
-@property (strong, nonatomic) UITabBarController *tabBarController;
+//@property (strong, nonatomic) UITabBarController *tabBarController;
 @end
 
 @implementation GameViewController
+@synthesize chosenImageView, chosenImageController;
+#define THUMBNAIL_SIZE 30
+#define IMAGE_WIDTH 320
+#define IMAGE_HEIGHT 400
+
 
 -(void)userListDismissRequest:(UserListViewController *)caller
 {
@@ -127,30 +134,30 @@
 -(void)settingsModeDismissRequest:(SettingsViewController *)caller
 {
     
-    NSLog(@"Dismissing settings mode");
-    [[GCDQueue mainQueue]queueBlock:^{
-        [UIView transitionFromView:caller.view toView:self.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished){
+  //  NSLog(@"Dismissing settings mode");
+   // [[GCDQueue mainQueue]queueBlock:^{
+   //     [UIView transitionFromView:caller.view toView:self.view duration:0.5 /options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished){
            // self.userList.sharedPSC=self.sharedPSC;
            // self.userList.delegate=self;
-        }];
-    }];
+    //    }];
+    //}];
 }
 
 -(void)settingsModeToUser:(id<SETTINGS_DELEGATE>)dismiss
 {
     
-    NSLog(@"SETTINGS INNER - Dismissing settings mode");
-    [[GCDQueue mainQueue]queueBlock:^{
-        [UIView transitionFromView:self.view toView:self.userList.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished){
+  //  NSLog(@"SETTINGS INNER - Dismissing settings mode");
+  //  [[GCDQueue mainQueue]queueBlock:^{
+  //      [UIView transitionFromView:self.view toView:self.userList.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished){
             // self.userList.sharedPSC=self.sharedPSC;
-            // self.userList.delegate=self;
-        }];
-    }];
+  // /         // self.userList.delegate=self;
+  //      }];
+  //  }];
 }
 
 -(void)dismissSettingsMode:(id <SETTINGS_DELEGATE>)dismiss;
 {
-    [dismiss returnToGameView];
+  //  [dismiss returnToGameView];
 }
 
 -(void)btleManagerConnected:(BTLEManager *)manager
@@ -221,7 +228,7 @@
         self.midiController=[[MidiController alloc]init];
         self.midiController.delegate=self;
         [self.midiController addObserver:self forKeyPath:@"numberOfSources" options:0 context:NULL];
-        self.currentGameType=gameTypeBalloon;
+        self.currentGameType=gameTypeImage;
         [self.toggleGameModeButton setImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];
         
         [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:currentDifficulty] forKey:@"difficulty"];
@@ -269,6 +276,11 @@
     return self;
 }
 
+
+- (void)viewDidDisappear:(BOOL)animated{
+    
+    self.currentGameType =gameTypeTest;
+}
 
 //FIND ALLOW BREATH FUNCTION
 -(void)btleManagerBreathBegan:(BTLEManager*)manager{
@@ -347,7 +359,11 @@
     float value=self.velocity*scale;
     [self.mainGaugeView setForce:(value)];
     [self.gaugeView setForce:(value)];
-    [self.settingsViewController.gaugeView setForce:(value)];
+    
+    NSLog(@"should be ");
+    [self.settingsViewController setGaugeForce:(value)];
+
+   // [self.settingsViewController.gaugeView setForce:(value)];
 }
 
 - (IBAction)openPhotoPicker:(id)sender {
@@ -379,17 +395,33 @@
     [self.view addSubview:self.billiardViewController.view];
     [[NSUserDefaults standardUserDefaults]setObject:@"exhale" forKey:@"direction"];
     
-    self.userList=[[UserListViewController alloc]initWithNibName:@"UserListViewController" bundle:nil];
-    self.userList.sharedPSC=self.sharedPSC;
-    self.navcontroller=[[UINavigationController alloc]initWithRootViewController:self.userList];
+    //self.settingsViewController = [[((UITabBarController *)self.window.rootViewController) viewControllers] objectAtIndex:2];
+    self.settingsViewController = [self.tabBarController.viewControllers objectAtIndex:2];
     
-    self.settingsViewController = [[SettingsViewController alloc]initWithNibName:@"SettingsViewController" bundle:nil];
+    
+    //self.settingsViewController = self.tabBarController
+
+    //NSLog(@"ROOT %@ ", self.settingsViewController);
+    
+    //NSLog(@"ROOT2 %@ ", [[self.parentViewController] objectAtIndex:2]);
+    
+    //NSLog(@"ROOT3 %@ ", self.parentViewController );
+    //self.delegate = settingsViewController;
+   // [self.settingsViewController setSettinngsDelegate:self];
+    
+   // self.userList=[[UserListViewController alloc]initWithNibName:@"UserListViewController1" bundle:nil];
+   // self.userList.sharedPSC=self.sharedPSC;
+   // self.navcontroller=[[UINavigationController alloc]initWithRootViewController:self.userList];
+    
+   // self.settingsViewController = [[SettingsViewController alloc]initWithNibName:@"SettingsViewController1" bundle:nil];
     self.settingsViewController.delegate=self;
     [self.settingsViewController setSettinngsDelegate:self];
-
+    self.tabBarController.delegate = self;
+    
+    
     self.currentGameType = gameTypeBalloon;
-    CGRect frame = self.view.frame;
-    [self.navcontroller.view setFrame:frame];
+   // CGRect frame = self.view.frame;
+   // [self.navcontroller.view setFrame:frame];
     self.breathGauge.progress = 0;
     globalSoundActivated = 1;
     midiinhale=61;
@@ -399,6 +431,12 @@
     targetRadius=0;
     defaultScale=1.5;
     defaultRadius=0;
+    
+    chosenImage = -1;
+  //  self.navigationItem.title = @"ImagePicker Demo";
+   // self.navigationController.navigationBar.translucent = YES;
+   // self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+
 }
 
 -(void)setLabels
@@ -411,25 +449,25 @@
 #pragma - UIControls
 
 - (IBAction)goToInfoView:(id)sender {
-    infoViewController *infoVC = [[infoViewController alloc]initWithNibName:@"infoViewController" bundle:nil];
+   // infoViewController *infoVC = [[infoViewController alloc]initWithNibName:@"infoViewController" bundle:nil];
     
-    if (infoVC){
-        NSLog(@"instantiating infoVC");
-        [self presentViewController:infoVC animated:YES completion:nil];
-    }else{
-        NSLog(@"Cant instantiate infoVC");
-    }
+  //  if (infoVC){
+  //      NSLog(@"instantiating infoVC");
+  //      [self presentViewController:infoVC animated:YES completion:nil];
+   // }else{
+   ///     NSLog(@"Cant instantiate infoVC");
+   // }
 }
 
 - (IBAction)toUsersScreen:(id)sender {
-    NSLog(@"Moving to users screen");
-    self.userList.sharedPSC=self.sharedPSC ;
-    [self.userList getListOfUsers];
-    [UIView transitionFromView:self.view toView:self.navcontroller.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished){
-        self.userList.sharedPSC=self.sharedPSC;
-        self.userList.delegate=self;
+   // NSLog(@"Moving to users screen");
+   // self.userList.sharedPSC=self.sharedPSC ;
+   // [self.userList getListOfUsers];
+   /// [UIView transitionFromView:self.view toView:self.navcontroller.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished){
+  //      self.userList.sharedPSC=self.sharedPSC;
+   //     self.userList.delegate=self;
         
-    }];
+  //  }];
 }
 
 -(IBAction)exitGameScreen:(id)sender
@@ -443,15 +481,15 @@
     self.billiardViewController.currentGameType = self.currentGameType;
 
     [self.toggleGameModeButton setImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];
-    [self resetGame:nil];
+ ///   [self resetGame:nil];
     
-    if (self.settingsViewController){
+   // if (self.settingsViewController){
         NSLog(@"instantiating settingsViewController");
         //[self presentViewController:self.settingsViewController animated:YES completion:nil];
-        [self.view.window.rootViewController presentViewController:self.settingsViewController animated:YES completion:nil];
-    }else{
-        NSLog(@"Cant instantiate self.settingsViewController");
-    }
+  //      [self.view.window.rootViewController presentViewController:self.settingsViewController animated:YES completion:nil];
+  //  }else{
+ //       NSLog(@"Cant instantiate self.settingsViewController");
+ //   }
 }
 
 -(IBAction)toggleDirection:(id)sender
@@ -1225,9 +1263,12 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    
+    [self resetGame:nil];
+    
     NSLog(@"view did appear!: animatedd");
     //[self.mainGaugeView start]; //change: is this correct
-    self.currentGameType= gameTypeBalloon;
+    self.currentGameType= gameTypeImage;
     self.billiardViewController.currentGameType = self.currentGameType;
     NSLog(@"Current game mode %u", self.currentGameType);
     
@@ -1681,6 +1722,159 @@
         default:
             break;
     }
+}
+
+
+
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+
+
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+   //     cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
+    
+    // Configure the cell.
+    if (indexPath.section == 0) {
+        cell.textLabel.text = @"Chose Image";
+        cell.textLabel.textAlignment = UITextAlignmentCenter;
+    } else {
+        cell.textLabel.textAlignment = UITextAlignmentLeft;
+        cell.textLabel.text = @"Show chosen image";
+        if (chosenImage == -1) {
+            cell.imageView.image = [[UIImage imageNamed:@"noImageSelected.png"] scaleToSize:CGSizeMake(THUMBNAIL_SIZE, THUMBNAIL_SIZE) onlyIfNeeded:NO];
+        } else {
+            cell.imageView.image = [[UIImage imageNamed:[NSString stringWithFormat:@"t%i.png", (chosenImage % 4) + 1]] scaleToSize:CGSizeMake(THUMBNAIL_SIZE, THUMBNAIL_SIZE) onlyIfNeeded:NO];
+        }
+        
+    }
+    
+    return cell;
+}
+
+
+
+
+// Override to support row selection in the table view.
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    // Navigation logic may go here -- for example, create and push another view controller.
+    // AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
+    // [self.navigationController pushViewController:anotherViewController animated:YES];
+    // [anotherViewController release];
+    
+    if (indexPath.section == 0) {
+        JPImagePickerController *imagePickerController = [[JPImagePickerController alloc] init];
+        
+        imagePickerController.delegate = self;
+        imagePickerController.dataSource = self;
+        imagePickerController.imagePickerTitle = @"ImagePicker";
+        
+        [self.navigationController presentModalViewController:imagePickerController animated:YES];
+       // [imagePickerController release];
+        
+    } else {
+        if (chosenImage == -1) {
+            chosenImageView.image = [[UIImage imageNamed:@"noImageSelected.png"] scaleToSize:CGSizeMake(320, 480) onlyIfNeeded:YES];
+        } else {
+            chosenImageView.image = [[UIImage imageNamed:[NSString stringWithFormat:@"i%i.png", (chosenImage % 4) + 1]] scaleToSize:CGSizeMake(IMAGE_WIDTH, IMAGE_HEIGHT) onlyIfNeeded:YES];
+        }
+        
+        [self.navigationController pushViewController:chosenImageController animated:YES];
+    }
+    
+}
+
+
+
+/*
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
+
+
+/*
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+ 
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source.
+ [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ }
+ else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+ }
+ }
+ */
+
+
+/*
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+ }
+ */
+
+
+/*
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
+
+# pragma mark -
+# pragma mark JPImagePickerControllerDelegate
+
+- (void)imagePickerDidCancel:(JPImagePickerController *)picker {
+    [self.navigationController dismissModalViewControllerAnimated:YES];
+}
+
+- (void)imagePicker:(JPImagePickerController *)picker didFinishPickingWithImageNumber:(NSInteger)imageNumber {
+    chosenImage = imageNumber;
+    //[self.tableView reloadData];
+    [self.navigationController dismissModalViewControllerAnimated:YES];
+}
+
+# pragma mark JPImagePickerControllerDataSource
+
+- (NSInteger)numberOfImagesInImagePicker:(JPImagePickerController *)picker {
+    return 22;
+}
+
+- (UIImage *)imagePicker:(JPImagePickerController *)picker thumbnailForImageNumber:(NSInteger)imageNumber {
+    return [UIImage imageNamed:[NSString stringWithFormat:@"t%i.png", (imageNumber % 4) + 1]];
+}
+
+- (UIImage *)imagePicker:(JPImagePickerController *)imagePicker imageForImageNumber:(NSInteger)imageNumber {
+    return [UIImage imageNamed:[NSString stringWithFormat:@"i%i.png", (imageNumber % 4) + 1]];
+}
+
+-(BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
+    if ([viewController isKindOfClass:[SettingsViewController class]]){
+        self.settingsViewController = (SettingsViewController *) viewController;
+    }
+    
+    NSLog(@"FOUND TAB BAR");
+    return TRUE;
 }
 
 @end

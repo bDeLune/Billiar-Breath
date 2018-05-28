@@ -7,8 +7,9 @@
 #import "CurvedScatterPlot.h"
 #import "AllGamesForDayTableVC.h"
 #import "GCDQueue.h"
-#import "infoViewController.h"
+#import "InfoViewController.h"
 #import "SettingsViewController.h"
+
 
 @interface UserListViewController()<UIActionSheetDelegate,HeaderViewProtocl>
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
@@ -165,14 +166,14 @@
 
 - (IBAction)goToInfoView:(id)sender {
 
-    infoViewController *infoVC = [[infoViewController alloc]initWithNibName:@"infoViewController" bundle:nil];
+   // infoViewController *infoVC = [[infoViewController alloc]initWithNibName:@"infoViewController" bundle:nil];
     
-    if (infoVC){
-        NSLog(@"instantiating infoVC");
-        [self presentViewController:infoVC animated:YES completion:nil];
-    }else{
-        NSLog(@"Cant instantiate infoVC");
-    }
+   // if (infoVC){
+   //     NSLog(@"instantiating infoVC");
+   //     [self presentViewController:infoVC animated:YES completion:nil];
+   // }else{
+   //     NSLog(@"Cant instantiate infoVC");
+   // }
 }
 
 - (IBAction)goToSettingsView:(id)sender {
@@ -391,7 +392,7 @@
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     // CGFloat width = CGRectGetWidth(tableView.bounds);
     //  CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
-    HeaderView  *header=[[HeaderView alloc]initWithFrame:CGRectMake(0, 50, 570, 10)];
+    HeaderView  *header=[[HeaderView alloc]initWithFrame:CGRectMake(40, 150, 570, 0)];
     header.section=section;
     header.user=[self.userList objectAtIndex:section];
     header.delegate=self;

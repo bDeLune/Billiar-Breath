@@ -14,8 +14,8 @@
 		710BDDE9207D1DFE00B1E393 /* PickPhotoButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 710BDDE8207D1DFE00B1E393 /* PickPhotoButton.png */; };
 		710BDDEB207D24B600B1E393 /* giraffe-614141_1280.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 710BDDEA207D24B600B1E393 /* giraffe-614141_1280.jpg */; };
 		710BDDF1207E5B9400B1E393 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 710BDDEF207E48B700B1E393 /* SettingsViewController.xib */; };
-		7138E5952088FBA700C0C08F /* infoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7138E5932088FBA700C0C08F /* infoViewController.m */; };
-		7138E5962088FBA700C0C08F /* infoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7138E5942088FBA700C0C08F /* infoViewController.xib */; };
+		7138E5952088FBA700C0C08F /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7138E5932088FBA700C0C08F /* InfoViewController.m */; };
+		7138E5962088FBA700C0C08F /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7138E5942088FBA700C0C08F /* InfoViewController.xib */; };
 		71693B90206937D3009F14EA /* BilliardBreath1024X1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 71693B8F206937D1009F14EA /* BilliardBreath1024X1024.png */; };
 		717D003320B309620098893A /* Login-Button-Signup.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D002F20B309610098893A /* Login-Button-Signup.png */; };
 		717D003420B309620098893A /* Login-Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D003020B309620098893A /* Login-Background.png */; };
@@ -136,6 +136,14 @@
 		717D013620B851BD0098893A /* 6Ballon.wav in Resources */ = {isa = PBXBuildFile; fileRef = 717D013020B851BD0098893A /* 6Ballon.wav */; };
 		717D013920B868E30098893A /* User-Project.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D013820B868E20098893A /* User-Project.png */; };
 		717D013B20B86CFE0098893A /* Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D013A20B86CFD0098893A /* Splash.png */; };
+		717D014620BC69FB0098893A /* JPImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D013C20BC69F30098893A /* JPImagePickerController.m */; };
+		717D014820BC69FB0098893A /* JPImagePickerOverviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D013E20BC69F80098893A /* JPImagePickerOverviewController.m */; };
+		717D014920BC69FB0098893A /* JPImagePickerOverviewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 717D013F20BC69F80098893A /* JPImagePickerOverviewController.xib */; };
+		717D014A20BC69FB0098893A /* JPImagePickerDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 717D014120BC69F90098893A /* JPImagePickerDetailController.xib */; };
+		717D014B20BC69FB0098893A /* JPImagePickerDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D014520BC69FA0098893A /* JPImagePickerDetailController.m */; };
+		717D015620BC84F00098893A /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D015420BC84F00098893A /* MasterViewController.m */; };
+		717D015720BC84F00098893A /* MasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 717D015520BC84F00098893A /* MasterViewController.xib */; };
+		717D015920BC96EC0098893A /* DummyInfo.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D015820BC96EB0098893A /* DummyInfo.png */; };
 		7186DDD01E4DBE0D00F71F0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7186DDCD1E4DBE0D00F71F0C /* Main.storyboard */; };
 		7186DDEB1E4DBF2400F71F0C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7186DDEA1E4DBF2400F71F0C /* LoginViewController.xib */; };
 		7186DDF41E4DBF4100F71F0C /* AllGamesForDayTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DDED1E4DBF4100F71F0C /* AllGamesForDayTableVC.m */; };
@@ -341,9 +349,9 @@
 		710BDDE8207D1DFE00B1E393 /* PickPhotoButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PickPhotoButton.png; sourceTree = "<group>"; };
 		710BDDEA207D24B600B1E393 /* giraffe-614141_1280.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "giraffe-614141_1280.jpg"; sourceTree = "<group>"; };
 		710BDDEF207E48B700B1E393 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
-		7138E5922088FBA700C0C08F /* infoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = infoViewController.h; sourceTree = "<group>"; };
-		7138E5932088FBA700C0C08F /* infoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = infoViewController.m; sourceTree = "<group>"; };
-		7138E5942088FBA700C0C08F /* infoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = infoViewController.xib; sourceTree = "<group>"; };
+		7138E5922088FBA700C0C08F /* InfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		7138E5932088FBA700C0C08F /* InfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		7138E5942088FBA700C0C08F /* InfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoViewController.xib; sourceTree = "<group>"; };
 		71693B8F206937D1009F14EA /* BilliardBreath1024X1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BilliardBreath1024X1024.png; sourceTree = "<group>"; };
 		717D002F20B309610098893A /* Login-Button-Signup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-Button-Signup.png"; sourceTree = "<group>"; };
 		717D003020B309620098893A /* Login-Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-Background.png"; sourceTree = "<group>"; };
@@ -466,6 +474,18 @@
 		717D013020B851BD0098893A /* 6Ballon.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 6Ballon.wav; sourceTree = "<group>"; };
 		717D013820B868E20098893A /* User-Project.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "User-Project.png"; sourceTree = "<group>"; };
 		717D013A20B86CFD0098893A /* Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Splash.png; sourceTree = "<group>"; };
+		717D013C20BC69F30098893A /* JPImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPImagePickerController.m; sourceTree = "<group>"; };
+		717D013E20BC69F80098893A /* JPImagePickerOverviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPImagePickerOverviewController.m; sourceTree = "<group>"; };
+		717D013F20BC69F80098893A /* JPImagePickerOverviewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JPImagePickerOverviewController.xib; sourceTree = "<group>"; };
+		717D014120BC69F90098893A /* JPImagePickerDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JPImagePickerDetailController.xib; sourceTree = "<group>"; };
+		717D014220BC69F90098893A /* JPImagePickerOverviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPImagePickerOverviewController.h; sourceTree = "<group>"; };
+		717D014320BC69FA0098893A /* JPImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPImagePickerController.h; sourceTree = "<group>"; };
+		717D014420BC69FA0098893A /* JPImagePickerDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPImagePickerDetailController.h; sourceTree = "<group>"; };
+		717D014520BC69FA0098893A /* JPImagePickerDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPImagePickerDetailController.m; sourceTree = "<group>"; };
+		717D015320BC84F00098893A /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		717D015420BC84F00098893A /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		717D015520BC84F00098893A /* MasterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MasterViewController.xib; sourceTree = "<group>"; };
+		717D015820BC96EB0098893A /* DummyInfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DummyInfo.png; sourceTree = "<group>"; };
 		7186DDCC1E4DBE0D00F71F0C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		7186DDCD1E4DBE0D00F71F0C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7186DDEA1E4DBF2400F71F0C /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -700,6 +720,7 @@
 				71D1A3542074F8F000C83B63 /* bell_2.png */,
 				71D1A3552074F8F000C83B63 /* bell_3.png */,
 				7186DEE01E51CACC00F71F0C /* Default.png */,
+				717D015820BC96EB0098893A /* DummyInfo.png */,
 				7186DDFE1E4DBF5F00F71F0C /* billiardwin.ped */,
 				7186DDFF1E4DBF5F00F71F0C /* Crowd_cheer6.wav */,
 				7186DEDE1E51CA2300F71F0C /* DefaultPortrait.png */,
@@ -967,9 +988,9 @@
 		71A04ECB208FD0E400AA878B /* Info VC */ = {
 			isa = PBXGroup;
 			children = (
-				7138E5922088FBA700C0C08F /* infoViewController.h */,
-				7138E5932088FBA700C0C08F /* infoViewController.m */,
-				7138E5942088FBA700C0C08F /* infoViewController.xib */,
+				7138E5922088FBA700C0C08F /* InfoViewController.h */,
+				7138E5932088FBA700C0C08F /* InfoViewController.m */,
+				7138E5942088FBA700C0C08F /* InfoViewController.xib */,
 			);
 			path = "Info VC";
 			sourceTree = "<group>";
@@ -989,6 +1010,9 @@
 		71A04ECD208FD11000AA878B /* Primary VC */ = {
 			isa = PBXGroup;
 			children = (
+				717D015320BC84F00098893A /* MasterViewController.h */,
+				717D015420BC84F00098893A /* MasterViewController.m */,
+				717D015520BC84F00098893A /* MasterViewController.xib */,
 				7186DE281E4DBF7100F71F0C /* GameViewController.h */,
 				717D00B020B5CDF50098893A /* MainGauge.h */,
 				717D00B120B5CDF50098893A /* MainGauge.m */,
@@ -1036,6 +1060,14 @@
 				71C9F9CE1E53341D0078070D /* User.m */,
 				71C9F9FA1E53356C0078070D /* AddNewUserOperation.h */,
 				71C9F9FB1E53356C0078070D /* AddNewUserOperation.m */,
+				717D014320BC69FA0098893A /* JPImagePickerController.h */,
+				717D013C20BC69F30098893A /* JPImagePickerController.m */,
+				717D014420BC69FA0098893A /* JPImagePickerDetailController.h */,
+				717D014520BC69FA0098893A /* JPImagePickerDetailController.m */,
+				717D014120BC69F90098893A /* JPImagePickerDetailController.xib */,
+				717D014220BC69F90098893A /* JPImagePickerOverviewController.h */,
+				717D013E20BC69F80098893A /* JPImagePickerOverviewController.m */,
+				717D013F20BC69F80098893A /* JPImagePickerOverviewController.xib */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -1274,7 +1306,7 @@
 				717D013420B851BD0098893A /* 5Ballon.wav in Resources */,
 				7186DEA21E4DBFA400F71F0C /* BilliardBreathAppIcon152x152.png in Resources */,
 				717D009420B440D90098893A /* Users-INACTIVE.png in Resources */,
-				7138E5962088FBA700C0C08F /* infoViewController.xib in Resources */,
+				7138E5962088FBA700C0C08F /* InfoViewController.xib in Resources */,
 				7186DE9E1E4DBFA400F71F0C /* BilliardBreathAppIcon100x100.png in Resources */,
 				7186DEE11E51CACC00F71F0C /* Default.png in Resources */,
 				71D1A36B2074FBC800C83B63 /* Logo-Top.png in Resources */,
@@ -1301,6 +1333,7 @@
 				718E215A1E51DD0300E8357B /* LaunchScreen.storyboard in Resources */,
 				71D1A36D2074FBC800C83B63 /* Logo-Middle.png in Resources */,
 				7186DDF81E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.wav in Resources */,
+				717D014A20BC69FB0098893A /* JPImagePickerDetailController.xib in Resources */,
 				717D00C520B850D50098893A /* 3Trombone.wav in Resources */,
 				717D007920B3138D0098893A /* Balloon4.png in Resources */,
 				717D012620B851A50098893A /* 6Bas slide.wav in Resources */,
@@ -1314,6 +1347,7 @@
 				717D005920B309940098893A /* 5 Users.png in Resources */,
 				717D007A20B3138D0098893A /* Balloon7.png in Resources */,
 				717D013B20B86CFE0098893A /* Splash.png in Resources */,
+				717D015920BC96EC0098893A /* DummyInfo.png in Resources */,
 				717D009620B440D90098893A /* Info-ACTIVE.png in Resources */,
 				717D013220B851BD0098893A /* 1Ballon.wav in Resources */,
 				717D004320B309750098893A /* Main-Background.png in Resources */,
@@ -1330,6 +1364,7 @@
 				717D011120B851750098893A /* 5droom.wav in Resources */,
 				71D1A3692074FBC800C83B63 /* Logo-Full.png in Resources */,
 				71D1A3672074FBC800C83B63 /* PeakHoldArrow.png in Resources */,
+				717D015720BC84F00098893A /* MasterViewController.xib in Resources */,
 				717D00BA20B850C30098893A /* 2xylofoon.wav in Resources */,
 				7186DE2D1E4DBF7100F71F0C /* UserListViewController.xib in Resources */,
 				717D003420B309620098893A /* Login-Background.png in Resources */,
@@ -1383,6 +1418,7 @@
 				7186DEA31E4DBFA400F71F0C /* BilliardBreathAppIcon167x167.png in Resources */,
 				717D007C20B3138D0098893A /* Balloon5.png in Resources */,
 				717D011020B851750098893A /* 3droom.wav in Resources */,
+				717D014920BC69FB0098893A /* JPImagePickerOverviewController.xib in Resources */,
 				710BDDF1207E5B9400B1E393 /* SettingsViewController.xib in Resources */,
 				717D013320B851BD0098893A /* 3Ballon.wav in Resources */,
 				717D013120B851BD0098893A /* 2Ballon.wav in Resources */,
@@ -1446,6 +1482,7 @@
 				71C9F9E91E5334A90078070D /* BilliardBall.m in Sources */,
 				71A04EC3208FA8BD00AA878B /* Gauge.m in Sources */,
 				7186DE0A1E4DBF5F00F71F0C /* BilliardBallViewController.m in Sources */,
+				717D015620BC84F00098893A /* MasterViewController.m in Sources */,
 				7186DE311E4DBF7100F71F0C /* PlotItem.m in Sources */,
 				71C9FA061E53356C0078070D /* AddNewScoreOperation.m in Sources */,
 				71C9FA051E53356C0078070D /* MidiController.m in Sources */,
@@ -1460,14 +1497,16 @@
 				7186DEB31E4DC59F00F71F0C /* BTLEManager.m in Sources */,
 				71C9F9D81E53341D0078070D /* Game.m in Sources */,
 				7186DE2A1E4DBF7100F71F0C /* Session.m in Sources */,
-				7138E5952088FBA700C0C08F /* infoViewController.m in Sources */,
+				7138E5952088FBA700C0C08F /* InfoViewController.m in Sources */,
 				71C9F9DC1E53341D0078070D /* PowerGame.m in Sources */,
+				717D014620BC69FB0098893A /* JPImagePickerController.m in Sources */,
 				7186DE2E1E4DBF7100F71F0C /* PiNumberFormatter.m in Sources */,
 				71C9FA201E5344EB0078070D /* UserListViewController.m in Sources */,
 				7186DE101E4DBF5F00F71F0C /* HeaderView.m in Sources */,
 				717D00B220B5CDF50098893A /* MainGauge.m in Sources */,
 				7186DE321E4DBF7100F71F0C /* LoginViewController.m in Sources */,
 				71C9F9E71E5334A90078070D /* CAKeyframeAnimation+AHEasing.m in Sources */,
+				717D014B20BC69FB0098893A /* JPImagePickerDetailController.m in Sources */,
 				7186DE331E4DBF7100F71F0C /* GameViewController.m in Sources */,
 				7186DE2F1E4DBF7100F71F0C /* Globals.m in Sources */,
 				717D00AF20B474CF0098893A /* Balloon.m in Sources */,
@@ -1480,6 +1519,7 @@
 				71A04EC6208FA8F800AA878B /* Draggable.m in Sources */,
 				7186DEB51E4DC59F00F71F0C /* NSData+NSData_Conversion.m in Sources */,
 				7186DE0E1E4DBF5F00F71F0C /* CurvedScatterPlot.m in Sources */,
+				717D014820BC69FB0098893A /* JPImagePickerOverviewController.m in Sources */,
 				7186DE121E4DBF5F00F71F0C /* GraphViewController.m in Sources */,
 				7186DE301E4DBF7100F71F0C /* PlotGallery.m in Sources */,
 				71C9FA091E53356C0078070D /* UIEffectDesignerView.m in Sources */,

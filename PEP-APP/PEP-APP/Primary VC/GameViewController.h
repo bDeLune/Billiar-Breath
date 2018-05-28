@@ -6,7 +6,13 @@
 #import "AbstractGame.h"
 #import "MidiController.h"
 #import "GPUImage.h"
+#import "JPImagePickerController.h"
 @class SettingsViewController;
+
+
+#define THUMBNAIL_SIZE 30
+#define IMAGE_WIDTH 320
+#define IMAGE_HEIGHT 400
 
 @protocol SETTINGS_DELEGATE
 -(void)sendValue:(int)note onoff:(int)onoff;
@@ -31,11 +37,18 @@
 -(void)toSettingsScreen;
 @end
 
-@interface GameViewController : UIViewController<MidiControllerProtocol,GameProtocol,MainGaugeProtocol,  SETTINGS_DELEGATE,UINavigationControllerDelegate,DraggableDelegate, UIImagePickerControllerDelegate, UITabBarDelegate>{
+@interface GameViewController : UIViewController<MidiControllerProtocol,GameProtocol,MainGaugeProtocol,  SETTINGS_DELEGATE,UINavigationControllerDelegate,DraggableDelegate, UIImagePickerControllerDelegate, UITabBarDelegate, JPImagePickerControllerDelegate, JPImagePickerControllerDataSource>{
+    
+    
     GPUImageOutput<GPUImageInput> *sepiaFilter, *sepiaFilter2;
     UISlider *imageSlider;
+    
+    NSInteger chosenImage;
+    IBOutlet UIViewController *chosenImageController;
+    IBOutlet UIImageView *chosenImageView;
 }
 
+@property (unsafe_unretained) id<SETTINGS_DELEGATE> settinngsDelegate;
 @property(nonatomic,weak)IBOutlet  UIButton  *backToLoginButton;
 @property (weak, nonatomic) IBOutlet UIProgressView *breathStrengthBar;
 @property(nonatomic,weak)IBOutlet  UIButton *toggleDirectionButton;
@@ -47,7 +60,7 @@
 @property(nonatomic,weak)IBOutlet  UILabel  *targetLabel;
 @property(nonatomic,weak)IBOutlet  UILabel  *durationLabel;
 @property(nonatomic,weak)IBOutlet  UILabel  *speedLabel;
-
+@property(nonatomic,strong) SettingsViewController  *settingsViewController;
 @property(nonatomic,weak)IBOutlet  UILabel  *strenghtLabel;
 @property(nonatomic,weak)IBOutlet  UILabel *currentUsersNameLabel;
 @property(nonatomic,weak)IBOutlet  UITextView *debugtext;
@@ -98,4 +111,7 @@
 - (IBAction)updateSliderValue:(id)sender;
 @property (weak, nonatomic) IBOutlet UIProgressView *breathGauge;
 
+
+@property (nonatomic, retain) IBOutlet UIViewController *chosenImageController;
+@property (nonatomic, retain) IBOutlet UIImageView *chosenImageView;
 @end

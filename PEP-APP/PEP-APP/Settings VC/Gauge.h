@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
 #define GAUGE_WIDTH  330
 #import "Draggable.h"
+#import "BTLEManager.h"
 #define GUAGE_HEIGHT 710
 #define RGB(r, g, b) [UIColor colorWithRed:(float)r / 255.0 green:(float)g / 255.0 blue:(float)b / 255.0 alpha:1.0]
 //change should be background colour
@@ -9,7 +10,9 @@
 -(void)maxDistanceReached;
 @end
 
-@interface Gauge : UIView
+
+
+@interface Gauge : UIView <BTLEManagerDelegate>
 @property(nonatomic,unsafe_unretained)id<GaugeProtocol>GaugeDelegate;
 @property BOOL animationRunning;
 @property(nonatomic,weak)Draggable  *arrow;

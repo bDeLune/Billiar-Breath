@@ -26,6 +26,7 @@
 }
 
 @end
+
 @implementation Gauge
 
 -(void)setMass:(float)value
@@ -133,6 +134,8 @@
 
 -(void)setBreathToggleAsExhale:(bool)value isExhaling: (bool)value2;{
     
+    NSLog(@"FGAUGE EX");
+    
     currentlyExhaling = value2;
     setToInhale = value;
     // NSLog(@"GAUGE: setToInhale == 0 / currentlyExhaling == 1");
@@ -150,6 +153,8 @@
 
 -(void)setForce:(float)pforce
 {
+    
+    NSLog(@"FGAUGE SETFORCE");
     // NSLog(@"distancE %f - MAINGUAGE_HEIGHT %d", distance, MAINGUAGE_HEIGHT);
     // if (userBreathingCorrectly == true || distance > 525){
     force=(pforce/mass);

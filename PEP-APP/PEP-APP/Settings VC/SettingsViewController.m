@@ -1,6 +1,6 @@
 #import "ViewController.h"
 #import "SettingsViewController.h"
-#import "infoViewController.h"
+#import "InfoViewController.h"
 #import "BTLEManager.h"
 #import <QuartzCore/QuartzCore.h>
 #import <AudioToolbox/AudioToolbox.h>
@@ -78,6 +78,14 @@
     }
     return self;
 }
+
+-(void) setGaugeForce: (float)force{
+    
+    NSLog(@"should be 3");
+    [self.gaugeView setForce:force];
+    
+};
+
 
 #pragma mark -
 #pragma mark Picker View Methods
@@ -217,16 +225,16 @@
 
 - (IBAction)toInfoView:(id)sender {
     
-    NSLog(@"Going to info view");
+   // NSLog(@"Going to info view");
     
-    infoViewController *infoVC = [[infoViewController alloc]initWithNibName:@"infoViewController" bundle:nil];
+  //  infoViewController *infoVC = [[infoViewController alloc]initWithNibName:@"infoViewController" bundle:nil];
     
-    if (infoVC){
-        NSLog(@"instantiating infoVC");
-        [self presentViewController:infoVC animated:YES completion:nil];
-    }else{
-        NSLog(@"Cant instantiate infoVC");
-    }
+  //  if (infoVC){
+  //      NSLog(@"instantiating infoVC");
+   //     [self presentViewController:infoVC animated:YES completion:nil];
+  //  }else{
+  //      NSLog(@"Cant instantiate infoVC");
+  ///  }
 }
 
 - (IBAction)toUsersView:(id)sender {

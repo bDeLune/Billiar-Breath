@@ -2,8 +2,9 @@
 #import "AddNewUserOperation.h"
 #import "User.h"
 #import "Game.h"
-#import "GameViewController.h"
-#import "SettingsViewController.h"
+#import "MasterViewController.h"
+//#import "GameViewController.h"
+//#import "SettingsViewController.h"
 #define GUAGE_HEIGHT 575
 #import <AudioToolbox/AudioToolbox.h>
 #import "BTLEManager.h"
@@ -20,7 +21,8 @@ typedef void(^RunTimer)(void);
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
 @property(nonatomic,strong) LoginViewController  *loginViewController;
-@property(nonatomic,strong) GameViewController  *gameViewController;
+//@property(nonatomic,strong) GameViewController  *gameViewController;
+@property(nonatomic,strong) MasterViewController  *masterViewController;
 //@property(nonatomic,strong) SettingsViewController *settingsViewController;
 @property(nonatomic,strong) User  *currentUser;
 @property(nonatomic,strong) Game  *currentGame;
@@ -95,29 +97,43 @@ typedef void(^RunTimer)(void);
 {
     self.currentUser=user;
     
-    if (!self.gameViewController) {
-        self.gameViewController=[[GameViewController alloc]initWithNibName:@"GameViewController" bundle:nil];
-        self.gameViewController.delegate= self;
+   // if (!self.gameViewController) {
+   //     self.gameViewController=[[GameViewController //alloc]initWithNibName:@"GameViewController" bundle:nil];
+   //     self.gameViewController.delegate= self;
+   // }
+    
+    if (!self.masterViewController) {
+        self.masterViewController=[[MasterViewController alloc]initWithNibName:@"MasterViewController" bundle:nil];
+       // self.masterViewController.delegate= self;
     }
     
-    [UIView transitionFromView:self.loginViewController.view toView:self.gameViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromBottom completion:^(BOOL finished){
-        self.gameViewController.gameUser=user;
-        [self.gameViewController setLabels];
-        self.gameViewController.sharedPSC=self.persistentStoreCoordinator;
-        [self.gameViewController resetGame:nil];
+
+    
+    [self.masterViewController setMemoryInfo:self.persistentStoreCoordinator withuser:user];
+    
+    [UIView transitionFromView:self.loginViewController.view toView:self.masterViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromBottom completion:^(BOOL finished){}
+    
+    //[UIView transitionFromView:self.loginViewController.view toView:self.gameViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromBottom completion:^(BOOL finished){
+    //    self.gameViewController.gameUser=user;
+    //    [self.gameViewController setLabels];
+    //    self.gameViewController.sharedPSC=self.persistentStoreCoordinator;
+    //    [self.gameViewController resetGame:nil];
         
        //[[self.gameViewController settingsViewController] setSettinngsDelegate:self.gameViewController];
         // self.settingsViewController.delegate=self;
         
         // [self.settingsViewController setSettinngsDelegate:self.gameViewController];
         // [self.view addSubview:self.settingsViewController.view];
-    }];
+        
+        
+    ];
 }
+
 
 -(void)gameViewExitGame
 {
-    [UIView transitionFromView:self.gameViewController.view toView:self.loginViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromTop completion:^(BOOL finished){
-    }];
+   // [UIView transitionFromView:self.gameViewController.view toView:self.loginViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromTop completion:^(BOOL finished){
+   // }];
 }
 
 -(void)exitSettingsViewController

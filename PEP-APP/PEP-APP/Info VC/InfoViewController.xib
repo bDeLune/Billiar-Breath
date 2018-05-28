@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment version="2304" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InfoViewController">
+            <connections>
+                <outlet property="returnToGameView" destination="gFi-gX-bhd" id="Z7a-xr-faB"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gFi-gX-bhd">
+                    <rect key="frame" x="16" y="578" width="80" height="69"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="D41-sE-EVN"/>
+                        <constraint firstAttribute="height" constant="69" id="boO-lw-jRz"/>
+                    </constraints>
+                    <state key="normal" title="Back"/>
+                    <connections>
+                        <action selector="returnToGameView:" destination="-1" eventType="touchUpInside" id="PhS-x7-rhW"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DummyInfo.png" translatesAutoresizingMaskIntoConstraints="NO" id="hBo-mh-fVf">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="594"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="hBo-mh-fVf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="141-4d-S6x"/>
+                <constraint firstAttribute="bottom" secondItem="hBo-mh-fVf" secondAttribute="bottom" constant="73" id="1v9-jx-8MV"/>
+                <constraint firstItem="hBo-mh-fVf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="3ue-kk-gj4"/>
+                <constraint firstItem="hBo-mh-fVf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="99Z-fx-ofj"/>
+                <constraint firstItem="gFi-gX-bhd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="aS5-56-E48"/>
+                <constraint firstAttribute="bottom" secondItem="gFi-gX-bhd" secondAttribute="bottom" constant="20" symbolic="YES" id="c2f-ql-OR9"/>
+                <constraint firstItem="hBo-mh-fVf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="hkF-qc-J6f"/>
+                <constraint firstAttribute="trailing" secondItem="hBo-mh-fVf" secondAttribute="trailing" id="jGJ-dB-hV1"/>
+                <constraint firstAttribute="bottom" secondItem="hBo-mh-fVf" secondAttribute="bottom" constant="73" id="mxF-Jb-aS2"/>
+                <constraint firstAttribute="trailing" secondItem="hBo-mh-fVf" secondAttribute="trailing" id="v8j-mk-I09"/>
+            </constraints>
+            <point key="canvasLocation" x="96.5" y="158.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="DummyInfo.png" width="1536" height="2048"/>
+    </resources>
+</document>

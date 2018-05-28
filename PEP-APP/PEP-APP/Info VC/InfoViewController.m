@@ -1,10 +1,10 @@
-#import "infoViewController.h"
+#import "InfoViewController.h"
 
-@interface infoViewController ()
+@interface InfoViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *returnToGameView;
 @end
 
-@implementation infoViewController
+@implementation InfoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
