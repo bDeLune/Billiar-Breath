@@ -1,13 +1,12 @@
+#import <QuartzCore/QuartzCore.h>
+#import <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVFoundation.h>
 #import "ViewController.h"
 #import "SettingsViewController.h"
 #import "InfoViewController.h"
 #import "BTLEManager.h"
-#import <QuartzCore/QuartzCore.h>
-#import <AudioToolbox/AudioToolbox.h>
 #import "Session.h"
 #import "UIEffectDesignerView.h"
-#import <AVFoundation/AVFoundation.h>
-
 
 @interface SettingsViewController ()<UITabBarDelegate, BTLEManagerDelegate, MidiControllerProtocol>{
     UINavigationController   *navcontroller;
@@ -17,7 +16,6 @@
     NSTimer  *effecttimer;
     UIImageView  *bellImageView;
     UIImageView  *bg;
-
     int threshold;
     AVAudioPlayer *audioPlayer;
     UIButton  *togglebutton;
@@ -34,8 +32,8 @@
 @end
 
 @implementation SettingsViewController
-
 @synthesize settinngsDelegate;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     NSLog(@"INITIATED SETTINGS MODE");
@@ -51,7 +49,7 @@
                      @"Expose",@"Polka",
                      @"Posterize",@"Pixellate",@"Contrast", nil];
         
-        self.gaugeView=[[Gauge alloc]initWithFrame:CGRectMake(90, 155, 90, GUAGE_HEIGHT) ];
+        self.gaugeView=[[SettingsViewGauge alloc]initWithFrame:CGRectMake(90, 155, 90, GUAGE_HEIGHT) ];
         self.gaugeView.GaugeDelegate=self;
         [self.view addSubview:self.gaugeView];
         [self.view sendSubviewToBack:self.gaugeView];
@@ -165,8 +163,6 @@
     UISlider  *slider=(UISlider*)sender;
     [self.settinngsDelegate setRate:slider.value];
 }
-
-
 
 -(IBAction)setBreathLength:(id)sender
 {

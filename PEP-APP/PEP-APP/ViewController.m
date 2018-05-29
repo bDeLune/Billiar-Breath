@@ -2,10 +2,8 @@
 #import "AddNewUserOperation.h"
 #import "User.h"
 #import "Game.h"
-#import "MasterViewController.h"
-//#import "GameViewController.h"
-//#import "SettingsViewController.h"
-#define GUAGE_HEIGHT 575
+#import "MainTableViewController.h"
+//#define GUAGE_HEIGHT 575
 #import <AudioToolbox/AudioToolbox.h>
 #import "BTLEManager.h"
 
@@ -13,20 +11,18 @@ typedef void(^RunTimer)(void);
 @interface ViewController ()<BTLEManagerDelegate>
 @property (nonatomic, retain) IBOutlet UIToolbar *myToolbar;
 @property (nonatomic, retain) NSMutableArray *capturedImages;
-@property(nonatomic,strong)BTLEManager  *btleMager;
-@property(nonatomic,strong)UIImageView  *btOnOfImageView;
+@property (nonatomic,strong)BTLEManager  *btleMager;
+@property (nonatomic,strong)UIImageView  *btOnOfImageView;
 @property (assign) SystemSoundID tickSound;
-@property(nonatomic,strong)UIButton *ledTestButton;
+@property (nonatomic,strong)UIButton *ledTestButton;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
-@property(nonatomic,strong) LoginViewController  *loginViewController;
-//@property(nonatomic,strong) GameViewController  *gameViewController;
-@property(nonatomic,strong) MasterViewController  *masterViewController;
-//@property(nonatomic,strong) SettingsViewController *settingsViewController;
-@property(nonatomic,strong) User  *currentUser;
-@property(nonatomic,strong) Game  *currentGame;
-@property(nonatomic,strong) UIImageView *startupImageView;
+@property (nonatomic,strong) LoginViewController  *loginViewController;
+@property (nonatomic,strong) MainTableViewController  *mainTableViewController;
+@property (nonatomic,strong) User  *currentUser;
+@property (nonatomic,strong) Game  *currentGame;
+@property (nonatomic,strong) UIImageView *startupImageView;
 @end
 
 @implementation ViewController
@@ -38,8 +34,7 @@ typedef void(^RunTimer)(void);
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addUserExistsError:) name:kAddNewUserOperationUserExistsError object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addUserSuccess:) name:kAddNewUserOperationUserAdded object:nil];
     [self managedObjectContext];
-    [self addUserLoginViewController];
-    
+    [self addUserLoginViewController]; 
 }
 
 -(void)removeStartupImage:(NSTimer*)timer
@@ -56,12 +51,6 @@ typedef void(^RunTimer)(void);
     }];
 }
 
--(void)viewWillLayoutSubviews{
-    //remove
-    [super viewWillLayoutSubviews];
-    //[self.view setFrame:CGRectMake(600, 600, 600, 600)];
-}
-
 -(void)addUserLoginViewController
 {
     if (!self.loginViewController) {
@@ -73,21 +62,6 @@ typedef void(^RunTimer)(void);
     self.loginViewController.delegate=self;
 }
 
--(void)addSettingsViewController
-{
-    NSLog(@"VC: Adding settings view controller ");
-    
-   // if (!self.settingsViewController) {
-   //     self.settingsViewController=[[SettingsViewController alloc]initWithNibName:@"SettingsViewController" bundle:nil];
-   // }else{
-   //     NSLog(@"Cant instantiate SettingsViewController/already instantiated");
-   // }
-    
-   // self.settingsViewController.delegate=self;
-   
-   // [self.settingsViewController setSettinngsDelegate:self.gameViewController];
-   // [self.view addSubview:self.settingsViewController.view];
-}
 
 #pragma mark -
 
@@ -97,57 +71,27 @@ typedef void(^RunTimer)(void);
 {
     self.currentUser=user;
     
-   // if (!self.gameViewController) {
-   //     self.gameViewController=[[GameViewController //alloc]initWithNibName:@"GameViewController" bundle:nil];
-   //     self.gameViewController.delegate= self;
-   // }
-    
-    if (!self.masterViewController) {
-        self.masterViewController=[[MasterViewController alloc]initWithNibName:@"MasterViewController" bundle:nil];
-       // self.masterViewController.delegate= self;
+    if (!self.mainTableViewController) {
+        self.mainTableViewController=[[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
     }
     
-
+    [self.mainTableViewController setMemoryInfo:self.persistentStoreCoordinator withuser:user];
     
-    [self.masterViewController setMemoryInfo:self.persistentStoreCoordinator withuser:user];
-    
-    [UIView transitionFromView:self.loginViewController.view toView:self.masterViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromBottom completion:^(BOOL finished){}
-    
-    //[UIView transitionFromView:self.loginViewController.view toView:self.gameViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromBottom completion:^(BOOL finished){
-    //    self.gameViewController.gameUser=user;
-    //    [self.gameViewController setLabels];
-    //    self.gameViewController.sharedPSC=self.persistentStoreCoordinator;
-    //    [self.gameViewController resetGame:nil];
-        
-       //[[self.gameViewController settingsViewController] setSettinngsDelegate:self.gameViewController];
-        // self.settingsViewController.delegate=self;
-        
-        // [self.settingsViewController setSettinngsDelegate:self.gameViewController];
-        // [self.view addSubview:self.settingsViewController.view];
-        
-        
+    [UIView transitionFromView:self.loginViewController.view toView:self.mainTableViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromBottom completion:^(BOOL finished){}
     ];
 }
 
 
 -(void)gameViewExitGame
 {
-   // [UIView transitionFromView:self.gameViewController.view toView:self.loginViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromTop completion:^(BOOL finished){
-   // }];
+    [UIView transitionFromView:self.mainTableViewController.view toView:self.loginViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromTop completion:^(BOOL finished){
+    }];
 }
 
 -(void)exitSettingsViewController
 {
     NSLog(@"inner back button pressed");
-    
-  //  [UIView transitionFromView:self.settingsViewController.view toView:self.gameViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromTop completion:^(BOOL finished){
-   // }];
-}
 
--(void)toSettingsScreen
-{
-    NSLog(@" VC: Go to settings view controller");
-    //[self addSettingsViewController];
 }
 
 #pragma mark - Core Data
@@ -188,10 +132,10 @@ typedef void(^RunTimer)(void);
         return _managedObjectModel;
     }
     
-    NSString *path = [[NSBundle mainBundle] resourcePath];
-    NSFileManager *fm = [NSFileManager defaultManager];
-    NSError *error = nil;
-    NSArray *directoryAndFileNames = [fm contentsOfDirectoryAtPath:path error:&error];
+    //NSString *path = [[NSBundle mainBundle] resourcePath];
+    //NSFileManager *fm = [NSFileManager defaultManager];
+   // NSError *error = nil;
+    //NSArray *directoryAndFileNames = [fm contentsOfDirectoryAtPath:path error:&error];
     //NSLog(@"Manged object model %@", directoryAndFileNames);
     
     NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Model" withExtension:@"mom"]; //was mom

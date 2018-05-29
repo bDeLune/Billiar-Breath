@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" colorMatched="YES">
+    <device id="ipad9_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GameViewController">
+            <connections>
+                <outlet property="HQPhotoPickerButton" destination="r0I-hC-pUN" id="CJu-aa-tbf"/>
+                <outlet property="MainGaugeWindow" destination="r3m-4U-DNu" id="5UP-6e-w9h"/>
+                <outlet property="backToLoginButton" destination="OpF-Up-0wA" id="GDI-p4-Deo"/>
+                <outlet property="balloonView" destination="Kzq-xs-lx8" id="Ucd-JP-AfN"/>
+                <outlet property="bluetoothIcon" destination="vWa-Qa-fCA" id="P6u-Cw-3ls"/>
+                <outlet property="breathGauge" destination="5gR-Hd-9yx" id="9tS-7c-SR5"/>
+                <outlet property="breathStrengthBar" destination="5gR-Hd-9yx" id="0iR-2K-lG4"/>
+                <outlet property="currentUsersNameLabel" destination="Uk2-5k-71G" id="j86-aF-w4z"/>
+                <outlet property="debugtext" destination="pwD-YL-Hh8" id="BnY-Qj-T65"/>
+                <outlet property="durationLabel" destination="Ke9-1k-1RZ" id="eCA-Mf-6xN"/>
+                <outlet property="imageFilterView" destination="7QT-wR-PVR" id="Kem-6f-db4"/>
+                <outlet property="photoPickerButton" destination="4zb-9A-9kV" id="7zB-DB-GwV"/>
+                <outlet property="resetGameButton" destination="ecC-LK-npv" id="RFR-ZD-wef"/>
+                <outlet property="soundIcon" destination="cH9-86-mp6" id="NOp-du-9WI"/>
+                <outlet property="speedLabel" destination="FSE-oq-oRC" id="Qb6-Vn-Sav"/>
+                <outlet property="strenghtLabel" destination="7Fi-Eh-iAy" id="9xK-dB-ywu"/>
+                <outlet property="targetLabel" destination="Udc-4B-tl1" id="rqX-kh-14V"/>
+                <outlet property="toggleDirectionButton" destination="TE6-R3-G8k" id="5h5-g2-eXQ"/>
+                <outlet property="toggleGameModeButton" destination="AkJ-s6-cq1" id="hg1-em-jPP"/>
+                <outlet property="view" destination="2" id="3"/>
+            </connections>
+        </placeholder>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" id="2">
+            <rect key="frame" x="0.0" y="0.0" width="779" height="1019"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" alpha="0.94999999999999996" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="Kzq-xs-lx8">
+                    <rect key="frame" x="0.0" y="155" width="793" height="77"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <imageView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="7QT-wR-PVR">
+                    <rect key="frame" x="0.0" y="75" width="779" height="733"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <imageView opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Main-Background.png" id="LZu-SQ-bhA">
+                    <rect key="frame" x="0.0" y="0.0" width="779" height="1019"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="OpF-Up-0wA">
+                    <rect key="frame" x="13" y="400" width="175" height="58"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" backgroundImage="LoginButton">
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="exitGameScreen:" destination="-1" eventType="touchUpInside" id="xEB-hZ-bdR"/>
+                    </connections>
+                </button>
+                <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="TE6-R3-G8k">
+                    <rect key="frame" x="419" y="782" width="126" height="121"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="Settings-Button-EXHALE.png">
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="toggleDirection:" destination="-1" eventType="touchUpInside" id="2VU-sE-sL3"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="AkJ-s6-cq1">
+                    <rect key="frame" x="598" y="781" width="127" height="122"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" image="MainMode-BALLOON.png"/>
+                    <connections>
+                        <action selector="toggleGameMode:" destination="-1" eventType="touchUpInside" id="GMr-C9-cbq"/>
+                    </connections>
+                </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Udc-4B-tl1">
+                    <rect key="frame" x="569" y="130" width="81" height="52"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0:0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ke9-1k-1RZ">
+                    <rect key="frame" x="137" y="647" width="118" height="49"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="41"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0:0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7Fi-Eh-iAy">
+                    <rect key="frame" x="41" y="652" width="118" height="49"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Bluetooth-OFF.png" id="vWa-Qa-fCA">
+                    <rect key="frame" x="20" y="34" width="110" height="92"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <button hidden="YES" autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wei-TP-4wR">
+                    <rect key="frame" x="447" y="647" width="145" height="58"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" backgroundImage="DifficultyButtonLOW">
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="presentSettings:" destination="-1" eventType="touchUpInside" id="4cB-px-hBa"/>
+                    </connections>
+                </button>
+                <button autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sMc-Ax-JxV">
+                    <rect key="frame" x="611" y="911" width="148" height="102"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="toInfoView" image="Help.png"/>
+                    <connections>
+                        <action selector="goToInfoView:" destination="-1" eventType="touchUpInside" id="Cl2-jg-meA"/>
+                    </connections>
+                </button>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="pwD-YL-Hh8">
+                    <rect key="frame" x="535" y="123" width="224" height="109"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Iaw-Al-Fsu">
+                    <rect key="frame" x="272" y="917" width="135" height="96"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" backgroundImage="Users.png">
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="toUsersScreen:" destination="-1" eventType="touchUpInside" id="QaI-gW-tvz"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cH9-86-mp6">
+                    <rect key="frame" x="148" y="28" width="107" height="98"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Toggle Sound" image="Sound-ON.png"/>
+                    <connections>
+                        <action selector="toggleMuteSound:" destination="-1" eventType="touchUpInside" id="CvH-JG-YdL"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9ZQ-dL-XjX">
+                    <rect key="frame" x="447" y="922" width="145" height="97"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="SETTINGS" image="Settings.png"/>
+                    <connections>
+                        <action selector="goToSettings:" destination="-1" eventType="touchUpInside" id="wzK-Wd-7Ax"/>
+                    </connections>
+                </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Users Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Uk2-5k-71G">
+                    <rect key="frame" x="289" y="20" width="150" height="127"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0:0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FSE-oq-oRC">
+                    <rect key="frame" x="98" y="499" width="125" height="120"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="PEP-App.png" id="Gfj-hg-rum">
+                    <rect key="frame" x="41" y="917" width="147" height="96"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ecC-LK-npv">
+                    <rect key="frame" x="232" y="647" width="207" height="58"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="ResetButton">
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="resetGame:" destination="-1" eventType="touchUpInside" id="XlS-nX-zQZ"/>
+                    </connections>
+                </button>
+                <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" id="5gR-Hd-9yx">
+                    <rect key="frame" x="192" y="558" width="365" height="2"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </progressView>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4zb-9A-9kV">
+                    <rect key="frame" x="41" y="781" width="139" height="122"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Image Picker" image="Main-Button-Picker-ALBUM.png"/>
+                    <connections>
+                        <action selector="openPhotoPicker:" destination="-1" eventType="touchUpInside" id="PEq-3z-fo9"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="r0I-hC-pUN">
+                    <rect key="frame" x="232" y="781" width="129" height="122"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="High Quality Image Contrast" image="Main-Button-Picker-HICONTRAST.png"/>
+                    <connections>
+                        <action selector="openHQContrastPhoto:" destination="-1" eventType="touchUpInside" id="UgQ-JC-cGc"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="r3m-4U-DNu">
+                    <rect key="frame" x="419" y="0.0" width="360" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-138.5" y="190.5"/>
+        </view>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+    </objects>
+    <resources>
+        <image name="Bluetooth-OFF.png" width="108" height="147"/>
+        <image name="DifficultyButtonLOW" width="145" height="58"/>
+        <image name="Help.png" width="160" height="120"/>
+        <image name="LoginButton" width="261" height="58"/>
+        <image name="Main-Background.png" width="1536" height="2048"/>
+        <image name="Main-Button-Picker-ALBUM.png" width="190" height="190"/>
+        <image name="Main-Button-Picker-HICONTRAST.png" width="190" height="190"/>
+        <image name="MainMode-BALLOON.png" width="190" height="190"/>
+        <image name="PEP-App.png" width="160" height="120"/>
+        <image name="ResetButton" width="108" height="58"/>
+        <image name="Settings-Button-EXHALE.png" width="343" height="343"/>
+        <image name="Settings.png" width="160" height="120"/>
+        <image name="Sound-ON.png" width="149" height="146"/>
+        <image name="Users.png" width="160" height="120"/>
+    </resources>
+</document>

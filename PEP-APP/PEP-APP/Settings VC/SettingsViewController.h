@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 #import "GameViewController.h"
-#import "Gauge.h"
+#import "SettingsViewGauge.h"
 
 @protocol SettingsViewProtocol <NSObject>
 -(void)exitSettingsViewController;
@@ -34,7 +34,7 @@
 
 @property (unsafe_unretained) id<SETTINGS_DELEGATE> settinngsDelegate;
 @property(nonatomic,unsafe_unretained)id<SettingsViewProtocol>delegate;
-@property(nonatomic,strong)Gauge  *gaugeView;
+@property(nonatomic,strong)SettingsViewGauge  *gaugeView;
 
 -(IBAction)changeRate:(id)sender;
 -(IBAction)changeThreshold:(id)sender;
