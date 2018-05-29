@@ -392,7 +392,7 @@
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     // CGFloat width = CGRectGetWidth(tableView.bounds);
     //  CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
-    HeaderView  *header=[[HeaderView alloc]initWithFrame:CGRectMake(40, 150, 570, 0)];
+    HeaderView  *header=[[HeaderView alloc]initWithFrame:CGRectMake(0, 150, 570, 20)];
     header.section=section;
     header.user=[self.userList objectAtIndex:section];
     header.delegate=self;

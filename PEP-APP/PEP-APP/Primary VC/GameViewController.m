@@ -395,6 +395,8 @@
     [self.view addSubview:self.billiardViewController.view];
     [[NSUserDefaults standardUserDefaults]setObject:@"exhale" forKey:@"direction"];
     
+    [self.imageFilterView sendSubviewToBack:imageView];
+    
     //self.settingsViewController = [[((UITabBarController *)self.window.rootViewController) viewControllers] objectAtIndex:2];
     self.settingsViewController = [self.tabBarController.viewControllers objectAtIndex:2];
     

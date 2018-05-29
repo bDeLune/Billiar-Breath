@@ -38,7 +38,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CVO-Vi-sKz">
-                    <rect key="frame" x="120" y="348" width="248" height="104"/>
+                    <rect key="frame" x="120" y="348" width="248" height="103"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="248" id="J6B-l8-aCZ"/>
                     </constraints>
@@ -50,10 +50,10 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5EX-bV-cBy">
-                    <rect key="frame" x="406" y="349" width="252" height="102"/>
+                    <rect key="frame" x="406" y="348" width="247" height="104"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="102" id="WgL-Y5-rKd"/>
-                        <constraint firstAttribute="width" constant="252" id="sfW-li-TBV"/>
+                        <constraint firstAttribute="height" constant="104" id="WgL-Y5-rKd"/>
+                        <constraint firstAttribute="width" constant="247" id="sfW-li-TBV"/>
                     </constraints>
                     <state key="normal" backgroundImage="Login-Button-Signup.png">
                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -69,7 +69,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="92" id="Bns-Hs-swT"/>
                     </constraints>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="50"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                 </textField>
@@ -82,7 +82,7 @@
                 <constraint firstItem="9uZ-uU-8xa" firstAttribute="top" secondItem="2" secondAttribute="top" constant="184" id="6Mv-eB-P5L"/>
                 <constraint firstItem="5EX-bV-cBy" firstAttribute="leading" secondItem="CVO-Vi-sKz" secondAttribute="trailing" constant="38" id="8Lv-cD-Kp6"/>
                 <constraint firstItem="ff1-eL-59p" firstAttribute="top" secondItem="2" secondAttribute="top" id="9jZ-bG-u0x"/>
-                <constraint firstItem="5EX-bV-cBy" firstAttribute="top" secondItem="9uZ-uU-8xa" secondAttribute="bottom" constant="73" id="EDU-OM-yRb"/>
+                <constraint firstItem="5EX-bV-cBy" firstAttribute="top" secondItem="9uZ-uU-8xa" secondAttribute="bottom" constant="72" id="EDU-OM-yRb"/>
                 <constraint firstItem="9uZ-uU-8xa" firstAttribute="leading" secondItem="CVO-Vi-sKz" secondAttribute="leading" id="IRI-bR-vR5"/>
                 <constraint firstItem="CVO-Vi-sKz" firstAttribute="top" secondItem="9uZ-uU-8xa" secondAttribute="bottom" constant="72" id="LB0-WH-T78"/>
                 <constraint firstAttribute="trailing" secondItem="ff1-eL-59p" secondAttribute="trailing" id="LLq-29-WXF"/>
