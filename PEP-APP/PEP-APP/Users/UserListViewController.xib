@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFill" misplaced="YES" indicatorStyle="black" bouncesZoom="NO" style="grouped" separatorInsetReference="fromAutomaticInsets" allowsSelectionDuringEditing="YES" rowHeight="40" sectionHeaderHeight="25" sectionFooterHeight="18" id="8">
-                    <rect key="frame" x="90" y="204" width="618" height="660"/>
+                    <rect key="frame" x="90" y="210" width="618" height="640"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <inset key="separatorInset" minX="75" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -31,39 +31,10 @@
                         <outlet property="delegate" destination="-1" id="10"/>
                     </connections>
                 </tableView>
-                <imageView opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User-Project.png" id="w5C-GN-fny">
-                    <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                <imageView opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" image="User-Project.png" id="w5C-GN-fny">
+                    <rect key="frame" x="0.0" y="0.0" width="768" height="1023"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="X6n-oV-M99">
-                    <rect key="frame" x="58" y="922" width="118" height="102"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="PEP-App-INACTIVE.png"/>
-                    <connections>
-                        <action selector="goToMainView:" destination="-1" eventType="touchUpInside" id="tQQ-bf-VMb"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uY5-eg-JKH">
-                    <rect key="frame" x="241" y="925" width="117" height="99"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="Users-ACTIVE.png"/>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0rH-W6-1Ax">
-                    <rect key="frame" x="408" y="922" width="111" height="102"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="Settings-INACTIVE.png"/>
-                    <connections>
-                        <action selector="goToSettingsView:" destination="-1" eventType="touchUpInside" id="FD1-x3-Ryb"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ydw-GS-WEI">
-                    <rect key="frame" x="603" y="922" width="105" height="98"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="Info-INACTIVE.png"/>
-                    <connections>
-                        <action selector="goToInfoView:" destination="-1" eventType="touchUpInside" id="Rhm-2m-wcT"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <nil key="simulatedTopBarMetrics"/>
@@ -71,10 +42,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Info-INACTIVE.png" width="110" height="110"/>
-        <image name="PEP-App-INACTIVE.png" width="110" height="110"/>
-        <image name="Settings-INACTIVE.png" width="110" height="110"/>
         <image name="User-Project.png" width="1536" height="2048"/>
-        <image name="Users-ACTIVE.png" width="110" height="110"/>
     </resources>
 </document>

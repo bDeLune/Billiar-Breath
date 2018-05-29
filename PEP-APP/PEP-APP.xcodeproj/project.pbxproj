@@ -1338,6 +1338,8 @@
 				7186DE1C1E4DBF7100F71F0C /* UserListViewController.xib */,
 				71C9FA1E1E5344EB0078070D /* UserListViewController.h */,
 				71C9FA1F1E5344EB0078070D /* UserListViewController.m */,
+				7186DE031E4DBF5F00F71F0C /* HeaderView.h */,
+				7186DE041E4DBF5F00F71F0C /* HeaderView.m */,
 				71C9F9CD1E53341D0078070D /* User.h */,
 				71C9F9CE1E53341D0078070D /* User.m */,
 			);
@@ -1394,8 +1396,6 @@
 				7186DEA51E4DC59F00F71F0C /* btlemanager */,
 				7186DE171E4DBF7100F71F0C /* CustomIOSAlertView.h */,
 				7186DE191E4DBF7100F71F0C /* CustomIOSAlertView.m */,
-				7186DE031E4DBF5F00F71F0C /* HeaderView.h */,
-				7186DE041E4DBF5F00F71F0C /* HeaderView.m */,
 				7186DE1E1E4DBF7100F71F0C /* PiNumberFormatter.h */,
 				7186DE1F1E4DBF7100F71F0C /* PiNumberFormatter.m */,
 				7186DE211E4DBF7100F71F0C /* Globals.h */,

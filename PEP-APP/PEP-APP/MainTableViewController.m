@@ -5,7 +5,7 @@
 
 @interface MainTableViewController:UITabBarController
 
-@property(nonatomic,strong) UserListViewController  *userListViewController;
+@property(nonatomic,strong) UserListViewController *userListViewController;
 @property(nonatomic,strong) GameViewController  *gameViewController;
 @property(nonatomic,strong) InfoViewController  *infoViewController;
 @property(nonatomic,strong) SettingsViewController *settingsViewController;

@@ -584,12 +584,6 @@
     if (midi.velocity==127) {
         return;
     }
-    
-    //added gauge
-   // float scale=50.0f;
-  //  float value=midi.velocity*scale;
-  //  [self.gaugeView setForce:(value)];
-//[self.strenghtLabel setText:[NSString stringWithFormat:@"%0.0f",midi.velocity]];
 
     if (midi.velocity > bestCurrentVelocity){
         bestCurrentVelocity = midi.velocity;
@@ -598,63 +592,29 @@
     [self.settingsViewController setSettingsStrengthLabelText:[NSString stringWithFormat:@"%0.0f",bestCurrentVelocity]];
     [self.settingsViewController setSettingsDurationLabelText:[NSString stringWithFormat:@"%0.0f",self.sequenceGameController.time]];
     
-    
-    //NSString *durationtext=[NSString stringWithFormat:@"%0.1f",self.sequenceGameController.time];
-    
-    
-    /// NSLog(@"Midi Continue\n");
     if (midi.velocity>[self.currentSession.sessionStrength floatValue]) {
         
         if (midi.velocity!=127) {
             self.currentSession.sessionStrength=[NSNumber numberWithFloat:midi.velocity];
-            
         }
         // [gaugeView setArrowPos:0];
     }
     
-    if(self.currentGameType==gameTypeDuo)
-    {
-       // if (self.durationGameController.isRunning) {
-       //     self.currentSession.sessionDuration=[NSNumber numberWithDouble:self.sequenceGameController.time];
-            
-      //  }
-    }else if(self.currentGameType==gameTypeTest)
-    {
-   //     self.currentSession.sessionDuration=[NSNumber numberWithDouble:self.sequenceGameController.time];
-        
-    }
     self.currentSession.sessionSpeed=[NSNumber numberWithFloat:midi.speed];
     //check
     self.currentSession.sessionDuration = currentBreathLength;
-    [[GCDQueue mainQueue]queueBlock:^{
-        if (midi.velocity!=127) {
-        
-        }
-        // if (midi.speed!=0) {
-        //  [self.speedLabel setText:[NSString stringWithFormat:@"%0.0f",midi.speed]];
-    }];
     
     [[GCDQueue mainQueue]queueBlock:^{
         switch (self.currentGameType) {
             case gameTypeDuo:
-               // [self midiNoteContinuingForPower:midi]; //MAYBE
-
                 [self midiNoteContinuingForSequence:midi];
                 break;
             case gameTypeImage:
-               // [self midiNoteContinuingForPower:midi]; //MAYBE
-             //   [self.strenghtLabel setText:[NSString stringWithFormat:@"%0.0f",midi.velocity]];
-             //   [self midiNoteContinuingForSequence:midi];
                 break;
             case gameTypeBalloon:
-               // [self midiNoteContinuingForPower:midi]; //MAYBE
-                //[self.strenghtLabel setText:[NSString stringWithFormat:@"%0.0f",midi.velocity]];
                 [self midiNoteContinuingForSequence:midi];
                 break;
             case gameTypeTest:
-              //  [self midiNoteContinuingForPower:midi]; //MAYBE
-            //    [self.strenghtLabel setText:[NSString stringWithFormat:@"%0.0f",midi.velocity]];
-            //    [self midiNoteContinuingForSequence:midi];
                 break;
             default:
                 break;
@@ -668,7 +628,6 @@
 {
     self.sequenceGameController.currentSpeed= -1;
     self.sequenceGameController.time = 0; //added
-    // if (self.sequenceGameController.currentBall==0) {
     
     if (_currentGameType == gameTypeImage || _currentGameType == gameTypeTest ){
         NSLog(@"DISALLOWING - SEQUENCE GAME NOT ACTIVE");
@@ -676,7 +635,6 @@
     }
 
     [self.sequenceGameController startTimer];
-    // }//ADDED
 }
 -(void)midiNoteStoppedForSequence:(MidiController *)midi
 {
@@ -688,8 +646,6 @@
     
     NSLog(@"midiNoteStoppedForSequence");
     NSLog(@"self.sequenceGameController.time %f", self.sequenceGameController.time);
-    //[self.settingsViewController setSettingsDurationLabelText:[NSString stringWithFormat:@"%0.0f",self.sequenceGameController.time]];
-    //CHANGE
     if (self.currentGameType == gameTypeImage ) {
         [self imageGameWon];
     }
@@ -697,7 +653,6 @@
     [self.sequenceGameController killTimer];  //only for testing purposes
     
     [self.sequenceGameController nextBall];
-    //Maybe change - check if this is in corrent location
     self.currentSession.sessionAchievedBalloons = [NSNumber numberWithInt: self.sequenceGameController.currentBall];
 }
 
@@ -705,9 +660,6 @@
 {
     // if (self.sequenceGameController.currentSpeed==-1) {
     self.sequenceGameController.currentSpeed=midi.speed;
-    /** [[GCDQueue mainQueue]queueBlock:^{
-     [self.debugtext setText:[NSString stringWithFormat:@"%@%0.0f",self.debugtext.text,midi.speed]];
-     }];**/
     
     gameDifficulty  difficulty=[[[NSUserDefaults standardUserDefaults]objectForKey:@"difficulty"]intValue];
     
@@ -715,8 +667,7 @@
     ///   NSLog(@"MIDI NOITE CONTINUING WITH difficulty %u", difficulty);
     
     switch (difficulty) {
-        case 0: //was gameDifficultyEasy:
-            // NSLog(@"MIDI NOTE BLOWING difficulty 0");
+        case 0:
         
             if (_currentGameType == gameTypeImage || _currentGameType == gameTypeTest){
                 NSLog(@"DISALLOWING - SEQUENCE GAME NOT ACTIVE");
@@ -727,8 +678,7 @@
            
             NSLog(@"Sequence small");
             break;
-        case 1: //added was gameDifficultMedium:
-            /// NSLog(@"MIDI NOTE BLOWING difficulty 1");
+        case 1:
             if (self.sequenceGameController.currentSpeed>15) {       //was 1
                 [self.sequenceGameController setAllowNextBall:YES];
                 NSLog(@"Sequence medium");
@@ -737,8 +687,7 @@
                 [self.sequenceGameController setAllowNextBall:NO];
             }
             break;
-        case 2: //added was gameDifficultyHard:
-            ///  NSLog(@"MIDI NOTE BLOWING difficulty 2");
+        case 2:
             if (self.sequenceGameController.currentSpeed>50) {       ///was 2
                 [self.sequenceGameController setAllowNextBall:YES];
                 NSLog(@"Sequence hard");
@@ -771,7 +720,7 @@
                 [self.balloonViewController shootBallToTop:self.sequenceGameController.currentBall withAcceleration:midi.speed];
                 self.sequenceGameController.totalBallsRaised++;
                 [self.sequenceGameController playHitTop];
-            }//added
+            }
         }];
     }
 }

@@ -195,6 +195,10 @@
     time = distance / velocity;
     distance= ceilf((0.5)* (acceleration * powf(time, 2)));
     
+    if (distance > MAINGUAGE_HEIGHT){
+        distance = MAINGUAGE_HEIGHT;
+    }
+    
     if (distance<MAINGUAGE_HEIGHT) {
         CGRect frame=animationObject.frame;
         frame.origin.x=0;
