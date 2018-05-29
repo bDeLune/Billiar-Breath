@@ -1,6 +1,5 @@
 #import <AVFoundation/AVFoundation.h>
 #import "BilliardBallViewController.h"
-#import "BilliardBall.h"
 #import "Balloon.h"
 #import "CAKeyframeAnimation+AHEasing.h"
 #import "EasingDeclarations.h"
@@ -173,7 +172,7 @@
         
         //NSLog(@"ANIMATE BALL START i %lu", i);
         //NSLog(@"[self.balls count] %lu", (unsigned long)[self.balls count]);
-        BilliardBall  *ball=[self.balls objectAtIndex:i];
+        Balloon  *ball=[self.balls objectAtIndex:i];
         ball.alpha=0;
         //[[GCDQueue mainQueue]queueBlock:^{
         CALayer *layer= ball.layer;
@@ -267,7 +266,7 @@
         NSLog(@"COULDNT PLAY AUDIO FILE  - %@", exception.reason);
     }
     
-    for (BilliardBall *ball in self.balls) {
+    for (Balloon *ball in self.balls) {
      // NSLog(@"STOPPING BALLS");
         [ball stop];
         [ball blowingEnded];
@@ -308,7 +307,7 @@
         NSLog(@"COULDNT PLAY AUDIO FILE  - %@", exception.reason);
     }
     
-    for (BilliardBall *ball in self.balls) {
+    for (Balloon *ball in self.balls) {
         // NSLog(@"STOPPING BALLS");
         [ball stop];
         [ball blowingEnded];
@@ -358,7 +357,7 @@
     if (ballIndex>=[self.balls count]) {
         return;
     }
-    BilliardBall  *ball=[self.balls objectAtIndex:ballIndex];
+    Balloon  *ball=[self.balls objectAtIndex:ballIndex];
     CGPoint  point=CGPointMake(ball.center.x,BALL_RADIUS/2);
     //CGPoint  point=CGPointMake(0,0);
     //float  duration=5/acceleration;
@@ -378,8 +377,7 @@
 
 - (void)bounce
 {
-  ///CAKeyframeAnimation *animation = [CAKeyframeAnimation dockBounceAnimationWithIconHeight:150];
-  // [_bounceView.layer addAnimation:animation forKey:@"jumping"];
+
 }
 
 -(void)pushBallsWithVelocity:(float)velocity
@@ -423,7 +421,7 @@
     for (int i=0; i<numberOfBallsToMove; i++) {
         if (perBallCount<=maxVelocity) {
             //NSLog(@" inner BLOWING began  %d!!!", i);
-            BilliardBall  *ball=[self.balls objectAtIndex:i];
+            Balloon  *ball=[self.balls objectAtIndex:i];
             [ball blowingBegan];
             [ball setForce:velocity*80];
             perBallCount+=perBall;
@@ -431,7 +429,7 @@
     }
     
     for (int i=numberOfBallsToMove; i<[self.balls count]; i++) {
-        BilliardBall  *ball=[self.balls objectAtIndex:i];
+        Balloon  *ball=[self.balls objectAtIndex:i];
         //NSLog(@" inner BLOWING ENDED  %d!!!", i);
         [ball blowingEnded];
     }
@@ -475,6 +473,7 @@
     
     //int selectedSpeedSetting = 6;
     int percentageComplete = (fabs(timeElapsed)/selectedSpeedSetting)*100;
+
    // NSLog(@"timeElapsedfbs = %f", fabs(timeElapsed));
    // NSLog(@"timeElapsed = %f", timeElapsed);
    // NSLog(@"timeCounter = %f", timeCounter);
@@ -507,52 +506,8 @@
         // [self.delegate setBalloonStage:self atStage: 8];
         ball.currentBalloonImage.image = [UIImage imageNamed:@"Balloon8"];
     }
-    
-    //change - make more efficient
-    
-    //  [[GCDQueue mainQueue]queueBlock:^{
-    //     [self.delegate balloonReachedFinalTarget:self];
-    // } afterDelay:0.1];
+
 }
-
-//-(void)startBallsPowerGame
-//{
- //   ballGameCount=0;
-  //  NSLog(@"Started ball power game!");
-  //  for (int i=0; i<[self.balls count]; i++) {
-  //      BilliardBall  *ball=[self.balls objectAtIndex:i];
- //       [ball start];
- //       [ball blowingBegan];
- //   }
-//}
-
-//-(void)endBallsPowerGame
-///{
- //   for (int i=0; i<[self.balls count]; i++) {
- //       BilliardBall  *ball=[self.balls objectAtIndex:i];
-        //[ball stop]; ///maybe uncomment added
- //       [ball blowingEnded];
-        ///NSLog(@"POWER GAME BLOWING ENDED!!!");
-//    }
-//}
-
-//-(void)startDurationPowerGame
-//{
- //   NSLog(@"STARTING DURATION GAME");
- //   self.durationGame.ballsCopy=[self.balls mutableCopy];
- //   [self.durationGame startGame];
-//}
-
-//-(void)endDurationPowerGame
-//{
- //   NSLog(@"END DURATION GAME");
- //   for (int i=0; i<[self.balls count]; i++) {
-//        BilliardBall  *ball=[self.balls objectAtIndex:i];
- //       [ball stop];
- ///       [ball blowingEnded];
-//    }
- //   [self.durationGame endGame];
-//}
 
 -(void)playHitTop
 {
@@ -578,7 +533,7 @@
     }
 }
 
--(void)ballReachedFinalTarget:(BilliardBall *)ball
+-(void)ballReachedFinalTarget:(Balloon *)ball
 
 {
    //[[GCDQueue highPriorityGlobalQueue]queueBlock:^{
@@ -623,7 +578,6 @@
 -(void)setAudioMute: (BOOL) muteSetting{
     NSLog(@"setting inner audio mute %hhd", muteSetting);
     muteAudio = muteSetting;
-    
 }
 
 @end

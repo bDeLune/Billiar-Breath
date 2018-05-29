@@ -6,9 +6,7 @@
 #import "AbstractGame.h"
 #import "MidiController.h"
 #import "GPUImage.h"
-#import "JPImagePickerController.h"
 @class SettingsViewController;
-
 
 #define THUMBNAIL_SIZE 30
 #define IMAGE_WIDTH 320
@@ -37,7 +35,7 @@
 -(void)toSettingsScreen;
 @end
 
-@interface GameViewController : UIViewController<MidiControllerProtocol,GameProtocol,MainGaugeProtocol,  SETTINGS_DELEGATE,UINavigationControllerDelegate,DraggableDelegate, UIImagePickerControllerDelegate, UITabBarDelegate, JPImagePickerControllerDelegate, JPImagePickerControllerDataSource>{
+@interface GameViewController : UIViewController<MidiControllerProtocol,GameProtocol,MainGaugeProtocol,  SETTINGS_DELEGATE,UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITabBarDelegate >{
     
     
     GPUImageOutput<GPUImageInput> *sepiaFilter, *sepiaFilter2;

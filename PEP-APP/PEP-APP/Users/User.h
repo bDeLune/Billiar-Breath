@@ -5,9 +5,6 @@
 @class Note;
 @interface User : NSManagedObject
 @property (nonatomic, retain) NSString * userName;
-//@property (nonatomic, retain) NSNumber * userHillType;
-///@property (nonatomic, retain) NSNumber * userAbilityType;
-//change
 @property (nonatomic, retain) NSSet *game;
 @property (nonatomic, retain) NSSet *note;
 @end

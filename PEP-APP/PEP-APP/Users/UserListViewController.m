@@ -2,35 +2,21 @@
 #import "User.h"
 #import "Game.h"
 #import "HeaderView.h"
-#import "GraphViewController.h"
-#import "PlotItem.h"
-#import "CurvedScatterPlot.h"
 #import "AllGamesForDayTableVC.h"
 #import "GCDQueue.h"
 #import "InfoViewController.h"
 #import "SettingsViewController.h"
-
 
 @interface UserListViewController()<UIActionSheetDelegate,HeaderViewProtocl>
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) UIBarButtonItem *activityIndicator;
 @property (nonatomic) NSMutableArray *userList;
-//@property(nonatomic,strong)GraphViewController  *graph;
 @property (weak, nonatomic) IBOutlet UIView *tableViewContainer;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic,assign)User  *deleteUser;
 @end
 @implementation UserListViewController
-
-//- (id)initWithStyle:(UITableViewStyle)style
-//{
-//    self = [super initWithStyle:style];
-//    if (self) {
-//        // Custom initialization
-//    }
-//    return self;
-//}
 
 - (id)init
 {
@@ -85,11 +71,8 @@
     
      NSMutableArray *mutable=[[NSMutableArray alloc]initWithArray:cleanedArray];
      [mutable sortUsingSelector:@selector(compare:)];
-    
-     NSArray  *reverse=[[mutable reverseObjectEnumerator]allObjects];
-     //gmaNSLog(@"MY BIG SORTED ARRAY %@", sortedArray);
-     //NSLog(@"MY BIG SORTED ARRAY %@", mutable);
-    return mutable; //added was datestrings
+
+    return mutable;
     
 }
 -(int)uniquedatesForUser:(User*)user
@@ -107,8 +90,6 @@
     NSArray *cleanedArray = [[NSSet setWithArray:datesstrings] allObjects];
     NSMutableArray *mutable=[[NSMutableArray alloc]initWithArray:cleanedArray];
     [mutable sortUsingSelector:@selector(compare:)];
-    //sortedDateKeysNoTime=[NSArray arrayWithArray:mutable];
-    //NSLog(@"UniqueDATES FOR USER %@", mutable);
     
     return [mutable count];
     return 0;
@@ -122,74 +103,28 @@
         [self.backgroundColouredImage sendSubviewToBack:self.tableView];
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
-    
-    //[self.tableViewContainer setFrame:CGRectMake(100, 100, 100, 100)];
-    //[self.tableView setFrame:CGRectMake(150, 0, 900, 900)];
 }
 
 - (void)viewDidLoad
 {
     self.userList=[NSMutableArray new];
     [self managedObjectContext];
-    //[super viewDidLoad];
     [self getListOfUsers];
     
     UISwipeGestureRecognizer *recognizer;
     recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
     [recognizer setDirection:(  UISwipeGestureRecognizerDirectionLeft)];
     // [[self view] addGestureRecognizer:recognizer];
-    
-    // UIImage *backButtonImage = [UIImage imageNamed:@"back-button"];
-   // UIButton *backButton = [UIButton buttonWithType:UIButtonTypeSystem];
-   // [backButton setTitle:@"Back" forState:UIControlStateNormal];
-    
-    // [backButton setImage:backButtonImage forState:UIControlStateNormal];
-    //backButton.frame = CGRectMake(0, 0, 50, 40);
-    
-    //[backButton addTarget:self
-    //               action:@selector(goBack)
-    //     forControlEvents:UIControlEventTouchUpInside];
-    
-    //UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] ////initWithCustomView:backButton];
-    //self.navigationItem.leftBarButtonItem = backBarButtonItem;
     [self.backgroundColouredImage bringSubviewToFront:self.view];
         [self.backgroundColouredImage sendSubviewToBack:self.tableView];
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
-
 }
 
 -(void)goBack
 {
     [self.delegate userListDismissRequest:self];
 }
-
-- (IBAction)goToInfoView:(id)sender {
-
-   // infoViewController *infoVC = [[infoViewController alloc]initWithNibName:@"infoViewController" bundle:nil];
-    
-   // if (infoVC){
-   //     NSLog(@"instantiating infoVC");
-   //     [self presentViewController:infoVC animated:YES completion:nil];
-   // }else{
-   //     NSLog(@"Cant instantiate infoVC");
-   // }
-}
-
-- (IBAction)goToSettingsView:(id)sender {
-    
-    SettingsViewController *settingsView =
-    [[SettingsViewController alloc]
-     initWithNibName:@"SettingsViewController" bundle:nil];
-    
-    [self.view.window.rootViewController presentViewController:settingsView animated:YES completion:nil];
-}
-
-- (IBAction)goToMainView:(id)sender {
-
-    [self.delegate userListDismissRequest:self];
-}
-
 
 -(void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer {
     NSLog(@"Swipe received.");
@@ -198,7 +133,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)getListOfUsers
@@ -215,7 +149,6 @@
         
         self.userList=[NSMutableArray arrayWithArray:items];
     }
-    // NSLog(@"userList == %@",self.userList);
     [self.tableView reloadData];
 }
 #pragma mark - Table view data source
@@ -228,8 +161,6 @@
     return title;
 }
 
-
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
    //NSLog(@"Number of users - %lu", (unsigned long)[self.userList count]);
     int sections=[self.userList count];
@@ -239,27 +170,14 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // NSLog(@"numberOfRowsInSection");
     NSInteger numberOfRows = 0;
-    
-    /** if ([[self.fetchedResultsController sections] count] > 0) {
-     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-     numberOfRows = [sectionInfo numberOfObjects];
-     }**/
-    
     User *user=[self.userList objectAtIndex:section];
-    
-   /// NSLog(@"numberOfRowsInSection username %@",user.userName);
-    
     numberOfRows=[user.game count];
     
-   // NSLog(@"numberOfRowsInSection %d", [self uniquedatesForUser:user]);
-    
     return  [self uniquedatesForUser:user];
-    // return numberOfRows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   // NSLog(@"cellForRowAtIndexPath dates ");
     
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -270,34 +188,14 @@
     User  *user=[self.userList objectAtIndex:indexPath.section];
 
     NSArray  *dates=[self sortedDateArrayForUser:user];
-    //NSLog(@"username == %@", user.userName);
-    
-    //NSLog(@"dates == %@",dates);
-    // NSLog(@"indexPath.row == %ld",(long)indexPath.row);
     dates=[[dates reverseObjectEnumerator]allObjects];
-    // NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    // [formatter setDateFormat:@"d MMM y "];
-    //NSString  *date=[dates objectAtIndex:indexPath.row];
-    //NSLog(@"datehere == %@",date);
-    //NSLog(@"dates of each game on day == %@",[dates valueForKey: @"gameDate"]);
-    //NSArray * gamedate = [dates valueForKey: @"gameDate"];
-    //NSArray * gamedate = [dates objectAtIndex:indexPath.row];  ///addedb
     NSDate * dateAtRow =[dates objectAtIndex:indexPath.row];
     NSString *stringFromDate =[dates objectAtIndex:indexPath.row];
-    //NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    //[formatter setDateFormat: @"d MMM y "];
-    //NSString *stringFromDate = [formatter stringFromDate:dateAtRow];
-    
     cell.textLabel.text= stringFromDate;
-    //NSLog(@"this cell's assigned date == %@",stringFromDate);
-    //NSLog(@"returning cell == %@",cell);
-    
     return cell;
 }
 -(NSArray*)gamesMatchingDate:(NSString*)date user:(User*)user
 {
-    
-    // NSLog(@"gamesMatchingDate - %@ ", date);
     NSArray *array=nil;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"dd MMM y "];
@@ -317,22 +215,15 @@
     //NSMutableArray *tempcopy= [[NSMutableArray alloc] initWithObjects:unfiltered, nil];
     NSLog(@"gamesMatchingDate username %@", user.userName);
     NSLog(@"gamesMatchingDate unfiltered %@", unfiltered);
-    //[mut sortUsingDescriptors:
-    //[NSArray arrayWithObjects:
-    //[NSSortDescriptor sortDescriptorWithKey:@"gameDate" ascending:YES],nil]];
-    //array=mut;
     NSMutableArray * tempcopy = [[NSMutableArray alloc] init];
     
     [tempcopy addObjectsFromArray:unfiltered];
     [tempcopy sortUsingDescriptors:
-     [NSArray arrayWithObjects:
-      [NSSortDescriptor sortDescriptorWithKey:@"gameDate" ascending:YES],nil]];
-    
-    //NSLog(@"gamesMatchingDate tempcopy %@", filtered)
-    return filtered;  //was array added
+    [NSArray arrayWithObjects:
+    [NSSortDescriptor sortDescriptorWithKey:@"gameDate" ascending:YES],nil]];
+
+    return filtered;
 }
-
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -390,8 +281,6 @@
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    // CGFloat width = CGRectGetWidth(tableView.bounds);
-    //  CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
     HeaderView  *header=[[HeaderView alloc]initWithFrame:CGRectMake(0, 150, 570, 20)];
     header.section=section;
     header.user=[self.userList objectAtIndex:section];
@@ -401,44 +290,29 @@
     return header;
 }
 
-
-
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 40;
 }
+
 -(void)deleteMember:(HeaderView *)header
 {
     self.deleteUser=[self.userList objectAtIndex:header.section];
-    
     NSString *message=[NSString stringWithFormat:@"Delete User ' %@ '", self.deleteUser.userName];
     UIAlertView  *alert=[[UIAlertView alloc]initWithTitle:@"Confirm" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:@"Cancel", nil];
-    //[[GCDQueue mainQueue]queueBlock:^{
         [alert show];
-   // }];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0)
     {
-        //Code for OK button
         [self.managedObjectContext deleteObject:self.deleteUser];
         [self.managedObjectContext save:nil];
     }
-    if (buttonIndex == 1)
-    {
-        //Code for download button
-    }
 }
+
 -(void)viewHistoricalData:(HeaderView *)header
 {
-    
-
-    //[self.managedObjectContext deleteObject:user];
-    //[self.managedObjectContext save:nil];
-    //if (!self.graph) {
-   // self.graph=[[GraphViewController alloc]initWithNibName:@"GraphViewController" bundle:nil];
-    // }
     User *user=[self.userList objectAtIndex:header.section];
     NSArray * src=[user.game allObjects];
     NSMutableArray  *durationOnly=[NSMutableArray new];
@@ -452,22 +326,12 @@
     NSUInteger count=[[user.game allObjects]count];
     
     if (count==0) {
-        
         UIAlertView  *alert=[[UIAlertView alloc]initWithTitle:@"No Data" message:@"No data for this user yet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-       // [[GCDQueue mainQueue]queueBlock:^{
+        [[GCDQueue mainQueue]queueBlock:^{
             [alert show];
-       // }];
+        }];
         return;
     }
-    
-   // NSLog(@"CREATING GRAPH!");
-   // CurvedScatterPlot  *plot=[[CurvedScatterPlot alloc]init];
-   // [plot setUser:user];
-    
-   // [[GCDQueue mainQueue]queueBlock:^{
-   //     [self.graph setDetailItem:plot];
-   // }];
-  //  [self.navigationController pushViewController:self.graph animated:YES];
 }
 
 // merge changes to main context,fetchedRequestController will automatically monitor the changes and update tableview.
@@ -492,28 +356,6 @@
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /** if (editingStyle == UITableViewCellEditingStyleDelete)
-     {
-     [self.userList removeObjectAtIndex:indexPath.section];
-     
-     [tableView beginUpdates];
-     
-     // Either delete some rows within a section (leaving at least one) or the entire section.
-     if ([user.game count] > 0)
-     {
-     // Section is not yet empty, so delete only the current row.
-     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-     withRowAnimation:UITableViewRowAnimationFade];
-     }
-     else
-     {
-     // Section is now completely empty, so delete the entire section.
-     [tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]
-     withRowAnimation:UITableViewRowAnimationFade];
-     }
-     
-     [tableView endUpdates];
-     }**/
     User *user=[self.userList objectAtIndex:indexPath.section];
     [self.managedObjectContext deleteObject:user];
     [self.managedObjectContext save:nil];
@@ -532,6 +374,5 @@
 - (BOOL)prefersStatusBarHidden {
     return YES;
 }
-
 
 @end

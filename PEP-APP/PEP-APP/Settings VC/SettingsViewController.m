@@ -7,7 +7,7 @@
 #import "Session.h"
 #import "UIEffectDesignerView.h"
 #import <AVFoundation/AVFoundation.h>
-#import "Draggable.h"
+
 
 @interface SettingsViewController ()<UITabBarDelegate, BTLEManagerDelegate, MidiControllerProtocol>{
     UINavigationController   *navcontroller;
@@ -17,7 +17,7 @@
     NSTimer  *effecttimer;
     UIImageView  *bellImageView;
     UIImageView  *bg;
-    Draggable  *peakholdImageView;
+
     int threshold;
     AVAudioPlayer *audioPlayer;
     UIButton  *togglebutton;
@@ -223,34 +223,7 @@
 #pragma mark -
 #pragma mark - Test Methods
 
-- (IBAction)toInfoView:(id)sender {
-    
-   // NSLog(@"Going to info view");
-    
-  //  infoViewController *infoVC = [[infoViewController alloc]initWithNibName:@"infoViewController" bundle:nil];
-    
-  //  if (infoVC){
-  //      NSLog(@"instantiating infoVC");
-   //     [self presentViewController:infoVC animated:YES completion:nil];
-  //  }else{
-  //      NSLog(@"Cant instantiate infoVC");
-  ///  }
-}
 
-- (IBAction)toUsersView:(id)sender {
-    
-    NSLog(@"Moving to users screen");
-    //   self.userList.sharedPSC=self.sharedPSC ;
-    // [self.userList getListOfUsers];
-    //   [UIView transitionFromView:self.view toView:self.navcontroller.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished){
-    
-    //       self.userList.sharedPSC=self.sharedPSC;
-    //       self.userList.delegate=self;
-    
-    //    }];
-    
-    [self.settinngsDelegate settingsModeDismissRequest:self];
-}
 #pragma mark -
 #pragma mark - Midi Delegate
 

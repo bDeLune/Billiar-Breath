@@ -81,7 +81,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="26">
-                    <rect key="frame" x="588" y="248" width="145" height="199"/>
+                    <rect key="frame" x="415" y="234" width="145" height="199"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="145" id="bD9-EK-Z2s"/>
                     </constraints>
@@ -119,19 +119,8 @@
                         <action selector="setBreathLength:" destination="-1" eventType="valueChanged" id="Di7-yJ-dkn"/>
                     </connections>
                 </slider>
-                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="27">
-                    <rect key="frame" x="242" y="237" width="144" height="210"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="144" id="55E-tG-AYx"/>
-                        <constraint firstAttribute="height" constant="210" id="Chv-hg-PC9"/>
-                    </constraints>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="31"/>
-                        <outlet property="delegate" destination="-1" id="32"/>
-                    </connections>
-                </pickerView>
                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="34">
-                    <rect key="frame" x="416" y="237" width="144" height="210"/>
+                    <rect key="frame" x="242" y="223" width="144" height="210"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="144" id="EOP-Se-Ogx"/>
                     </constraints>
@@ -194,6 +183,16 @@
                         <action selector="changeThreshold:" destination="-1" eventType="valueChanged" id="49"/>
                     </connections>
                 </slider>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PrN-FB-Xz4">
+                    <rect key="frame" x="551" y="535" width="110" height="127"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="127" id="PEI-3h-D0z"/>
+                        <constraint firstAttribute="width" constant="110" id="mfP-cd-oCr"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Haj-GG-bj5">
                     <rect key="frame" x="623" y="922" width="125" height="95"/>
                     <constraints>
@@ -232,16 +231,17 @@
                         <action selector="exitSettingsViewController:" destination="-1" eventType="touchUpInside" id="beB-W0-6nV"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PrN-FB-Xz4">
-                    <rect key="frame" x="551" y="535" width="110" height="127"/>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="27">
+                    <rect key="frame" x="590" y="228" width="140" height="205"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="127" id="PEI-3h-D0z"/>
-                        <constraint firstAttribute="width" constant="110" id="mfP-cd-oCr"/>
+                        <constraint firstAttribute="width" constant="140" id="55E-tG-AYx"/>
+                        <constraint firstAttribute="height" constant="205" id="Chv-hg-PC9"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="31"/>
+                        <outlet property="delegate" destination="-1" id="32"/>
+                    </connections>
+                </pickerView>
             </subviews>
             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -250,11 +250,11 @@
                 <constraint firstAttribute="trailing" secondItem="20" secondAttribute="trailing" constant="271" id="26S-v8-dFn"/>
                 <constraint firstAttribute="trailing" secondItem="21" secondAttribute="trailing" constant="208" id="3UG-V6-Iub"/>
                 <constraint firstItem="Ec7-TS-6eO" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="248" id="4r7-IM-ppQ"/>
-                <constraint firstItem="U2U-Vm-IXu" firstAttribute="top" secondItem="34" secondAttribute="bottom" constant="88" id="73f-sM-XTs"/>
+                <constraint firstItem="U2U-Vm-IXu" firstAttribute="top" secondItem="34" secondAttribute="bottom" constant="102" id="73f-sM-XTs"/>
                 <constraint firstAttribute="bottom" secondItem="EqW-Ln-Mpc" secondAttribute="bottom" constant="241" id="74O-YA-ftU"/>
                 <constraint firstItem="Ec7-TS-6eO" firstAttribute="baseline" secondItem="PrN-FB-Xz4" secondAttribute="firstBaseline" id="89B-Zv-wLN"/>
                 <constraint firstItem="cnO-OQ-fse" firstAttribute="top" secondItem="50" secondAttribute="bottom" constant="47" id="8Ko-99-qZv"/>
-                <constraint firstItem="27" firstAttribute="top" secondItem="3wD-am-u9A" secondAttribute="bottom" constant="84" id="8pn-5g-xJF"/>
+                <constraint firstItem="27" firstAttribute="top" secondItem="3wD-am-u9A" secondAttribute="bottom" constant="75" id="8pn-5g-xJF"/>
                 <constraint firstItem="43" firstAttribute="bottom" secondItem="EPa-HK-UyW" secondAttribute="bottom" id="9Xe-LP-ZRr"/>
                 <constraint firstItem="p4Y-HX-6N4" firstAttribute="top" secondItem="43" secondAttribute="bottom" constant="65" id="AgQ-fr-Pvl"/>
                 <constraint firstItem="p4Y-HX-6N4" firstAttribute="bottom" secondItem="Haj-GG-bj5" secondAttribute="bottom" id="Byg-Vr-c9g"/>
@@ -279,16 +279,16 @@
                 <constraint firstItem="4pg-5y-OMp" firstAttribute="top" secondItem="2" secondAttribute="top" id="WAt-6J-g2T"/>
                 <constraint firstItem="p4Y-HX-6N4" firstAttribute="centerY" secondItem="FlV-UD-Rs1" secondAttribute="centerY" id="XDe-lu-nOc"/>
                 <constraint firstItem="aYP-Xf-e9L" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="XZm-kI-7lb"/>
-                <constraint firstItem="34" firstAttribute="top" secondItem="21" secondAttribute="bottom" constant="22" id="ZsY-dq-SV6"/>
+                <constraint firstItem="34" firstAttribute="top" secondItem="21" secondAttribute="bottom" constant="8" id="ZsY-dq-SV6"/>
                 <constraint firstItem="cnO-OQ-fse" firstAttribute="top" secondItem="97y-Rq-plK" secondAttribute="bottom" constant="63" id="aVj-HE-L74"/>
-                <constraint firstItem="34" firstAttribute="leading" secondItem="27" secondAttribute="trailing" constant="30" id="aYw-dT-pWO"/>
+                <constraint firstItem="34" firstAttribute="leading" secondItem="27" secondAttribute="trailing" constant="-488" id="aYw-dT-pWO"/>
                 <constraint firstItem="20" firstAttribute="top" secondItem="EPa-HK-UyW" secondAttribute="bottom" constant="18" id="b84-gR-efw"/>
-                <constraint firstItem="27" firstAttribute="top" secondItem="34" secondAttribute="top" id="bue-9u-CuD"/>
-                <constraint firstItem="26" firstAttribute="leading" secondItem="34" secondAttribute="trailing" constant="28" id="d4u-22-xvH"/>
+                <constraint firstItem="27" firstAttribute="top" secondItem="34" secondAttribute="top" constant="5" id="bue-9u-CuD"/>
+                <constraint firstItem="26" firstAttribute="leading" secondItem="34" secondAttribute="trailing" constant="29" id="d4u-22-xvH"/>
                 <constraint firstItem="Haj-GG-bj5" firstAttribute="top" secondItem="RLt-cc-HKd" secondAttribute="bottom" constant="46" id="fby-WF-TZL"/>
                 <constraint firstItem="L9G-iA-lSm" firstAttribute="top" secondItem="U2U-Vm-IXu" secondAttribute="bottom" constant="-25" id="fhK-0c-c8z"/>
                 <constraint firstItem="p4Y-HX-6N4" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="82" id="gcr-EE-0be"/>
-                <constraint firstAttribute="trailing" secondItem="26" secondAttribute="trailing" constant="35" id="gdZ-fE-00v"/>
+                <constraint firstAttribute="trailing" secondItem="26" secondAttribute="trailing" constant="208" id="gdZ-fE-00v"/>
                 <constraint firstItem="50" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="254" id="hK5-HZ-vtp"/>
                 <constraint firstAttribute="trailing" secondItem="U2U-Vm-IXu" secondAttribute="trailing" constant="162" id="hf7-Cc-Ty6"/>
                 <constraint firstAttribute="trailing" secondItem="4pg-5y-OMp" secondAttribute="trailing" id="jVX-31-vNo"/>

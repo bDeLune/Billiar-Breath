@@ -135,11 +135,6 @@
 		717D013620B851BD0098893A /* 6Ballon.wav in Resources */ = {isa = PBXBuildFile; fileRef = 717D013020B851BD0098893A /* 6Ballon.wav */; };
 		717D013920B868E30098893A /* User-Project.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D013820B868E20098893A /* User-Project.png */; };
 		717D013B20B86CFE0098893A /* Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D013A20B86CFD0098893A /* Splash.png */; };
-		717D014620BC69FB0098893A /* JPImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D013C20BC69F30098893A /* JPImagePickerController.m */; };
-		717D014820BC69FB0098893A /* JPImagePickerOverviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D013E20BC69F80098893A /* JPImagePickerOverviewController.m */; };
-		717D014920BC69FB0098893A /* JPImagePickerOverviewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 717D013F20BC69F80098893A /* JPImagePickerOverviewController.xib */; };
-		717D014A20BC69FB0098893A /* JPImagePickerDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 717D014120BC69F90098893A /* JPImagePickerDetailController.xib */; };
-		717D014B20BC69FB0098893A /* JPImagePickerDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D014520BC69FA0098893A /* JPImagePickerDetailController.m */; };
 		717D015620BC84F00098893A /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D015420BC84F00098893A /* MasterViewController.m */; };
 		717D015720BC84F00098893A /* MasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 717D015520BC84F00098893A /* MasterViewController.xib */; };
 		717D015920BC96EC0098893A /* DummyInfo.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D015820BC96EB0098893A /* DummyInfo.png */; };
@@ -153,19 +148,14 @@
 		7186DE0A1E4DBF5F00F71F0C /* BilliardBallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DDFC1E4DBF5F00F71F0C /* BilliardBallViewController.m */; };
 		7186DE0C1E4DBF5F00F71F0C /* billiardwin.ped in Resources */ = {isa = PBXBuildFile; fileRef = 7186DDFE1E4DBF5F00F71F0C /* billiardwin.ped */; };
 		7186DE0D1E4DBF5F00F71F0C /* Crowd_cheer6.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7186DDFF1E4DBF5F00F71F0C /* Crowd_cheer6.wav */; };
-		7186DE0E1E4DBF5F00F71F0C /* CurvedScatterPlot.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DE011E4DBF5F00F71F0C /* CurvedScatterPlot.m */; };
 		7186DE101E4DBF5F00F71F0C /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DE041E4DBF5F00F71F0C /* HeaderView.m */; };
 		7186DE111E4DBF5F00F71F0C /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE051E4DBF5F00F71F0C /* GameViewController.xib */; };
-		7186DE121E4DBF5F00F71F0C /* GraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DE071E4DBF5F00F71F0C /* GraphViewController.m */; };
-		7186DE131E4DBF5F00F71F0C /* GraphViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE081E4DBF5F00F71F0C /* GraphViewController.xib */; };
 		7186DE141E4DBF5F00F71F0C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE091E4DBF5F00F71F0C /* Images.xcassets */; };
 		7186DE2A1E4DBF7100F71F0C /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DE161E4DBF7100F71F0C /* Session.m */; };
 		7186DE2B1E4DBF7100F71F0C /* CustomIOSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DE191E4DBF7100F71F0C /* CustomIOSAlertView.m */; };
 		7186DE2D1E4DBF7100F71F0C /* UserListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE1C1E4DBF7100F71F0C /* UserListViewController.xib */; };
 		7186DE2E1E4DBF7100F71F0C /* PiNumberFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DE1F1E4DBF7100F71F0C /* PiNumberFormatter.m */; };
 		7186DE2F1E4DBF7100F71F0C /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DE221E4DBF7100F71F0C /* Globals.m */; };
-		7186DE301E4DBF7100F71F0C /* PlotGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DE231E4DBF7100F71F0C /* PlotGallery.m */; };
-		7186DE311E4DBF7100F71F0C /* PlotItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DE251E4DBF7100F71F0C /* PlotItem.m */; };
 		7186DE321E4DBF7100F71F0C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DE261E4DBF7100F71F0C /* LoginViewController.m */; };
 		7186DE331E4DBF7100F71F0C /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DE291E4DBF7100F71F0C /* GameViewController.m */; };
 		7186DE961E4DBFA400F71F0C /* BilliardBreath1024X1024.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE871E4DBFA400F71F0C /* BilliardBreath1024X1024.jpg */; };
@@ -192,16 +182,12 @@
 		718E215A1E51DD0300E8357B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 718E21591E51DD0300E8357B /* LaunchScreen.storyboard */; };
 		718E215C1E51E43000E8357B /* icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 718E215B1E51E43000E8357B /* icon-120.png */; };
 		71A04EC3208FA8BD00AA878B /* Gauge.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A04EC1208FA8BD00AA878B /* Gauge.m */; };
-		71A04EC6208FA8F800AA878B /* Draggable.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A04EC5208FA8F800AA878B /* Draggable.m */; };
 		71C9F9D81E53341D0078070D /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9F9CC1E53341D0078070D /* Game.m */; };
 		71C9F9D91E53341D0078070D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9F9CE1E53341D0078070D /* User.m */; };
 		71C9F9DA1E53341D0078070D /* AbstractGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9F9D11E53341D0078070D /* AbstractGame.m */; };
-		71C9F9DB1E53341D0078070D /* DurationGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9F9D31E53341D0078070D /* DurationGame.m */; };
-		71C9F9DC1E53341D0078070D /* PowerGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9F9D51E53341D0078070D /* PowerGame.m */; };
 		71C9F9DD1E53341D0078070D /* SequenceGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9F9D71E53341D0078070D /* SequenceGame.m */; };
 		71C9F9E71E5334A90078070D /* CAKeyframeAnimation+AHEasing.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9F9E01E5334A90078070D /* CAKeyframeAnimation+AHEasing.m */; };
 		71C9F9E81E5334A90078070D /* easing.c in Sources */ = {isa = PBXBuildFile; fileRef = 71C9F9E11E5334A90078070D /* easing.c */; };
-		71C9F9E91E5334A90078070D /* BilliardBall.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9F9E61E5334A90078070D /* BilliardBall.m */; };
 		71C9FA011E53356C0078070D /* GCDGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9F9EC1E53356C0078070D /* GCDGroup.m */; };
 		71C9FA021E53356C0078070D /* GCDObjCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9F9EF1E53356C0078070D /* GCDObjCTests.m */; };
 		71C9FA031E53356C0078070D /* GCDQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9F9F11E53356C0078070D /* GCDQueue.m */; };
@@ -472,14 +458,6 @@
 		717D013020B851BD0098893A /* 6Ballon.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 6Ballon.wav; sourceTree = "<group>"; };
 		717D013820B868E20098893A /* User-Project.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "User-Project.png"; sourceTree = "<group>"; };
 		717D013A20B86CFD0098893A /* Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Splash.png; sourceTree = "<group>"; };
-		717D013C20BC69F30098893A /* JPImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPImagePickerController.m; sourceTree = "<group>"; };
-		717D013E20BC69F80098893A /* JPImagePickerOverviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPImagePickerOverviewController.m; sourceTree = "<group>"; };
-		717D013F20BC69F80098893A /* JPImagePickerOverviewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JPImagePickerOverviewController.xib; sourceTree = "<group>"; };
-		717D014120BC69F90098893A /* JPImagePickerDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JPImagePickerDetailController.xib; sourceTree = "<group>"; };
-		717D014220BC69F90098893A /* JPImagePickerOverviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPImagePickerOverviewController.h; sourceTree = "<group>"; };
-		717D014320BC69FA0098893A /* JPImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPImagePickerController.h; sourceTree = "<group>"; };
-		717D014420BC69FA0098893A /* JPImagePickerDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPImagePickerDetailController.h; sourceTree = "<group>"; };
-		717D014520BC69FA0098893A /* JPImagePickerDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPImagePickerDetailController.m; sourceTree = "<group>"; };
 		717D015320BC84F00098893A /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		717D015420BC84F00098893A /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		717D015520BC84F00098893A /* MasterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MasterViewController.xib; sourceTree = "<group>"; };
@@ -498,14 +476,9 @@
 		7186DDFC1E4DBF5F00F71F0C /* BilliardBallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BilliardBallViewController.m; sourceTree = "<group>"; };
 		7186DDFE1E4DBF5F00F71F0C /* billiardwin.ped */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = billiardwin.ped; sourceTree = "<group>"; };
 		7186DDFF1E4DBF5F00F71F0C /* Crowd_cheer6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Crowd_cheer6.wav; sourceTree = "<group>"; };
-		7186DE001E4DBF5F00F71F0C /* CurvedScatterPlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurvedScatterPlot.h; sourceTree = "<group>"; };
-		7186DE011E4DBF5F00F71F0C /* CurvedScatterPlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurvedScatterPlot.m; sourceTree = "<group>"; };
 		7186DE031E4DBF5F00F71F0C /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
 		7186DE041E4DBF5F00F71F0C /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
 		7186DE051E4DBF5F00F71F0C /* GameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameViewController.xib; sourceTree = "<group>"; };
-		7186DE061E4DBF5F00F71F0C /* GraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphViewController.h; sourceTree = "<group>"; };
-		7186DE071E4DBF5F00F71F0C /* GraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphViewController.m; sourceTree = "<group>"; };
-		7186DE081E4DBF5F00F71F0C /* GraphViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GraphViewController.xib; sourceTree = "<group>"; };
 		7186DE091E4DBF5F00F71F0C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7186DE151E4DBF7100F71F0C /* Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Session.h; sourceTree = "<group>"; };
 		7186DE161E4DBF7100F71F0C /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Session.m; sourceTree = "<group>"; };
@@ -516,12 +489,8 @@
 		7186DE1D1E4DBF7100F71F0C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		7186DE1E1E4DBF7100F71F0C /* PiNumberFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PiNumberFormatter.h; sourceTree = "<group>"; };
 		7186DE1F1E4DBF7100F71F0C /* PiNumberFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PiNumberFormatter.m; sourceTree = "<group>"; };
-		7186DE201E4DBF7100F71F0C /* PlotGallery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlotGallery.h; sourceTree = "<group>"; };
 		7186DE211E4DBF7100F71F0C /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
 		7186DE221E4DBF7100F71F0C /* Globals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Globals.m; sourceTree = "<group>"; };
-		7186DE231E4DBF7100F71F0C /* PlotGallery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlotGallery.m; sourceTree = "<group>"; };
-		7186DE241E4DBF7100F71F0C /* PlotItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlotItem.h; sourceTree = "<group>"; };
-		7186DE251E4DBF7100F71F0C /* PlotItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlotItem.m; sourceTree = "<group>"; };
 		7186DE261E4DBF7100F71F0C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		7186DE271E4DBF7100F71F0C /* BilliardBreath-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BilliardBreath-Prefix.pch"; sourceTree = "<group>"; };
 		7186DE281E4DBF7100F71F0C /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
@@ -557,18 +526,12 @@
 		718E215B1E51E43000E8357B /* icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-120.png"; sourceTree = "<group>"; };
 		71A04EC0208FA8BC00AA878B /* Gauge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Gauge.h; sourceTree = "<group>"; };
 		71A04EC1208FA8BD00AA878B /* Gauge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Gauge.m; sourceTree = "<group>"; };
-		71A04EC4208FA8F700AA878B /* Draggable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Draggable.h; sourceTree = "<group>"; };
-		71A04EC5208FA8F800AA878B /* Draggable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Draggable.m; sourceTree = "<group>"; };
 		71C9F9CB1E53341D0078070D /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		71C9F9CC1E53341D0078070D /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		71C9F9CD1E53341D0078070D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		71C9F9CE1E53341D0078070D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		71C9F9D01E53341D0078070D /* AbstractGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractGame.h; sourceTree = "<group>"; };
 		71C9F9D11E53341D0078070D /* AbstractGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractGame.m; sourceTree = "<group>"; };
-		71C9F9D21E53341D0078070D /* DurationGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DurationGame.h; sourceTree = "<group>"; };
-		71C9F9D31E53341D0078070D /* DurationGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DurationGame.m; sourceTree = "<group>"; };
-		71C9F9D41E53341D0078070D /* PowerGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PowerGame.h; sourceTree = "<group>"; };
-		71C9F9D51E53341D0078070D /* PowerGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PowerGame.m; sourceTree = "<group>"; };
 		71C9F9D61E53341D0078070D /* SequenceGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceGame.h; sourceTree = "<group>"; };
 		71C9F9D71E53341D0078070D /* SequenceGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceGame.m; sourceTree = "<group>"; };
 		71C9F9DF1E5334A90078070D /* CAKeyframeAnimation+AHEasing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAKeyframeAnimation+AHEasing.h"; sourceTree = "<group>"; };
@@ -576,8 +539,6 @@
 		71C9F9E11E5334A90078070D /* easing.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = easing.c; sourceTree = "<group>"; };
 		71C9F9E21E5334A90078070D /* easing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = easing.h; sourceTree = "<group>"; };
 		71C9F9E31E5334A90078070D /* EasingDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasingDeclarations.h; sourceTree = "<group>"; };
-		71C9F9E51E5334A90078070D /* BilliardBall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BilliardBall.h; sourceTree = "<group>"; };
-		71C9F9E61E5334A90078070D /* BilliardBall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BilliardBall.m; sourceTree = "<group>"; };
 		71C9F9EB1E53356C0078070D /* GCDGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDGroup.h; sourceTree = "<group>"; };
 		71C9F9EC1E53356C0078070D /* GCDGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDGroup.m; sourceTree = "<group>"; };
 		71C9F9ED1E53356C0078070D /* GCDMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDMacros.h; sourceTree = "<group>"; };
@@ -669,11 +630,9 @@
 			children = (
 				7186DE151E4DBF7100F71F0C /* Session.h */,
 				7186DE161E4DBF7100F71F0C /* Session.m */,
-				71A04EC7208FCE5100AA878B /* Gauge */,
 				71C9F9CA1E53341D0078070D /* Balloon Game */,
 				71C9F9CF1E53341D0078070D /* Users */,
 				71C9F9F71E53356C0078070D /* Operations */,
-				71A04EC8208FCEB800AA878B /* Plot */,
 				71A04ECA208FD06E00AA878B /* Login VC */,
 				71A04ECB208FD0E400AA878B /* Info VC */,
 				71A04ECC208FD0F200AA878B /* Settings VC */,
@@ -947,31 +906,6 @@
 			path = libMelodySmart;
 			sourceTree = "<group>";
 		};
-		71A04EC7208FCE5100AA878B /* Gauge */ = {
-			isa = PBXGroup;
-			children = (
-				71A04EC4208FA8F700AA878B /* Draggable.h */,
-				71A04EC5208FA8F800AA878B /* Draggable.m */,
-			);
-			path = Gauge;
-			sourceTree = "<group>";
-		};
-		71A04EC8208FCEB800AA878B /* Plot */ = {
-			isa = PBXGroup;
-			children = (
-				7186DE001E4DBF5F00F71F0C /* CurvedScatterPlot.h */,
-				7186DE011E4DBF5F00F71F0C /* CurvedScatterPlot.m */,
-				7186DE201E4DBF7100F71F0C /* PlotGallery.h */,
-				7186DE231E4DBF7100F71F0C /* PlotGallery.m */,
-				7186DE241E4DBF7100F71F0C /* PlotItem.h */,
-				7186DE061E4DBF5F00F71F0C /* GraphViewController.h */,
-				7186DE071E4DBF5F00F71F0C /* GraphViewController.m */,
-				7186DE081E4DBF5F00F71F0C /* GraphViewController.xib */,
-				7186DE251E4DBF7100F71F0C /* PlotItem.m */,
-			);
-			path = Plot;
-			sourceTree = "<group>";
-		};
 		71A04ECA208FD06E00AA878B /* Login VC */ = {
 			isa = PBXGroup;
 			children = (
@@ -1027,18 +961,12 @@
 				7186DDF21E4DBF4100F71F0C /* AllGamesForDayTableVC.xib */,
 				717D00AD20B474CE0098893A /* Balloon.h */,
 				717D00AE20B474CF0098893A /* Balloon.m */,
-				71C9F9E51E5334A90078070D /* BilliardBall.h */,
-				71C9F9E61E5334A90078070D /* BilliardBall.m */,
 				7186DDFB1E4DBF5F00F71F0C /* BilliardBallViewController.h */,
 				7186DDFC1E4DBF5F00F71F0C /* BilliardBallViewController.m */,
 				71C9F9CB1E53341D0078070D /* Game.h */,
 				71C9F9CC1E53341D0078070D /* Game.m */,
 				71C9F9D01E53341D0078070D /* AbstractGame.h */,
 				71C9F9D11E53341D0078070D /* AbstractGame.m */,
-				71C9F9D21E53341D0078070D /* DurationGame.h */,
-				71C9F9D31E53341D0078070D /* DurationGame.m */,
-				71C9F9D41E53341D0078070D /* PowerGame.h */,
-				71C9F9D51E53341D0078070D /* PowerGame.m */,
 				71C9F9D61E53341D0078070D /* SequenceGame.h */,
 				71C9F9D71E53341D0078070D /* SequenceGame.m */,
 				71C9F9F81E53356C0078070D /* AddNewScoreOperation.h */,
@@ -1057,14 +985,6 @@
 				71C9F9CE1E53341D0078070D /* User.m */,
 				71C9F9FA1E53356C0078070D /* AddNewUserOperation.h */,
 				71C9F9FB1E53356C0078070D /* AddNewUserOperation.m */,
-				717D014320BC69FA0098893A /* JPImagePickerController.h */,
-				717D013C20BC69F30098893A /* JPImagePickerController.m */,
-				717D014420BC69FA0098893A /* JPImagePickerDetailController.h */,
-				717D014520BC69FA0098893A /* JPImagePickerDetailController.m */,
-				717D014120BC69F90098893A /* JPImagePickerDetailController.xib */,
-				717D014220BC69F90098893A /* JPImagePickerOverviewController.h */,
-				717D013E20BC69F80098893A /* JPImagePickerOverviewController.m */,
-				717D013F20BC69F80098893A /* JPImagePickerOverviewController.xib */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -1331,7 +1251,6 @@
 				718E215A1E51DD0300E8357B /* LaunchScreen.storyboard in Resources */,
 				71D1A36D2074FBC800C83B63 /* Logo-Middle.png in Resources */,
 				7186DDF81E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.wav in Resources */,
-				717D014A20BC69FB0098893A /* JPImagePickerDetailController.xib in Resources */,
 				717D00C520B850D50098893A /* 3Trombone.wav in Resources */,
 				717D007920B3138D0098893A /* Balloon4.png in Resources */,
 				717D012620B851A50098893A /* 6Bas slide.wav in Resources */,
@@ -1392,7 +1311,6 @@
 				717D00C820B850D50098893A /* 5Trombone.wav in Resources */,
 				717D012520B851A50098893A /* 4Bas slide.wav in Resources */,
 				7186DE981E4DBFA400F71F0C /* BilliardBreathAppIcon40x40.png in Resources */,
-				7186DE131E4DBF5F00F71F0C /* GraphViewController.xib in Resources */,
 				717D004020B309750098893A /* Main-Project.png in Resources */,
 				717D00C620B850D50098893A /* 6Trombone.wav in Resources */,
 				717D00DF20B851100098893A /* 5spaceship.wav in Resources */,
@@ -1414,7 +1332,6 @@
 				7186DEA31E4DBFA400F71F0C /* BilliardBreathAppIcon167x167.png in Resources */,
 				717D007C20B3138D0098893A /* Balloon5.png in Resources */,
 				717D011020B851750098893A /* 3droom.wav in Resources */,
-				717D014920BC69FB0098893A /* JPImagePickerOverviewController.xib in Resources */,
 				710BDDF1207E5B9400B1E393 /* SettingsViewController.xib in Resources */,
 				717D013320B851BD0098893A /* 3Ballon.wav in Resources */,
 				717D013120B851BD0098893A /* 2Ballon.wav in Resources */,
@@ -1475,11 +1392,9 @@
 			files = (
 				71C9FA0E1E5335C40078070D /* AppDelegate.m in Sources */,
 				7186DDF41E4DBF4100F71F0C /* AllGamesForDayTableVC.m in Sources */,
-				71C9F9E91E5334A90078070D /* BilliardBall.m in Sources */,
 				71A04EC3208FA8BD00AA878B /* Gauge.m in Sources */,
 				7186DE0A1E4DBF5F00F71F0C /* BilliardBallViewController.m in Sources */,
 				717D015620BC84F00098893A /* MasterViewController.m in Sources */,
-				7186DE311E4DBF7100F71F0C /* PlotItem.m in Sources */,
 				71C9FA061E53356C0078070D /* AddNewScoreOperation.m in Sources */,
 				71C9FA051E53356C0078070D /* MidiController.m in Sources */,
 				71C9FA011E53356C0078070D /* GCDGroup.m in Sources */,
@@ -1487,22 +1402,18 @@
 				71C9F9D91E53341D0078070D /* User.m in Sources */,
 				710857311E439A0A00479032 /* ViewController.m in Sources */,
 				71C9FA041E53356C0078070D /* GCDSemaphore.m in Sources */,
-				71C9F9DB1E53341D0078070D /* DurationGame.m in Sources */,
 				71C9F9DA1E53341D0078070D /* AbstractGame.m in Sources */,
 				71C9F9E81E5334A90078070D /* easing.c in Sources */,
 				7186DEB31E4DC59F00F71F0C /* BTLEManager.m in Sources */,
 				71C9F9D81E53341D0078070D /* Game.m in Sources */,
 				7186DE2A1E4DBF7100F71F0C /* Session.m in Sources */,
 				7138E5952088FBA700C0C08F /* InfoViewController.m in Sources */,
-				71C9F9DC1E53341D0078070D /* PowerGame.m in Sources */,
-				717D014620BC69FB0098893A /* JPImagePickerController.m in Sources */,
 				7186DE2E1E4DBF7100F71F0C /* PiNumberFormatter.m in Sources */,
 				71C9FA201E5344EB0078070D /* UserListViewController.m in Sources */,
 				7186DE101E4DBF5F00F71F0C /* HeaderView.m in Sources */,
 				717D00B220B5CDF50098893A /* MainGauge.m in Sources */,
 				7186DE321E4DBF7100F71F0C /* LoginViewController.m in Sources */,
 				71C9F9E71E5334A90078070D /* CAKeyframeAnimation+AHEasing.m in Sources */,
-				717D014B20BC69FB0098893A /* JPImagePickerDetailController.m in Sources */,
 				7186DE331E4DBF7100F71F0C /* GameViewController.m in Sources */,
 				7186DE2F1E4DBF7100F71F0C /* Globals.m in Sources */,
 				717D00AF20B474CF0098893A /* Balloon.m in Sources */,
@@ -1512,12 +1423,7 @@
 				7186DEB91E4DC61D00F71F0C /* main.m in Sources */,
 				71C9FA071E53356C0078070D /* AddNewUserOperation.m in Sources */,
 				71C9FA031E53356C0078070D /* GCDQueue.m in Sources */,
-				71A04EC6208FA8F800AA878B /* Draggable.m in Sources */,
 				7186DEB51E4DC59F00F71F0C /* NSData+NSData_Conversion.m in Sources */,
-				7186DE0E1E4DBF5F00F71F0C /* CurvedScatterPlot.m in Sources */,
-				717D014820BC69FB0098893A /* JPImagePickerOverviewController.m in Sources */,
-				7186DE121E4DBF5F00F71F0C /* GraphViewController.m in Sources */,
-				7186DE301E4DBF7100F71F0C /* PlotGallery.m in Sources */,
 				71C9FA091E53356C0078070D /* UIEffectDesignerView.m in Sources */,
 				71C9FA021E53356C0078070D /* GCDObjCTests.m in Sources */,
 				7186DE2B1E4DBF7100F71F0C /* CustomIOSAlertView.m in Sources */,

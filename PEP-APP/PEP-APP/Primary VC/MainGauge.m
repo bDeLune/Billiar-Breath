@@ -138,7 +138,7 @@
     //NSLog(@"GAUGE: set - %d currentlyExhaling - %d", value2, value);
     
     if ((currentlyExhaling == 1 && setToInhale == 0) || (currentlyExhaling == 0 && setToInhale == 1)){
-      //  NSLog(@"CORRECT");
+        NSLog(@"CORRECT");
         userBreathingCorrectly = true;
         //   isaccelerating=YES;
     }else{
@@ -149,7 +149,7 @@
 
 -(void)setForce:(float)pforce
 {
-   // NSLog(@"distancE %f - MAINGUAGE_HEIGHT %d", distance, MAINGUAGE_HEIGHT);
+    NSLog(@"distancE %f - MAINGUAGE_HEIGHT %d", distance, MAINGUAGE_HEIGHT);
     // if (userBreathingCorrectly == true || distance > 525){
     force=(pforce/mass);
     //  hm++;
@@ -159,13 +159,13 @@
 
 -(void)blowingBegan
 {
-    //NSLog(@"MAIN GAUGE BLOW BEGAN isaccelerating %hhd", isaccelerating);
+    NSLog(@"BLOW BEGAN isaccelerating %hhd", isaccelerating);
     isaccelerating=YES;
 }
 
 -(void)blowingEnded
 {
-  //  NSLog(@"BLOW ENDED isaccelerating %hhd", isaccelerating);
+    NSLog(@"BLOW ENDED isaccelerating %hhd", isaccelerating);
     isaccelerating=NO;
 }
 
@@ -201,16 +201,14 @@
         frame.size.height=100;
         frame.size.width=distance;
         
-        //NSLog(@"MAIN GAUGE BLOW BEGAN isaccelerating %f", distance);
-        
         if (distance>bestDistance) {
-       //     NSLog(@"USING THIS");
-            CGRect frame2=_arrow.frame;
-            frame2.origin.y=frame.origin.y-40;
-            CGRect originInSuperview = [self convertRect:frame2 toView:self.superview];
-            originInSuperview.origin.x=250;
-            
-            [_arrow setFrame:originInSuperview];
+            NSLog(@"USING THIS");
+           // CGRect frame2=_arrow.frame;
+           // frame2.origin.y=frame.origin.y-40;
+           // CGRect originInSuperview = [self convertRect:frame2 toView:self.superview];
+           // originInSuperview.origin.x=250;
+           //
+           // [_arrow setFrame:originInSuperview];
             bestDistance=distance;
         }
         
@@ -224,9 +222,10 @@
         // }
     }else
     {
-        distance=MAINGUAGE_HEIGHT;
+        distance=MAINGUAGE_HEIGHT +20;
         [self stop];  //change
         [self fallQuickly];
+        NSLog(@"MEANT TO FALL QUICKLY");
         //  [_gaugedelegate maxDistanceReached];  ///change remvoed animation
     }
     [self setNeedsDisplay];
@@ -235,7 +234,7 @@
 -(void)setArrowPos:(float)pforce
 {
     force=(pforce/mass);
-   // NSLog(@"SETTING PFORCE %f", pforce);
+    NSLog(@"SETTING PFORCE %f", pforce);
     
     // acceleration= acceleration +( force/mass);
     // velocity = distance / time;
@@ -243,12 +242,12 @@
     // distance= ceilf((0.5)* (acceleration * powf(time, 2)));
     CGRect frame=animationObject.frame;
     frame.origin.y=self.bounds.size.height-distance;
-    CGRect frame2=_arrow.frame;
-    frame2.origin.y=frame.origin.y-40;
+   // CGRect frame2=_arrow.frame;
+   // frame2.origin.y=frame.origin.y-40;
     dispatch_async(dispatch_get_main_queue(), ^{
-        CGRect originInSuperview = [self convertRect:frame2 toView:self.superview];
-        originInSuperview.origin.x=250;
-        [_arrow setFrame:originInSuperview];
+     //   CGRect originInSuperview = [self convertRect:frame2 toView:self.superview];
+      //  originInSuperview.origin.x=250;
+       // [_arrow setFrame:originInSuperview];
     });
 }
 
@@ -276,7 +275,7 @@
 -(void)start
 {
     //  [self stop];
-    NSLog(@"STARTING MAIN GAUGE ANIMATION");
+    NSLog(@"STARTING ANIMATION");
     
     [self setDefaults];
     if (!_animationRunning)
@@ -297,11 +296,11 @@
                          CGRect frame=animationObject.frame;
                          frame.origin.y=self.bounds.size.height-MAINGUAGE_HEIGHT;
                          frame.size.height=distance;
-                         CGRect frame2=_arrow.frame;
-                         frame2.origin.y=900;
-                         frame2.origin.x=250;
+                      //   CGRect frame2=_arrow.frame;
+                       //  frame2.origin.y=900;
+                       //  frame2.origin.x=250;
                          
-                         [_arrow setFrame:frame2];
+                      //   [_arrow setFrame:frame2];
                      }
                      completion:^(BOOL finished){
                          [self stop];

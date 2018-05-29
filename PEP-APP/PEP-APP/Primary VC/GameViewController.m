@@ -2,12 +2,9 @@
 #import "User.h"
 #import "BilliardBallViewController.h"
 #import "SettingsViewController.h"
-#import "BilliardBall.h"
 #import "Balloon.h"
 #import "Session.h"
 #import "SequenceGame.h"
-//#import "PowerGame.h"
-//#import "DurationGame.h"
 #import "AbstractGame.h"    //change
 #import "Game.h"
 #import "AddNewScoreOperation.h"
@@ -19,15 +16,9 @@
 #import "infoViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import <AudioToolbox/AudioToolbox.h>
-//#import "MainGauge.h"
-//#import "Gauge.h"
-//#import "ScoreDisplayViewController.h"
 #import "Session.h"
 #import "UIEffectDesignerView.h"
 #import <AVFoundation/AVFoundation.h>
-#import "Draggable.h"
-
-#import "JPImagePickerController.h"
 
 @interface GameViewController ()<BTLEManagerDelegate, UITabBarDelegate,UITabBarControllerDelegate, SETTINGS_DELEGATE>
 {
@@ -39,6 +30,7 @@
     NSTimer  *effectTimer;
     bool wasExhaling;
     //all maybe
+    float bestCurrentVelocity;
     GPUImagePicture *sourcePicture;
     GPUImageFilter *stillImageFilter;
     GPUImageView *imageView;
@@ -78,7 +70,6 @@
     NSTimer  *effecttimer;
     UIImageView  *bellImageView;
     UIImageView  *bg;
-    Draggable  *peakholdImageView;
     int midiinhale;
     int midiexhale;
     int currentdirection;
@@ -289,6 +280,8 @@
     }
     
     [self.billiardViewController blowStarted: self.sequenceGameController.currentBall atSpeed:selectedSpeed];
+    
+    [self.settingsViewController setSettingsDurationLabelText: 0];
     
     if ((self.midiController.toggleIsON == 0 && wasExhaling == 1) || (self.midiController.toggleIsON == 1 && wasExhaling == 0)){
         [self midiNoteBegan:nil];
@@ -619,7 +612,6 @@
         default:
             break;
     }
-    
 }
 
 -(IBAction)resetGame:(id)sender
@@ -659,9 +651,9 @@
     // NSLog(@"self.midiController.toggleIsON %hhd", self.midiController.toggleIsON);
     // NSLog(@"wasExhaling %d", wasExhaling);
     self.sequenceGameController.time = 0;
+    bestCurrentVelocity = 0;
     [self.settingsViewController setSettingsStrengthLabelText:@"0"];
     [self.settingsViewController setSettingsDurationLabelText:[NSString stringWithFormat:@"%0.0f",self.sequenceGameController.time]];
-    
     
     if ((self.midiController.toggleIsON == 0 && wasExhaling == 1) || (self.midiController.toggleIsON == 1 && wasExhaling == 0)){
         
@@ -751,6 +743,9 @@
         [self.mainGaugeView blowingEnded];
         [self.gaugeView blowingEnded];
        [self.settingsViewController.gaugeView blowingEnded];
+    
+     [self.sequenceGameController killTimer];
+     self.sequenceGameController.time = 0;
         //[[self.settingsViewController gaugeView] blowingEnded];
     // [self endCurrentSession];
   //  }
@@ -769,7 +764,11 @@
   //  [self.gaugeView setForce:(value)];
 //[self.strenghtLabel setText:[NSString stringWithFormat:@"%0.0f",midi.velocity]];
 
-    [self.settingsViewController setSettingsStrengthLabelText:[NSString stringWithFormat:@"%0.0f",midi.velocity]];
+    if (midi.velocity > bestCurrentVelocity){
+        bestCurrentVelocity = midi.velocity;
+    }
+    
+    [self.settingsViewController setSettingsStrengthLabelText:[NSString stringWithFormat:@"%0.0f",bestCurrentVelocity]];
     [self.settingsViewController setSettingsDurationLabelText:[NSString stringWithFormat:@"%0.0f",self.sequenceGameController.time]];
     
     
@@ -840,9 +839,6 @@
 
 -(void)midiNoteBeganForSequence:(MidiController *)midi
 {
-    
-
-    
     self.sequenceGameController.currentSpeed= -1;
     self.sequenceGameController.time = 0; //added
     // if (self.sequenceGameController.currentBall==0) {
@@ -894,8 +890,7 @@
     switch (difficulty) {
         case 0: //was gameDifficultyEasy:
             // NSLog(@"MIDI NOTE BLOWING difficulty 0");
-            
-            
+        
             if (_currentGameType == gameTypeImage || _currentGameType == gameTypeTest){
                 NSLog(@"DISALLOWING - SEQUENCE GAME NOT ACTIVE");
                 return;
@@ -962,15 +957,12 @@
         globalSoundActivated = 1;
         UIImage *soundOnImage = [UIImage imageNamed:@"Sound-ON.png"];
          [self.soundIcon setImage:soundOnImage forState:UIControlStateNormal];
-        //   [self.billiardViewController setAudioMute: globalSoundActivated];     //change: make available
         [self.sequenceGameController setAudioMute: globalSoundActivated];
     }else if(globalSoundActivated == 1){
         NSLog(@"unmuting sound");
         globalSoundActivated = 0;
         UIImage *soundOffImage = [UIImage imageNamed:@"Sound-OFF.png"];
         [self.soundIcon setImage:soundOffImage forState:UIControlStateNormal];
-        //[self.soundIcon setImage:[UIImage imageNamed:@"Bluetooth-OFF"]];
-    //    [self.billiardViewController setAudioMute: globalSoundActivated];
         [self.sequenceGameController setAudioMute: globalSoundActivated];
     }
 }
@@ -982,17 +974,13 @@
     }];
 }
 
-
 -(void)gameEnded:(AbstractGame *)game
 {
     [[GCDQueue mainQueue]queueBlock:^{
         [self resetGame:nil];
     }];
     
-    //if (game.saveable) {
-    [self saveCurrentSession]; ///addded
-    ///}
-    
+    [self saveCurrentSession];
     [self.sequenceGameController killTimer];
 }
 
@@ -1007,10 +995,6 @@
 -(void)gameWon:(AbstractGame *)game
 {
     NSLog(@"GAME WON");
-   //if (self.currentGameType==gameTypeDuo) {
-   ///[self gameWonDuration];
-   // return;
-   //}
     
     if (particleEffect) {
         return;
@@ -1094,7 +1078,6 @@
         
         audioPlayer = [[AVAudioPlayer alloc] initWithData:fileData
                                                     error:&error];
-        //[audioPlayer setNumberOfLoops:1];
         [audioPlayer prepareToPlay];
         audioPlayer.volume=1.0;
         
@@ -1116,7 +1099,7 @@
 
 -(void)addTestScores
 {   //POSSIBLY REMOVE
-    
+    return;
     NSLog(@"ADD TEST SCORES!");
     for (int i=0; i<30; i++) {
         
@@ -1170,7 +1153,7 @@
     //extracting image from the picker and saving it
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     if ([mediaType isEqualToString:@"public.image"]){
-        // UIImage *editedImage = [info objectForKey:UIImagePickerControllerEditedImage];
+        //UIImage *editedImage = [info objectForKey:UIImagePickerControllerEditedImage];
         NSData *webData = UIImagePNGRepresentation(image);
         [webData writeToFile:imagePath atomically:YES];
     }
@@ -1181,7 +1164,6 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [picker dismissModalViewControllerAnimated:NO];
-    // [self.delegate didFinishWithCamera];    // tell our delegate we are finished with the picker
 }
 
 - (void)photoButtonLibraryAction
@@ -1277,6 +1259,10 @@
     [self.toggleGameModeButton setImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];
     //change: check if correct
     
+    self.mainGaugeView.MainGaugeDelegate=self;
+    [self.mainGaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
+    [self.mainGaugeView start];
+    
     if (!displayLink) {
         [self setupDisplayFiltering];
         displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateimage)];
@@ -1286,11 +1272,7 @@
         //[self makeTimer];
        // acceleration=0.1;
         acceleration=0.1;
-        
         distance=0;
-        //time=sele;
-        //      [self toggleDirection:nil];
-        //      [self toggleDirection:nil];
     }
 }
 
@@ -1488,9 +1470,7 @@
     [sourcePicture addTarget:stillImageFilter];
     [stillImageFilter addTarget:imageView];
     [sourcePicture processImage];
-    
-    // });
-    // [self start];
+
 }
 - (void)setupDisplayFiltering;
 {
@@ -1500,17 +1480,10 @@
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:@"latest_photo.png"];
     NSData  *data=[NSData dataWithContentsOfFile:imagePath];
-    //inputImage=[UIImage imageWithData:data];
-    //if (!inputImage) {
     inputImage=[UIImage imageNamed:@"giraffe-614141_1280.jpg"];
-    // }
     sourcePicture = [[GPUImagePicture alloc] initWithImage:inputImage smoothlyScaleOutput:YES];
     stillImageFilter = [self filterForIndex:0];
-    //imageView = [[GPUImageView alloc]initWithFrame:self.view.frame];
-    //[self.view addSubview:imageView];
-    //change [self.view insertSubview:imageView atIndex:0];
     imageView = [[GPUImageView alloc]initWithFrame:self.imageFilterView.frame];
-    //[self.view insertSubview:imageView atIndex:0];
     [self.imageFilterView insertSubview:imageView atIndex:0];
     [sourcePicture addTarget:stillImageFilter];
     [stillImageFilter addTarget:imageView];
@@ -1521,38 +1494,35 @@
 -(void)setFilter:(int)index
 {
     NSLog(@"inner set filter");
-    
     [sourcePicture removeAllTargets];
-    //[stillImageFilter destroyFilterFBO];
-    //[stillImageFilter releaseInputTexturesIfNeeded];
     stillImageFilter=nil;
-    [imageView removeFromSuperview];
-    imageView=nil;
-    imageView = [[GPUImageView alloc]initWithFrame:self.view.frame];
-    // [self.view addSubview:imageView];
-    [self.view insertSubview:imageView atIndex:0];
+    //[imageView removeFromSuperview];
+    //imageView=nil;
+    //imageView = [[GPUImageView alloc]initWithFrame:self.view.frame];
+    //[self.view insertSubview:imageView atIndex:2];
     stillImageFilter=[self filterForIndex:index];
     [sourcePicture addTarget:stillImageFilter];
     [stillImageFilter addTarget:imageView];
+    
+    self.mainGaugeView.MainGaugeDelegate=self;
+   // [self.view addSubview:self.mainGaugeView ];
+   // [self.view sendSubviewToBack:self.mainGaugeView];
+    [self.mainGaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
+    [self.mainGaugeView start];
+    [self.mainGaugeView setForce:0];
 }
 
 -(void)setRepetitionCount:(int)value{
     
     NSLog(@"inner Setting balloon game repetition count to %d ", value);
     NSLog(@"count %d ", value);
-    
-    //chang: consolodate variables
     selectedBallCount = value;
-    //self.session.sessionRequiredBalloons = value;
-    
 }
 
 
 -(void)setImageSoundEffect:(NSString*)value{
     NSLog(@"Setting Image sound effect to %@ ", value);
-    
     currentImageGameSound = value;
-    
 }
 
 
@@ -1724,150 +1694,6 @@
         default:
             break;
     }
-}
-
-
-
-
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
-}
-
-
-// Customize the number of rows in the table view.
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
-}
-
-
-// Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-   //     cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-    // Configure the cell.
-    if (indexPath.section == 0) {
-        cell.textLabel.text = @"Chose Image";
-        cell.textLabel.textAlignment = UITextAlignmentCenter;
-    } else {
-        cell.textLabel.textAlignment = UITextAlignmentLeft;
-        cell.textLabel.text = @"Show chosen image";
-        if (chosenImage == -1) {
-            cell.imageView.image = [[UIImage imageNamed:@"noImageSelected.png"] scaleToSize:CGSizeMake(THUMBNAIL_SIZE, THUMBNAIL_SIZE) onlyIfNeeded:NO];
-        } else {
-            cell.imageView.image = [[UIImage imageNamed:[NSString stringWithFormat:@"t%i.png", (chosenImage % 4) + 1]] scaleToSize:CGSizeMake(THUMBNAIL_SIZE, THUMBNAIL_SIZE) onlyIfNeeded:NO];
-        }
-        
-    }
-    
-    return cell;
-}
-
-
-
-
-// Override to support row selection in the table view.
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    // Navigation logic may go here -- for example, create and push another view controller.
-    // AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-    // [self.navigationController pushViewController:anotherViewController animated:YES];
-    // [anotherViewController release];
-    
-    if (indexPath.section == 0) {
-        JPImagePickerController *imagePickerController = [[JPImagePickerController alloc] init];
-        
-        imagePickerController.delegate = self;
-        imagePickerController.dataSource = self;
-        imagePickerController.imagePickerTitle = @"ImagePicker";
-        
-        [self.navigationController presentModalViewController:imagePickerController animated:YES];
-       // [imagePickerController release];
-        
-    } else {
-        if (chosenImage == -1) {
-            chosenImageView.image = [[UIImage imageNamed:@"noImageSelected.png"] scaleToSize:CGSizeMake(320, 480) onlyIfNeeded:YES];
-        } else {
-            chosenImageView.image = [[UIImage imageNamed:[NSString stringWithFormat:@"i%i.png", (chosenImage % 4) + 1]] scaleToSize:CGSizeMake(IMAGE_WIDTH, IMAGE_HEIGHT) onlyIfNeeded:YES];
-        }
-        
-        [self.navigationController pushViewController:chosenImageController animated:YES];
-    }
-    
-}
-
-
-
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- 
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source.
- [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
- }
- }
- */
-
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
- }
- */
-
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-# pragma mark -
-# pragma mark JPImagePickerControllerDelegate
-
-- (void)imagePickerDidCancel:(JPImagePickerController *)picker {
-    [self.navigationController dismissModalViewControllerAnimated:YES];
-}
-
-- (void)imagePicker:(JPImagePickerController *)picker didFinishPickingWithImageNumber:(NSInteger)imageNumber {
-    chosenImage = imageNumber;
-    //[self.tableView reloadData];
-    [self.navigationController dismissModalViewControllerAnimated:YES];
-}
-
-# pragma mark JPImagePickerControllerDataSource
-
-- (NSInteger)numberOfImagesInImagePicker:(JPImagePickerController *)picker {
-    return 22;
-}
-
-- (UIImage *)imagePicker:(JPImagePickerController *)picker thumbnailForImageNumber:(NSInteger)imageNumber {
-    return [UIImage imageNamed:[NSString stringWithFormat:@"t%i.png", (imageNumber % 4) + 1]];
-}
-
-- (UIImage *)imagePicker:(JPImagePickerController *)imagePicker imageForImageNumber:(NSInteger)imageNumber {
-    return [UIImage imageNamed:[NSString stringWithFormat:@"i%i.png", (imageNumber % 4) + 1]];
 }
 
 -(BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
