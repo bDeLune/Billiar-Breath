@@ -46,19 +46,19 @@
     [self setViewControllers:tabViewControllers];
     self.gameViewController.tabBarItem =
     [[UITabBarItem alloc] initWithTitle:@"GameViewController"
-                                  image:[UIImage imageNamed:@"PEP-App-ACTIVE"]
+                                  image:[UIImage imageNamed:@"PEP-App-INACTIVE-80x80"]
                                     tag:1];
     self.settingsViewController.tabBarItem =
     [[UITabBarItem alloc] initWithTitle:@"SettingsViewController"
-                                  image:[UIImage imageNamed:@"Settings-ACTIVE"]
+                                  image:[UIImage imageNamed:@"Settings-INACTIVE-80x80"]
                                     tag:2];
     self.userListViewController.tabBarItem =
     [[UITabBarItem alloc] initWithTitle:@"UserListViewController"
-                                  image:[UIImage imageNamed:@"Users-ACTIVE"]
+                                  image:[UIImage imageNamed:@"Users-INACTIVE-80x80"]
                                     tag:3];
     self.infoViewController.tabBarItem =
     [[UITabBarItem alloc] initWithTitle:@"InfoViewController"
-                                  image:[UIImage imageNamed:@"Info-ACTIVE"]
+                                  image:[UIImage imageNamed:@"Info-INACTIVE-80x80"]
                                     tag:4];
     
     self.delegate = self;

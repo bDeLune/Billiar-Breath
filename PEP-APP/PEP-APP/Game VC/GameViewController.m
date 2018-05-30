@@ -5,14 +5,13 @@
 #import "Balloon.h"
 #import "Session.h"
 #import "SequenceGame.h"
-#import "AbstractGame.h"    //change
+#import "AbstractGame.h"
 #import "Game.h"
 #import "AddNewScoreOperation.h"
 #import "UIEffectDesignerView.h"
 #import "GCDQueue.h"
 #import "BTLEManager.h"
 #import "UserListViewController.h"
-//#import "infoViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import "UIEffectDesignerView.h"
@@ -79,22 +78,22 @@
 @property (nonatomic, retain) NSMutableArray *capturedImages;
 @property (nonatomic, retain) NSMutableArray *hqImages;
 @property (weak, nonatomic) IBOutlet UIImageView *MainGaugeWindow;
-@property(nonatomic,strong)GameViewGauge  *mainGaugeView;
-@property(nonatomic,strong)SettingsViewGauge  *gaugeView;
-@property(nonatomic,strong)BTLEManager  *btleMager;
+@property (nonatomic,strong)GameViewGauge  *mainGaugeView;
+@property (nonatomic,strong)SettingsViewGauge  *gaugeView;
+@property (nonatomic,strong)BTLEManager  *btleMager;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-@property(nonatomic,strong)NSOperationQueue  *addGameQueue;
-@property(nonatomic,strong) BalloonViewController  *balloonViewController;
-@property(nonatomic,strong) MidiController  *midiController;
-@property(nonatomic) gameType  currentGameType;
-@property(nonatomic,strong) Session  *currentSession;
-@property(nonatomic,strong) SequenceGame  *sequenceGameController;
-@property(nonatomic,strong) BTLEManager  *btleManager;
-@property(nonatomic,strong) UIImageView  *btOnOfImageView;
-@property(nonatomic,strong) UserListViewController  *userList;
+@property (nonatomic,strong)NSOperationQueue  *addGameQueue;
+@property (nonatomic,strong) BalloonViewController  *balloonViewController;
+@property (nonatomic,strong) MidiController  *midiController;
+@property (nonatomic) gameType  currentGameType;
+@property (nonatomic,strong) Session  *currentSession;
+@property (nonatomic,strong) SequenceGame  *sequenceGameController;
+@property (nonatomic,strong) BTLEManager  *btleManager;
+@property (nonatomic,strong) UIImageView  *btOnOfImageView;
+@property (nonatomic,strong) UserListViewController  *userList;
 @property (weak, nonatomic) IBOutlet UIImageView *imageFilterView;
 @property (weak, nonatomic) IBOutlet UIImageView *balloonView;
-@property(nonatomic,strong) UINavigationController *navcontroller;
+@property (nonatomic,strong) UINavigationController *navcontroller;
 @end
 
 @implementation GameViewController

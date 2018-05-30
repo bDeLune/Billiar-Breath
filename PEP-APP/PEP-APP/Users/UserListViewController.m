@@ -281,7 +281,7 @@
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    HeaderView  *header=[[HeaderView alloc]initWithFrame:CGRectMake(0, 150, 570, 20)];
+    HeaderView  *header=[[HeaderView alloc]initWithFrame:CGRectMake(70, 180, 570, 20)];
     header.section=section;
     header.user=[self.userList objectAtIndex:section];
     header.delegate=self;
