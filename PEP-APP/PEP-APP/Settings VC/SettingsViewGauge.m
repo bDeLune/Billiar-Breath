@@ -15,10 +15,10 @@
     UIView  *animationObject;
     float h;
     float hm;
-    float last_hm;
+   // float last_hm;
     float anim;
     float anim_delay;
-    float weight;
+   // float weight;
     float bestDistance;
     bool setToInhale;
     bool currentlyExhaling;
@@ -59,11 +59,6 @@
         
         mass=1;
         force=15;
-        /** if (!animationRunning)
-         {
-         [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
-         animationRunning = YES;
-         }**/
     }
     return self;
 }
@@ -97,13 +92,6 @@
             
             mass=1;
             force=15;
-            /** if (!animationRunning)
-             {
-             [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
-             animationRunning = YES;
-             }**/
-        }else if ([orientation isEqual: @"Horizontal"]){
-            NSLog(@"Initialising Horizontal frame");
         }
     }
     return self;

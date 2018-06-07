@@ -43,53 +43,29 @@
     IBOutlet UIImageView *chosenImageView;
 }
 
--(void)dismissSettingsMode:(id <SETTINGS_DELEGATE>)dismiss;
--(void)settingsModeToUser:(id <SETTINGS_DELEGATE>)dismiss;
--(IBAction)toUsersScreen:(id)sender;
 -(IBAction)exitGameScreen:(id)sender;
 -(IBAction)toggleDirection:(id)sender;
 -(IBAction)toggleGameMode:(id)sender;
 -(IBAction)presentSettings:(id)sender;
 -(IBAction)resetGame:(id)sender;
--(IBAction)sliderchanged:(id)sender;
--(IBAction)updateSliderValue:(id)sender;
 -(void)setupDisplayFiltering;
--(void)setupImageFilteringToDisk;
--(void)setupImageResampling;
--(void)continueMidiNote:(int)pvelocity;
--(void)stopMidiNote;
--(void)midiNoteBegan:(int)direction vel:(int)pvelocity;
--(void)makeTimer;
 -(void)setLabels;
 
-@property (weak, nonatomic) IBOutlet UIProgressView *breathGauge;
 @property (weak, nonatomic) IBOutlet UIImageView *bluetoothIcon;
 @property (weak, nonatomic) IBOutlet UIButton *soundIcon;
 @property (weak, nonatomic) IBOutlet UIButton *photoPickerButton;
 @property (weak, nonatomic) IBOutlet UIButton *HQPhotoPickerButton;
 @property (unsafe_unretained) id<SETTINGS_DELEGATE> settinngsDelegate;
 @property (nonatomic,weak) IBOutlet  UIButton  *backToLoginButton;
-@property (weak, nonatomic) IBOutlet UIProgressView *breathStrengthBar;
 @property (nonatomic,weak) IBOutlet  UIButton *toggleDirectionButton;
 @property (nonatomic,weak) IBOutlet  UIButton *toggleGameModeButton;
-@property (nonatomic,weak) IBOutlet  UIButton *resetGameButton;
-@property (nonatomic,weak) IBOutlet  UIButton  *settingsButton;
-@property (nonatomic,weak) IBOutlet  UIButton  *testDurationButton;
-@property (nonatomic,weak) IBOutlet  UILabel  *targetLabel;
-@property (nonatomic,weak) IBOutlet  UILabel  *durationLabel;
-@property (nonatomic,weak) IBOutlet  UILabel  *speedLabel;
 @property (nonatomic,strong) SettingsViewController  *settingsViewController;
-@property (nonatomic,weak) IBOutlet  UILabel  *strenghtLabel;
 @property (nonatomic,weak) IBOutlet  UILabel *currentUsersNameLabel;
-@property (nonatomic,weak) IBOutlet  UITextView *debugtext;
 @property (nonatomic,retain) IBOutlet UIViewController *chosenImageController;
 @property (nonatomic,retain) IBOutlet UIImageView *chosenImageView;
 
 @property (strong) NSPersistentStoreCoordinator *sharedPSC;
 @property (nonatomic,strong)User  *gameUser;
-@property (nonatomic,strong)IBOutlet UISlider  *testSlider;
-@property (nonatomic,strong) UITextView  *outputtext;
-@property (nonatomic,strong)IBOutlet  UITextView  *textarea;
 @property (nonatomic,unsafe_unretained)id<GameViewProtocol, UITabBarDelegate>delegate;
 @property int midiinhale;
 @property int midiexhale;

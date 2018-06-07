@@ -61,7 +61,7 @@
     BOOL  sessionRunning;
     Session  *currentSession;
     NSTimer  *effecttimer;
-    UIImageView  *bellImageView;
+    //UIImageView  *bellImageView;
     UIImageView  *bg;
     int midiinhale;
     int midiexhale;
@@ -244,7 +244,6 @@
     [self.balloonViewController blowEnded];
     [self midiNoteStopped:nil];
     isaccelerating=NO;
-    self.breathGauge.progress = 0;
 }
 
 -(void)btleManager:(BTLEManager*)manager inhaleWithValue:(float)percentOfmax{
@@ -260,7 +259,6 @@
         NSLog(@"INHALING AND RETURNING");
         return;
     }
-    self.breathGauge.progress = percentOfmax;
     self.velocity=(percentOfmax)*127.0;
     isaccelerating=YES;
     self.midiController.velocity=127.0*percentOfmax;
@@ -284,7 +282,7 @@
         return;
     }
     
-    self.breathGauge.progress = percentOfmax;
+   
     self.midiController.velocity=127.0*percentOfmax;
     self.midiController.speed= (fabs( self.midiController.velocity- self.midiController.previousVelocity));
     self.midiController.previousVelocity= self.midiController.velocity;
@@ -333,7 +331,6 @@
     self.tabBarController.delegate = self;
     
     self.currentGameType = gameTypeBalloon;
-    self.breathGauge.progress = 0;
     globalSoundActivated = 1;
     midiinhale=61;
     midiexhale=73;
@@ -657,7 +654,7 @@
 
 -(void)midiNoteContinuingForSequence:(MidiController*)midi
 {
-    // if (self.sequenceGameController.currentSpeed==-1) {
+
     self.sequenceGameController.currentSpeed=midi.speed;
     
     gameDifficulty  difficulty=[[[NSUserDefaults standardUserDefaults]objectForKey:@"difficulty"]intValue];
@@ -708,11 +705,6 @@
         
         [[GCDQueue mainQueue]queueBlock:^{
             NSString  *durationtext=[NSString stringWithFormat:@"%0.1f",self.sequenceGameController.time];
-            [self.durationLabel setText:durationtext];
-            
-            if (midi.velocity!=127) {
-                [self.strenghtLabel setText:[NSString stringWithFormat:@"%0.0f",midi.velocity]];
-            }
             
             if (midi.speed!=0) {
                 NSLog(@"trying to shoot balls to top");
@@ -740,13 +732,6 @@
         [self.soundIcon setImage:soundOffImage forState:UIControlStateNormal];
         [self.sequenceGameController setAudioMute: globalSoundActivated];
     }
-}
-
--(void)sendLogToOutput:(NSString*)log
-{
-    [[GCDQueue  mainQueue]queueBlock:^{
-        [self.debugtext setText:log];
-    }];
 }
 
 -(void)gameEnded:(AbstractGame *)game
@@ -900,11 +885,6 @@
     }
 }
 
--(IBAction)sliderchanged:(id)sender
-{
-    sketchamount=self.testSlider.value;
-    
-}
 
 #pragma mark -
 #pragma mark UIImagePickerControllerDelegate
@@ -1019,26 +999,6 @@
     _animationrate=value;
 }
 
--(void)setRate:(float)value
-{
-    NSLog(@"OFF inner setRate");
-    //self.animationrate=value;
-}
-
--(void)test:(float)value
-{
-    NSLog(@"OFF inner TEST");
-  //  self.animationrate=value;
-}
-
--(void) appendToTextView: (NSString*) moreText {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        _outputtext.text = [NSString stringWithFormat:@"%@%@\n",
-                            _outputtext.text, moreText];
-        [_outputtext scrollRangeToVisible:NSMakeRange(_outputtext.text.length-1, 1)];
-    });
-}
-
 -(void)viewDidAppear:(BOOL)animated
 {
     
@@ -1088,12 +1048,12 @@
      */
     // self.velocity+=1;
     
-    float fVel= (float)self.velocity;
+    //float fVel= (float)self.velocity;
     // float rate = fVel/5;
     
     //CHANGED
     //float rate = fVel;
-    float rate = 10;
+    //float rate = 10;
     
     //NSLog(@"stillImageFilter %@",stillImageFilter);
    // _animationrate = 6 - _animationrate;
@@ -1267,8 +1227,8 @@
     UIImage *inputImage;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:@"latest_photo.png"];
-    NSData  *data=[NSData dataWithContentsOfFile:imagePath];
+    //NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:@"latest_photo.png"];
+    //NSData  *data=[NSData dataWithContentsOfFile:imagePath];
     inputImage=[UIImage imageNamed:@"giraffe-614141_1280.jpg"];
     sourcePicture = [[GPUImagePicture alloc] initWithImage:inputImage smoothlyScaleOutput:YES];
     stillImageFilter = [self filterForIndex:0];
@@ -1353,13 +1313,6 @@
     return filter;
 }
 
-
--(void)addText:(NSString*)str
-{
-    NSString  *newstring=[NSString stringWithFormat:@"%@\n%@",_textarea.text,str];
-    [_textarea setText:newstring];
-}
-
 -(void)animate
 {
     NSLog(@"animating");
@@ -1368,9 +1321,6 @@
     if (self.velocity<threshold) {
         return;
     }
-    
-    float fVel= (float)self.velocity;
-    float rate = fVel/10;
     
     if (inorout==midiinhale) {
         targetRadius=targetRadius+((45.0/100)*_animationrate);
@@ -1508,7 +1458,7 @@
     //obtaining saving path
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:@"latest_photo.png"];
+    //NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:@"latest_photo.png"];
     
     //extracting image from the picker and saving it
    // NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];

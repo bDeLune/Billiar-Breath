@@ -130,7 +130,7 @@
 {
     self.currentBallININdex=0;
    __block int  startx=0;
-    __block int  emptyBalloonstartx=0;
+   // __block int  emptyBalloonstartx=0;
     
     for (int i=0; i<selectedGameBallCount; i++) {           //change: make balls here
         

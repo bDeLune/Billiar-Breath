@@ -11,18 +11,15 @@
 		710857651E439B6200479032 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7108575C1E439B4200479032 /* libCorePlot-CocoaTouch.a */; };
 		710857681E439B8A00479032 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 710857671E439B8A00479032 /* Accelerate.framework */; };
 		710BDDE5207D039400B1E393 /* Model.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 7186DDCC1E4DBE0D00F71F0C /* Model.xcdatamodel */; };
-		710BDDE9207D1DFE00B1E393 /* PickPhotoButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 710BDDE8207D1DFE00B1E393 /* PickPhotoButton.png */; };
 		710BDDEB207D24B600B1E393 /* giraffe-614141_1280.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 710BDDEA207D24B600B1E393 /* giraffe-614141_1280.jpg */; };
 		710BDDF1207E5B9400B1E393 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 710BDDEF207E48B700B1E393 /* SettingsViewController.xib */; };
 		7138E5952088FBA700C0C08F /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7138E5932088FBA700C0C08F /* InfoViewController.m */; };
 		7138E5962088FBA700C0C08F /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7138E5942088FBA700C0C08F /* InfoViewController.xib */; };
-		71693B90206937D3009F14EA /* BilliardBreath1024X1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 71693B8F206937D1009F14EA /* BilliardBreath1024X1024.png */; };
 		717D003320B309620098893A /* Login-Button-Signup.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D002F20B309610098893A /* Login-Button-Signup.png */; };
 		717D003420B309620098893A /* Login-Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D003020B309620098893A /* Login-Background.png */; };
 		717D003520B309620098893A /* Login-Project.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D003120B309620098893A /* Login-Project.png */; };
 		717D003620B309620098893A /* Login-Button-Login.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D003220B309620098893A /* Login-Button-Login.png */; };
 		717D003E20B309750098893A /* Sound-ON.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D003720B309730098893A /* Sound-ON.png */; };
-		717D003F20B309750098893A /* Main-MOCKUP.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D003820B309730098893A /* Main-MOCKUP.png */; };
 		717D004020B309750098893A /* Main-Project.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D003920B309740098893A /* Main-Project.png */; };
 		717D004120B309750098893A /* Sound-OFF.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D003A20B309740098893A /* Sound-OFF.png */; };
 		717D004220B309750098893A /* Bluetooth-OFF.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D003B20B309740098893A /* Bluetooth-OFF.png */; };
@@ -35,7 +32,6 @@
 		717D005A20B309940098893A /* 1 Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D005320B309930098893A /* 1 Background.png */; };
 		717D005B20B309940098893A /* 4 Info.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D005420B309940098893A /* 4 Info.png */; };
 		717D005C20B309940098893A /* 6 Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D005520B309940098893A /* 6 Settings.png */; };
-		717D006120B309CA0098893A /* PEP-App.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D005D20B309C90098893A /* PEP-App.png */; };
 		717D006220B309CA0098893A /* Users.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D005E20B309C90098893A /* Users.png */; };
 		717D006320B309CA0098893A /* Help.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D005F20B309CA0098893A /* Help.png */; };
 		717D006420B309CA0098893A /* Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D006020B309CA0098893A /* Settings.png */; };
@@ -51,7 +47,6 @@
 		717D007A20B3138D0098893A /* Balloon7.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D007120B3138B0098893A /* Balloon7.png */; };
 		717D007B20B3138D0098893A /* Balloon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D007220B3138B0098893A /* Balloon2.png */; };
 		717D007C20B3138D0098893A /* Balloon5.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D007320B3138C0098893A /* Balloon5.png */; };
-		717D009620B440D90098893A /* Info-ACTIVE.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D008E20B440D80098893A /* Info-ACTIVE.png */; };
 		717D009920B440F00098893A /* Main-Button-Picker-ALBUM.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D009720B440EE0098893A /* Main-Button-Picker-ALBUM.png */; };
 		717D009A20B440F00098893A /* Main-Button-Picker-HICONTRAST.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D009820B440EF0098893A /* Main-Button-Picker-HICONTRAST.png */; };
 		717D00A220B44FC90098893A /* Settings-Button-INHALE.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D009D20B44FC70098893A /* Settings-Button-INHALE.png */; };
@@ -214,10 +209,8 @@
 		717D023120BD9FD20098893A /* rtimagepicker_indicator.imageset in Resources */ = {isa = PBXBuildFile; fileRef = 717D022620BD9FD10098893A /* rtimagepicker_indicator.imageset */; };
 		717D023220BD9FD20098893A /* rtimagepicker_dv.imageset in Resources */ = {isa = PBXBuildFile; fileRef = 717D022720BD9FD10098893A /* rtimagepicker_dv.imageset */; };
 		717D023320BD9FD20098893A /* rtimagepicker_delete.imageset in Resources */ = {isa = PBXBuildFile; fileRef = 717D022820BD9FD20098893A /* rtimagepicker_delete.imageset */; };
-		717D024920BEA1100098893A /* Info-INACTIVE-80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D024520BEA10D0098893A /* Info-INACTIVE-80x80.png */; };
-		717D024A20BEA1100098893A /* Settings-INACTIVE-80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D024620BEA10E0098893A /* Settings-INACTIVE-80x80.png */; };
-		717D024B20BEA1100098893A /* Users-INACTIVE-80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D024720BEA10E0098893A /* Users-INACTIVE-80x80.png */; };
-		717D024C20BEA1100098893A /* PEP-App-INACTIVE-80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D024820BEA10F0098893A /* PEP-App-INACTIVE-80x80.png */; };
+		717D024F20BEAB2B0098893A /* Splash1536x2048.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D024D20BEAB2A0098893A /* Splash1536x2048.png */; };
+		717D025020BEAB2B0098893A /* Splash768x1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D024E20BEAB2B0098893A /* Splash768x1024.png */; };
 		7186DDD01E4DBE0D00F71F0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7186DDCD1E4DBE0D00F71F0C /* Main.storyboard */; };
 		7186DDEB1E4DBF2400F71F0C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7186DDEA1E4DBF2400F71F0C /* LoginViewController.xib */; };
 		7186DDF41E4DBF4100F71F0C /* AllGamesForDayTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DDED1E4DBF4100F71F0C /* AllGamesForDayTableVC.m */; };
@@ -237,19 +230,6 @@
 		7186DE2F1E4DBF7100F71F0C /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DE221E4DBF7100F71F0C /* Globals.m */; };
 		7186DE321E4DBF7100F71F0C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DE261E4DBF7100F71F0C /* LoginViewController.m */; };
 		7186DE331E4DBF7100F71F0C /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DE291E4DBF7100F71F0C /* GameViewController.m */; };
-		7186DE961E4DBFA400F71F0C /* BilliardBreath1024X1024.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE871E4DBFA400F71F0C /* BilliardBreath1024X1024.jpg */; };
-		7186DE971E4DBFA400F71F0C /* BilliardBreathAppIcon29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE881E4DBFA400F71F0C /* BilliardBreathAppIcon29x29.png */; };
-		7186DE981E4DBFA400F71F0C /* BilliardBreathAppIcon40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE891E4DBFA400F71F0C /* BilliardBreathAppIcon40x40.png */; };
-		7186DE991E4DBFA400F71F0C /* BilliardBreathAppIcon50x50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE8A1E4DBFA400F71F0C /* BilliardBreathAppIcon50x50.png */; };
-		7186DE9A1E4DBFA400F71F0C /* BilliardBreathAppIcon58x58.png in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE8B1E4DBFA400F71F0C /* BilliardBreathAppIcon58x58.png */; };
-		7186DE9B1E4DBFA400F71F0C /* BilliardBreathAppIcon72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE8C1E4DBFA400F71F0C /* BilliardBreathAppIcon72x72.png */; };
-		7186DE9C1E4DBFA400F71F0C /* BilliardBreathAppIcon76x76.png in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE8D1E4DBFA400F71F0C /* BilliardBreathAppIcon76x76.png */; };
-		7186DE9D1E4DBFA400F71F0C /* BilliardBreathAppIcon80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE8E1E4DBFA400F71F0C /* BilliardBreathAppIcon80x80.png */; };
-		7186DE9E1E4DBFA400F71F0C /* BilliardBreathAppIcon100x100.png in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE8F1E4DBFA400F71F0C /* BilliardBreathAppIcon100x100.png */; };
-		7186DE9F1E4DBFA400F71F0C /* BilliardBreathAppIcon114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE901E4DBFA400F71F0C /* BilliardBreathAppIcon114x114.png */; };
-		7186DEA11E4DBFA400F71F0C /* BilliardBreathAppIcon144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE921E4DBFA400F71F0C /* BilliardBreathAppIcon144x144.png */; };
-		7186DEA21E4DBFA400F71F0C /* BilliardBreathAppIcon152x152.png in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE931E4DBFA400F71F0C /* BilliardBreathAppIcon152x152.png */; };
-		7186DEA31E4DBFA400F71F0C /* BilliardBreathAppIcon167x167.png in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE941E4DBFA400F71F0C /* BilliardBreathAppIcon167x167.png */; };
 		7186DEB31E4DC59F00F71F0C /* BTLEManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DEA91E4DC59F00F71F0C /* BTLEManager.m */; };
 		7186DEB41E4DC59F00F71F0C /* libMelodySmart.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7186DEAB1E4DC59F00F71F0C /* libMelodySmart.a */; };
 		7186DEB51E4DC59F00F71F0C /* NSData+NSData_Conversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DEB01E4DC59F00F71F0C /* NSData+NSData_Conversion.m */; };
@@ -259,6 +239,17 @@
 		718E215A1E51DD0300E8357B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 718E21591E51DD0300E8357B /* LaunchScreen.storyboard */; };
 		718E215C1E51E43000E8357B /* icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 718E215B1E51E43000E8357B /* icon-120.png */; };
 		71A04EC3208FA8BD00AA878B /* SettingsViewGauge.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A04EC1208FA8BD00AA878B /* SettingsViewGauge.m */; };
+		71BAE49220C8607C00B594FA /* PEP-App-INACTIVE-80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 71BAE48E20C8607A00B594FA /* PEP-App-INACTIVE-80x80.png */; };
+		71BAE49320C8607C00B594FA /* Users-INACTIVE-80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 71BAE48F20C8607B00B594FA /* Users-INACTIVE-80x80.png */; };
+		71BAE49C20C9A3E800B594FA /* PEPAppIcon20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = 71BAE49B20C9A3E800B594FA /* PEPAppIcon20x20.png */; };
+		71BAE4A120C9A82B00B594FA /* InfoBackground-ENG.png in Resources */ = {isa = PBXBuildFile; fileRef = 71BAE49D20C9A82700B594FA /* InfoBackground-ENG.png */; };
+		71BAE4A220C9A82B00B594FA /* BUTTON-OnlineManual-NL.png in Resources */ = {isa = PBXBuildFile; fileRef = 71BAE49E20C9A82800B594FA /* BUTTON-OnlineManual-NL.png */; };
+		71BAE4A320C9A82B00B594FA /* BUTTON-OnlineManual-ENG.png in Resources */ = {isa = PBXBuildFile; fileRef = 71BAE49F20C9A82900B594FA /* BUTTON-OnlineManual-ENG.png */; };
+		71BAE4A420C9A82B00B594FA /* InfoBackground-NL.png in Resources */ = {isa = PBXBuildFile; fileRef = 71BAE4A020C9A82A00B594FA /* InfoBackground-NL.png */; };
+		71BAE4A920C9AA7700B594FA /* Info-ACTIVE-80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 71BAE4A520C9AA7500B594FA /* Info-ACTIVE-80x80.png */; };
+		71BAE4AA20C9AA7700B594FA /* Info-INACTIVE-80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 71BAE4A620C9AA7600B594FA /* Info-INACTIVE-80x80.png */; };
+		71BAE4AB20C9AA7700B594FA /* Settings-INACTIVE-80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 71BAE4A720C9AA7600B594FA /* Settings-INACTIVE-80x80.png */; };
+		71BAE4AC20C9AA7700B594FA /* Settings-ACTIVE-80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 71BAE4A820C9AA7600B594FA /* Settings-ACTIVE-80x80.png */; };
 		71C9F9D81E53341D0078070D /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9F9CC1E53341D0078070D /* Game.m */; };
 		71C9F9D91E53341D0078070D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9F9CE1E53341D0078070D /* User.m */; };
 		71C9F9DA1E53341D0078070D /* AbstractGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9F9D11E53341D0078070D /* AbstractGame.m */; };
@@ -276,18 +267,8 @@
 		71C9FA091E53356C0078070D /* UIEffectDesignerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9FA001E53356C0078070D /* UIEffectDesignerView.m */; };
 		71C9FA0E1E5335C40078070D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9FA0B1E5335C40078070D /* AppDelegate.m */; };
 		71C9FA201E5344EB0078070D /* UserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9FA1F1E5344EB0078070D /* UserListViewController.m */; };
-		71D1A3592074F8F000C83B63 /* bell_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D1A3542074F8F000C83B63 /* bell_2.png */; };
-		71D1A35A2074F8F000C83B63 /* bell_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D1A3552074F8F000C83B63 /* bell_3.png */; };
-		71D1A35B2074F8F000C83B63 /* bell_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D1A3562074F8F000C83B63 /* bell_1.png */; };
 		71D1A3662074FBC800C83B63 /* Mercury-Vertical.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D1A35D2074FBC700C83B63 /* Mercury-Vertical.png */; };
 		71D1A3672074FBC800C83B63 /* PeakHoldArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D1A35E2074FBC800C83B63 /* PeakHoldArrow.png */; };
-		71D1A3682074FBC800C83B63 /* StatsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D1A35F2074FBC800C83B63 /* StatsButton.png */; };
-		71D1A3692074FBC800C83B63 /* Logo-Full.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D1A3602074FBC800C83B63 /* Logo-Full.png */; };
-		71D1A36A2074FBC800C83B63 /* Menu-Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D1A3612074FBC800C83B63 /* Menu-Settings.png */; };
-		71D1A36B2074FBC800C83B63 /* Logo-Top.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D1A3622074FBC800C83B63 /* Logo-Top.png */; };
-		71D1A36C2074FBC800C83B63 /* MainBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D1A3632074FBC800C83B63 /* MainBackground.png */; };
-		71D1A36D2074FBC800C83B63 /* Logo-Middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D1A3642074FBC800C83B63 /* Logo-Middle.png */; };
-		71D1A36E2074FBC800C83B63 /* Menu-Users.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D1A3652074FBC800C83B63 /* Menu-Users.png */; };
 		71D1A3732074FE5300C83B63 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D1A3712074FE5200C83B63 /* SettingsViewController.m */; };
 		71D1A64B2075187A00C83B63 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D1A6482075184C00C83B63 /* GPUImage.framework */; };
 		71D1A64F20751F2400C83B63 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D1A64E20751F2400C83B63 /* CoreMedia.framework */; };
@@ -408,19 +389,16 @@
 		7108573D1E439A0A00479032 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		710857431E439B4100479032 /* CorePlot.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CorePlot.xcodeproj; path = ../corePlotFramework/CorePlot.xcodeproj; sourceTree = "<group>"; };
 		710857671E439B8A00479032 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		710BDDE8207D1DFE00B1E393 /* PickPhotoButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PickPhotoButton.png; sourceTree = "<group>"; };
 		710BDDEA207D24B600B1E393 /* giraffe-614141_1280.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "giraffe-614141_1280.jpg"; sourceTree = "<group>"; };
 		710BDDEF207E48B700B1E393 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		7138E5922088FBA700C0C08F /* InfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		7138E5932088FBA700C0C08F /* InfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		7138E5942088FBA700C0C08F /* InfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoViewController.xib; sourceTree = "<group>"; };
-		71693B8F206937D1009F14EA /* BilliardBreath1024X1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BilliardBreath1024X1024.png; sourceTree = "<group>"; };
 		717D002F20B309610098893A /* Login-Button-Signup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-Button-Signup.png"; sourceTree = "<group>"; };
 		717D003020B309620098893A /* Login-Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-Background.png"; sourceTree = "<group>"; };
 		717D003120B309620098893A /* Login-Project.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-Project.png"; sourceTree = "<group>"; };
 		717D003220B309620098893A /* Login-Button-Login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-Button-Login.png"; sourceTree = "<group>"; };
 		717D003720B309730098893A /* Sound-ON.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sound-ON.png"; sourceTree = "<group>"; };
-		717D003820B309730098893A /* Main-MOCKUP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Main-MOCKUP.png"; sourceTree = "<group>"; };
 		717D003920B309740098893A /* Main-Project.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Main-Project.png"; path = "../../../../Downloads/App UI 2/Main/Main-Project.png"; sourceTree = "<group>"; };
 		717D003A20B309740098893A /* Sound-OFF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sound-OFF.png"; sourceTree = "<group>"; };
 		717D003B20B309740098893A /* Bluetooth-OFF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bluetooth-OFF.png"; sourceTree = "<group>"; };
@@ -433,7 +411,6 @@
 		717D005320B309930098893A /* 1 Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "1 Background.png"; path = "../../../../Downloads/App UI 2/Users/Orig/1 Background.png"; sourceTree = "<group>"; };
 		717D005420B309940098893A /* 4 Info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "4 Info.png"; sourceTree = "<group>"; };
 		717D005520B309940098893A /* 6 Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "6 Settings.png"; sourceTree = "<group>"; };
-		717D005D20B309C90098893A /* PEP-App.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PEP-App.png"; sourceTree = "<group>"; };
 		717D005E20B309C90098893A /* Users.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Users.png; sourceTree = "<group>"; };
 		717D005F20B309CA0098893A /* Help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Help.png; sourceTree = "<group>"; };
 		717D006020B309CA0098893A /* Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settings.png; sourceTree = "<group>"; };
@@ -449,7 +426,6 @@
 		717D007120B3138B0098893A /* Balloon7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Balloon7.png; sourceTree = "<group>"; };
 		717D007220B3138B0098893A /* Balloon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Balloon2.png; sourceTree = "<group>"; };
 		717D007320B3138C0098893A /* Balloon5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Balloon5.png; sourceTree = "<group>"; };
-		717D008E20B440D80098893A /* Info-ACTIVE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Info-ACTIVE.png"; sourceTree = "<group>"; };
 		717D009720B440EE0098893A /* Main-Button-Picker-ALBUM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Main-Button-Picker-ALBUM.png"; sourceTree = "<group>"; };
 		717D009820B440EF0098893A /* Main-Button-Picker-HICONTRAST.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Main-Button-Picker-HICONTRAST.png"; sourceTree = "<group>"; };
 		717D009D20B44FC70098893A /* Settings-Button-INHALE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Settings-Button-INHALE.png"; path = "../../../../Downloads/App UI 3/Settings/Settings-Button-INHALE.png"; sourceTree = "<group>"; };
@@ -661,10 +637,8 @@
 		717D022620BD9FD10098893A /* rtimagepicker_indicator.imageset */ = {isa = PBXFileReference; lastKnownFileType = folder; path = rtimagepicker_indicator.imageset; sourceTree = "<group>"; };
 		717D022720BD9FD10098893A /* rtimagepicker_dv.imageset */ = {isa = PBXFileReference; lastKnownFileType = folder; path = rtimagepicker_dv.imageset; sourceTree = "<group>"; };
 		717D022820BD9FD20098893A /* rtimagepicker_delete.imageset */ = {isa = PBXFileReference; lastKnownFileType = folder; path = rtimagepicker_delete.imageset; sourceTree = "<group>"; };
-		717D024520BEA10D0098893A /* Info-INACTIVE-80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Info-INACTIVE-80x80.png"; path = "../Info-INACTIVE-80x80.png"; sourceTree = "<group>"; };
-		717D024620BEA10E0098893A /* Settings-INACTIVE-80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Settings-INACTIVE-80x80.png"; path = "../Settings-INACTIVE-80x80.png"; sourceTree = "<group>"; };
-		717D024720BEA10E0098893A /* Users-INACTIVE-80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Users-INACTIVE-80x80.png"; path = "../Users-INACTIVE-80x80.png"; sourceTree = "<group>"; };
-		717D024820BEA10F0098893A /* PEP-App-INACTIVE-80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PEP-App-INACTIVE-80x80.png"; path = "../PEP-App-INACTIVE-80x80.png"; sourceTree = "<group>"; };
+		717D024D20BEAB2A0098893A /* Splash1536x2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Splash1536x2048.png; sourceTree = "<group>"; };
+		717D024E20BEAB2B0098893A /* Splash768x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Splash768x1024.png; sourceTree = "<group>"; };
 		7186DDCC1E4DBE0D00F71F0C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		7186DDCD1E4DBE0D00F71F0C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7186DDEA1E4DBF2400F71F0C /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -697,20 +671,6 @@
 		7186DE271E4DBF7100F71F0C /* BilliardBreath-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BilliardBreath-Prefix.pch"; sourceTree = "<group>"; };
 		7186DE281E4DBF7100F71F0C /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		7186DE291E4DBF7100F71F0C /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
-		7186DE871E4DBFA400F71F0C /* BilliardBreath1024X1024.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BilliardBreath1024X1024.jpg; sourceTree = "<group>"; };
-		7186DE881E4DBFA400F71F0C /* BilliardBreathAppIcon29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BilliardBreathAppIcon29x29.png; sourceTree = "<group>"; };
-		7186DE891E4DBFA400F71F0C /* BilliardBreathAppIcon40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BilliardBreathAppIcon40x40.png; sourceTree = "<group>"; };
-		7186DE8A1E4DBFA400F71F0C /* BilliardBreathAppIcon50x50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BilliardBreathAppIcon50x50.png; sourceTree = "<group>"; };
-		7186DE8B1E4DBFA400F71F0C /* BilliardBreathAppIcon58x58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BilliardBreathAppIcon58x58.png; sourceTree = "<group>"; };
-		7186DE8C1E4DBFA400F71F0C /* BilliardBreathAppIcon72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BilliardBreathAppIcon72x72.png; sourceTree = "<group>"; };
-		7186DE8D1E4DBFA400F71F0C /* BilliardBreathAppIcon76x76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BilliardBreathAppIcon76x76.png; sourceTree = "<group>"; };
-		7186DE8E1E4DBFA400F71F0C /* BilliardBreathAppIcon80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BilliardBreathAppIcon80x80.png; sourceTree = "<group>"; };
-		7186DE8F1E4DBFA400F71F0C /* BilliardBreathAppIcon100x100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BilliardBreathAppIcon100x100.png; sourceTree = "<group>"; };
-		7186DE901E4DBFA400F71F0C /* BilliardBreathAppIcon114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BilliardBreathAppIcon114x114.png; sourceTree = "<group>"; };
-		7186DE911E4DBFA400F71F0C /* BilliardBreathAppIcon120x120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BilliardBreathAppIcon120x120.png; sourceTree = "<group>"; };
-		7186DE921E4DBFA400F71F0C /* BilliardBreathAppIcon144x144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BilliardBreathAppIcon144x144.png; sourceTree = "<group>"; };
-		7186DE931E4DBFA400F71F0C /* BilliardBreathAppIcon152x152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BilliardBreathAppIcon152x152.png; sourceTree = "<group>"; };
-		7186DE941E4DBFA400F71F0C /* BilliardBreathAppIcon167x167.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BilliardBreathAppIcon167x167.png; sourceTree = "<group>"; };
 		7186DEA81E4DC59F00F71F0C /* BTLEManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEManager.h; sourceTree = "<group>"; };
 		7186DEA91E4DC59F00F71F0C /* BTLEManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLEManager.m; sourceTree = "<group>"; };
 		7186DEAB1E4DC59F00F71F0C /* libMelodySmart.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMelodySmart.a; sourceTree = "<group>"; };
@@ -726,6 +686,17 @@
 		718E215B1E51E43000E8357B /* icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-120.png"; sourceTree = "<group>"; };
 		71A04EC0208FA8BC00AA878B /* SettingsViewGauge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewGauge.h; sourceTree = "<group>"; };
 		71A04EC1208FA8BD00AA878B /* SettingsViewGauge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewGauge.m; sourceTree = "<group>"; };
+		71BAE48E20C8607A00B594FA /* PEP-App-INACTIVE-80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PEP-App-INACTIVE-80x80.png"; sourceTree = "<group>"; };
+		71BAE48F20C8607B00B594FA /* Users-INACTIVE-80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Users-INACTIVE-80x80.png"; sourceTree = "<group>"; };
+		71BAE49B20C9A3E800B594FA /* PEPAppIcon20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PEPAppIcon20x20.png; sourceTree = "<group>"; };
+		71BAE49D20C9A82700B594FA /* InfoBackground-ENG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InfoBackground-ENG.png"; sourceTree = "<group>"; };
+		71BAE49E20C9A82800B594FA /* BUTTON-OnlineManual-NL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BUTTON-OnlineManual-NL.png"; sourceTree = "<group>"; };
+		71BAE49F20C9A82900B594FA /* BUTTON-OnlineManual-ENG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BUTTON-OnlineManual-ENG.png"; sourceTree = "<group>"; };
+		71BAE4A020C9A82A00B594FA /* InfoBackground-NL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InfoBackground-NL.png"; sourceTree = "<group>"; };
+		71BAE4A520C9AA7500B594FA /* Info-ACTIVE-80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Info-ACTIVE-80x80.png"; sourceTree = "<group>"; };
+		71BAE4A620C9AA7600B594FA /* Info-INACTIVE-80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Info-INACTIVE-80x80.png"; sourceTree = "<group>"; };
+		71BAE4A720C9AA7600B594FA /* Settings-INACTIVE-80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings-INACTIVE-80x80.png"; sourceTree = "<group>"; };
+		71BAE4A820C9AA7600B594FA /* Settings-ACTIVE-80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings-ACTIVE-80x80.png"; sourceTree = "<group>"; };
 		71C9F9CB1E53341D0078070D /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		71C9F9CC1E53341D0078070D /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		71C9F9CD1E53341D0078070D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -761,18 +732,8 @@
 		71C9FA0B1E5335C40078070D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		71C9FA1E1E5344EB0078070D /* UserListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserListViewController.h; sourceTree = "<group>"; };
 		71C9FA1F1E5344EB0078070D /* UserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserListViewController.m; sourceTree = "<group>"; };
-		71D1A3542074F8F000C83B63 /* bell_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bell_2.png; sourceTree = "<group>"; };
-		71D1A3552074F8F000C83B63 /* bell_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bell_3.png; sourceTree = "<group>"; };
-		71D1A3562074F8F000C83B63 /* bell_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bell_1.png; sourceTree = "<group>"; };
 		71D1A35D2074FBC700C83B63 /* Mercury-Vertical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mercury-Vertical.png"; sourceTree = "<group>"; };
 		71D1A35E2074FBC800C83B63 /* PeakHoldArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PeakHoldArrow.png; sourceTree = "<group>"; };
-		71D1A35F2074FBC800C83B63 /* StatsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StatsButton.png; sourceTree = "<group>"; };
-		71D1A3602074FBC800C83B63 /* Logo-Full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo-Full.png"; sourceTree = "<group>"; };
-		71D1A3612074FBC800C83B63 /* Menu-Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Menu-Settings.png"; sourceTree = "<group>"; };
-		71D1A3622074FBC800C83B63 /* Logo-Top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo-Top.png"; sourceTree = "<group>"; };
-		71D1A3632074FBC800C83B63 /* MainBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MainBackground.png; sourceTree = "<group>"; };
-		71D1A3642074FBC800C83B63 /* Logo-Middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo-Middle.png"; sourceTree = "<group>"; };
-		71D1A3652074FBC800C83B63 /* Menu-Users.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Menu-Users.png"; sourceTree = "<group>"; };
 		71D1A3712074FE5200C83B63 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		71D1A3722074FE5300C83B63 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		71D1A63F2075184B00C83B63 /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = "../../../Downloads/GPUImage-master 3/framework/GPUImage.xcodeproj"; sourceTree = "<group>"; };
@@ -856,50 +817,33 @@
 				717D000120B309240098893A /* Settings */,
 				717D000220B3092D0098893A /* Main */,
 				717D000320B309330098893A /* Login */,
-				7186DE871E4DBFA400F71F0C /* BilliardBreath1024X1024.jpg */,
-				71D1A3562074F8F000C83B63 /* bell_1.png */,
-				71D1A3602074FBC800C83B63 /* Logo-Full.png */,
-				71D1A3642074FBC800C83B63 /* Logo-Middle.png */,
+				717D013720B851C70098893A /* Sounds */,
 				717D013820B868E20098893A /* User-Project.png */,
 				710BDDEA207D24B600B1E393 /* giraffe-614141_1280.jpg */,
-				71D1A3622074FBC800C83B63 /* Logo-Top.png */,
-				71D1A3632074FBC800C83B63 /* MainBackground.png */,
-				71D1A3612074FBC800C83B63 /* Menu-Settings.png */,
-				71D1A3652074FBC800C83B63 /* Menu-Users.png */,
-				717D013720B851C70098893A /* Sounds */,
 				71D1A35D2074FBC700C83B63 /* Mercury-Vertical.png */,
 				71D1A35E2074FBC800C83B63 /* PeakHoldArrow.png */,
-				710BDDE8207D1DFE00B1E393 /* PickPhotoButton.png */,
-				71D1A35F2074FBC800C83B63 /* StatsButton.png */,
-				71D1A3542074F8F000C83B63 /* bell_2.png */,
-				71D1A3552074F8F000C83B63 /* bell_3.png */,
 				7186DEE01E51CACC00F71F0C /* Default.png */,
+				71BAE48E20C8607A00B594FA /* PEP-App-INACTIVE-80x80.png */,
+				71BAE48F20C8607B00B594FA /* Users-INACTIVE-80x80.png */,
 				717D015820BC96EB0098893A /* DummyInfo.png */,
 				7186DDFE1E4DBF5F00F71F0C /* billiardwin.ped */,
+				71BAE49F20C9A82900B594FA /* BUTTON-OnlineManual-ENG.png */,
+				71BAE49E20C9A82800B594FA /* BUTTON-OnlineManual-NL.png */,
+				71BAE49D20C9A82700B594FA /* InfoBackground-ENG.png */,
+				71BAE4A020C9A82A00B594FA /* InfoBackground-NL.png */,
+				71BAE4A520C9AA7500B594FA /* Info-ACTIVE-80x80.png */,
+				71BAE4A620C9AA7600B594FA /* Info-INACTIVE-80x80.png */,
+				71BAE4A820C9AA7600B594FA /* Settings-ACTIVE-80x80.png */,
+				71BAE4A720C9AA7600B594FA /* Settings-INACTIVE-80x80.png */,
 				7186DDFF1E4DBF5F00F71F0C /* Crowd_cheer6.wav */,
 				7186DEDE1E51CA2300F71F0C /* DefaultPortrait.png */,
-				7186DE881E4DBFA400F71F0C /* BilliardBreathAppIcon29x29.png */,
-				7186DE891E4DBFA400F71F0C /* BilliardBreathAppIcon40x40.png */,
-				7186DE8A1E4DBFA400F71F0C /* BilliardBreathAppIcon50x50.png */,
-				71693B8F206937D1009F14EA /* BilliardBreath1024X1024.png */,
 				717D013A20B86CFD0098893A /* Splash.png */,
-				7186DE8B1E4DBFA400F71F0C /* BilliardBreathAppIcon58x58.png */,
 				7186DEB81E4DC61D00F71F0C /* main.m */,
 				718E215B1E51E43000E8357B /* icon-120.png */,
 				71D1A659207523C900C83B63 /* giraffe.jpg */,
-				7186DE8C1E4DBFA400F71F0C /* BilliardBreathAppIcon72x72.png */,
-				7186DE8D1E4DBFA400F71F0C /* BilliardBreathAppIcon76x76.png */,
-				7186DE8E1E4DBFA400F71F0C /* BilliardBreathAppIcon80x80.png */,
-				7186DE8F1E4DBFA400F71F0C /* BilliardBreathAppIcon100x100.png */,
-				7186DE901E4DBFA400F71F0C /* BilliardBreathAppIcon114x114.png */,
-				7186DE911E4DBFA400F71F0C /* BilliardBreathAppIcon120x120.png */,
-				717D024520BEA10D0098893A /* Info-INACTIVE-80x80.png */,
-				717D024820BEA10F0098893A /* PEP-App-INACTIVE-80x80.png */,
-				717D024620BEA10E0098893A /* Settings-INACTIVE-80x80.png */,
-				717D024720BEA10E0098893A /* Users-INACTIVE-80x80.png */,
-				7186DE921E4DBFA400F71F0C /* BilliardBreathAppIcon144x144.png */,
-				7186DE931E4DBFA400F71F0C /* BilliardBreathAppIcon152x152.png */,
-				7186DE941E4DBFA400F71F0C /* BilliardBreathAppIcon167x167.png */,
+				71BAE49B20C9A3E800B594FA /* PEPAppIcon20x20.png */,
+				717D024E20BEAB2B0098893A /* Splash768x1024.png */,
+				717D024D20BEAB2A0098893A /* Splash1536x2048.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -961,38 +905,29 @@
 		717D000220B3092D0098893A /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				717D00C420B850D50098893A /* 1Trombone.wav */,
-				717D00C120B850D40098893A /* 2Trombone.wav */,
-				717D00BF20B850D40098893A /* 3Trombone.wav */,
-				717D00C320B850D50098893A /* 4Trombone.wav */,
-				717D00C220B850D50098893A /* 5Trombone.wav */,
-				717D00C020B850D40098893A /* 6Trombone.wav */,
-				717D003B20B309740098893A /* Bluetooth-OFF.png */,
-				717D003D20B309750098893A /* Bluetooth-ON.png */,
-				717D005F20B309CA0098893A /* Help.png */,
-				717D005D20B309C90098893A /* PEP-App.png */,
-				717D006020B309CA0098893A /* Settings.png */,
-				717D005E20B309C90098893A /* Users.png */,
 				717D006C20B313870098893A /* Balloon0.png */,
 				717D006E20B313890098893A /* Balloon1.png */,
 				717D007220B3138B0098893A /* Balloon2.png */,
 				717D006D20B313880098893A /* Balloon3.png */,
-				717D008E20B440D80098893A /* Info-ACTIVE.png */,
-				717D009720B440EE0098893A /* Main-Button-Picker-ALBUM.png */,
-				717D009820B440EF0098893A /* Main-Button-Picker-HICONTRAST.png */,
 				717D007020B3138A0098893A /* Balloon4.png */,
 				717D007320B3138C0098893A /* Balloon5.png */,
 				717D006F20B313890098893A /* Balloon6.png */,
 				717D007120B3138B0098893A /* Balloon7.png */,
 				717D006B20B313860098893A /* Balloon8.png */,
+				717D009720B440EE0098893A /* Main-Button-Picker-ALBUM.png */,
+				717D009820B440EF0098893A /* Main-Button-Picker-HICONTRAST.png */,
 				717D003C20B309750098893A /* Main-Background.png */,
-				717D003820B309730098893A /* Main-MOCKUP.png */,
 				717D006620B312C20098893A /* MainMode-BALLOON.png */,
 				717D006520B312C10098893A /* MainMode-BOTH.png */,
 				717D006720B312C30098893A /* MainMode-IMAGE.png */,
-				717D003920B309740098893A /* Main-Project.png */,
+				717D003B20B309740098893A /* Bluetooth-OFF.png */,
+				717D003D20B309750098893A /* Bluetooth-ON.png */,
 				717D003A20B309740098893A /* Sound-OFF.png */,
 				717D003720B309730098893A /* Sound-ON.png */,
+				717D005F20B309CA0098893A /* Help.png */,
+				717D006020B309CA0098893A /* Settings.png */,
+				717D005E20B309C90098893A /* Users.png */,
+				717D003920B309740098893A /* Main-Project.png */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -1017,6 +952,12 @@
 				717D012C20B851BC0098893A /* 1Ballon.wav */,
 				717D012B20B851BB0098893A /* 2Ballon.wav */,
 				717D012D20B851BC0098893A /* 3Ballon.wav */,
+				717D00C420B850D50098893A /* 1Trombone.wav */,
+				717D00C120B850D40098893A /* 2Trombone.wav */,
+				717D00BF20B850D40098893A /* 3Trombone.wav */,
+				717D00C320B850D50098893A /* 4Trombone.wav */,
+				717D00C220B850D50098893A /* 5Trombone.wav */,
+				717D00C020B850D40098893A /* 6Trombone.wav */,
 				717D012F20B851BC0098893A /* 4Ballon.wav */,
 				717D012E20B851BC0098893A /* 5Ballon.wav */,
 				717D013020B851BD0098893A /* 6Ballon.wav */,
@@ -1228,8 +1169,6 @@
 				7186DE161E4DBF7100F71F0C /* Session.m */,
 				71C9F9FA1E53356C0078070D /* AddNewUserOperation.h */,
 				71C9F9F81E53356C0078070D /* AddNewScoreOperation.h */,
-				7186DDEC1E4DBF4100F71F0C /* AllGamesForDayTableVC.h */,
-				7186DDED1E4DBF4100F71F0C /* AllGamesForDayTableVC.m */,
 				71C9F9CB1E53341D0078070D /* Game.h */,
 				71C9F9CC1E53341D0078070D /* Game.m */,
 				71C9F9D01E53341D0078070D /* AbstractGame.h */,
@@ -1315,7 +1254,6 @@
 		71C9F9CA1E53341D0078070D /* Balloon Game */ = {
 			isa = PBXGroup;
 			children = (
-				7186DDF21E4DBF4100F71F0C /* AllGamesForDayTableVC.xib */,
 				717D00AD20B474CE0098893A /* Balloon.h */,
 				717D00AE20B474CF0098893A /* Balloon.m */,
 				7186DDFB1E4DBF5F00F71F0C /* BalloonViewController.h */,
@@ -1327,9 +1265,12 @@
 		71C9F9CF1E53341D0078070D /* Users */ = {
 			isa = PBXGroup;
 			children = (
-				7186DE1C1E4DBF7100F71F0C /* UserListViewController.xib */,
+				7186DDEC1E4DBF4100F71F0C /* AllGamesForDayTableVC.h */,
+				7186DDED1E4DBF4100F71F0C /* AllGamesForDayTableVC.m */,
+				7186DDF21E4DBF4100F71F0C /* AllGamesForDayTableVC.xib */,
 				71C9FA1E1E5344EB0078070D /* UserListViewController.h */,
 				71C9FA1F1E5344EB0078070D /* UserListViewController.m */,
+				7186DE1C1E4DBF7100F71F0C /* UserListViewController.xib */,
 				7186DE031E4DBF5F00F71F0C /* HeaderView.h */,
 				7186DE041E4DBF5F00F71F0C /* HeaderView.m */,
 				71C9F9CD1E53341D0078070D /* User.h */,
@@ -1562,23 +1503,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71BAE49320C8607C00B594FA /* Users-INACTIVE-80x80.png in Resources */,
 				717D007720B3138C0098893A /* Balloon1.png in Resources */,
 				717D003520B309620098893A /* Login-Project.png in Resources */,
 				717D010D20B851750098893A /* 1droom.wav in Resources */,
 				717D020820BD9F170098893A /* btn_cancel@2x.png in Resources */,
 				717D020320BD9F170098893A /* btn_photo@3x.png in Resources */,
 				717D00CA20B850D50098893A /* 1Trombone.wav in Resources */,
-				7186DE9A1E4DBFA400F71F0C /* BilliardBreathAppIcon58x58.png in Resources */,
+				71BAE49C20C9A3E800B594FA /* PEPAppIcon20x20.png in Resources */,
 				7186DDF91E4DBF4100F71F0C /* AllGamesForDayTableVC.xib in Resources */,
 				717D023120BD9FD20098893A /* rtimagepicker_indicator.imageset in Resources */,
 				717D013420B851BD0098893A /* 5Ballon.wav in Resources */,
-				7186DEA21E4DBFA400F71F0C /* BilliardBreathAppIcon152x152.png in Resources */,
 				717D022E20BD9FD20098893A /* rtimagepicker_switch.imageset in Resources */,
 				7138E5962088FBA700C0C08F /* InfoViewController.xib in Resources */,
 				717D021420BD9F170098893A /* btn_thunder_off@2x.png in Resources */,
-				7186DE9E1E4DBFA400F71F0C /* BilliardBreathAppIcon100x100.png in Resources */,
 				7186DEE11E51CACC00F71F0C /* Default.png in Resources */,
-				71D1A36B2074FBC800C83B63 /* Logo-Top.png in Resources */,
 				717D007620B3138C0098893A /* Balloon3.png in Resources */,
 				717D006A20B312C30098893A /* MainMode-IMAGE.png in Resources */,
 				717D00EE20B851290098893A /* 6sirene fluit.wav in Resources */,
@@ -1589,6 +1528,7 @@
 				717D010620B8515D0098893A /* 1harp.wav in Resources */,
 				717D020F20BD9F170098893A /* btn_change@3x.png in Resources */,
 				717D021720BD9F170098893A /* btn_in@2x.png in Resources */,
+				71BAE4A320C9A82B00B594FA /* BUTTON-OnlineManual-ENG.png in Resources */,
 				717D015B20BD61310098893A /* Settings-Background.png in Resources */,
 				717D003320B309620098893A /* Login-Button-Signup.png in Resources */,
 				717D020B20BD9F170098893A /* btn_send.png in Resources */,
@@ -1602,21 +1542,18 @@
 				71D1A3662074FBC800C83B63 /* Mercury-Vertical.png in Resources */,
 				717D00BB20B850C30098893A /* 1xylofoon.wav in Resources */,
 				717D023020BD9FD20098893A /* rtimagepicker_arrow.imageset in Resources */,
-				7186DE971E4DBFA400F71F0C /* BilliardBreathAppIcon29x29.png in Resources */,
-				71693B90206937D3009F14EA /* BilliardBreath1024X1024.png in Resources */,
 				717D010120B8515D0098893A /* 5harp.wav in Resources */,
 				718E215A1E51DD0300E8357B /* LaunchScreen.storyboard in Resources */,
-				71D1A36D2074FBC800C83B63 /* Logo-Middle.png in Resources */,
 				7186DDF81E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.wav in Resources */,
 				717D00C520B850D50098893A /* 3Trombone.wav in Resources */,
 				717D007920B3138D0098893A /* Balloon4.png in Resources */,
 				717D012620B851A50098893A /* 6Bas slide.wav in Resources */,
+				71BAE4A120C9A82B00B594FA /* InfoBackground-ENG.png in Resources */,
 				717D022C20BD9FD20098893A /* rtimagepicker_flash_on.imageset in Resources */,
 				717D011E20B851910098893A /* 5bell synth.wav in Resources */,
 				717D007B20B3138D0098893A /* Balloon2.png in Resources */,
 				717D020C20BD9F170098893A /* btn_thunder_on@3x.png in Resources */,
 				717D00F920B851490098893A /* 1schuiffluit.wav in Resources */,
-				71D1A36C2074FBC800C83B63 /* MainBackground.png in Resources */,
 				717D005820B309940098893A /* 7 PEP APP.png in Resources */,
 				717D010420B8515D0098893A /* 4harp.wav in Resources */,
 				717D005920B309940098893A /* 5 Users.png in Resources */,
@@ -1624,20 +1561,17 @@
 				717D013B20B86CFE0098893A /* Splash.png in Resources */,
 				717D022A20BD9FD20098893A /* rtimagepicker_flash_off.imageset in Resources */,
 				717D015920BC96EC0098893A /* DummyInfo.png in Resources */,
-				717D009620B440D90098893A /* Info-ACTIVE.png in Resources */,
 				717D013220B851BD0098893A /* 1Ballon.wav in Resources */,
 				717D021A20BD9F170098893A /* btn_shoot@2x.png in Resources */,
 				717D004320B309750098893A /* Main-Background.png in Resources */,
 				717D004420B309750098893A /* Bluetooth-ON.png in Resources */,
 				717D00DE20B851100098893A /* 4spaceship.wav in Resources */,
 				717D007820B3138C0098893A /* Balloon6.png in Resources */,
-				717D003F20B309750098893A /* Main-MOCKUP.png in Resources */,
 				717D00D620B850F00098893A /* 4Toy Piano.wav in Resources */,
 				717D011B20B851910098893A /* 3bell synth.wav in Resources */,
 				717D006420B309CA0098893A /* Settings.png in Resources */,
 				717D00E220B851100098893A /* 2spaceship.wav in Resources */,
 				717D011120B851750098893A /* 5droom.wav in Resources */,
-				71D1A3692074FBC800C83B63 /* Logo-Full.png in Resources */,
 				71D1A3672074FBC800C83B63 /* PeakHoldArrow.png in Resources */,
 				717D020420BD9F170098893A /* btn_video@2x.png in Resources */,
 				717D015720BC84F00098893A /* MainTableViewController.xib in Resources */,
@@ -1649,21 +1583,21 @@
 				717D003420B309620098893A /* Login-Background.png in Resources */,
 				717D00BD20B850C30098893A /* 3xylofoon.wav in Resources */,
 				717D00E120B851100098893A /* 3spaceship.wav in Resources */,
-				717D006120B309CA0098893A /* PEP-App.png in Resources */,
 				717D00DD20B851100098893A /* 6spaceship.wav in Resources */,
 				717D00D520B850F00098893A /* 5Toy Piano.wav in Resources */,
 				7186DDD01E4DBE0D00F71F0C /* Main.storyboard in Resources */,
 				717D022D20BD9FD20098893A /* rtimagepicker_send.imageset in Resources */,
+				717D025020BEAB2B0098893A /* Splash768x1024.png in Resources */,
+				71BAE4A420C9A82B00B594FA /* InfoBackground-NL.png in Resources */,
 				7186DE141E4DBF5F00F71F0C /* Images.xcassets in Resources */,
 				7186DE111E4DBF5F00F71F0C /* GameViewController.xib in Resources */,
-				7186DE9D1E4DBFA400F71F0C /* BilliardBreathAppIcon80x80.png in Resources */,
 				717D004220B309750098893A /* Bluetooth-OFF.png in Resources */,
 				717D010F20B851750098893A /* 4droom.wav in Resources */,
+				717D024F20BEAB2B0098893A /* Splash1536x2048.png in Resources */,
+				71BAE4AC20C9AA7700B594FA /* Settings-ACTIVE-80x80.png in Resources */,
 				717D00EC20B851290098893A /* 5sirene fluit.wav in Resources */,
-				717D024920BEA1100098893A /* Info-INACTIVE-80x80.png in Resources */,
 				717D011C20B851910098893A /* 6bell synth.wav in Resources */,
 				717D023320BD9FD20098893A /* rtimagepicker_delete.imageset in Resources */,
-				710BDDE9207D1DFE00B1E393 /* PickPhotoButton.png in Resources */,
 				717D011D20B851910098893A /* 2bell synth.wav in Resources */,
 				717D005620B309940098893A /* 3 Navigation bar.png in Resources */,
 				717D00A420B44FC90098893A /* Settings-Button-EXHALE.png in Resources */,
@@ -1674,7 +1608,6 @@
 				717D007420B3138C0098893A /* Balloon8.png in Resources */,
 				717D00C820B850D50098893A /* 5Trombone.wav in Resources */,
 				717D012520B851A50098893A /* 4Bas slide.wav in Resources */,
-				7186DE981E4DBFA400F71F0C /* BilliardBreathAppIcon40x40.png in Resources */,
 				717D004020B309750098893A /* Main-Project.png in Resources */,
 				717D00C620B850D50098893A /* 6Trombone.wav in Resources */,
 				717D021120BD9F170098893A /* icon_ashbin@2x.png in Resources */,
@@ -1682,22 +1615,18 @@
 				717D00EA20B851290098893A /* 3sirene fluit.wav in Resources */,
 				717D022920BD9FD20098893A /* rtimagepicker_camera.imageset in Resources */,
 				717D00F520B851490098893A /* 5schuiffluit.wav in Resources */,
-				7186DE991E4DBFA400F71F0C /* BilliardBreathAppIcon50x50.png in Resources */,
-				71D1A3682074FBC800C83B63 /* StatsButton.png in Resources */,
 				717D009920B440F00098893A /* Main-Button-Picker-ALBUM.png in Resources */,
 				717D021520BD9F170098893A /* btn_d@3x.png in Resources */,
 				717D00E020B851100098893A /* 1spaceship.wav in Resources */,
 				717D010220B8515D0098893A /* 6harp.wav in Resources */,
-				7186DE9C1E4DBFA400F71F0C /* BilliardBreathAppIcon76x76.png in Resources */,
 				717D006920B312C30098893A /* MainMode-BALLOON.png in Resources */,
+				71BAE4A220C9A82B00B594FA /* BUTTON-OnlineManual-NL.png in Resources */,
 				717D021220BD9F170098893A /* btn_thunder_off@3x.png in Resources */,
 				717D012A20B851A50098893A /* 3Bas slide.wav in Resources */,
 				7186DE0D1E4DBF5F00F71F0C /* Crowd_cheer6.wav in Resources */,
 				717D020D20BD9F170098893A /* btn_video@3x.png in Resources */,
 				717D00FA20B851490098893A /* 6schuiffluit.wav in Resources */,
 				717D021D20BD9FAF0098893A /* rtimagepicker_snap.imageset in Resources */,
-				71D1A36A2074FBC800C83B63 /* Menu-Settings.png in Resources */,
-				7186DEA31E4DBFA400F71F0C /* BilliardBreathAppIcon167x167.png in Resources */,
 				717D007C20B3138D0098893A /* Balloon5.png in Resources */,
 				717D011020B851750098893A /* 3droom.wav in Resources */,
 				710BDDF1207E5B9400B1E393 /* SettingsViewController.xib in Resources */,
@@ -1706,7 +1635,6 @@
 				717D00A220B44FC90098893A /* Settings-Button-INHALE.png in Resources */,
 				717D00D120B850F00098893A /* 2Toy Piano.wav in Resources */,
 				717D011220B851750098893A /* 6droom.wav in Resources */,
-				7186DE9F1E4DBFA400F71F0C /* BilliardBreathAppIcon114x114.png in Resources */,
 				717D00BC20B850C30098893A /* 4xylofoon.wav in Resources */,
 				717D013620B851BD0098893A /* 6Ballon.wav in Resources */,
 				717D010520B8515D0098893A /* 3harp.wav in Resources */,
@@ -1718,14 +1646,12 @@
 				717D020E20BD9F170098893A /* icon_ashbin@3x.png in Resources */,
 				717D00A320B44FC90098893A /* Settings-MOCKUP.png in Resources */,
 				717D005A20B309940098893A /* 1 Background.png in Resources */,
-				7186DE9B1E4DBFA400F71F0C /* BilliardBreathAppIcon72x72.png in Resources */,
 				717D00C920B850D50098893A /* 4Trombone.wav in Resources */,
 				717D022F20BD9FD20098893A /* rtimagepicker_send_unselected.imageset in Resources */,
+				71BAE4AB20C9AA7700B594FA /* Settings-INACTIVE-80x80.png in Resources */,
 				717D006320B309CA0098893A /* Help.png in Resources */,
 				717D010E20B851750098893A /* 2droom.wav in Resources */,
-				71D1A35A2074F8F000C83B63 /* bell_3.png in Resources */,
 				717D012820B851A50098893A /* 1Bas slide.wav in Resources */,
-				717D024B20BEA1100098893A /* Users-INACTIVE-80x80.png in Resources */,
 				717D00F720B851490098893A /* 4schuiffluit.wav in Resources */,
 				717D00A620B44FC90098893A /* Settings-Project.png in Resources */,
 				717D00D420B850F00098893A /* 3Toy Piano.wav in Resources */,
@@ -1734,7 +1660,6 @@
 				717D020220BD9F170098893A /* btn_send 2.png in Resources */,
 				717D021320BD9F170098893A /* btn_in@3x.png in Resources */,
 				717D021820BD9F170098893A /* btn_send@2x.png in Resources */,
-				717D024C20BEA1100098893A /* PEP-App-INACTIVE-80x80.png in Resources */,
 				7186DEDF1E51CA2300F71F0C /* DefaultPortrait.png in Resources */,
 				717D00B920B850C30098893A /* 6xylofoon.wav in Resources */,
 				717D00F820B851490098893A /* 3schuiffluit.wav in Resources */,
@@ -1743,23 +1668,20 @@
 				71D1A65A207523C900C83B63 /* giraffe.jpg in Resources */,
 				717D00C720B850D50098893A /* 2Trombone.wav in Resources */,
 				717D021920BD9F170098893A /* btn_send@3x 2.png in Resources */,
-				71D1A3592074F8F000C83B63 /* bell_2.png in Resources */,
+				71BAE4AA20C9AA7700B594FA /* Info-INACTIVE-80x80.png in Resources */,
 				717D011A20B851910098893A /* 4bell synth.wav in Resources */,
+				71BAE4A920C9AA7700B594FA /* Info-ACTIVE-80x80.png in Resources */,
 				717D012920B851A50098893A /* 2Bas slide.wav in Resources */,
 				717D011920B851910098893A /* 1bell synth.wav in Resources */,
 				717D023220BD9FD20098893A /* rtimagepicker_dv.imageset in Resources */,
-				7186DEA11E4DBFA400F71F0C /* BilliardBreathAppIcon144x144.png in Resources */,
 				717D01D920BD9A9D0098893A /* RTImagePicker.storyboard in Resources */,
 				717D010320B8515D0098893A /* 2harp.wav in Resources */,
 				717D005B20B309940098893A /* 4 Info.png in Resources */,
 				710BDDEB207D24B600B1E393 /* giraffe-614141_1280.jpg in Resources */,
+				71BAE49220C8607C00B594FA /* PEP-App-INACTIVE-80x80.png in Resources */,
 				717D00F620B851490098893A /* 2schuiffluit.wav in Resources */,
 				717D020920BD9F170098893A /* btn_send@3x.png in Resources */,
-				7186DE961E4DBFA400F71F0C /* BilliardBreath1024X1024.jpg in Resources */,
-				717D024A20BEA1100098893A /* Settings-INACTIVE-80x80.png in Resources */,
-				71D1A36E2074FBC800C83B63 /* Menu-Users.png in Resources */,
 				717D00D320B850F00098893A /* 1Toy Piano.wav in Resources */,
-				71D1A35B2074F8F000C83B63 /* bell_1.png in Resources */,
 				717D00EB20B851290098893A /* 2sirene fluit.wav in Resources */,
 				717D013520B851BD0098893A /* 4Ballon.wav in Resources */,
 			);

@@ -19,15 +19,16 @@
 }
 -(void)build
 {
-    self.label=[[UILabel alloc]initWithFrame:CGRectMake(20,10, 500, self.bounds.size.height)];
+    self.label=[[UILabel alloc]initWithFrame:CGRectMake(50,30, 500, self.bounds.size.height)];
 
     [self.label setText:self.user.userName];
     [self addSubview:self.label];
     
     self.deleteButton=[UIButton buttonWithType:UIButtonTypeSystem];
-    self.deleteButton.frame=CGRectMake(self.bounds.size.width-100, 10, 100, self.bounds.size.height);
+    self.deleteButton.frame=CGRectMake(self.bounds.size.width-100, 30, 100, self.bounds.size.height);
     [self.deleteButton setTitle:@"Delete" forState:UIControlStateNormal];
     [self.deleteButton addTarget:self action:@selector(deleteAction) forControlEvents:UIControlEventTouchUpInside];
+    self.deleteButton.backgroundColor = [UIColor blackColor];
     [self addSubview:self.deleteButton];
     
     //added

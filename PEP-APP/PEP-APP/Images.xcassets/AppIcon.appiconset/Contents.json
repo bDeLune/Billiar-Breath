@@ -1,86 +1,87 @@
 {
   "images" : [
     {
-      "idiom" : "ipad",
       "size" : "20x20",
+      "idiom" : "ipad",
+      "filename" : "PEPAppIcon20x20.png",
       "scale" : "1x"
     },
     {
       "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "BilliardBreathAppIcon40x40-3.png",
+      "filename" : "PEPAppIcon40x40-1.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "BilliardBreathAppIcon29x29-1.png",
+      "filename" : "PEPAppIcon29x29.png",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "BilliardBreathAppIcon58x58-2.png",
+      "filename" : "PEPAppIcon58x58.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "BilliardBreathAppIcon40x40-2.png",
+      "filename" : "PEPAppIcon40x40-2.png",
       "scale" : "1x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "BilliardBreathAppIcon80x80-1.png",
+      "filename" : "PEPAppIcon80x80.png",
       "scale" : "2x"
     },
     {
       "size" : "50x50",
       "idiom" : "ipad",
-      "filename" : "BilliardBreathAppIcon50x50.png",
+      "filename" : "PEPAppIcon50x50.png",
       "scale" : "1x"
     },
     {
       "size" : "50x50",
       "idiom" : "ipad",
-      "filename" : "BilliardBreathAppIcon100x100.png",
+      "filename" : "PEPAppIcon100x100.png",
       "scale" : "2x"
     },
     {
       "size" : "72x72",
       "idiom" : "ipad",
-      "filename" : "BilliardBreathAppIcon72x72.png",
+      "filename" : "PEPAppIcon72x72.png",
       "scale" : "1x"
     },
     {
       "size" : "72x72",
       "idiom" : "ipad",
-      "filename" : "BilliardBreathAppIcon144x144-1.png",
+      "filename" : "PEPAppIcon144x144.png",
       "scale" : "2x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "BilliardBreathAppIcon76x76.png",
+      "filename" : "PEPAppIcon76x76.png",
       "scale" : "1x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "BilliardBreathAppIcon152x152.png",
+      "filename" : "PEPAppIcon152x152.png",
       "scale" : "2x"
     },
     {
       "size" : "83.5x83.5",
       "idiom" : "ipad",
-      "filename" : "BilliardBreathAppIcon167x167.png",
+      "filename" : "PEPAppIcon167x167.png",
       "scale" : "2x"
     },
     {
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "BilliardBreath1024X1024.png",
+      "filename" : "PEPAppIcon1024X1024.png",
       "scale" : "1x"
     }
   ],

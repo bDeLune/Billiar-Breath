@@ -94,15 +94,20 @@
     return [mutable count];
     return 0;
 }
+
 -(void)getUniqueDates{
     
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [self.backgroundColouredImage bringSubviewToFront:self.view];
-        [self.backgroundColouredImage sendSubviewToBack:self.tableView];
+    [self.backgroundColouredImage sendSubviewToBack:self.tableView];
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+    
+    self.tableView.backgroundColor = [UIColor colorWithRed:232/255.0f green:233/255.0f blue:237/255.0f alpha:1.0f] ;
+    self.tableView.backgroundView.backgroundColor = [UIColor colorWithRed:232/255.0f green:233/255.0f blue:237/255.0f alpha:1.0f] ;
+
 }
 
 - (void)viewDidLoad
@@ -116,7 +121,7 @@
     [recognizer setDirection:(  UISwipeGestureRecognizerDirectionLeft)];
     // [[self view] addGestureRecognizer:recognizer];
     [self.backgroundColouredImage bringSubviewToFront:self.view];
-        [self.backgroundColouredImage sendSubviewToBack:self.tableView];
+    [self.backgroundColouredImage sendSubviewToBack:self.tableView];
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
@@ -189,14 +194,14 @@
 
     NSArray  *dates=[self sortedDateArrayForUser:user];
     dates=[[dates reverseObjectEnumerator]allObjects];
-    NSDate * dateAtRow =[dates objectAtIndex:indexPath.row];
+    //NSDate * dateAtRow =[dates objectAtIndex:indexPath.row];
     NSString *stringFromDate =[dates objectAtIndex:indexPath.row];
     cell.textLabel.text= stringFromDate;
     return cell;
 }
 -(NSArray*)gamesMatchingDate:(NSString*)date user:(User*)user
 {
-    NSArray *array=nil;
+   // NSArray *array=nil;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"dd MMM y "];
     NSPredicate *shortNamePredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
@@ -205,13 +210,13 @@
         NSString  *datestring=[formatter stringFromDate:gamedate];
         return [datestring isEqualToString:date];
         return YES;
-        /// return [(Game*)[evaluatedObject gameDate]] ;
+        /// return [(Game*)[evaluatedObject gameDate]];
     }];
     
     NSArray *unfiltered=[user.game allObjects];
     NSArray *filtered=[unfiltered filteredArrayUsingPredicate:shortNamePredicate];
-    NSMutableArray  *mut=[NSMutableArray arrayWithArray:filtered];
-    NSMutableArray  *temp=[NSMutableArray arrayWithArray:filtered];
+   // NSMutableArray  *mut=[NSMutableArray arrayWithArray:filtered];
+   // NSMutableArray  *temp=[NSMutableArray arrayWithArray:filtered];
     //NSMutableArray *tempcopy= [[NSMutableArray alloc] initWithObjects:unfiltered, nil];
     NSLog(@"gamesMatchingDate username %@", user.userName);
     NSLog(@"gamesMatchingDate unfiltered %@", unfiltered);
@@ -227,6 +232,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+   // [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     User  *user=[self.userList objectAtIndex:indexPath.section];
     NSArray  *dates=[self sortedDateArrayForUser:user];
     dates=[[dates reverseObjectEnumerator]allObjects];
@@ -235,6 +242,7 @@
     NSArray  *array=[self gamesMatchingDate:[dates objectAtIndex:indexPath.row] user:user];
     //NSLog(@"didSelectRowAtIndexPath for array %@", array);
     NSMutableArray  *durationOnly=[NSMutableArray new];
+    
     
     for (Game *agame in array) {
        NSLog(@"GAMELABEL -  ADDING didSelectRowAtIndexPath for array %@", array);
@@ -245,7 +253,14 @@
         }
        NSLog(@"didSelectRowAtIndexPath  for username %@ durationOnlyarray %@" , user.userName , durationOnly);
     [detailViewController setUSerData:durationOnly];
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    //[self.navigationController pushViewController:detailViewController animated:YES];
+    
+   // [self presentViewController:detailViewController animated:YES completion:nil];
+    ///SecondViewController *vc = [[SecondViewController alloc] init];
+    detailViewController.view.frame = CGRectMake(97,228,569,595); //Your own CGRect
+    [self.view addSubview:detailViewController.view]; //If you don't want to show inside a specific view
+    [self addChildViewController:detailViewController];
+    [self didMoveToParentViewController:detailViewController];
 }
 
 // called after fetched results controller received a content change notification
@@ -292,7 +307,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 40;
+    return 60;
 }
 
 -(void)deleteMember:(HeaderView *)header
@@ -313,6 +328,7 @@
 
 -(void)viewHistoricalData:(HeaderView *)header
 {
+    NSLog(@"Searching for historical data");
     User *user=[self.userList objectAtIndex:header.section];
     NSArray * src=[user.game allObjects];
     NSMutableArray  *durationOnly=[NSMutableArray new];

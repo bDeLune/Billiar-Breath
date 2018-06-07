@@ -14,7 +14,7 @@
     NSTimer  *timer;
     BOOL  sessionRunning;
     NSTimer  *effecttimer;
-    UIImageView  *bellImageView;
+   // UIImageView  *bellImageView;
     UIImageView  *bg;
     int threshold;
     AVAudioPlayer *audioPlayer;
@@ -58,18 +58,20 @@
         [self.gaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
         [self.gaugeView start];
         
-        NSArray *imageNames = @[@"bell_1.png", @"bell_2.png", @"bell_3.png", @"bell_2.png",@"bell_1.png"];
-        NSMutableArray *images = [[NSMutableArray
-                                   alloc] init];
-        for (int i = 0; i < imageNames.count; i++) {
-            [images addObject:[UIImage imageNamed:[imageNames objectAtIndex:i]]];
-        }
+       // NSArray *imageNames = @[@"bell_1.png", @"bell_2.png", @"bell_3.png", @"bell_2.png",@"bell_1.png"];
+        //NSMutableArray *images = [[NSMutableArray
+         //                          alloc] init];
+        //for (int i = 0; i < [imageNames count]; i++) {
+        //    NSLog(@"I is %d ", i);
+        //    NSLog(@"[imageNames count] is %d ", [imageNames count]);
+        //    [images addObject:[UIImage imageNamed:[imageNames objectAtIndex:i]]];
+        //}
         
-        bellImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.gaugeView.frame.origin.x, self.gaugeView.frame.origin.y-50, 100, 100)];
-        bellImageView.animationImages = images;
-        bellImageView.animationDuration = 0.7;
+        //bellImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.gaugeView.frame.origin.x, self.gaugeView.frame.origin.y-50, 100, 100)];
+        //bellImageView.animationImages = images;
+        //bellImageView.animationDuration = 0.7;
         
-        [self.view addSubview:bellImageView];
+        //[self.view addSubview:bellImageView];
         
         [speedSlider setValue:4 animated:YES];
         currentlyExhaling = false;

@@ -61,16 +61,26 @@
                                   image:[UIImage imageNamed:@"Info-INACTIVE-80x80"]
                                     tag:4];
     
+    self.infoViewController.tabBarItem.title = @"";
+    self.userListViewController.tabBarItem.title = @"";
+    self.settingsViewController.tabBarItem.title = @"";
+    self.gameViewController.tabBarItem.title = @"";
+    
+    //self.infoViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(0, 0, 0 , 0);
+    //self.settingsViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(0, 3, 0, 3);
+    //self.userListViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(0, 0, 6, 0);
+
+    
     self.delegate = self;
 }
 
 - (void)viewWillLayoutSubviews {
     CGRect tabFrame = self.tabBar.frame;
-    tabFrame.size.height = 140;
+    tabFrame.size.height = 130;
     tabFrame.origin.y = self.view.frame.size.height - 110;
     self.tabBar.frame = tabFrame;
-    
-    self.tabBar.itemSpacing = 100;
+
+    [self.tabBar setItemPositioning:UITabBarItemPositioningFill];
 }
 
 -(void)setMemoryInfo:(NSPersistentStoreCoordinator*)store withuser:(User*)user{
@@ -93,10 +103,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     self.tableview =tableView;
     CGRect bounds = [self.tableview bounds];
-    [self.tableview setBounds:CGRectMake(bounds.origin.x,
-                                                    bounds.origin.y,
-                                                    bounds.size.width,
-                                                    bounds.size.height + 20)];
+
     return 0;
 }
 
@@ -105,6 +112,9 @@
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+    
+    
+  //  [self.userListViewController.detailViewController dismissViewControllerAnimated:YES completion:nil];
     
     NSLog(@"selected index : %i",[tabBarController selectedIndex]);
     if ([tabBarController selectedIndex] == 1){
