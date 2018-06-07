@@ -28,7 +28,7 @@
     self.deleteButton.frame=CGRectMake(self.bounds.size.width-100, 30, 100, self.bounds.size.height);
     [self.deleteButton setTitle:@"Delete" forState:UIControlStateNormal];
     [self.deleteButton addTarget:self action:@selector(deleteAction) forControlEvents:UIControlEventTouchUpInside];
-    self.deleteButton.backgroundColor = [UIColor blackColor];
+    [self.deleteButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [self addSubview:self.deleteButton];
     
     //added

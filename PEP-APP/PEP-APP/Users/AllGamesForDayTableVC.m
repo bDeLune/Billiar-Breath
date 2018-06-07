@@ -48,17 +48,20 @@
     self.tableView.backgroundColor = [UIColor colorWithRed:232/255.0f green:233/255.0f blue:237/255.0f alpha:1.0f] ;
     self.tableView.backgroundView.backgroundColor = [UIColor colorWithRed:232/255.0f green:233/255.0f blue:237/255.0f alpha:1.0f] ;
     
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+   // self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     
     NSLog(@"DISSAPEARS: go back to users");
-    //[self dismissViewControllerAnimated:YES completion:nil];
-    [self removeFromParentViewController];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self.view removeFromSuperview];
+    
+   // [self removeFromParentViewController];
 }
 
-- (void)goBack {
+- (void)goBack:(UIButton *)sender  {
     NSLog(@"go back to users");
     [self removeFromParentViewController];
 }
@@ -127,10 +130,12 @@
     [header build];
     
     self.backButton=[UIButton buttonWithType:UIButtonTypeSystem];
-    self.backButton.frame=CGRectMake(400, 30, 250, 0);
+    self.backButton.frame=CGRectMake(370, 25, 480, 0);
     [self.backButton setTitle:@"Back" forState:UIControlStateNormal];
-    [self.backButton addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
+    [self.backButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [self.backButton addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventAllEvents];
     [self.view addSubview:self.backButton];
+    [self.view bringSubviewToFront:self.backButton];
     
     return header;
 }

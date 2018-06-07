@@ -255,10 +255,12 @@
     [detailViewController setUSerData:durationOnly];
     //[self.navigationController pushViewController:detailViewController animated:YES];
     
-   // [self presentViewController:detailViewController animated:YES completion:nil];
+
     ///SecondViewController *vc = [[SecondViewController alloc] init];
     detailViewController.view.frame = CGRectMake(97,228,569,595); //Your own CGRect
-    [self.view addSubview:detailViewController.view]; //If you don't want to show inside a specific view
+    
+    //[self presentViewController:detailViewController animated:YES completion:nil];
+    [self.view addSubview:detailViewController.view];
     [self addChildViewController:detailViewController];
     [self didMoveToParentViewController:detailViewController];
 }

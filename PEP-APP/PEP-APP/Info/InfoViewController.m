@@ -14,6 +14,12 @@
     NSLog(@"Returning to game view");
     [self dismissViewControllerAnimated:true completion:nil];
 }
+- (IBAction)goToWebsite:(id)sender {
+    
+    NSLog(@"Moving to website");
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"http://www.google.com"]];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
