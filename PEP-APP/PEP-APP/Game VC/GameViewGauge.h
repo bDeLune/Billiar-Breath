@@ -13,7 +13,6 @@
 
 -(void)start;
 -(void)stop;
--(void)stopGauge;
 -(void)setForce:(float)pforce;
 -(void)blowingBegan;
 -(void)blowingEnded;

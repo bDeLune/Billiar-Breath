@@ -9,7 +9,6 @@
 @class Balloon;
 @protocol BalloonProtocol <NSObject>
 -(void)balloonReachedFinalTarget:(Balloon*)ball;
--(void)setBalloonStage:(Balloon*)balloon atStage:(int)stage;
 @end
 @interface Balloon : UIView <NSObject, CAAnimationDelegate>//ADDED
 @property (nonatomic,strong)NSNumber  *weight;

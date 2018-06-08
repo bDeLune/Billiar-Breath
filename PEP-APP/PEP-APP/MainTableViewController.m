@@ -81,12 +81,6 @@
     self.userListViewController.tabBarItem.title = @"";
     self.settingsViewController.tabBarItem.title = @"";
     self.gameViewController.tabBarItem.title = @"";
-    
-    //self.infoViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(0, 0, 0 , 0);
-    //self.settingsViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(0, 3, 0, 3);
-    //self.userListViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(0, 0, 6, 0);
-
-    
     self.delegate = self;
 }
 
@@ -95,12 +89,10 @@
     tabFrame.size.height = 130;
     tabFrame.origin.y = self.view.frame.size.height - 110;
     self.tabBar.frame = tabFrame;
-
     [self.tabBar setItemPositioning:UITabBarItemPositioningFill];
 }
 
 -(void)setMemoryInfo:(NSPersistentStoreCoordinator*)store withuser:(User*)user{
-    
     NSLog(@"setting memory info");
     self.gameViewController.gameUser=user;
     [self.gameViewController setLabels];
@@ -118,8 +110,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     self.tableview =tableView;
-    CGRect bounds = [self.tableview bounds];
-
     return 0;
 }
 
@@ -129,9 +119,7 @@
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
     
-    
-  //  [self.userListViewController.detailViewController dismissViewControllerAnimated:YES completion:nil];
-    
+    //[self.userListViewController.detailViewController dismissViewControllerAnimated:YES completion:nil];
     NSLog(@"selected index : %i",[tabBarController selectedIndex]);
     if ([tabBarController selectedIndex] == 1){
         

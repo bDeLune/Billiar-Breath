@@ -16,10 +16,8 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import "UIEffectDesignerView.h"
 #import <AVFoundation/AVFoundation.h>
-#import "RTImagePickerViewController.h"
-#import "RTShortVideoViewController.h"
 
-@interface GameViewController ()<BTLEManagerDelegate,RTImagePickerViewControllerDelegate, UITabBarDelegate,UITabBarControllerDelegate, SETTINGS_DELEGATE>
+@interface GameViewController ()<BTLEManagerDelegate, UITabBarDelegate,UITabBarControllerDelegate, SETTINGS_DELEGATE>
 {
     int threshold;
     CADisplayLink *testDurationDisplayLink;
@@ -81,6 +79,7 @@
 @property (nonatomic,strong)GameViewGauge  *mainGaugeView;
 @property (nonatomic,strong)SettingsViewGauge  *gaugeView;
 @property (nonatomic,strong)BTLEManager  *btleMager;
+@property (nonatomic,strong)UIView  *hqPickerContainer;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic,strong)NSOperationQueue  *addGameQueue;
 @property (nonatomic,strong) BalloonViewController  *balloonViewController;
@@ -227,7 +226,6 @@
     }
     
     [self.balloonViewController blowStarted: self.sequenceGameController.currentBall atSpeed:selectedSpeed];
-    
     [self.settingsViewController setSettingsDurationLabelText: 0];
     
     if ((self.midiController.toggleIsON == 0 && wasExhaling == 1) || (self.midiController.toggleIsON == 1 && wasExhaling == 0)){
@@ -282,7 +280,6 @@
         return;
     }
     
-   
     self.midiController.velocity=127.0*percentOfmax;
     self.midiController.speed= (fabs( self.midiController.velocity- self.midiController.previousVelocity));
     self.midiController.previousVelocity= self.midiController.velocity;
@@ -357,7 +354,6 @@
 }
 
 - (IBAction)goToSettings:(id)sender {
-   // [self.mainGaugeView stopGauge];
     self.currentGameType = gameTypeTest;
     self.balloonViewController.currentGameType = self.currentGameType;
 
@@ -527,26 +523,16 @@
     }
     
     if (self.gaugeView.animationRunning) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            //   [_debugTextField setText:@"\nMidi Began"];
-        });
-        //        [self beginNewSession];
         [self.gaugeView blowingBegan];
     }
     
     if (self.settingsViewController.gaugeView.animationRunning) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            //   [_debugTextField setText:@"\nMidi Began"];
-        });
-        //        [self beginNewSession];
         [[self.settingsViewController gaugeView] blowingBegan];
     }
 }
 
 -(void)midiNoteStopped:(MidiController*)midi
 {
-    // NSLog(@"Midi Stopped\n");
-    
     if ((self.midiController.toggleIsON == false && wasExhaling == true) || (self.midiController.toggleIsON == true && wasExhaling == false)){
         // NSLog(@"MIDI NOTES STOPPED HERE");
         switch (self.currentGameType) {
@@ -593,7 +579,6 @@
         if (midi.velocity!=127) {
             self.currentSession.sessionStrength=[NSNumber numberWithFloat:midi.velocity];
         }
-        // [gaugeView setArrowPos:0];
     }
     
     self.currentSession.sessionSpeed=[NSNumber numberWithFloat:midi.speed];
@@ -707,8 +692,6 @@
             NSString  *durationtext=[NSString stringWithFormat:@"%0.1f",self.sequenceGameController.time];
             
             if (midi.speed!=0) {
-                NSLog(@"trying to shoot balls to top");
-                [self.balloonViewController shootBallToTop:self.sequenceGameController.currentBall withAcceleration:midi.speed];
                 self.sequenceGameController.totalBallsRaised++;
                 [self.sequenceGameController playHitTop];
             }
@@ -936,32 +919,104 @@
 - (void)photoButtonBundleAction
 {
     NSLog(@"PHOTO Bundle ACTION");
+    //creating the UIView object
+    self.hqPickerContainer = [[UIView alloc] initWithFrame:CGRectMake(280, 520, 250, 270)];
+    self.hqPickerContainer.backgroundColor = [UIColor blackColor];
     
-    //if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-  ////      popover = [[UIPopoverController alloc] initWithContentViewController:hqImagePickerController];
-  //      [popover presentPopoverFromRect:CGRectMake(0, 0, 500, 500) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-   // } else {
-   //     //[self presentModalViewController:imagePickerController animated:YES];
-  //  }
+    //UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(160, 420, 350, 350)];
+    //scrollView.backgroundColor = [UIColor whiteColor];
     
-    RTImagePickerViewController *imagePickerController = [RTImagePickerViewController new];
-    imagePickerController.delegate = self;
-    imagePickerController.mediaType = RTImagePickerMediaTypeImage;
-    imagePickerController.allowsMultipleSelection = NO;
-    imagePickerController.showsNumberOfSelectedAssets = NO;
-    imagePickerController.maximumNumberOfSelection = 1;
+    NSArray *hqImages = [self getHQImages];
+    CGFloat currentX = 2.0f;
+    CGFloat currentY = 2.0f;
     
-   // _selectedAsster = [NSMutableOrderedSet];
+    NSLog(@"hqImages %@", hqImages);
+    NSLog(@"[hqImages count] %lu", (unsigned long)[hqImages count]);
     
-   // self.assetBundle = [NSBundle bundleForClass:[self class]];
-    //NSString *bundlePath = [self.assetBundle pathForResource @"RTImagePicker" ofType @".png"];
-    //if (bundlePath){
-    //    self.assetBundle = [NSBundle bundleWithPath:bundlePath];
-    //b}
+    for (int i=0; i < [hqImages count]; i++) {
+        
+        //NSLog(@"index %d", i);
+        UIImage *image = [UIImage imageNamed:[hqImages objectAtIndex:i]];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 50)];
+        imageView.image= image;
+        CGRect rect = imageView.frame;
+        rect.origin.x = currentX;
+        rect.origin.y = currentY;
+        imageView.frame = rect;
+        
+        if(i == 0){
+           // NSLog(@"first");
+            
+        }else if (i % 4 == 0){
+          //  NSLog(@"nextline: i %d", i);
+            currentY += 54;
+            rect.origin.y = currentY;
+            currentX = 2.0f;
+            rect.origin.x = currentX;
+        }else if (i == 19){
+            NSLog(@"adding last image");
+            UIImage *lastImage = [UIImage imageNamed:@"HQ 1.jpg"];
+            UIImageView *lastImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 50)];
+            lastImageView.image= lastImage;
+            CGRect lastRect = lastImageView.frame;
+            lastRect.origin.x = 184;
+            lastRect.origin.y = 218;
+            lastImageView.frame = lastRect;
+            lastImageView.userInteractionEnabled = YES;
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
+            [lastImageView addGestureRecognizer:tap];
+            [self.hqPickerContainer addSubview:lastImageView];
+            [self.hqPickerContainer bringSubviewToFront:lastImageView];
+        }else{
+          //  NSLog(@"addding: i %d", i);
+            currentX += imageView.frame.size.width + 2;
+        }
+        
+        imageView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
+        [imageView addGestureRecognizer:tap];
+
+        NSLog(@"placing %d at x %f / y %f", i, rect.origin.x, rect.origin.y);
+        [self.hqPickerContainer addSubview:imageView];
+        [self.hqPickerContainer bringSubviewToFront:imageView];
+    }
     
+    [self.view addSubview: self.hqPickerContainer];
+}
+
+- (IBAction)tapGesture:(UITapGestureRecognizer*)gesture
+{
+    NSLog(@"tap gesture");
+    // In your controller, you have the main view, which is the view
+    // on which you added your UIViews.  You need that view.  Add it as an IBOutlet
+    // You should know how to do that...  ctrl-drag to the class INTERFACE source.
+    // Assuming you name it "galleryView"
     
-    [self presentViewController:imagePickerController animated:YES completion:^{
-    }];
+    // Take the tap location from the gesture, and make sure it is in the
+    // coordinate space of the view.  Loop through all the imageViews and
+    // find the one that contains the point where the finger was taped.
+    // Then, "remove" that one from its superview...
+    CGPoint tapLocation = [gesture locationInView: self.hqPickerContainer];
+    for (UIImageView *imageView in self.hqPickerContainer.subviews) {
+        
+         NSLog(@"imageView");
+        if (CGRectContainsPoint(imageView.frame, tapLocation)) {
+            // [imageView removeFromSuperview];
+            [self setupDisplayFilteringWithImage:imageView.image];
+        }
+    }
+    
+    [self.hqPickerContainer removeFromSuperview];
+}
+
+-(NSArray*)getHQImages{
+    
+    NSString *bundleRootPath = [[NSBundle mainBundle] bundlePath];
+    NSArray *bundleRootContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:bundleRootPath error:nil];
+    NSArray *files = [bundleRootContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self beginswith 'HQ'"]]; //you can provide your string in ' ' to filter specific content
+    //NSLog(@"FILES  - - - %@",files);
+    
+    return files;
 }
 
 @synthesize midiexhale,midiinhale,velocity;
@@ -1254,15 +1309,12 @@
     [stillImageFilter addTarget:imageView];
     
     self.mainGaugeView.MainGaugeDelegate=self;
-   // [self.view addSubview:self.mainGaugeView ];
-   // [self.view sendSubviewToBack:self.mainGaugeView];
     [self.mainGaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
     [self.mainGaugeView start];
     [self.mainGaugeView setForce:0];
 }
 
 -(void)setRepetitionCount:(int)value{
-    
     NSLog(@"inner Setting balloon game repetition count to %d ", value);
     NSLog(@"count %d ", value);
     selectedBallCount = value;
@@ -1340,9 +1392,6 @@
 
 
 -(void) playImageGameSound {
-    
-    NSLog(@"Playing image game sound %@", currentImageGameSound);
-    NSLog(@" image game speed %d", selectedSpeed);
     NSString* imageName = @"";
     
     if (_currentGameType == gameTypeBalloon){
@@ -1352,6 +1401,7 @@
     }
     
     NSLog(@"Playing sound:  %@", imageName);
+    NSLog(@" image game speed %d", selectedSpeed);
     
     NSString *soundPath = [[NSBundle mainBundle] pathForResource: imageName ofType:@"wav"];
     NSData *fileData = [NSData dataWithContentsOfFile:soundPath];
@@ -1397,20 +1447,12 @@
 
 -(void)start
 {
-    //  [self stop];
-    //[self setDefaults];
-    // if (!animationRunning)
-    // {
     NSLog(@"Starting mage game");
-    //[self playImageGameSound];
     displayLink = [CADisplayLink displayLinkWithTarget:self
                                               selector:@selector(animate)];
     [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
     animationRunning = YES;
-    //}
 }
-
-///GAUGE STUFF
 
 -(void)setResitance:(int)pvalue
 {
@@ -1444,48 +1486,6 @@
     return TRUE;
 }
 
-
-- (void)rt_imagePickerController:(RTImagePickerViewController *)imagePickerController didFinishPickingImage:(UIImage*)image
-{
-   // NSLog(@"Send %@",image);
-    NSLog(@"PHOTO LIBRARY did pick ACTION - imagePickerController");
-    
-  //  NSLog(@"picker %@", picker);
-    
-   // UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
-    [self setupDisplayFilteringWithImage:image];
-    
-    //obtaining saving path
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    //NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:@"latest_photo.png"];
-    
-    //extracting image from the picker and saving it
-   // NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
-    //if ([mediaType isEqualToString:@"public.image"]){
-        //UIImage *editedImage = [info objectForKey:UIImagePickerControllerEditedImage];
-    //    NSData *webData = UIImagePNGRepresentation(image);
-    ///    [webData writeToFile:imagePath atomically:YES];
-   // }
-    
-    [imagePickerController dismissViewControllerAnimated:YES completion:^{
-    }];
-}
-
-- (void)rt_imagePickerControllerDidCancel:(RTImagePickerViewController *)imagePickerController
-{
-    [imagePickerController dismissViewControllerAnimated:YES completion:^{
-    }];
-}
-
-- (void)rt_imagePickerController:(RTImagePickerViewController *)imagePickerController didFinishPickingVideoWithURL:(NSURL *)videoURL
-{
-    NSLog(@"didFinishPickingVideoWithURL : %@",videoURL);
-    [imagePickerController dismissViewControllerAnimated:YES completion:^{
-    }];
-    
-    
-}
 
 
 @end

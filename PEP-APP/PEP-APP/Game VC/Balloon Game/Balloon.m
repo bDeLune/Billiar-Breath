@@ -6,7 +6,7 @@
     float velocity;
     float distance;
     float time;
-    float acceleration;// force/ mass
+    float acceleration;
     BOOL  isaccelerating;
     float force;
     float mass;
@@ -71,15 +71,11 @@
     
     timeCounter = 0;
     [NSTimer scheduledTimerWithTimeInterval:.5 target:self selector:@selector(timekeeper) userInfo:nil repeats:YES];
-    
-   
 }
 
 -(void) setSpeed:(int)speed allowAnimate:(BOOL)allow{
-    
     allowBalloonAnimation = allow;
     selectedSpeed = speed;
-    
 }
 
 - (void)timekeeper{
@@ -87,13 +83,7 @@
     timeCounter += .5;
     int selectedSpeedSetting = selectedSpeed;
     int percentageComplete = (timeCounter/selectedSpeedSetting)*100;
-    
-    NSLog(@"Anmatiig balloon");
-    NSLog(@"selectedSpeed %d",selectedSpeed);
-    NSLog(@"allowBalloonAnimation %hhd",allowBalloonAnimation);
-    
     if (allowBalloonAnimation == 0){
-        
         NSLog(@"Balloon animation deactivated");
     }
     
@@ -101,36 +91,22 @@
     NSLog(@"percentageTowardsCompletion = %d", percentageComplete);
     
     if (percentageComplete > 0 && percentageComplete < 12.5){
-        [self.delegate setBalloonStage:self atStage: 1];
          self.currentBalloonImage.image = [UIImage imageNamed:@"Balloon1"];
     }else if (percentageComplete > 12.5 && percentageComplete < 25){
-        [self.delegate setBalloonStage:self atStage: 2];
          self.currentBalloonImage.image = [UIImage imageNamed:@"Balloon2"];
     }else if (percentageComplete > 25 && percentageComplete < 37.5){
-        [self.delegate setBalloonStage:self atStage: 3];
          self.currentBalloonImage.image = [UIImage imageNamed:@"Balloon3"];
     }else if(percentageComplete > 50 && percentageComplete < 62.5){
-        [self.delegate setBalloonStage:self atStage: 4];
          self.currentBalloonImage.image = [UIImage imageNamed:@"Balloon4"];
     }else if(percentageComplete > 62.5 && percentageComplete < 75){
-        [self.delegate setBalloonStage:self atStage: 5];
          self.currentBalloonImage.image = [UIImage imageNamed:@"Balloon5"];
     }else if(percentageComplete > 75 && percentageComplete < 87.5){
-        [self.delegate setBalloonStage:self atStage: 6];
          self.currentBalloonImage.image = [UIImage imageNamed:@"Balloon6"];
     }else if(percentageComplete > 87.5 && percentageComplete < 100){
-        [self.delegate setBalloonStage:self atStage: 7];
          self.currentBalloonImage.image = [UIImage imageNamed:@"Balloon7"];
     }else if(percentageComplete == 100){
-        [self.delegate setBalloonStage:self atStage: 8];
          self.currentBalloonImage.image = [UIImage imageNamed:@"Balloon8"];
     }
-    
-    //change - make more efficient
-    
-      //  [[GCDQueue mainQueue]queueBlock:^{
-       //     [self.delegate balloonReachedFinalTarget:self];
-       // } afterDelay:0.1];
 }
 
 -(void)blowingEnded
@@ -175,23 +151,17 @@
     frame.origin.y=0;
     self.frame=frame;
     [self setNeedsDisplay];
-    /// [[GCDQueue mainQueue]queueBlock:^{
     if (_animationRunning) {
         [displayLink invalidate];
         _animationRunning=NO;
-        //added
         [[GCDQueue mainQueue]queueBlock:^{
             [self.delegate balloonReachedFinalTarget:self];
         } afterDelay:0.1];
     }
-    ///  NSLog(@"Stopped!!");
-    /// }];
 }
 
 -(void)start
 {
-    // [self stop];
-    //ADDED
     [self setDefaults];
     if (!_animationRunning)
     {
@@ -236,21 +206,11 @@
         [self setFrame:frame];
     }else
     {
-        // distance=GUAGE_HEIGHT;
         NSLog(@"POWER %f", force);
         frame.origin.y=0;
         self.frame=frame;
         [self setNeedsDisplay];
-        if (isstopping) {
-            //  return;
-        }
-        
-        /// [[GCDQueue mainQueue]queueBlock:^{
         [self stop];
-        ///  } afterDelay:0.01];
-        //isstopping=YES;
     }
-    //[self setNeedsDisplay];
-    //1/2*a*t2
 }
 @end

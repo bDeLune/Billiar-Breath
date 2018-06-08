@@ -104,8 +104,6 @@
     distance=0.1;
     time=0.1;
     acceleration=0.1;
-    // mass=1;
-    //force=15;
     h=0;
     hm=0;
     anim_delay=0;
@@ -195,17 +193,6 @@
     //     _animationRunning=NO;
     // }
 }
-
--(void)stopGauge
-{
-    //change: stop animation when in other view
-    //  NSLog(@"MAIN GAUGE STOP");
-   // if (_animationRunning) {
-   //     [displayLink invalidate];
-   //     _animationRunning=NO;
-  //  }
-}
-
 
 -(void)start
 {

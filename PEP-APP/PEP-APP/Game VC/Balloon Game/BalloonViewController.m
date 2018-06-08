@@ -170,10 +170,6 @@
         [CATransaction begin];
         [CATransaction setValue:[NSNumber numberWithFloat:0.750] forKey:kCATransactionAnimationDuration];
         CGPoint targetCenter=CGPointMake(ball.center.x,self.view.bounds.size.height-BALL_RADIUS/2 );
-        // ball.animation = [CAKeyframeAnimation animationWithKeyPath:@"position"
-        //                                                     function:BounceEaseOut
-        //                                                    fromPoint:ball.center
-        //                                                      toPoint:targetCenter];
         ball.animation = [self dockBounceAnimationWithIconHeight:150];
         ball.targetPoint=targetCenter;
         [ball.animation setDelegate:ball];
@@ -181,55 +177,10 @@
         [layer addAnimation:ball.animation forKey:@"position"];
         [CATransaction commit];
         [ball setCenter:targetCenter];
-        
-        //added animation
-        //find starting point of animation
-        //find speed set by user - this is the animation duration
-        //find duration of current blow (maybe not essential)
-        //if user stops blowing stop animation and set image to current image
-        //move to next ball
-        //decide if still a win even if the all balls arent completed
-        
-        //on final balloon, add extra frame to the animation (blow up)
-        
-       // NSLog(@"animate ball start");
-        
-      ///  CAKeyframeAnimation *keyframeAnimation = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
-      ///  keyframeAnimation.values =  [NSArray arrayWithObjects:
-         //                            [UIImage imageNamed:@"images.jpg"],
-          //                           [UIImage imageNamed:@"images1.jpg"],
-         //                            [UIImage imageNamed:@"images5.jpg"],
-        //                             [UIImage imageNamed:@"index3.jpg"],
-        //                             nil];
-      
-      ////  keyframeAnimation.repeatCount = 1.0f;
-      //  keyframeAnimation.duration = 1; //change: use value set by user breath //length
-       /// keyframeAnimation.delegate = self;
-        
-        //    keyframeAnimation.removedOnCompletion = YES;
-       // keyframeAnimation.removedOnCompletion = NO;
-       // keyframeAnimation.fillMode = kCAFillModeForwards;
-        
-      //  [layer addAnimation:keyframeAnimation
-       //              forKey:@"girlAnimation"];
-
-        
-   ///    } afterDelay:0.1];
     }
   ///   NSLog(@"COMPLETED ANIMATION!");
 }
 
-- (void)viewDidLoad
-{
-    //remove
-    [super viewDidLoad];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    //remove
-    [super didReceiveMemoryWarning];
-}
 -(void)reset
 {
     //remove
@@ -338,39 +289,6 @@
     return animation;
 }
 
--(void)shootBallToTop:(int)ballIndex withAcceleration:(float)acceleration
-{
-    ///NSLog(@"Shooting balls to top BALLINDEX %d", ballIndex);
-    ///  NSLog(@"Shooting balls to top [self.balls count] %d", [self.balls count]);
-    NSLog(@"trying to shoot balls to top1");
-    return;//added
-    
-    if (ballIndex>=[self.balls count]) {
-        return;
-    }
-    Balloon  *ball=[self.balls objectAtIndex:ballIndex];
-    CGPoint  point=CGPointMake(ball.center.x,BALL_RADIUS/2);
-    //CGPoint  point=CGPointMake(0,0);
-    //float  duration=5/acceleration;
-    
-    if(acceleration<0.1)
-    {
-        acceleration=0.05;
-    }
-    
-    [UIView animateWithDuration:0.1 animations:^{
-        [ball setCenter:point];
-    }];
-    
-    //NSLog(@"trying to shoot balls to top2");
-}
-
-
-- (void)bounce
-{
-
-}
-
 -(void)pushBallsWithVelocity:(float)velocity
 {
     
@@ -461,43 +379,26 @@
     
     timeCounter += .01;
     NSTimeInterval timeElapsed = [start timeIntervalSinceNow];
-    
-    //int selectedSpeedSetting = 6;
     int percentageComplete = (fabs(timeElapsed)/selectedSpeedSetting)*100;
-
-   // NSLog(@"timeElapsedfbs = %f", fabs(timeElapsed));
-   // NSLog(@"timeElapsed = %f", timeElapsed);
-   // NSLog(@"timeCounter = %f", timeCounter);
-   // NSLog(@"currentBall = %d", currentBall);
-   // NSLog(@"percentageTowardsCompletion = %d", percentageComplete);
     Balloon  *ball=[self.balls objectAtIndex: currentBall];
     
     if (percentageComplete > 0 && percentageComplete < 12.5){
-        //[self.delegate setBalloonStage:self atStage: 1];
         ball.currentBalloonImage.image = [UIImage imageNamed:@"Balloon1"];
     }else if (percentageComplete > 12.5 && percentageComplete < 25){
-        // [self.delegate setBalloonStage:self atStage: 2];
         ball.currentBalloonImage.image = [UIImage imageNamed:@"Balloon2"];
     }else if (percentageComplete > 25 && percentageComplete < 37.5){
-        //[self.delegate setBalloonStage:self atStage: 3];
         ball.currentBalloonImage.image = [UIImage imageNamed:@"Balloon3"];
     }else if(percentageComplete > 50 && percentageComplete < 62.5){
-        //[self.delegate setBalloonStage:self atStage: 4];
         ball.currentBalloonImage.image = [UIImage imageNamed:@"Balloon4"];
     }else if(percentageComplete > 62.5 && percentageComplete < 75){
-        // [self.delegate setBalloonStage:self atStage: 5];
         ball.currentBalloonImage.image = [UIImage imageNamed:@"Balloon5"];
     }else if(percentageComplete > 75 && percentageComplete < 87.5){
-        // [self.delegate setBalloonStage:self atStage: 6];
         ball.currentBalloonImage.image = [UIImage imageNamed:@"Balloon6"];
     }else if(percentageComplete > 87.5 && percentageComplete < 100){
-        // [self.delegate setBalloonStage:self atStage: 7];
         ball.currentBalloonImage.image = [UIImage imageNamed:@"Balloon7"];
     }else if(percentageComplete >= 100){
-        // [self.delegate setBalloonStage:self atStage: 8];
         ball.currentBalloonImage.image = [UIImage imageNamed:@"Balloon8"];
     }
-
 }
 
 -(void)playHitTop
@@ -527,44 +428,15 @@
 -(void)ballReachedFinalTarget:(Balloon *)ball
 
 {
-   //[[GCDQueue highPriorityGlobalQueue]queueBlock:^{
-   //[[GCDQueue mainQueue]queueBlock:^{
     [self playHitTop];
-   //}];
-   //}];
     ballGameCount++;
-
-   // if (self.currentGameType==gameTypeImage) {
-     //  if (ballGameCount>=[self.balls count]) {
-      //      NSLog(@"POWER GAME WON");
-     //       [self.powerGame.delegate gameWon:self.powerGame];
-     //   }
-        
-   //     NSLog(@"completed Image game");
-   // }else if (self.currentGameType==gameTypeDuo)
-  //  {
-      // int result= [self.durationGame nextBall];
-      //  if (result==-1) {
-      //      NSLog(@"COMPLETED DURATION MODE");
-      //      [self.durationGame.delegate gameWon:self.durationGame];
-       // }
-  //      NSLog(@"completed duo game");
+    
   if (self.currentGameType==gameTypeBalloon)
    {
-       // int result= [self.b nextBall];
-      //    if (result==-1) {
               NSLog(@"COMPLETED balloon MODE");
-              //[self.durationGame.delegate gameWon:self.durationGame];
-        // }
-       // NSLog(@"completed  game");
    }
 }
 
--(void)setBalloonStage:(Balloon*)balloon atStage:(int)stage{
-    
-    NSLog(@"balloon at stage %d", stage);
-    
-}
 
 -(void)setAudioMute: (BOOL) muteSetting{
     NSLog(@"setting inner audio mute %hhd", muteSetting);
