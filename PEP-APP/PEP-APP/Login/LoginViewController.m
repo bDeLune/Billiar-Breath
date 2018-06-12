@@ -40,9 +40,15 @@
 - (void)viewDidLoad
 {
     if ([self.usernameTextField respondsToSelector:@selector(setAttributedPlaceholder:)]) {
+         //mylocalis
+        
         UIColor *color = [UIColor lightGrayColor];
-        self.usernameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter a username" attributes:@{NSForegroundColorAttributeName: color}];
+        self.usernameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:NSLocalizedString(@"Enter a username", nil)] attributes:@{NSForegroundColorAttributeName: color}];
     }
+    
+    [self.loginButton setImage:[UIImage imageNamed:NSLocalizedString(@"Login-Button-Login", nil)] forState:UIControlStateNormal];
+    [self.signupButton setImage: [UIImage imageNamed:NSLocalizedString(@"Login-Button-Signup", nil)] forState:UIControlStateNormal];
+    
     
     [super viewDidLoad];
     self.userList=[[UserListViewController alloc]initWithNibName:@"UserListViewController" bundle:nil];
@@ -111,10 +117,12 @@
     NSError  *error;
     NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
     if ([items count]==0) {
-        
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:@"That user does not exist. Try signing up instead" preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        //mylocalis
+
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:[NSString stringWithFormat:NSLocalizedString(@"That user does not exist. Try signing up instead", nil)] preferredStyle:UIAlertControllerStyleAlert];
+        //mylocalis
+
+        UIAlertAction* ok = [UIAlertAction actionWithTitle:[NSString stringWithFormat:NSLocalizedString(@"OK", nil)] style:UIAlertActionStyleDefault handler:nil];
         [alertController addAction:ok];
         
         [self presentViewController:alertController animated:YES completion:nil];
@@ -140,10 +148,12 @@
     NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
     
     if ([name length] == 0){
-    
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:@"Field has been left blank" preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        //mylocalis
+        NSString* leftBlankString = [NSString stringWithFormat:NSLocalizedString(@"Field has been left blank", nil)];
+        NSString* errorString = [NSString stringWithFormat:NSLocalizedString(@"Error", nil)];
+        NSString* okString = [NSString stringWithFormat:NSLocalizedString(@"OK", nil)];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:errorString message:leftBlankString preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* ok = [UIAlertAction actionWithTitle:okString style:UIAlertActionStyleDefault handler:nil];
         [alertController addAction:ok];
         
         [self presentViewController:alertController animated:YES completion:nil];
@@ -152,10 +162,10 @@
     }
     
     if ([items count]>0) {
-        
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:@"Sorry, that user already exists" preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+
+        //localis
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Error", nil)] message:[NSString stringWithFormat:NSLocalizedString(@"Sorry, that user already exists", nil)] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* ok = [UIAlertAction actionWithTitle:[NSString stringWithFormat:NSLocalizedString(@"OK", nil)] style:UIAlertActionStyleDefault handler:nil];
         [alertController addAction:ok];
         
         [self presentViewController:alertController animated:YES completion:nil];
@@ -165,10 +175,9 @@
         AddNewUserOperation *addUserOperation =[[AddNewUserOperation alloc]initWithData:self.usernameTextField.text sharedPSC:self.sharedPSC];
         
         [self.addUserQueue addOperation:addUserOperation];
-        
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Success!" message:@"Registration complete" preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        //mylocalis
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Success!" message:[NSString stringWithFormat:NSLocalizedString(@"Registration complete", nil)] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* ok = [UIAlertAction actionWithTitle:[NSString stringWithFormat:NSLocalizedString(@"OK", nil)] style:UIAlertActionStyleDefault handler:nil];
         [alertController addAction:ok];
         
         [self presentViewController:alertController animated:YES completion:nil];

@@ -691,8 +691,6 @@
         self.sequenceGameController.halt=YES;
         
         [[GCDQueue mainQueue]queueBlock:^{
-            NSString  *durationtext=[NSString stringWithFormat:@"%0.1f",self.sequenceGameController.time];
-            
             if (midi.speed!=0) {
                 self.sequenceGameController.totalBallsRaised++;
                 [self.sequenceGameController playHitTop];
@@ -782,7 +780,6 @@
   //  [self.view addSubview:particleEffect];
    // effectTimer=[NSTimer timerWithTimeInterval:2 target:self selector:@selector(killSparks) userInfo:nil repeats:NO];///timer was 2
    // [[NSRunLoop mainRunLoop] addTimer:effectTimer forMode:NSDefaultRunLoopMode];
-    
 }
 
 -(void)killSparks
@@ -842,40 +839,7 @@
     }
 }
 
--(void)addTestScores
-{   //POSSIBLY REMOVE
-    return;
-    NSLog(@"ADD TEST SCORES!");
-    for (int i=0; i<30; i++) {
-        
-        Session  *sess=[[Session alloc]init];
-        sess.sessionDuration=[NSNumber numberWithInt:50];
-        sess.sessionSpeed=[NSNumber numberWithInt:10];
-        sess.sessionType=[NSNumber numberWithInt:self.currentGameType];
-        sess.username=self.gameUser.userName;
-        
-        NSDateComponents *comps = [[NSDateComponents alloc] init];
-        [comps setDay:i+1];
-        [comps setMonth:4];
-        [comps setYear:2014];
-        NSCalendar *gregorian = [[NSCalendar alloc]
-                                 initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-        NSDate *date = [gregorian dateFromComponents:comps];
-        sess.sessionDate=date;
-        
-        AddNewScoreOperation  *operation=[[AddNewScoreOperation alloc]initWithData:self.gameUser session:sess sharedPSC:self.sharedPSC];
-        
-        [self.addGameQueue addOperation:operation];
-        
-    }
-}
 
-
-#pragma mark -
-#pragma mark UIImagePickerControllerDelegate
-
-// this get called when an image has been chosen from the library or taken from the camera
-//
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     NSLog(@"PHOTO LIBRARY did pick ACTION - imagePickerController");
@@ -921,12 +885,8 @@
 - (void)photoButtonBundleAction
 {
     NSLog(@"PHOTO Bundle ACTION");
-    //creating the UIView object
-    self.hqPickerContainer = [[UIView alloc] initWithFrame:CGRectMake(280, 520, 250, 270)];
+    self.hqPickerContainer = [[UIView alloc] initWithFrame:CGRectMake(280, 520, 246, 270)];
     self.hqPickerContainer.backgroundColor = [UIColor blackColor];
-    
-    //UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(160, 420, 350, 350)];
-    //scrollView.backgroundColor = [UIColor whiteColor];
     
     NSArray *hqImages = [self getHQImages];
     CGFloat currentX = 2.0f;
@@ -936,8 +896,6 @@
     NSLog(@"[hqImages count] %lu", (unsigned long)[hqImages count]);
     
     for (int i=0; i < [hqImages count]; i++) {
-        
-        //NSLog(@"index %d", i);
         UIImage *image = [UIImage imageNamed:[hqImages objectAtIndex:i]];
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 50)];
         imageView.image= image;
@@ -1095,6 +1053,9 @@
     [self.mainGaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
     [self.mainGaugeView start];
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
+    [self.view addGestureRecognizer:tap];
+    
     if (!displayLink) {
         [self setupDisplayFiltering];
         displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateimage)];
@@ -1111,9 +1072,7 @@
 
 -(void)updateimage
 {
-  
    // NSLog(@"self.currentGameType %u" , self.currentGameType);
-    
   if (self.currentGameType == gameTypeTest) {
    //   NSLog(@"Image filter not allowed in test mode! ");
       return;
@@ -1218,47 +1177,26 @@
     }else if ([stillImageFilter isKindOfClass:[GPUImageVignetteFilter class]])
     {
         [(GPUImageVignetteFilter*)stillImageFilter setVignetteStart:1-targetRadius];
-        
-        
     }else if ([stillImageFilter isKindOfClass:[GPUImageToonFilter class]])
     {
         [(GPUImageToonFilter*)stillImageFilter setThreshold:1-(targetRadius-0.1)];
-        
-        
     }else if ([stillImageFilter isKindOfClass:[GPUImageExposureFilter class]])
     {
         [(GPUImageExposureFilter*)stillImageFilter setExposure:targetRadius+0.1];
-        
     }else if ([stillImageFilter isKindOfClass:[GPUImagePolkaDotFilter class]])
     {
-        //[(GPUImagePolkaDotFilter*)stillImageFilter setDotScaling:targetRadius];
         [(GPUImagePolkaDotFilter*)stillImageFilter setFractionalWidthOfAPixel:targetRadius/10];
-        
-        
     }else if ([stillImageFilter isKindOfClass:[GPUImagePosterizeFilter class]])
     {
         [(GPUImagePosterizeFilter*)stillImageFilter setColorLevels:11-(10*targetRadius)];
-        
     }else if ([stillImageFilter isKindOfClass:[GPUImagePixellateFilter class]])
     {
         [(GPUImagePixellateFilter*)stillImageFilter setFractionalWidthOfAPixel:targetRadius/10];
-        
     }else if ([stillImageFilter isKindOfClass:[GPUImageContrastFilter class]])
     {
         [(GPUImageContrastFilter*)stillImageFilter setContrast:1-targetRadius];
-        
-        //[(GPUImageThresholdSketchFilter*)stillImageFilter setSlope:targetRadius/3];
     }
-    
-    //NSLog(@"value == %f",targetRadius);
-    
     [sourcePicture processImage];
-    
-    /**
-     self.topFocusLevel = 0.4;
-     self.bottomFocusLevel = 0.6;
-     self.focusFallOffRate = 0.2;
-     self.blurSize = 2.0;*/
 }
 
 -(void)setupDisplayFilteringWithImage:(UIImage*)aImage
@@ -1269,50 +1207,35 @@
     //[stillImageFilter destroyFilterFBO];
     //[stillImageFilter releaseInputTexturesIfNeeded];
     stillImageFilter=nil;
-   
-    
     // [imageView removeFromSuperview];
     //imageView=nil;
-    
-    
     // imageView = [[GPUImageView alloc]initWithFrame:self.view.frame]
-    
     //maybe0th 
    // stillImageFilter=[self filterForIndex:0];
    // [sourcePicture addTarget:stillImageFilter];
    // [stillImageFilter addTarget:imageView];
-    
     //image set
     //dispatch_async(dispatch_get_main_queue(), ^{
     sourcePicture = [[GPUImagePicture alloc] initWithImage:aImage smoothlyScaleOutput:YES];
-    
-
     stillImageFilter = [self filterForIndex:0];
     //imageView = [[GPUImageView alloc]initWithFrame:self.view.frame];
     // [self.view addSubview:imageView];
     //[self.view insertSubview:imageView atIndex:0];
-    
    // imageView = [[GPUImageView alloc]initWithFrame:self.imageFilterView.frame];
     //[self.view insertSubview:imageView atIndex:0];
     [self.imageFilterView insertSubview:imageView atIndex:0];
-    
     //check change
     //self.imageFilterView.layer.zPosition = 5;
    // imageView.layer.zPosition = 5;
-    
     [sourcePicture addTarget:stillImageFilter];
     [stillImageFilter addTarget:imageView];
     [sourcePicture processImage];
-
 }
+
 - (void)setupDisplayFiltering;
 {
     NSLog(@"SET UP DISPLAY FILTERING");
     UIImage *inputImage;
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    //NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:@"latest_photo.png"];
-    //NSData  *data=[NSData dataWithContentsOfFile:imagePath];
     inputImage=[UIImage imageNamed:@"giraffe-614141_1280.jpg"];
     sourcePicture = [[GPUImagePicture alloc] initWithImage:inputImage smoothlyScaleOutput:YES];
     stillImageFilter = [self filterForIndex:0];
@@ -1320,8 +1243,7 @@
     [self.imageFilterView insertSubview:imageView atIndex:0];
     [sourcePicture addTarget:stillImageFilter];
     [stillImageFilter addTarget:imageView];
-    
-    [sourcePicture processImage];
+    //[sourcePicture processImage]; //changed to stop bulge on startup
 }
 
 -(void)setFilter:(int)index
@@ -1336,7 +1258,6 @@
     stillImageFilter=[self filterForIndex:index];
     [sourcePicture addTarget:stillImageFilter];
     [stillImageFilter addTarget:imageView];
-    
     self.mainGaugeView.MainGaugeDelegate=self;
     [self.mainGaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
     [self.mainGaugeView start];
@@ -1349,12 +1270,10 @@
     selectedBallCount = value;
 }
 
-
 -(void)setImageSoundEffect:(NSString*)value{
     NSLog(@"Setting Image sound effect to %@ ", value);
     currentImageGameSound = value;
 }
-
 
 -(GPUImageFilter*)filterForIndex:(int)index
 {

@@ -14,7 +14,6 @@
     NSTimer  *timer;
     BOOL  sessionRunning;
     NSTimer  *effecttimer;
-   // UIImageView  *bellImageView;
     UIImageView  *bg;
     int threshold;
     AVAudioPlayer *audioPlayer;
@@ -22,7 +21,6 @@
     BOOL   toggleIsON;
     int midiinhale;
     int midiexhale;
-    //int currentdirection;
     int inorout;
     bool currentlyExhaling;
     bool currentlyInhaling;
@@ -68,8 +66,7 @@
             [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
             [[NSUserDefaults standardUserDefaults]setObject:@"inhale" forKey:@"direction"];
         }
-            
-            
+        
         [speedSlider setValue:4 animated:YES];
         currentlyExhaling = false;
     }
@@ -77,10 +74,8 @@
 }
 
 -(void) setGaugeForce: (float)force{
-    
     NSLog(@"should be 3");
     [self.gaugeView setForce:force];
-    
 };
 
 -(void)setSettingsViewDirection: (int)val{
@@ -131,8 +126,7 @@
 }
 
 - (NSInteger)pickerView:(UIPickerView *)thePickerView numberOfRowsInComponent:(NSInteger)component {
-    
-   // NSLog(@"changing numberOfRowsInComponent 0");
+
     int amount = 0;
     if (thePickerView==pickerViewB) {
         amount=(int)[imageGameSoundArray count];
@@ -152,12 +146,15 @@
     //NSLog(@"changing pickerView titleForRow");
     NSString *thetitle;
     
+    //mylocalise
     if (thePickerView==pickerViewB) {
        thetitle=[imageGameSoundArray objectAtIndex:row];
    }
+     //mylocalise
     if (thePickerView==pickerViewC) {
         thetitle=[repititionsArray objectAtIndex:row];
     }
+     //mylocalise
     if (thePickerView==filterPicker) {
         thetitle=[filterArray objectAtIndex:row];
     }
@@ -165,37 +162,23 @@
 }
 
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    
-   // NSLog(@"changing thePickerView didSelectRow ");
 	
     int rowint=(int)row;
- //   if (thePickerView==pickerViewA) {
-        //NSLog(@"Selected : %@. Index of selected color: %i", [arrayA objectAtIndex:row], row);
-        
-   //     [self valueASend:rowint];
-  //  }
     if (thePickerView==pickerViewB) {
-     //   NSLog(@"Selected : %@. Index of selected color: %i", [imageGameSoundArray objectAtIndex:row], row);
-       // [self valueBSend:rowint];
         [self.settinngsDelegate setImageSoundEffect: [imageGameSoundArray objectAtIndex:row]];
     }
     
     if (thePickerView==pickerViewC) {
-     //   NSLog(@"Selected : %@. Index of selected color: %i", [repititionsArray objectAtIndex:row], row);
-        //[self valueCSend:rowint];
         NSInteger selectedValAsint = [[repititionsArray objectAtIndex:row] integerValue];
         [self.settinngsDelegate setRepetitionCount: selectedValAsint];
     }
     
     if (thePickerView==filterPicker) {
-      //  NSLog(@"Selected : %@. Index of selected color: %i", [filterArray objectAtIndex:row], row);
         [self.settinngsDelegate setFilter:rowint];
     }
 }
 
-
 -(IBAction)changeRate:(id)sender
-
 {
     NSLog(@"changing rate");
     UISlider  *slider=(UISlider*)sender;
@@ -206,74 +189,41 @@
 {
     NSLog(@"changing breath length");
     UISlider  *slider=(UISlider*)sender;
-    //int sliderValue = (int) slider.value;
-    
-    //[self.settinngsDelegate setBreathLength:slider.value];
-    
     [self.settinngsDelegate setSpeed:slider.value];
-    //[self setBreathLengthLabelText: [NSString stringWithFormat:@"%d",sliderValue]];
-    //self.settingsViewController.delegate=self;
-    //[self setSettinngsDelegate:self.gameViewController];
 }
-
 
 -(IBAction)changeThreshold:(id)sender
 {
     NSLog(@"changing threshold");
-    
     [self.settinngsDelegate setThreshold:thresholdSlider.value];
     [thresholdLabel setText:[NSString stringWithFormat:@"%f",thresholdSlider.value]];
 }
 -(IBAction)changeBTTreshold:(id)sender
 {
     NSLog(@"changing changeBTTreshold");
-    
     [self.settinngsDelegate setBTTreshold:btThresholdSlider.value];
     [btTresholdLabel setText:[NSString stringWithFormat:@"%f",btThresholdSlider.value]];
     [self.settinngsDelegate test:btThresholdSlider.value];
-    
 }
+
 -(IBAction)changeBTBoostValue:(id)sender
 {
     NSLog(@"changing changeBTBoostValue");
-    
     [self.settinngsDelegate setBTBoost:btBoostSlider.value];
     [btrangeBoost setText:[NSString stringWithFormat:@"%f",btBoostSlider.value]];
 }
 
-- (IBAction)exitSettingsViewController:(id)sender {
-    NSLog(@"SV: back button pressed");
-    
-      //[UIView transitionFromView:self.view toView: gameViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromTop completion:^(BOOL finished){
-      //}];
-    //
-    //[self.settinngsDelegate settingsModeDismissRequest:self];
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
-   // [self.delegate exitSettingsViewController];
-}
-
-
-#pragma mark -
-#pragma mark - Test Methods
-
-
-#pragma mark -
-#pragma mark - Midi Delegate
-
 -(void)setSettingsDurationLabelText: (NSString*)text  {
-    
-   // NSLog(@"Settings duration label text %@", text);
     settingsDurationLabel.text = text;
 }
 
 -(void)setSettingsStrengthLabelText: (NSString*)text  {
-    
-  //  NSLog(@"Settings strength label text %@", text);
     settingsStrengthLabel.text = text;
 }
 
 -(void) playSound {
+    
+    //maybe delete
     NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"bell synth" ofType:@"wav"];
     NSData *fileData = [NSData dataWithContentsOfFile:soundPath];
     NSError *error = nil;

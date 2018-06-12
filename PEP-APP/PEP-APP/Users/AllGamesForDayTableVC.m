@@ -8,7 +8,7 @@
 }
 
 @property (nonatomic,strong)UIButton  *backButton;
--(void)goBack;
+//-(void)goBack;
 @end
 
 @implementation AllGamesForDayTableVC
@@ -55,7 +55,6 @@
     NSLog(@"DISSAPEARS: go back to users");
     [self dismissViewControllerAnimated:YES completion:nil];
     [self.view removeFromSuperview];
-    //[self removeFromParentViewController];
 }
 
 - (IBAction)tapGesture:(UITapGestureRecognizer*)gesture
@@ -79,7 +78,6 @@
             [self.view removeFromSuperview];
         }
     }
-
 }
 
 - (void)goBack:(UIButton *)sender  {
@@ -156,9 +154,6 @@
     [self.backButton setTitle:@"Back" forState:UIControlStateNormal];
     [self.backButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [self.backButton addTarget:self action:@selector(tapGesture:) forControlEvents:UIControlEventAllEvents];
-
-    //[self.view addSubview:self.backButton];
-   // [self.view bringSubviewToFront:self.backButton];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
     [self.backButton addGestureRecognizer:tap];

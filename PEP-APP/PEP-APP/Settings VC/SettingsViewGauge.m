@@ -6,7 +6,7 @@
     float velocity;
     float distance;
     float time;
-    float acceleration;// force/ mass
+    float acceleration;
     BOOL  isaccelerating;
     float force;
     float mass;
@@ -15,15 +15,12 @@
     UIView  *animationObject;
     float h;
     float hm;
-   // float last_hm;
     float anim;
     float anim_delay;
-   // float weight;
     float bestDistance;
     bool setToInhale;
     bool currentlyExhaling;
     bool userBreathingCorrectly;
-
 }
 
 @end
@@ -39,8 +36,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
-        // Initialization code
         [self setDefaults];
         displayLink = [CADisplayLink displayLinkWithTarget:self
                                                   selector:@selector(animate)];
@@ -53,18 +48,14 @@
         animationObject.layer.cornerRadius=16;
         [self addSubview:animationObject];
         [self sendSubviewToBack:animationObject];
-        
         isaccelerating=false;
         self.backgroundColor=[UIColor clearColor];
         self.layer.cornerRadius=16;
-        
         mass=1;
         force=15;
     }
     return self;
 }
-
-
 
 - (id)initWithFrame:(CGRect)frame withOrientation:(NSString*)orientation
 {
@@ -73,7 +64,6 @@
         
         if ([orientation isEqual: @"Vertical"]){
             NSLog(@"Initialising Vertical frame");
-            // Initialization code
             [self setDefaults];
             displayLink = [CADisplayLink displayLinkWithTarget:self
                                                       selector:@selector(animate)];
@@ -84,13 +74,10 @@
             UIColor* customColour = RGB(00, 33, 66);
             [animationObject setBackgroundColor:customColour];
             animationObject.layer.cornerRadius=16;
-            //animationObject.alpha = 0.01;
             [self addSubview:animationObject];
-            
             isaccelerating=false;
             self.backgroundColor=[UIColor clearColor];
             self.layer.cornerRadius=16;
-            
             mass=1;
             force=15;
         }

@@ -25,24 +25,22 @@
     IBOutlet UILabel  *btrangeBoost;
     IBOutlet UISlider *btThresholdSlider;
     IBOutlet UISlider *btBoostSlider;
-	//NSMutableArray *arrayA;
     NSMutableArray *imageGameSoundArray;
     NSMutableArray *repititionsArray;
     NSMutableArray *filterArray;
     int currentdirection;
     id<SETTINGS_DELEGATE> __unsafe_unretained settinngsDelegate;
 }
-//@property(nonatomic, assign) int currentdirection;
 @property (unsafe_unretained) id<SETTINGS_DELEGATE> settinngsDelegate;
 @property(nonatomic,unsafe_unretained)id<SettingsViewProtocol>delegate;
 @property(nonatomic,strong)SettingsViewGauge  *gaugeView;
 
--(IBAction)changeRate:(id)sender;
--(IBAction)changeThreshold:(id)sender;
--(IBAction)changeBTTreshold:(id)sender;
--(IBAction)changeBTBoostValue:(id)sender;
+//-(IBAction)changeRate:(id)sender;
+//-(IBAction)changeThreshold:(id)sender;
+//-(IBAction)changeBTTreshold:(id)sender;
+///-(IBAction)changeBTBoostValue:(id)sender;
 -(void)setSettingsStrengthLabelText:(NSString*)text;
 -(void)setSettingsDurationLabelText:(NSString*)text;
--(void) setGaugeForce:(float)force;
+-(void)setGaugeForce:(float)force;
 -(void)setSettingsViewDirection:(int)val;
 @end

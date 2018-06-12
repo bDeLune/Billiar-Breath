@@ -9,11 +9,13 @@
 
 @interface UserListViewController()<UIActionSheetDelegate,HeaderViewProtocl>
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) AllGamesForDayTableVC* detailViewController;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) UIBarButtonItem *activityIndicator;
 @property (nonatomic) NSMutableArray *userList;
 @property (weak, nonatomic) IBOutlet UIView *tableViewContainer;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property(nonatomic,assign)User  *deleteUser;
 @end
 @implementation UserListViewController
@@ -27,6 +29,12 @@
     return self;
 }
 
+- (IBAction)returnToUsersList:(id)sender {
+    
+    NSLog(@"RETURN TO USERS LIST");
+    self.backButton.hidden = YES;
+    [self.detailViewController.view removeFromSuperview];
+}
 
 -(NSArray*)sortedDateArrayForUser:(User*)user
 {
@@ -95,19 +103,12 @@
     return 0;
 }
 
--(void)getUniqueDates{
-    
-}
-
 - (void)viewDidAppear:(BOOL)animated{
     [self.backgroundColouredImage bringSubviewToFront:self.view];
     [self.backgroundColouredImage sendSubviewToBack:self.tableView];
     
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
-    
     self.tableView.backgroundColor = [UIColor colorWithRed:232/255.0f green:233/255.0f blue:237/255.0f alpha:1.0f] ;
     self.tableView.backgroundView.backgroundColor = [UIColor colorWithRed:232/255.0f green:233/255.0f blue:237/255.0f alpha:1.0f] ;
-
 }
 
 - (void)viewDidLoad
@@ -119,11 +120,8 @@
     UISwipeGestureRecognizer *recognizer;
     recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
     [recognizer setDirection:(  UISwipeGestureRecognizerDirectionLeft)];
-    // [[self view] addGestureRecognizer:recognizer];
     [self.backgroundColouredImage bringSubviewToFront:self.view];
     [self.backgroundColouredImage sendSubviewToBack:self.tableView];
-    
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
 
 -(void)goBack
@@ -167,13 +165,11 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-   //NSLog(@"Number of users - %lu", (unsigned long)[self.userList count]);
     int sections=[self.userList count];
     return sections;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // NSLog(@"numberOfRowsInSection");
     NSInteger numberOfRows = 0;
     User *user=[self.userList objectAtIndex:section];
     numberOfRows=[user.game count];
@@ -232,17 +228,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   // [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     User  *user=[self.userList objectAtIndex:indexPath.section];
     NSArray  *dates=[self sortedDateArrayForUser:user];
     dates=[[dates reverseObjectEnumerator]allObjects];
-    // NSDate  *date=[sortedDateKeysNoTime objectAtIndex:indexPath.row];
-    AllGamesForDayTableVC  *detailViewController=[[AllGamesForDayTableVC alloc]initWithNibName:@"AllGamesForDayTableVC" bundle:nil];
+    self.detailViewController=[[AllGamesForDayTableVC alloc]initWithNibName:@"AllGamesForDayTableVC" bundle:nil];
     NSArray  *array=[self gamesMatchingDate:[dates objectAtIndex:indexPath.row] user:user];
-    //NSLog(@"didSelectRowAtIndexPath for array %@", array);
     NSMutableArray  *durationOnly=[NSMutableArray new];
-    
     
     for (Game *agame in array) {
        NSLog(@"GAMELABEL -  ADDING didSelectRowAtIndexPath for array %@", array);
@@ -252,20 +245,14 @@
        //}
         }
        NSLog(@"didSelectRowAtIndexPath  for username %@ durationOnlyarray %@" , user.userName , durationOnly);
-    [detailViewController setUSerData:durationOnly];
-    //[self.navigationController pushViewController:detailViewController animated:YES];
-    
-
-    ///SecondViewController *vc = [[SecondViewController alloc] init];
-    detailViewController.view.frame = CGRectMake(97,228,569,595); //Your own CGRect
-    
-    //[self presentViewController:detailViewController animated:YES completion:nil];
-    [self.view addSubview:detailViewController.view];
-    [self addChildViewController:detailViewController];
-    [self didMoveToParentViewController:detailViewController];
+    [self.detailViewController setUSerData:durationOnly];
+    self.detailViewController.view.frame = CGRectMake(97,228,569,595);
+    self.backButton.hidden = NO;
+    [self.view addSubview:self.detailViewController.view];
+    [self addChildViewController:self.detailViewController];
+    [self didMoveToParentViewController:self.detailViewController];
 }
 
-// called after fetched results controller received a content change notification
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
      NSLog(@"controllerDidChangeContent");
     [self.tableView reloadData];
@@ -303,7 +290,6 @@
     header.user=[self.userList objectAtIndex:section];
     header.delegate=self;
     [header build];
-    
     return header;
 }
 
@@ -314,9 +300,10 @@
 
 -(void)deleteMember:(HeaderView *)header
 {
+    //localis
     self.deleteUser=[self.userList objectAtIndex:header.section];
-    NSString *message=[NSString stringWithFormat:@"Delete User ' %@ '", self.deleteUser.userName];
-    UIAlertView  *alert=[[UIAlertView alloc]initWithTitle:@"Confirm" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:@"Cancel", nil];
+    NSString *message=[NSString stringWithFormat: [NSString stringWithFormat:NSLocalizedString(@"Delete User ' %@ '", nil)], self.deleteUser.userName];
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Confirm", nil)] message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:[NSString stringWithFormat:NSLocalizedString(@"Cancel", nil)] , nil];
         [alert show];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -342,7 +329,7 @@
     }
 
     NSUInteger count=[[user.game allObjects]count];
-    
+     //localis
     if (count==0) {
         UIAlertView  *alert=[[UIAlertView alloc]initWithTitle:@"No Data" message:@"No data for this user yet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [[GCDQueue mainQueue]queueBlock:^{
@@ -383,10 +370,6 @@
 {
     NSLog(@"editingStyleForRowAtIndexPath");
     return UITableViewCellEditingStyleDelete;
-}
-
-- (void)tableView:(UITableView *)tv didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"didEndEditingRowAtIndexPath");
 }
 
 - (BOOL)prefersStatusBarHidden {

@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserListViewController">
             <connections>
+                <outlet property="backButton" destination="Skp-yb-pAw" id="yyZ-2Z-fV1"/>
                 <outlet property="backgroundColouredImage" destination="w5C-GN-fny" id="FHD-hm-HaT"/>
                 <outlet property="tableView" destination="8" id="YC8-Gu-5c7"/>
                 <outlet property="view" destination="iLe-PM-jMp" id="Eeh-FD-IiT"/>
@@ -40,6 +41,14 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </imageView>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Skp-yb-pAw">
+                    <rect key="frame" x="612" y="108" width="55" height="60"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button" image="User-Back-Button.png"/>
+                    <connections>
+                        <action selector="returnToUsersList:" destination="-1" eventType="touchUpInside" id="AiI-Fg-Uch"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <nil key="simulatedTopBarMetrics"/>
@@ -47,6 +56,7 @@
         </view>
     </objects>
     <resources>
+        <image name="User-Back-Button.png" width="150" height="150"/>
         <image name="User-Project.png" width="1536" height="2048"/>
     </resources>
 </document>

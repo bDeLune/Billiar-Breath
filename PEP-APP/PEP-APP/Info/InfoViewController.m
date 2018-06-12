@@ -8,7 +8,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    [self.infoViewBackgroundImage setImage: [UIImage imageNamed:NSLocalizedString(@"InfoBackground", nil)]];
+   
+    [self.externalURLButton setImage: [UIImage imageNamed:NSLocalizedString(@"externalURLButton", nil)]forState:UIControlStateNormal];
+    
 }
 - (IBAction)returnToGameView:(id)sender {
     NSLog(@"Returning to game view");
@@ -18,7 +22,9 @@
     
     NSLog(@"Moving to website");
     
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"http://www.google.com"]];
+    //mylocalise
+    //www.groovtube.nl/en/pepappmanual/  english
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: [NSString stringWithFormat:NSLocalizedString(@"manualURL", nil)]]];
 }
 
 - (void)didReceiveMemoryWarning {
