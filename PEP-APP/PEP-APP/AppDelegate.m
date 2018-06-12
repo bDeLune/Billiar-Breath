@@ -17,8 +17,9 @@
 {
     [self.window makeKeyAndVisible];
     
+    NSString * language = [[NSLocale preferredLanguages] firstObject];
     
-    NSLog(@"APP FINISHED LAUNCHING");
+    NSLog(@"APP FINISHED LAUNCHING with language: %@", language);
     
     return YES;
 }

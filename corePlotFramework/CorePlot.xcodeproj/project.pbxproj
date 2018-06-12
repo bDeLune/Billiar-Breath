@@ -1029,6 +1029,7 @@
 		4CD7E7EF0F4B4FA700F9BCBB /* NSDecimalNumberExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDecimalNumberExtensions.m; sourceTree = "<group>"; };
 		4CD7E9620F4B625900F9BCBB /* CPTUtilitiesTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTUtilitiesTests.h; sourceTree = "<group>"; };
 		4CD7E9630F4B625900F9BCBB /* CPTUtilitiesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTUtilitiesTests.m; sourceTree = "<group>"; };
+		71CA7AAA20D0625300126454 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* CorePlot-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "CorePlot-Info.plist"; path = "Info/CorePlot-Info.plist"; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* CorePlot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CorePlot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9021E5690FC69B2900443472 /* doxygen.config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; lineEnding = 0; name = doxygen.config; path = ../documentation/doxygen/doxygen.config; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = "<none>"; };
@@ -3213,6 +3214,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				089C1667FE841158C02AAC07 /* English */,
+				71CA7AAA20D0625300126454 /* nl */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

@@ -11,8 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
-                <outlet property="backGroundImage" destination="ff1-eL-59p" id="zKd-7I-1rn"/>
-                <outlet property="loginButton" destination="CVO-Vi-sKz" id="9eJ-Yy-tS4"/>
+                <outlet property="loginButton" destination="CVO-Vi-sKz" id="CzW-5g-cGD"/>
                 <outlet property="signupButton" destination="5EX-bV-cBy" id="xIi-Nu-KNa"/>
                 <outlet property="usernameTextField" destination="9uZ-uU-8xa" id="m6x-cJ-g3L"/>
                 <outlet property="view" destination="2" id="3"/>

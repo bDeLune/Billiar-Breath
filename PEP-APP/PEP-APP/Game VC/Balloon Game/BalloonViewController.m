@@ -7,7 +7,6 @@
 #import "GCDQueue.h"
 #define NUM_BALLS  8
 #define BALL_RADIUS  80
-
 #define BALLOON_RADIUS  30
 
 @interface BalloonViewController ()<UICollisionBehaviorDelegate>
@@ -33,11 +32,8 @@
 @end
 
 @implementation BalloonViewController
-//| ----------------------------------------------------------------------------
-//  This method is called when square1 begins contacting a collision boundary.
-//  In this demo, the only collision boundary is the bounds of the reference
-//  view (self.view).
-//
+
+
 - (void)collisionBehavior:(UICollisionBehavior*)behavior beganContactForItem:(id<UIDynamicItem>)item withBoundaryIdentifier:(id<NSCopying>)identifier atPoint:(CGPoint)p
 {
     // Lighten the tint color when the view is in contact with a boundary.

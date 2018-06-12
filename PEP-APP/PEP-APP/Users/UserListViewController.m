@@ -246,7 +246,7 @@
         }
        NSLog(@"didSelectRowAtIndexPath  for username %@ durationOnlyarray %@" , user.userName , durationOnly);
     [self.detailViewController setUSerData:durationOnly];
-    self.detailViewController.view.frame = CGRectMake(97,228,569,595);
+    self.detailViewController.view.frame = CGRectMake(97,230,569,595);
     self.backButton.hidden = NO;
     [self.view addSubview:self.detailViewController.view];
     [self addChildViewController:self.detailViewController];
@@ -302,7 +302,7 @@
 {
     //localis
     self.deleteUser=[self.userList objectAtIndex:header.section];
-    NSString *message=[NSString stringWithFormat: [NSString stringWithFormat:NSLocalizedString(@"Delete User ' %@ '", nil)], self.deleteUser.userName];
+    NSString *message=[NSString stringWithFormat: [NSString stringWithFormat:NSLocalizedString(@"Delete User ' %@ '", self.deleteUser.userName)],nil];
     UIAlertView *alert=[[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Confirm", nil)] message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:[NSString stringWithFormat:NSLocalizedString(@"Cancel", nil)] , nil];
         [alert show];
 }

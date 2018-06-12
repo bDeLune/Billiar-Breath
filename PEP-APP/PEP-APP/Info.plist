@@ -12,11 +12,6 @@
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
-	<key>CFBundleLocalizations</key>
-	<array>
-		<string>en</string>
-		<string>Dutch</string>
-	</array>
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>
@@ -24,19 +19,15 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1</string>
 	<key>CFBundleVersion</key>
-	<string>1.2</string>
+	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>The App uses Bluetooth to connect to Groovtube Hardware. </string>
-	<key>NSCameraUsageDescription</key>
-	<string>PEP-APP would like to access your camera</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>PEP-app would like to use your microphone</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>PEP-APP would like to access your photo library</string>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<string>Launch Screen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

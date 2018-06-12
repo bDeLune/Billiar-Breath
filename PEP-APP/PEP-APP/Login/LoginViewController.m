@@ -46,6 +46,8 @@
         self.usernameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:NSLocalizedString(@"Enter a username", nil)] attributes:@{NSForegroundColorAttributeName: color}];
     }
     
+    NSLog(@"LOGIN BTN");
+    
     [self.loginButton setImage:[UIImage imageNamed:NSLocalizedString(@"Login-Button-Login", nil)] forState:UIControlStateNormal];
     [self.signupButton setImage: [UIImage imageNamed:NSLocalizedString(@"Login-Button-Signup", nil)] forState:UIControlStateNormal];
     
