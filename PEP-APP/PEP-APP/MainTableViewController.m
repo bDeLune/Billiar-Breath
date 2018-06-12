@@ -65,17 +65,17 @@
     [self.infoViewController.tabBarItem setSelectedImage:image];
     [self.infoViewController.tabBarItem setImage:image];
     
-    UIImage *image2 = [[UIImage imageNamed:@"Settings-INACTIVE-80x80"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    [self.settingsViewController.tabBarItem setSelectedImage:image2];
-    [self.settingsViewController.tabBarItem setImage:image2];
+   // UIImage *image2 = [[UIImage imageNamed:@"Settings-INACTIVE-80x80"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+   // [self.settingsViewController.tabBarItem setSelectedImage:image2];
+   // [self.settingsViewController.tabBarItem setImage:image2];
     
-    UIImage *image3 = [[UIImage imageNamed:@"Users-INACTIVE-80x80"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    [self.userListViewController.tabBarItem setSelectedImage:image3];
-    [self.userListViewController.tabBarItem setImage:image3];
+   // UIImage *image3 = [[UIImage imageNamed:@"Users-INACTIVE-80x80"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+   // [self.userListViewController.tabBarItem setSelectedImage:image3];
+   // [self.userListViewController.tabBarItem setImage:image3];
     
-    UIImage *image4 = [[UIImage imageNamed:@"PEP-App-INACTIVE-80x80"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    [self.gameViewController.tabBarItem setSelectedImage:image4];
-    [self.gameViewController.tabBarItem setImage:image4];
+    //UIImage *image4 = [[UIImage imageNamed:@"PEP-App-INACTIVE-80x80"] //imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+   /// [self.gameViewController.tabBarItem setSelectedImage:image4];
+   // [self.gameViewController.tabBarItem setImage:image4];
     
     self.infoViewController.tabBarItem.title = @"";
     self.userListViewController.tabBarItem.title = @"";

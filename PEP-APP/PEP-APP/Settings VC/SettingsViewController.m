@@ -22,13 +22,14 @@
     BOOL   toggleIsON;
     int midiinhale;
     int midiexhale;
-    int currentdirection;
+    //int currentdirection;
     int inorout;
     bool currentlyExhaling;
     bool currentlyInhaling;
 }
-
-@property(nonatomic,strong)BTLEManager  *btleManager;
+@property (weak, nonatomic) IBOutlet UIButton *toggleDirectionButton;
+//@property(nonatomic, assign) int currentdirection;
+@property(nonatomic,strong) BTLEManager  *btleManager;
 @end
 
 @implementation SettingsViewController
@@ -58,21 +59,17 @@
         [self.gaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
         [self.gaugeView start];
         
-       // NSArray *imageNames = @[@"bell_1.png", @"bell_2.png", @"bell_3.png", @"bell_2.png",@"bell_1.png"];
-        //NSMutableArray *images = [[NSMutableArray
-         //                          alloc] init];
-        //for (int i = 0; i < [imageNames count]; i++) {
-        //    NSLog(@"I is %d ", i);
-        //    NSLog(@"[imageNames count] is %d ", [imageNames count]);
-        //    [images addObject:[UIImage imageNamed:[imageNames objectAtIndex:i]]];
-        //}
-        
-        //bellImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.gaugeView.frame.origin.x, self.gaugeView.frame.origin.y-50, 100, 100)];
-        //bellImageView.animationImages = images;
-        //bellImageView.animationDuration = 0.7;
-        
-        //[self.view addSubview:bellImageView];
-        
+        NSLog(@"SETTING CURRENT DIRECTION AS %d, ", currentdirection);
+        if (currentdirection == 1)
+        {
+            [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
+            [[NSUserDefaults standardUserDefaults]setObject:@"inhale" forKey:@"direction"];
+        }else{
+            [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
+            [[NSUserDefaults standardUserDefaults]setObject:@"inhale" forKey:@"direction"];
+        }
+            
+            
         [speedSlider setValue:4 animated:YES];
         currentlyExhaling = false;
     }
@@ -86,6 +83,45 @@
     
 };
 
+-(void)setSettingsViewDirection: (int)val{
+    
+    NSLog(@"SETTING DIRECTION SETTITNGS %d",val);
+    if (val == 0){
+        currentdirection = 0;
+        NSLog(@"set to inhale");
+        [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
+        [[NSUserDefaults standardUserDefaults]setObject:@"inhale" forKey:@"direction"];
+    }else{
+        NSLog(@"set to exhale");
+        currentdirection = 1;
+        
+        [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
+        [[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"direction"];
+    }
+}
+
+- (IBAction)toggleDirection:(id)sender {
+    
+    NSLog(@"toggling direction");
+    
+    if (currentdirection == 1){
+        currentdirection = 0;
+        NSLog(@"set to inhale");
+        
+        [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
+        [[NSUserDefaults standardUserDefaults]setObject:@"inhale" forKey:@"direction"];
+
+        [self.settinngsDelegate setDirection:0];
+    }else{
+        NSLog(@"set to exhale");
+        currentdirection = 1;
+        
+        [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
+        [[NSUserDefaults standardUserDefaults]setObject:@"inhale" forKey:@"direction"];
+        
+       [self.settinngsDelegate setDirection:1];
+    }
+}
 
 #pragma mark -
 #pragma mark Picker View Methods

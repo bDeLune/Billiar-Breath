@@ -17,6 +17,7 @@
                 <outlet property="settingsDurationLabel" destination="PrN-FB-Xz4" id="1XJ-wd-wb8"/>
                 <outlet property="settingsStrengthLabel" destination="L9G-iA-lSm" id="0lL-Fz-NNN"/>
                 <outlet property="speedSlider" destination="3wD-am-u9A" id="Dnl-bU-Dhf"/>
+                <outlet property="toggleDirectionButton" destination="lWu-5V-5j5" id="ijf-B8-fO3"/>
                 <outlet property="view" destination="2" id="7"/>
                 <outlet property="whiteBackground" destination="WOr-A6-kQg" id="3YE-5R-joN"/>
             </connections>
@@ -96,6 +97,14 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lWu-5V-5j5">
+                    <rect key="frame" x="400" y="679" width="160" height="159"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button" image="Settings-Button-EXHALE.png"/>
+                    <connections>
+                        <action selector="toggleDirection:" destination="-1" eventType="touchUpInside" id="hmt-tE-9VT"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -127,5 +136,6 @@
     </objects>
     <resources>
         <image name="Settings-Background.png" width="1536" height="2048"/>
+        <image name="Settings-Button-EXHALE.png" width="343" height="343"/>
     </resources>
 </document>

@@ -24,6 +24,7 @@
 -(void)setImageSoundEffect:(NSString*)value;
 -(void)test:(float)value;
 -(void)setSpeed:(float)value;
+-(void)setDirection:(int)value;
 -(void)returnToGameView;
 -(void)settingsModeDismissRequest:(SettingsViewController*)caller;
 -(void)settingsModeToUser:(SettingsViewController*)caller;

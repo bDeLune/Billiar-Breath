@@ -908,9 +908,9 @@
 			children = (
 				71D1A3722074FE5300C83B63 /* SettingsViewController.h */,
 				71D1A3712074FE5200C83B63 /* SettingsViewController.m */,
+				710BDDEF207E48B700B1E393 /* SettingsViewController.xib */,
 				71A04EC0208FA8BC00AA878B /* SettingsViewGauge.h */,
 				71A04EC1208FA8BD00AA878B /* SettingsViewGauge.m */,
-				710BDDEF207E48B700B1E393 /* SettingsViewController.xib */,
 			);
 			name = Settings;
 			path = "Settings VC";

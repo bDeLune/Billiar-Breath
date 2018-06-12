@@ -324,6 +324,8 @@
     [self.imageFilterView sendSubviewToBack:imageView];
     self.settingsViewController = [self.tabBarController.viewControllers objectAtIndex:2];
     self.settingsViewController.delegate=self;
+    //self.settingsViewController.currentdirection=1;
+    [self.settingsViewController setSettingsViewDirection: 1];
     [self.settingsViewController setSettinngsDelegate:self];
     self.tabBarController.delegate = self;
     
@@ -982,6 +984,33 @@
     }
     
     [self.view addSubview: self.hqPickerContainer];
+}
+
+-(void)setDirection:(int)value{
+    
+    NSLog(@"SETTING DIRECTION FROM SETTINGS TO %d", value);
+    
+    NSLog(@"toggling direction");
+    switch (self.midiController.toggleIsON) {
+        case 0:
+            self.midiController.toggleIsON=YES;
+            [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
+            [[NSUserDefaults standardUserDefaults]setObject:@"inhale" forKey:@"direction"];
+            wasExhaling = false;
+            
+            [self.settingsViewController setSettingsViewDirection: 0];
+            break;
+        case 1:
+            self.midiController.toggleIsON=NO;
+            [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
+            [[NSUserDefaults standardUserDefaults]setObject:@"exhale" forKey:@"direction"];
+            wasExhaling = true;
+            [self.settingsViewController setSettingsViewDirection: 1];
+            break;
+        default:
+            break;
+    }
+    
 }
 
 - (IBAction)tapGesture:(UITapGestureRecognizer*)gesture

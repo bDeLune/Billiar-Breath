@@ -23,6 +23,7 @@
     bool setToInhale;
     bool currentlyExhaling;
     bool userBreathingCorrectly;
+
 }
 
 @end
