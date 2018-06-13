@@ -52,8 +52,8 @@
 	CGFloat dt = 1.0 / (keyframeCount - 1);
 	for(size_t frame = 0; frame < keyframeCount; ++frame, t += dt)
 	{
-		CGFloat x = fromPoint.x + function(t) * (toPoint.x - fromPoint.x);
-		CGFloat y = fromPoint.y + function(t) * (toPoint.y - fromPoint.y);
+	//	CGFloat x = fromPoint.x + function(t) * (toPoint.x - fromPoint.x);
+	//	CGFloat y = fromPoint.y + function(t) * (toPoint.y - fromPoint.y);
 #if TARGET_OS_IPHONE
         //added
 		//[values addObject:[NSValue valueWithCGPoint:CGPointMake(x, y)]];
@@ -80,8 +80,8 @@
 	CGFloat dt = 1.0 / (keyframeCount - 1);
 	for(size_t frame = 0; frame < keyframeCount; ++frame, t += dt)
 	{
-		CGFloat w = fromSize.width + function(t) * (toSize.width - fromSize.width);
-		CGFloat h = fromSize.height + function(t) * (toSize.height - fromSize.height);
+		//CGFloat w = fromSize.width + function(t) * (toSize.width - fromSize.width);
+		//CGFloat h = fromSize.height + function(t) * (toSize.height - fromSize.height);
 #if TARGET_OS_IPHONE
 		
         //added

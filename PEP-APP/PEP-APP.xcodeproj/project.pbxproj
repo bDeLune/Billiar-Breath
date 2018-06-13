@@ -19,7 +19,6 @@
 		717D003520B309620098893A /* Login-Project.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D003120B309620098893A /* Login-Project.png */; };
 		717D003620B309620098893A /* Login-Button-Login.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D003220B309620098893A /* Login-Button-Login.png */; };
 		717D003E20B309750098893A /* Sound-ON.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D003720B309730098893A /* Sound-ON.png */; };
-		717D004020B309750098893A /* Main-Project.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D003920B309740098893A /* Main-Project.png */; };
 		717D004120B309750098893A /* Sound-OFF.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D003A20B309740098893A /* Sound-OFF.png */; };
 		717D004220B309750098893A /* Bluetooth-OFF.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D003B20B309740098893A /* Bluetooth-OFF.png */; };
 		717D004320B309750098893A /* Main-Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D003C20B309750098893A /* Main-Background.png */; };
@@ -41,8 +40,6 @@
 		717D007C20B3138D0098893A /* Balloon5.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D007320B3138C0098893A /* Balloon5.png */; };
 		717D009920B440F00098893A /* Main-Button-Picker-ALBUM.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D009720B440EE0098893A /* Main-Button-Picker-ALBUM.png */; };
 		717D009A20B440F00098893A /* Main-Button-Picker-HICONTRAST.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D009820B440EF0098893A /* Main-Button-Picker-HICONTRAST.png */; };
-		717D00A220B44FC90098893A /* Settings-Button-INHALE.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D009D20B44FC70098893A /* Settings-Button-INHALE.png */; };
-		717D00A420B44FC90098893A /* Settings-Button-EXHALE.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D009F20B44FC80098893A /* Settings-Button-EXHALE.png */; };
 		717D00AF20B474CF0098893A /* Balloon.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D00AE20B474CF0098893A /* Balloon.m */; };
 		717D00B220B5CDF50098893A /* GameViewGauge.m in Sources */ = {isa = PBXBuildFile; fileRef = 717D00B120B5CDF50098893A /* GameViewGauge.m */; };
 		717D00B920B850C30098893A /* 6xylofoon.wav in Resources */ = {isa = PBXBuildFile; fileRef = 717D00B320B850C00098893A /* 6xylofoon.wav */; };
@@ -126,7 +123,6 @@
 		7186DE111E4DBF5F00F71F0C /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE051E4DBF5F00F71F0C /* GameViewController.xib */; };
 		7186DE141E4DBF5F00F71F0C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE091E4DBF5F00F71F0C /* Images.xcassets */; };
 		7186DE2A1E4DBF7100F71F0C /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DE161E4DBF7100F71F0C /* Session.m */; };
-		7186DE2B1E4DBF7100F71F0C /* CustomIOSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DE191E4DBF7100F71F0C /* CustomIOSAlertView.m */; };
 		7186DE2E1E4DBF7100F71F0C /* PiNumberFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DE1F1E4DBF7100F71F0C /* PiNumberFormatter.m */; };
 		7186DE2F1E4DBF7100F71F0C /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DE221E4DBF7100F71F0C /* Globals.m */; };
 		7186DE321E4DBF7100F71F0C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DE261E4DBF7100F71F0C /* LoginViewController.m */; };
@@ -183,7 +179,6 @@
 		71C9FA061E53356C0078070D /* AddNewScoreOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9F9F91E53356C0078070D /* AddNewScoreOperation.m */; };
 		71C9FA071E53356C0078070D /* AddNewUserOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9F9FB1E53356C0078070D /* AddNewUserOperation.m */; };
 		71C9FA081E53356C0078070D /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9F9FE1E53356C0078070D /* NSData+Base64.m */; };
-		71C9FA091E53356C0078070D /* UIEffectDesignerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9FA001E53356C0078070D /* UIEffectDesignerView.m */; };
 		71C9FA0E1E5335C40078070D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9FA0B1E5335C40078070D /* AppDelegate.m */; };
 		71C9FA201E5344EB0078070D /* UserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C9FA1F1E5344EB0078070D /* UserListViewController.m */; };
 		71CA7A7820D018A500126454 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 71CA7A7A20D018A500126454 /* Localizable.strings */; };
@@ -206,6 +201,9 @@
 		71D1A65820751F7000C83B63 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D1A6462075184C00C83B63 /* libGPUImage.a */; };
 		71D1A65A207523C900C83B63 /* giraffe.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 71D1A659207523C900C83B63 /* giraffe.jpg */; };
 		71D1A65B207528AC00C83B63 /* GPUImage.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 71D1A6482075184C00C83B63 /* GPUImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		71D5B9B320D11E3700F44A0C /* Main-Project.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D5B9A620D11E3600F44A0C /* Main-Project.png */; };
+		71D5B9B620D11EB000F44A0C /* Settings-Button-EXHALE.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D5B9B420D11EB000F44A0C /* Settings-Button-EXHALE.png */; };
+		71D5B9B720D11EB000F44A0C /* Settings-Button-INHALE.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D5B9B520D11EB000F44A0C /* Settings-Button-INHALE.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -325,7 +323,6 @@
 		717D003120B309620098893A /* Login-Project.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-Project.png"; sourceTree = "<group>"; };
 		717D003220B309620098893A /* Login-Button-Login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-Button-Login.png"; sourceTree = "<group>"; };
 		717D003720B309730098893A /* Sound-ON.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sound-ON.png"; sourceTree = "<group>"; };
-		717D003920B309740098893A /* Main-Project.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Main-Project.png"; path = "../../../../Downloads/App UI 2/Main/Main-Project.png"; sourceTree = "<group>"; };
 		717D003A20B309740098893A /* Sound-OFF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sound-OFF.png"; sourceTree = "<group>"; };
 		717D003B20B309740098893A /* Bluetooth-OFF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bluetooth-OFF.png"; sourceTree = "<group>"; };
 		717D003C20B309750098893A /* Main-Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Main-Background.png"; sourceTree = "<group>"; };
@@ -347,8 +344,6 @@
 		717D007320B3138C0098893A /* Balloon5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Balloon5.png; sourceTree = "<group>"; };
 		717D009720B440EE0098893A /* Main-Button-Picker-ALBUM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Main-Button-Picker-ALBUM.png"; sourceTree = "<group>"; };
 		717D009820B440EF0098893A /* Main-Button-Picker-HICONTRAST.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Main-Button-Picker-HICONTRAST.png"; sourceTree = "<group>"; };
-		717D009D20B44FC70098893A /* Settings-Button-INHALE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Settings-Button-INHALE.png"; path = "../../../../Downloads/App UI 3/Settings/Settings-Button-INHALE.png"; sourceTree = "<group>"; };
-		717D009F20B44FC80098893A /* Settings-Button-EXHALE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Settings-Button-EXHALE.png"; path = "../../../../Downloads/App UI 3/Settings/Settings-Button-EXHALE.png"; sourceTree = "<group>"; };
 		717D00AD20B474CE0098893A /* Balloon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Balloon.h; sourceTree = "<group>"; };
 		717D00AE20B474CF0098893A /* Balloon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Balloon.m; sourceTree = "<group>"; };
 		717D00B020B5CDF50098893A /* GameViewGauge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewGauge.h; sourceTree = "<group>"; };
@@ -441,9 +436,7 @@
 		7186DE091E4DBF5F00F71F0C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7186DE151E4DBF7100F71F0C /* Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Session.h; sourceTree = "<group>"; };
 		7186DE161E4DBF7100F71F0C /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Session.m; sourceTree = "<group>"; };
-		7186DE171E4DBF7100F71F0C /* CustomIOSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomIOSAlertView.h; sourceTree = "<group>"; };
 		7186DE181E4DBF7100F71F0C /* VersionNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionNumber.h; sourceTree = "<group>"; };
-		7186DE191E4DBF7100F71F0C /* CustomIOSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomIOSAlertView.m; sourceTree = "<group>"; };
 		7186DE1D1E4DBF7100F71F0C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		7186DE1E1E4DBF7100F71F0C /* PiNumberFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PiNumberFormatter.h; sourceTree = "<group>"; };
 		7186DE1F1E4DBF7100F71F0C /* PiNumberFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PiNumberFormatter.m; sourceTree = "<group>"; };
@@ -527,8 +520,6 @@
 		71C9F9FB1E53356C0078070D /* AddNewUserOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewUserOperation.m; sourceTree = "<group>"; };
 		71C9F9FD1E53356C0078070D /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		71C9F9FE1E53356C0078070D /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
-		71C9F9FF1E53356C0078070D /* UIEffectDesignerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIEffectDesignerView.h; sourceTree = "<group>"; };
-		71C9FA001E53356C0078070D /* UIEffectDesignerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIEffectDesignerView.m; sourceTree = "<group>"; };
 		71C9FA0B1E5335C40078070D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		71C9FA1E1E5344EB0078070D /* UserListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserListViewController.h; sourceTree = "<group>"; };
 		71C9FA1F1E5344EB0078070D /* UserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserListViewController.m; sourceTree = "<group>"; };
@@ -557,6 +548,9 @@
 		71D1A65420751F4A00C83B63 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		71D1A65620751F5200C83B63 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		71D1A659207523C900C83B63 /* giraffe.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = giraffe.jpg; sourceTree = "<group>"; };
+		71D5B9A620D11E3600F44A0C /* Main-Project.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Main-Project.png"; path = "../../../../.Trash/App UI 2/Main/Main-Project.png"; sourceTree = "<group>"; };
+		71D5B9B420D11EB000F44A0C /* Settings-Button-EXHALE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Settings-Button-EXHALE.png"; path = "../../../../.Trash/App UI 3/Settings/Settings-Button-EXHALE.png"; sourceTree = "<group>"; };
+		71D5B9B520D11EB000F44A0C /* Settings-Button-INHALE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Settings-Button-INHALE.png"; path = "../../../../.Trash/App UI 3/Settings/Settings-Button-INHALE.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -618,11 +612,6 @@
 				7108572C1E439A0A00479032 /* AppDelegate.h */,
 				7108572F1E439A0A00479032 /* ViewController.h */,
 				710857301E439A0A00479032 /* ViewController.m */,
-				71A6624920D070340050E93D /* CAKeyframeAnimation+AHEasing.h */,
-				71A6624B20D0706B0050E93D /* easing.c */,
-				71A6624C20D0706B0050E93D /* easing.h */,
-				71A6624A20D0706A0050E93D /* EasingDeclarations.h */,
-				71A6624720D0700C0050E93D /* CAKeyframeAnimation+AHEasing.m */,
 				7186DDCC1E4DBE0D00F71F0C /* Model.xcdatamodel */,
 				7108573D1E439A0A00479032 /* Info.plist */,
 				7186DE091E4DBF5F00F71F0C /* Images.xcassets */,
@@ -646,10 +635,13 @@
 				71BAE49F20C9A82900B594FA /* BUTTON-OnlineManual-ENG.png */,
 				71BAE49E20C9A82800B594FA /* BUTTON-OnlineManual-NL.png */,
 				71BAE49D20C9A82700B594FA /* InfoBackground-ENG.png */,
+				71D5B9B420D11EB000F44A0C /* Settings-Button-EXHALE.png */,
+				71D5B9B520D11EB000F44A0C /* Settings-Button-INHALE.png */,
 				71BAE4A020C9A82A00B594FA /* InfoBackground-NL.png */,
 				71BAE4A520C9AA7500B594FA /* Info-ACTIVE-80x80.png */,
 				71CA7A8320D047A900126454 /* User-Back-Button.png */,
 				71BAE4A620C9AA7600B594FA /* Info-INACTIVE-80x80.png */,
+				71D5B9A620D11E3600F44A0C /* Main-Project.png */,
 				71BAE4AD20C9B27800B594FA /* Settings-INACTIVE-80x801.png */,
 				71BAE4A820C9AA7600B594FA /* Settings-ACTIVE-80x80.png */,
 				71BAE4A720C9AA7600B594FA /* Settings-INACTIVE-80x80.png */,
@@ -702,8 +694,6 @@
 		717D000120B309240098893A /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				717D009F20B44FC80098893A /* Settings-Button-EXHALE.png */,
-				717D009D20B44FC70098893A /* Settings-Button-INHALE.png */,
 				717D015A20BD61310098893A /* Settings-Background.png */,
 			);
 			name = Settings;
@@ -734,7 +724,6 @@
 				717D005F20B309CA0098893A /* Help.png */,
 				717D006020B309CA0098893A /* Settings.png */,
 				717D005E20B309C90098893A /* Users.png */,
-				717D003920B309740098893A /* Main-Project.png */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -850,6 +839,11 @@
 		7186DEA51E4DC59F00F71F0C /* btlemanager */ = {
 			isa = PBXGroup;
 			children = (
+				71A6624920D070340050E93D /* CAKeyframeAnimation+AHEasing.h */,
+				71A6624B20D0706B0050E93D /* easing.c */,
+				71A6624C20D0706B0050E93D /* easing.h */,
+				71A6624A20D0706A0050E93D /* EasingDeclarations.h */,
+				71A6624720D0700C0050E93D /* CAKeyframeAnimation+AHEasing.m */,
 				7186DEAA1E4DC59F00F71F0C /* libMelodySmart */,
 				7186DEA81E4DC59F00F71F0C /* BTLEManager.h */,
 				7186DEA91E4DC59F00F71F0C /* BTLEManager.m */,
@@ -893,9 +887,9 @@
 		71A04ECC208FD0F200AA878B /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				71CA7A8F20D0553500126454 /* SettingsViewController.xib */,
 				71D1A3722074FE5300C83B63 /* SettingsViewController.h */,
 				71D1A3712074FE5200C83B63 /* SettingsViewController.m */,
-				71CA7A8F20D0553500126454 /* SettingsViewController.xib */,
 				71A04EC0208FA8BC00AA878B /* SettingsViewGauge.h */,
 				71A04EC1208FA8BD00AA878B /* SettingsViewGauge.m */,
 			);
@@ -908,11 +902,11 @@
 			children = (
 				717D023420BDB95C0098893A /* Session */,
 				71C9F9CA1E53341D0078070D /* Balloon Game */,
+				7186DE051E4DBF5F00F71F0C /* GameViewController.xib */,
 				7186DE281E4DBF7100F71F0C /* GameViewController.h */,
 				7186DE291E4DBF7100F71F0C /* GameViewController.m */,
 				717D00B020B5CDF50098893A /* GameViewGauge.h */,
 				717D00B120B5CDF50098893A /* GameViewGauge.m */,
-				7186DE051E4DBF5F00F71F0C /* GameViewController.xib */,
 			);
 			path = "Game VC";
 			sourceTree = "<group>";
@@ -959,12 +953,12 @@
 		71C9F9CF1E53341D0078070D /* Users */ = {
 			isa = PBXGroup;
 			children = (
+				71CA7AA320D05F7000126454 /* AllGamesForDayTableVC.xib */,
 				7186DDEC1E4DBF4100F71F0C /* AllGamesForDayTableVC.h */,
 				7186DDED1E4DBF4100F71F0C /* AllGamesForDayTableVC.m */,
-				71CA7AA320D05F7000126454 /* AllGamesForDayTableVC.xib */,
+				71CA7AA020D05F6700126454 /* UserListViewController.xib */,
 				71C9FA1E1E5344EB0078070D /* UserListViewController.h */,
 				71C9FA1F1E5344EB0078070D /* UserListViewController.m */,
-				71CA7AA020D05F6700126454 /* UserListViewController.xib */,
 				7186DE031E4DBF5F00F71F0C /* HeaderView.h */,
 				7186DE041E4DBF5F00F71F0C /* HeaderView.m */,
 				71C9F9CD1E53341D0078070D /* User.h */,
@@ -1005,8 +999,6 @@
 				71C9F9EA1E53356C0078070D /* GCDObjC */,
 				71C9F9F41E53356C0078070D /* MIDI */,
 				7186DEA51E4DC59F00F71F0C /* btlemanager */,
-				7186DE171E4DBF7100F71F0C /* CustomIOSAlertView.h */,
-				7186DE191E4DBF7100F71F0C /* CustomIOSAlertView.m */,
 				7186DE1E1E4DBF7100F71F0C /* PiNumberFormatter.h */,
 				7186DE1F1E4DBF7100F71F0C /* PiNumberFormatter.m */,
 				7186DE211E4DBF7100F71F0C /* Globals.h */,
@@ -1022,8 +1014,6 @@
 			children = (
 				71C9F9FD1E53356C0078070D /* NSData+Base64.h */,
 				71C9F9FE1E53356C0078070D /* NSData+Base64.m */,
-				71C9F9FF1E53356C0078070D /* UIEffectDesignerView.h */,
-				71C9FA001E53356C0078070D /* UIEffectDesignerView.m */,
 			);
 			path = UIEffectDesignerView;
 			sourceTree = "<group>";
@@ -1244,6 +1234,7 @@
 				717D00BA20B850C30098893A /* 2xylofoon.wav in Resources */,
 				71BAE4D420CAA0FA00B594FA /* HQ 3.jpg in Resources */,
 				71BAE4D720CAA0FA00B594FA /* HQ 19.jpg in Resources */,
+				71D5B9B620D11EB000F44A0C /* Settings-Button-EXHALE.png in Resources */,
 				71CA7A9E20D05F6700126454 /* UserListViewController.xib in Resources */,
 				71BAE4D520CAA0FA00B594FA /* HQ 18.jpg in Resources */,
 				717D003420B309620098893A /* Login-Background.png in Resources */,
@@ -1263,14 +1254,12 @@
 				717D00EC20B851290098893A /* 5sirene fluit.wav in Resources */,
 				717D011C20B851910098893A /* 6bell synth.wav in Resources */,
 				717D011D20B851910098893A /* 2bell synth.wav in Resources */,
-				717D00A420B44FC90098893A /* Settings-Button-EXHALE.png in Resources */,
 				717D004120B309750098893A /* Sound-OFF.png in Resources */,
 				717D003620B309620098893A /* Login-Button-Login.png in Resources */,
 				717D007520B3138C0098893A /* Balloon0.png in Resources */,
 				717D007420B3138C0098893A /* Balloon8.png in Resources */,
 				717D00C820B850D50098893A /* 5Trombone.wav in Resources */,
 				717D012520B851A50098893A /* 4Bas slide.wav in Resources */,
-				717D004020B309750098893A /* Main-Project.png in Resources */,
 				717D00C620B850D50098893A /* 6Trombone.wav in Resources */,
 				717D00DF20B851100098893A /* 5spaceship.wav in Resources */,
 				717D00EA20B851290098893A /* 3sirene fluit.wav in Resources */,
@@ -1292,7 +1281,6 @@
 				717D013320B851BD0098893A /* 3Ballon.wav in Resources */,
 				717D013120B851BD0098893A /* 2Ballon.wav in Resources */,
 				71BAE4D120CAA0FA00B594FA /* HQ 5.jpg in Resources */,
-				717D00A220B44FC90098893A /* Settings-Button-INHALE.png in Resources */,
 				717D00D120B850F00098893A /* 2Toy Piano.wav in Resources */,
 				717D011220B851750098893A /* 6droom.wav in Resources */,
 				717D00BC20B850C30098893A /* 4xylofoon.wav in Resources */,
@@ -1301,6 +1289,7 @@
 				717D013620B851BD0098893A /* 6Ballon.wav in Resources */,
 				717D010520B8515D0098893A /* 3harp.wav in Resources */,
 				717D013920B868E30098893A /* User-Project.png in Resources */,
+				71D5B9B720D11EB000F44A0C /* Settings-Button-INHALE.png in Resources */,
 				717D006220B309CA0098893A /* Users.png in Resources */,
 				717D012720B851A50098893A /* 5Bas slide.wav in Resources */,
 				717D00C920B850D50098893A /* 4Trombone.wav in Resources */,
@@ -1323,6 +1312,7 @@
 				71BAE4AA20C9AA7700B594FA /* Info-INACTIVE-80x80.png in Resources */,
 				717D011A20B851910098893A /* 4bell synth.wav in Resources */,
 				71BAE4A920C9AA7700B594FA /* Info-ACTIVE-80x80.png in Resources */,
+				71D5B9B320D11E3700F44A0C /* Main-Project.png in Resources */,
 				717D012920B851A50098893A /* 2Bas slide.wav in Resources */,
 				717D011920B851910098893A /* 1bell synth.wav in Resources */,
 				717D010320B8515D0098893A /* 2harp.wav in Resources */,
@@ -1378,9 +1368,7 @@
 				71C9FA071E53356C0078070D /* AddNewUserOperation.m in Sources */,
 				71C9FA031E53356C0078070D /* GCDQueue.m in Sources */,
 				7186DEB51E4DC59F00F71F0C /* NSData+NSData_Conversion.m in Sources */,
-				71C9FA091E53356C0078070D /* UIEffectDesignerView.m in Sources */,
 				71C9FA021E53356C0078070D /* GCDObjCTests.m in Sources */,
-				7186DE2B1E4DBF7100F71F0C /* CustomIOSAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

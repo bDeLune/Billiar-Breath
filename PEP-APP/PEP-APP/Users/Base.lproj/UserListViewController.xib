@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFill" misplaced="YES" indicatorStyle="black" bouncesZoom="NO" style="grouped" separatorInsetReference="fromAutomaticInsets" allowsSelectionDuringEditing="YES" rowHeight="40" sectionHeaderHeight="25" sectionFooterHeight="18" id="8">
-                    <rect key="frame" x="90" y="208" width="577" height="655"/>
+                    <rect key="frame" x="90" y="207" width="577" height="660"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

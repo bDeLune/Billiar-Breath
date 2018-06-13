@@ -35,8 +35,10 @@
     }
     
     self.gameViewController.settingsViewController = self.settingsViewController;
-    self.settingsViewController.delegate=self.gameViewController;
+    self.settingsViewController.delegate = self.gameViewController;
     [self.settingsViewController setSettinngsDelegate:self.gameViewController];
+    [self.gameViewController prepareDisplay]; //todo: prepare imageview
+    
     NSMutableArray *tabViewControllers = [[NSMutableArray alloc] init];
     [tabViewControllers addObject:self.gameViewController];
     [tabViewControllers addObject:self.settingsViewController];
@@ -65,18 +67,6 @@
     [self.infoViewController.tabBarItem setSelectedImage:image];
     [self.infoViewController.tabBarItem setImage:image];
     
-   // UIImage *image2 = [[UIImage imageNamed:@"Settings-INACTIVE-80x80"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-   // [self.settingsViewController.tabBarItem setSelectedImage:image2];
-   // [self.settingsViewController.tabBarItem setImage:image2];
-    
-   // UIImage *image3 = [[UIImage imageNamed:@"Users-INACTIVE-80x80"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-   // [self.userListViewController.tabBarItem setSelectedImage:image3];
-   // [self.userListViewController.tabBarItem setImage:image3];
-    
-    //UIImage *image4 = [[UIImage imageNamed:@"PEP-App-INACTIVE-80x80"] //imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-   /// [self.gameViewController.tabBarItem setSelectedImage:image4];
-   // [self.gameViewController.tabBarItem setImage:image4];
-    
     self.infoViewController.tabBarItem.title = @"";
     self.userListViewController.tabBarItem.title = @"";
     self.settingsViewController.tabBarItem.title = @"";
@@ -101,11 +91,6 @@
     [self.userListViewController getListOfUsers];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -118,11 +103,10 @@
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
-    
-    //[self.userListViewController.detailViewController dismissViewControllerAnimated:YES completion:nil];
+
     NSLog(@"selected index : %i",[tabBarController selectedIndex]);
     if ([tabBarController selectedIndex] == 1){
-        
+    
     }
 }
 

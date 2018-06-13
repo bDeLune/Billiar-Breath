@@ -50,6 +50,7 @@
 -(IBAction)presentSettings:(id)sender;
 -(IBAction)resetGame:(id)sender;
 -(void)setupDisplayFiltering;
+-(void)prepareDisplay;
 -(void)setLabels;
 
 @property (weak, nonatomic) IBOutlet UIImageView *bluetoothIcon;

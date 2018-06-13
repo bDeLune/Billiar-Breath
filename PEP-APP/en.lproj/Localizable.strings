@@ -6,7 +6,7 @@
 "Field has been left blank" = "Field has been left blank";
 "Sorry, that user already exists" = "Sorry, that user already exists";
 "Sorry, user does not exist, try signing up instead" = "Sorry, user does not exist, try signing up instead";
-"Success" = "Success";
+"Success!" = "Success!";
 "OK" = "OK";
 "Registration Complete!" = "Registration Complete!";
 "Login-Button-Login" = "Login-Button-Login";

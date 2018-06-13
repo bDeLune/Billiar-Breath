@@ -19,7 +19,7 @@
 }
 -(void)build
 {
-    self.label=[[UILabel alloc]initWithFrame:CGRectMake(50,30, 500, self.bounds.size.height)];
+    self.label=[[UILabel alloc]initWithFrame:CGRectMake(30,30, 500, self.bounds.size.height)];
 
     [self.label setText:self.user.userName];
     [self addSubview:self.label];

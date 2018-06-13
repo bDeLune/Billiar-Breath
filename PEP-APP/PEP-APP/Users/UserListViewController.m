@@ -246,11 +246,14 @@
         }
        NSLog(@"didSelectRowAtIndexPath  for username %@ durationOnlyarray %@" , user.userName , durationOnly);
     [self.detailViewController setUSerData:durationOnly];
-    self.detailViewController.view.frame = CGRectMake(97,230,569,595);
+    self.detailViewController.view.frame = CGRectMake(97,207,569,595);
     self.backButton.hidden = NO;
     [self.view addSubview:self.detailViewController.view];
-    [self addChildViewController:self.detailViewController];
-    [self didMoveToParentViewController:self.detailViewController];
+    [self.view bringSubviewToFront:self.detailViewController.view];
+     [self.view bringSubviewToFront:self.backgroundColouredImage];
+    [self.view bringSubviewToFront:self.backButton];
+    //[self addChildViewController:self.detailViewController];
+   // [self didMoveToParentViewController:self.detailViewController];
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {

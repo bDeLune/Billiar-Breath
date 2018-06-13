@@ -2,8 +2,8 @@
 #import "BalloonViewController.h"
 #import "Balloon.h"
 #import "CAKeyframeAnimation+AHEasing.h"
-#import "EasingDeclarations.h"
-#import "easing.h"
+//#import "EasingDeclarations.h"
+//#import "easing.h"
 #import "GCDQueue.h"
 #define NUM_BALLS  8
 #define BALL_RADIUS  80
@@ -246,7 +246,6 @@
     }
     
     for (Balloon *ball in self.balls) {
-        // NSLog(@"STOPPING BALLS");
         [ball stop];
         [ball blowingEnded];
         [ball removeFromSuperview];
@@ -278,22 +277,17 @@
     animation.duration = 32.0f/30.0f;///32.0f/30.0f;
     animation.fillMode = kCAFillModeForwards;
     animation.values = values;
-    animation.removedOnCompletion = YES; // final stage is equal to starting stage
+    animation.removedOnCompletion = YES;
     animation.autoreverses = NO;
-    //NSLog(@"ending animation");
     
     return animation;
 }
 
 -(void)pushBallsWithVelocity:(float)velocity
 {
-    
-    //change: remove+g
     float maxVelocity=30;
     
     NSString * difficulty=[[NSUserDefaults standardUserDefaults]objectForKey:@"difficulty"];
-    
-   // NSLog(@"PUSHING BALLS - - -  NSString DIFFICULTY IS %@", difficulty);
     
     int difficultyAsInt = [difficulty intValue];
     
@@ -335,14 +329,11 @@
     
     for (int i=numberOfBallsToMove; i<[self.balls count]; i++) {
         Balloon  *ball=[self.balls objectAtIndex:i];
-        //NSLog(@" inner BLOWING ENDED  %d!!!", i);
         [ball blowingEnded];
     }
-     //NSLog(@"BLOWING ENDED maxvelocity %f!!!", maxVelocity);
 }
 
 -(void)blowStarted: (int)currentBallNo atSpeed:(int)speed{
-   // NSLog(@"BLOWBGGG! started timer");
     isaccelerating=YES;
     currentBall = currentBallNo;
     selectedSpeedSetting = speed;

@@ -6,7 +6,6 @@
 #import "InfoViewController.h"
 #import "BTLEManager.h"
 #import "Session.h"
-#import "UIEffectDesignerView.h"
 
 @interface SettingsViewController ()<UITabBarDelegate, BTLEManagerDelegate, MidiControllerProtocol>{
     UINavigationController   *navcontroller;
@@ -14,14 +13,10 @@
     NSTimer  *timer;
     BOOL  sessionRunning;
     NSTimer  *effecttimer;
-    UIImageView  *bg;
     int threshold;
     AVAudioPlayer *audioPlayer;
     UIButton  *togglebutton;
     BOOL   toggleIsON;
-    int midiinhale;
-    int midiexhale;
-    int inorout;
     bool currentlyExhaling;
     bool currentlyInhaling;
 }

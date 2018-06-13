@@ -30,7 +30,6 @@
 
 - (void)viewDidLoad
 {
-    
     NSLog(@"All Games view did load");
     [super viewDidLoad];
 }
@@ -47,8 +46,6 @@
     
     self.tableView.backgroundColor = [UIColor colorWithRed:232/255.0f green:233/255.0f blue:237/255.0f alpha:1.0f] ;
     self.tableView.backgroundView.backgroundColor = [UIColor colorWithRed:232/255.0f green:233/255.0f blue:237/255.0f alpha:1.0f] ;
-    
-   // self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -60,15 +57,6 @@
 - (IBAction)tapGesture:(UITapGestureRecognizer*)gesture
 {
     NSLog(@"tap gesture");
-    // In your controller, you have the main view, which is the view
-    // on which you added your UIViews.  You need that view.  Add it as an IBOutlet
-    // You should know how to do that...  ctrl-drag to the class INTERFACE source.
-    // Assuming you name it "galleryView"
-    
-    // Take the tap location from the gesture, and make sure it is in the
-    // coordinate space of the view.  Loop through all the imageViews and
-    // find the one that contains the point where the finger was taped.
-    // Then, "remove" that one from its superview...
     CGPoint tapLocation = [gesture locationInView: self.view];
     for (UIImageView *imageView in self.view.subviews) {
         NSLog(@"imageView");
@@ -143,17 +131,11 @@
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    HeaderView  *header=[[HeaderView alloc]initWithFrame:CGRectMake(30, 180, 670, 20)];
+    HeaderView  *header=[[HeaderView alloc]initWithFrame:CGRectMake(0, 100, 670, 0)];
     header.section=section;
     //header.user=[self.userList objectAtIndex:section];
     //header.delegate=self;
     [header build];
-    
-    self.backButton=[UIButton buttonWithType:UIButtonTypeSystem];
-    self.backButton.frame=CGRectMake(220, 225, 180, 0);
-    [self.backButton setTitle:@"Back" forState:UIControlStateNormal];
-    [self.backButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    [self.backButton addTarget:self action:@selector(tapGesture:) forControlEvents:UIControlEventAllEvents];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
     [self.backButton addGestureRecognizer:tap];
@@ -163,7 +145,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 50;
+    return 60;
 }
 
 @end

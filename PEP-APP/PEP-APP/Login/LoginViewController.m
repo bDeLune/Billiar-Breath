@@ -178,7 +178,7 @@
         
         [self.addUserQueue addOperation:addUserOperation];
         //mylocalis
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Success!" message:[NSString stringWithFormat:NSLocalizedString(@"Registration complete", nil)] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Success!" message:[NSString stringWithFormat:NSLocalizedString(@"Registration Complete!", nil)] preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* ok = [UIAlertAction actionWithTitle:[NSString stringWithFormat:NSLocalizedString(@"OK", nil)] style:UIAlertActionStyleDefault handler:nil];
         [alertController addAction:ok];
         

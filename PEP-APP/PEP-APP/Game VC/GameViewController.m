@@ -8,13 +8,11 @@
 #import "AbstractGame.h"
 #import "Game.h"
 #import "AddNewScoreOperation.h"
-#import "UIEffectDesignerView.h"
 #import "GCDQueue.h"
 #import "BTLEManager.h"
 #import "UserListViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import <AudioToolbox/AudioToolbox.h>
-#import "UIEffectDesignerView.h"
 #import <AVFoundation/AVFoundation.h>
 
 @interface GameViewController ()<BTLEManagerDelegate, UITabBarDelegate,UITabBarControllerDelegate, SETTINGS_DELEGATE>
@@ -23,7 +21,6 @@
     CADisplayLink *testDurationDisplayLink;
     gameDifficulty  currentDifficulty;
     AVAudioPlayer  *audioPlayer;
-    UIEffectDesignerView *particleEffect;
     NSTimer  *effectTimer;
     bool wasExhaling;
     float bestCurrentVelocity;
@@ -739,9 +736,9 @@
 {
     NSLog(@"GAME WON");
     
-    if (particleEffect) {
-        return;
-    }
+   // if (particleEffect) {
+   //     return;
+   // }
 
     [[GCDQueue mainQueue]queueBlock:^{
         [self playSound];
@@ -769,30 +766,13 @@
 
 -(void)startEffects
 {
-    //change replace with bursting effect
-   // particleEffect = [UIEffectDesignerView effectWithFile:@"billiardwin.ped"];
-    //  CGRect frame=particleEffect.frame;
-   // particleEffect.frame=self.view.frame;
-   // CGRect frame=particleEffect.frame;
-   // frame.origin.x+=100;
-   // frame.origin.y-=50;
-  //  particleEffect.frame=frame;
-  //  [self.view addSubview:particleEffect];
-   // effectTimer=[NSTimer timerWithTimeInterval:2 target:self selector:@selector(killSparks) userInfo:nil repeats:NO];///timer was 2
-   // [[NSRunLoop mainRunLoop] addTimer:effectTimer forMode:NSDefaultRunLoopMode];
+
 }
 
 -(void)killSparks
 {
-    //kill bursting effect
-  //  dispatch_async(dispatch_get_main_queue(), ^{
-  //      [particleEffect removeFromSuperview];
-  ///      particleEffect=nil;
-  //      [effectTimer invalidate];
-  //      effectTimer=nil;
-        
-  ///  });
-}//
+
+}
 
 -(void)saveCurrentSession
 {
@@ -854,20 +834,17 @@
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:@"latest_photo.png"];
     
-    //extracting image from the picker and saving it
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     if ([mediaType isEqualToString:@"public.image"]){
-        //UIImage *editedImage = [info objectForKey:UIImagePickerControllerEditedImage];
         NSData *webData = UIImagePNGRepresentation(image);
         [webData writeToFile:imagePath atomically:YES];
     }
-    
-    // [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    [picker dismissModalViewControllerAnimated:NO];
+   // [picker dismissModalViewControllerAnimated:NO];
+     [picker dismissViewControllerAnimated:NO completion:nil];
 }
 
 - (void)photoButtonLibraryAction
@@ -974,15 +951,7 @@
 - (IBAction)tapGesture:(UITapGestureRecognizer*)gesture
 {
     NSLog(@"tap gesture");
-    // In your controller, you have the main view, which is the view
-    // on which you added your UIViews.  You need that view.  Add it as an IBOutlet
-    // You should know how to do that...  ctrl-drag to the class INTERFACE source.
-    // Assuming you name it "galleryView"
-    
-    // Take the tap location from the gesture, and make sure it is in the
-    // coordinate space of the view.  Loop through all the imageViews and
-    // find the one that contains the point where the finger was taped.
-    // Then, "remove" that one from its superview...
+
     CGPoint tapLocation = [gesture locationInView: self.hqPickerContainer];
     for (UIImageView *imageView in self.hqPickerContainer.subviews) {
         
@@ -1000,8 +969,7 @@
     
     NSString *bundleRootPath = [[NSBundle mainBundle] bundlePath];
     NSArray *bundleRootContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:bundleRootPath error:nil];
-    NSArray *files = [bundleRootContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self beginswith 'HQ'"]]; //you can provide your string in ' ' to filter specific content
-    //NSLog(@"FILES  - - - %@",files);
+    NSArray *files = [bundleRootContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self beginswith 'HQ'"]];
     
     return files;
 }
@@ -1043,12 +1011,28 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    
     [self resetGame:nil];
     self.currentGameType= gameTypeImage;
     self.balloonViewController.currentGameType = self.currentGameType;
     [self.toggleGameModeButton setImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];
 
+    if (!displayLink) {
+         NSLog(@"SETTING UP DISPLAY LINK viewdidload");
+        [self setupDisplayFiltering];
+        displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateimage)];
+        [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+        animationRunning = YES;
+        [displayLink setFrameInterval:3];//60 times in one second       //was 8
+        //[self makeTimer];
+        // acceleration=0.1;
+        acceleration=0.1;
+        distance=0;
+    }
+}
+
+-(void)prepareDisplay{
+    NSLog(@"PREPARING VC");
+    
     self.mainGaugeView.MainGaugeDelegate=self;
     [self.mainGaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
     [self.mainGaugeView start];
@@ -1063,7 +1047,7 @@
         animationRunning = YES;
         [displayLink setFrameInterval:3];//60 times in one second       //was 8
         //[self makeTimer];
-       // acceleration=0.1;
+        // acceleration=0.1;
         acceleration=0.1;
         distance=0;
     }

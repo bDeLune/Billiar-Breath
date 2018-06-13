@@ -53,14 +53,14 @@
                     </connections>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9uZ-uU-8xa">
-                    <rect key="frame" x="120" y="184" width="584" height="92"/>
+                    <rect key="frame" x="111" y="184" width="593" height="92"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     <color key="tintColor" red="0.93911431760204078" green="0.89024985752404839" blue="0.23326856268488183" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="92" id="Bns-Hs-swT"/>
                     </constraints>
                     <nil key="textColor"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="50"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="45"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                 </textField>
             </subviews>
@@ -72,7 +72,7 @@
                 <constraint firstItem="5EX-bV-cBy" firstAttribute="leading" secondItem="CVO-Vi-sKz" secondAttribute="trailing" constant="38" id="8Lv-cD-Kp6"/>
                 <constraint firstItem="ff1-eL-59p" firstAttribute="top" secondItem="2" secondAttribute="top" id="9jZ-bG-u0x"/>
                 <constraint firstItem="5EX-bV-cBy" firstAttribute="top" secondItem="9uZ-uU-8xa" secondAttribute="bottom" constant="72" id="EDU-OM-yRb"/>
-                <constraint firstItem="9uZ-uU-8xa" firstAttribute="leading" secondItem="CVO-Vi-sKz" secondAttribute="leading" id="IRI-bR-vR5"/>
+                <constraint firstItem="9uZ-uU-8xa" firstAttribute="leading" secondItem="CVO-Vi-sKz" secondAttribute="leading" constant="-9" id="IRI-bR-vR5"/>
                 <constraint firstItem="CVO-Vi-sKz" firstAttribute="top" secondItem="9uZ-uU-8xa" secondAttribute="bottom" constant="72" id="LB0-WH-T78"/>
                 <constraint firstAttribute="trailing" secondItem="ff1-eL-59p" secondAttribute="trailing" id="LLq-29-WXF"/>
                 <constraint firstAttribute="bottom" secondItem="ff1-eL-59p" secondAttribute="bottom" id="TwA-04-1jB"/>

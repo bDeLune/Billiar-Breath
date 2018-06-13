@@ -227,12 +227,12 @@
 {
     [UIView animateWithDuration:0.5
                      animations:^{
-                         CGRect frame=animationObject.frame;
-                         frame.origin.y=self.bounds.size.height-MAINGUAGE_HEIGHT;
-                         frame.size.height=distance;
-                     }
-                     completion:^(BOOL finished){
-                         [self stop];
-                     }];
+        CGRect frame=animationObject.frame;
+        frame.origin.y=self.bounds.size.height-MAINGUAGE_HEIGHT;
+        frame.size.height=distance;
+    }
+        completion:^(BOOL finished){
+        [self stop];
+    }];
 }
 @end
