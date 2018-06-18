@@ -4,6 +4,6 @@
 #import "SettingsViewController.h"
 #import "MainTableViewController.h"
 
-@interface ViewController : UITabBarController<LoginProtocol, GameViewProtocol, SettingsViewProtocol>
+@interface ViewController : UITabBarController<LoginProtocol, GameViewProtocol>
 
 @end

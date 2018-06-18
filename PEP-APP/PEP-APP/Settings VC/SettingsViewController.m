@@ -36,17 +36,48 @@
    
     if (self) {
         self.title = @"Settings";
-        imageGameSoundArray=[NSMutableArray arrayWithObjects:@"Ballon",@"schuiffluit",@"spaceship",@"Bas slide",@"bell synth", @"droom", @"sirene fluit", @"xylofoon", @"Toy Piano", @"harp", nil];
-        repititionsArray=[NSMutableArray arrayWithObjects: @"1",@"2",@"3", @"4",@"5",@"6",@"7",@"8", nil];
+        //imageGameSoundArray=[NSMutableArray arrayWithObjects: @"Ballon",@"Schuiffluit",@"spaceship",@"Bas slide",@"bell synth", @"droom", @"sirene fluit", @"xylofoon", @"Toy Piano", @"harp", nil];
+        imageGameSoundArray=[NSMutableArray arrayWithObjects:
+        [NSString stringWithFormat:NSLocalizedString(@"Ballon", nil)],
+        [NSString stringWithFormat:NSLocalizedString(@"Schuiffluit", nil)],
+        [NSString stringWithFormat:NSLocalizedString(@"Spaceship", nil)],
+        [NSString stringWithFormat:NSLocalizedString(@"Bas Slide", nil)],
+        [NSString stringWithFormat:NSLocalizedString(@"Bel Synth", nil)],
+        [NSString stringWithFormat:NSLocalizedString(@"Droon", nil)],
+        [NSString stringWithFormat:NSLocalizedString(@"Sirene Fluit", nil)],
+        [NSString stringWithFormat:NSLocalizedString(@"Xylofoon", nil)],
+        [NSString stringWithFormat:NSLocalizedString(@"Toy Piano", nil)],
+        [NSString stringWithFormat:NSLocalizedString(@"Harp", nil)],
+        nil];
+        
+        repititionsArray=[NSMutableArray arrayWithObjects: @"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20", nil];
+        
+        //filterArray=[NSMutableArray arrayWithObjects:
+        //             @"Bulge",@"Swirl",@"Blur",@"Toon",
+        ////             @"Expose",@"Polka",
+         //            @"Posterize",@"Pixellate",@"Contrast", nil];
+        
         filterArray=[NSMutableArray arrayWithObjects:
-                     @"Bulge",@"Swirl",@"Blur",@"Toon",
-                     @"Expose",@"Polka",
-                     @"Posterize",@"Pixellate",@"Contrast", nil];
+        [NSString stringWithFormat:NSLocalizedString(@"Bulge", nil)],
+        [NSString stringWithFormat:NSLocalizedString(@"Swirl", nil)],
+        [NSString stringWithFormat:NSLocalizedString(@"Blur", nil)],
+        [NSString stringWithFormat:NSLocalizedString(@"Toon", nil)],
+        [NSString stringWithFormat:NSLocalizedString(@"Expose", nil)],
+        [NSString stringWithFormat:NSLocalizedString(@"Polka", nil)],
+        [NSString stringWithFormat:NSLocalizedString(@"Posterize", nil)],
+        [NSString stringWithFormat:NSLocalizedString(@"Pixellate", nil)],
+        [NSString stringWithFormat:NSLocalizedString(@"Contrast", nil)],
+        nil];
         
         self.gaugeView=[[SettingsViewGauge alloc]initWithFrame:CGRectMake(90, 155, 90, GUAGE_HEIGHT) ];
         self.gaugeView.GaugeDelegate=self;
         [self.view addSubview:self.gaugeView];
         [self.view sendSubviewToBack:self.gaugeView];
+        
+        [self.view sendSubviewToBack:pickerViewB];
+        [self.view sendSubviewToBack:pickerViewC];
+        [self.view sendSubviewToBack:filterPicker];
+        
         [self.view sendSubviewToBack:whiteBackground];
         
         [self.gaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
@@ -125,12 +156,15 @@
     int amount = 0;
     if (thePickerView==pickerViewB) {
         amount=(int)[imageGameSoundArray count];
+        NSLog(@"AMOUNT IN imageGameSoundArray %d", amount);
         }
     if (thePickerView==pickerViewC) {
         amount=(int)[repititionsArray count];
+        NSLog(@"AMOUNT IN repititionsArray %d", amount);
     }
     if (thePickerView==filterPicker) {
         amount=(int)[filterArray count];
+        NSLog(@"AMOUNT IN FILTER PICKER %d", amount);
     }
     
 	return amount;
@@ -140,7 +174,7 @@
     
     //NSLog(@"changing pickerView titleForRow");
     NSString *thetitle;
-    
+    NSLog(@"titleForRow %d", (int)row);
     //mylocalise
     if (thePickerView==pickerViewB) {
        thetitle=[imageGameSoundArray objectAtIndex:row];
@@ -157,7 +191,7 @@
 }
 
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-	
+    NSLog(@"didSelectRow %d", (int)row);
     int rowint=(int)row;
     if (thePickerView==pickerViewB) {
         [self.settinngsDelegate setImageSoundEffect: [imageGameSoundArray objectAtIndex:row]];
@@ -165,6 +199,7 @@
     
     if (thePickerView==pickerViewC) {
         NSInteger selectedValAsint = [[repititionsArray objectAtIndex:row] integerValue];
+       
         [self.settinngsDelegate setRepetitionCount: selectedValAsint];
     }
     

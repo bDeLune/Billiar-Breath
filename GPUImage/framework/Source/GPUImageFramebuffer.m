@@ -51,7 +51,7 @@ void dataProviderUnlockCallback (void *info, const void *data, size_t size);
         runSynchronouslyOnVideoProcessingQueue(^{
             [GPUImageContext useImageProcessingContext];
             [self generateTexture];
-            self->framebuffer = 0;
+            framebuffer = 0;
         });
     }
     else
@@ -133,8 +133,8 @@ void dataProviderUnlockCallback (void *info, const void *data, size_t size);
     runSynchronouslyOnVideoProcessingQueue(^{
         [GPUImageContext useImageProcessingContext];
     
-        glGenFramebuffers(1, &self->framebuffer);
-        glBindFramebuffer(GL_FRAMEBUFFER, self->framebuffer);
+        glGenFramebuffers(1, &framebuffer);
+        glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
         
         // By default, all framebuffers on iOS 5.0+ devices are backed by texture caches, using one shared cache
         if ([GPUImageContext supportsFastTextureUpload])
@@ -149,23 +149,23 @@ void dataProviderUnlockCallback (void *info, const void *data, size_t size);
             attrs = CFDictionaryCreateMutable(kCFAllocatorDefault, 1, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
             CFDictionarySetValue(attrs, kCVPixelBufferIOSurfacePropertiesKey, empty);
             
-            CVReturn err = CVPixelBufferCreate(kCFAllocatorDefault, (int)self->_size.width, (int)_size.height, kCVPixelFormatType_32BGRA, attrs, &self->renderTarget);
+            CVReturn err = CVPixelBufferCreate(kCFAllocatorDefault, (int)_size.width, (int)_size.height, kCVPixelFormatType_32BGRA, attrs, &renderTarget);
             if (err)
             {
-                NSLog(@"FBO size: %f, %f", self->_size.width, self->_size.height);
+                NSLog(@"FBO size: %f, %f", _size.width, _size.height);
                 NSAssert(NO, @"Error at CVPixelBufferCreate %d", err);
             }
             
-            err = CVOpenGLESTextureCacheCreateTextureFromImage (kCFAllocatorDefault, coreVideoTextureCache, self->renderTarget,
+            err = CVOpenGLESTextureCacheCreateTextureFromImage (kCFAllocatorDefault, coreVideoTextureCache, renderTarget,
                                                                 NULL, // texture attributes
                                                                 GL_TEXTURE_2D,
-                                                                self->_textureOptions.internalFormat, // opengl format
-                                                                (int)self->_size.width,
-                                                                (int)self->_size.height,
-                                                                self->_textureOptions.format, // native iOS format
-                                                                self->_textureOptions.type,
+                                                                _textureOptions.internalFormat, // opengl format
+                                                                (int)_size.width,
+                                                                (int)_size.height,
+                                                                _textureOptions.format, // native iOS format
+                                                                _textureOptions.type,
                                                                 0,
-                                                                &self->renderTexture);
+                                                                &renderTexture);
             if (err)
             {
                 NSAssert(NO, @"Error at CVOpenGLESTextureCacheCreateTextureFromImage %d", err);
@@ -174,22 +174,22 @@ void dataProviderUnlockCallback (void *info, const void *data, size_t size);
             CFRelease(attrs);
             CFRelease(empty);
             
-            glBindTexture(CVOpenGLESTextureGetTarget(self->renderTexture), CVOpenGLESTextureGetName(self->renderTexture));
-            self->_texture = CVOpenGLESTextureGetName(self->renderTexture);
-            glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, self->_textureOptions.wrapS);
-            glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, self->_textureOptions.wrapT);
+            glBindTexture(CVOpenGLESTextureGetTarget(renderTexture), CVOpenGLESTextureGetName(renderTexture));
+            _texture = CVOpenGLESTextureGetName(renderTexture);
+            glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, _textureOptions.wrapS);
+            glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, _textureOptions.wrapT);
             
-            glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, CVOpenGLESTextureGetName(self->renderTexture), 0);
+            glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, CVOpenGLESTextureGetName(renderTexture), 0);
 #endif
         }
         else
         {
             [self generateTexture];
 
-            glBindTexture(GL_TEXTURE_2D, self->_texture);
+            glBindTexture(GL_TEXTURE_2D, _texture);
             
-            glTexImage2D(GL_TEXTURE_2D, 0, self->_textureOptions.internalFormat, (int)self->_size.width, (int)self->_size.height, 0, _textureOptions.format, _textureOptions.type, 0);
-            glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, self->_texture, 0);
+            glTexImage2D(GL_TEXTURE_2D, 0, _textureOptions.internalFormat, (int)_size.width, (int)_size.height, 0, _textureOptions.format, _textureOptions.type, 0);
+            glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _texture, 0);
         }
         
         #ifndef NS_BLOCK_ASSERTIONS
@@ -206,7 +206,7 @@ void dataProviderUnlockCallback (void *info, const void *data, size_t size);
     runSynchronouslyOnVideoProcessingQueue(^{
         [GPUImageContext useImageProcessingContext];
         
-        if (self->framebuffer)
+        if (framebuffer)
         {
             glDeleteFramebuffers(1, &framebuffer);
             framebuffer = 0;

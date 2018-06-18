@@ -88,12 +88,6 @@ typedef void(^RunTimer)(void);
     }];
 }
 
--(void)exitSettingsViewController
-{
-    NSLog(@"inner back button pressed");
-
-}
-
 #pragma mark - Core Data
 
 // Returns the path to the application's documents directory.

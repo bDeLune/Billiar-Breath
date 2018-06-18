@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Rhoon</string>
+	<string>PEP-App</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -19,11 +19,13 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.4</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>The App uses Bluetooth to connect to Groovtube Hardware. </string>
+	<key>NSCameraUsageDescription</key>
+	<string>PEP-APP would like to use your camera</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>PEP-APP would like to access your photo library</string>
 	<key>UILaunchStoryboardName</key>
