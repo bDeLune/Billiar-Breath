@@ -16,6 +16,7 @@
 -(void)setForce:(float)pforce;
 -(void)blowingBegan;
 -(void)blowingEnded;
+-(void)directionChanged:(int)direction;
 -(void)setArrowPos:(float)pforce;
 -(void)setMass:(float)value;
 -(void)setBreathToggleAsExhale:(bool)value isExhaling: (bool)value2;

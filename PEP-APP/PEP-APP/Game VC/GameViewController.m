@@ -73,10 +73,10 @@
 @property (nonatomic, retain) NSMutableArray *capturedImages;
 @property (nonatomic, retain) NSMutableArray *hqImages;
 @property (weak, nonatomic) IBOutlet UIImageView *MainGaugeWindow;
-@property (nonatomic,strong)GameViewGauge  *mainGaugeView;
-@property (nonatomic,strong)SettingsViewGauge  *gaugeView;
-@property (nonatomic,strong)BTLEManager  *btleMager;
-@property (nonatomic,strong)UIView  *hqPickerContainer;
+@property (nonatomic,strong) GameViewGauge  *mainGaugeView;
+@property (nonatomic,strong) SettingsViewGauge  *gaugeView;
+@property (nonatomic,strong) BTLEManager  *btleMager;
+@property (nonatomic,strong) UIView  *hqPickerContainer;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic,strong)NSOperationQueue  *addGameQueue;
 @property (nonatomic,strong) BalloonViewController  *balloonViewController;
@@ -173,6 +173,7 @@
     self.title = @"Groov";
     _animationrate=selectedSpeed;
     currentImageGameSound = @"bell synth";
+    self.midiController.toggleIsON = NO;
         
     self.balloonViewController=[[BalloonViewController alloc]initWithFrame:CGRectMake(10, 0, 130,220) withBallCount:selectedBallCount];
     self.midiController=[[MidiController alloc]init];
@@ -206,8 +207,14 @@
     self.mainGaugeView.MainGaugeDelegate=self;
     [self.view addSubview:self.mainGaugeView ];
     [self.view sendSubviewToBack:self.mainGaugeView];
+        
     [self.mainGaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
     [self.mainGaugeView start];
+        
+    self.settingsViewController = [self.tabBarController.viewControllers objectAtIndex:2];
+        //self.settingsViewController.delegate=self;
+        //self.settingsViewController.currentdirection=1;
+    [self.settingsViewController setSettingsViewDirection: 1];
     
     }
     return self;
@@ -245,15 +252,17 @@
     
     wasExhaling = false;
     [self.mainGaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
-    
     [self.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
-    
     [self.settingsViewController.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
 
     if (self.midiController.toggleIsON==NO) {
         NSLog(@"INHALING AND RETURNING");
         return;
     }
+    
+    
+    NSLog(@"INHALING POM %f, ", percentOfmax);
+    
     self.velocity=(percentOfmax)*127.0;
     isaccelerating=YES;
     self.midiController.velocity=127.0*percentOfmax;
@@ -265,17 +274,22 @@
    [self.mainGaugeView setForce:(value)];
    [self.gaugeView setForce:(value)];
    [self.settingsViewController.gaugeView setForce:(value)];
-[self midiNoteContinuing: self.midiController];
+    [self midiNoteContinuing: self.midiController];
 }
 
 -(void)btleManager:(BTLEManager*)manager exhaleWithValue:(float)percentOfmax{
     
     wasExhaling = true;
+    [self.mainGaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
+    [self.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
+    [self.settingsViewController.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
 
     if (self.midiController.toggleIsON==YES) {
         NSLog(@"EXHALING AND RETURNING");
         return;
     }
+    
+    NSLog(@"EXHALING POM %f, ", percentOfmax);
     
     self.midiController.velocity=127.0*percentOfmax;
     self.midiController.speed= (fabs( self.midiController.velocity- self.midiController.previousVelocity));
@@ -319,10 +333,7 @@
     [self.view addSubview:self.balloonViewController.view];
     [[NSUserDefaults standardUserDefaults]setObject:@"exhale" forKey:@"direction"];
     [self.imageFilterView sendSubviewToBack:imageView];
-    self.settingsViewController = [self.tabBarController.viewControllers objectAtIndex:2];
-    self.settingsViewController.delegate=self;
-    //self.settingsViewController.currentdirection=1;
-    [self.settingsViewController setSettingsViewDirection: 1];
+
     [self.settingsViewController setSettinngsDelegate:self];
     self.tabBarController.delegate = self;
     
@@ -361,22 +372,59 @@
 
 -(IBAction)toggleDirection:(id)sender
 {
-    NSLog(@"toggling direction");
-    switch (self.midiController.toggleIsON) {
-        case 0:
+    //velocity=0;
+    //isaccelerating = NO;
+    //[self.mainGaugeView blowingEnded];
+    [self.gaugeView blowingEnded];
+    [self.settingsViewController.gaugeView blowingEnded];
+    
+    NSLog(@"TOGGLE DIRECTION BUTTON %hhd", self.midiController.toggleIsON);
+    
+    
+    if (self.midiController.toggleIsON == YES){
+            NSLog(@"SETTING TO EXHALE");
+            self.midiController.toggleIsON=NO;
+            [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
+            [[NSUserDefaults standardUserDefaults]setObject:@"exhale" forKey:@"direction"];
+            
+            //addedthu
+            [self.mainGaugeView setBreathToggleAsExhale:1 isExhaling: NO];
+            //settings vie gaug
+            [self.settingsViewController setGaugeSettings:1 exhaleToggle: NO];
+           // [self.settingsViewController.gaugeView setBreathToggleAsExhale:1 isExhaling: NO];
+            wasExhaling = true;
+    }else if (self.midiController.toggleIsON == NO){
+             NSLog(@"SETTING TO INHALE");
             self.midiController.toggleIsON=YES;
             [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
             [[NSUserDefaults standardUserDefaults]setObject:@"inhale" forKey:@"direction"];
             wasExhaling = false;
-            break;
-        case 1:
-            self.midiController.toggleIsON=NO;
-            [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
-            [[NSUserDefaults standardUserDefaults]setObject:@"exhale" forKey:@"direction"];
-            wasExhaling = true;
-            break;
-        default:
-            break;
+            [self.mainGaugeView setBreathToggleAsExhale:0 isExhaling: YES];
+            [self.settingsViewController setGaugeSettings:0 exhaleToggle: YES];
+
+            //[self.settingsViewController.gaugeView setBreathToggleAsExhale:0 isExhaling: YES];
+    }
+}
+
+-(void)setDirection:(int)value{
+    
+    [self.gaugeView blowingEnded];
+    [self.settingsViewController.gaugeView blowingEnded];
+    
+    if (self.midiController.toggleIsON == YES){
+        NSLog(@"SETTING TO EXHALE from settings");
+        self.midiController.toggleIsON=NO;
+        [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
+        [[NSUserDefaults standardUserDefaults]setObject:@"exhale" forKey:@"direction"];
+        [self.mainGaugeView setBreathToggleAsExhale:1 isExhaling: NO];
+        wasExhaling = true;
+    }else if (self.midiController.toggleIsON == NO){
+        NSLog(@"SETTING TO INHALE from settings");
+        self.midiController.toggleIsON=YES;
+        [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
+        [[NSUserDefaults standardUserDefaults]setObject:@"inhale" forKey:@"direction"];
+        wasExhaling = false;
+        [self.mainGaugeView setBreathToggleAsExhale:0 isExhaling: YES];
     }
 }
 
@@ -392,11 +440,8 @@
     
     self.currentGameType=mode;
     self.balloonViewController.currentGameType = self.currentGameType;
-    
     NSLog(@"Current game mode %u", self.currentGameType);
-    
     [self.toggleGameModeButton setImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];
-    
     [self resetGame:nil];
 }
 
@@ -921,32 +966,7 @@
     [self.view addSubview: self.hqPickerContainer];
 }
 
--(void)setDirection:(int)value{
-    
-    NSLog(@"SETTING DIRECTION FROM SETTINGS TO %d", value);
-    
-    NSLog(@"toggling direction");
-    switch (self.midiController.toggleIsON) {
-        case 0:
-            self.midiController.toggleIsON=YES;
-            [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
-            [[NSUserDefaults standardUserDefaults]setObject:@"inhale" forKey:@"direction"];
-            wasExhaling = false;
-            
-            [self.settingsViewController setSettingsViewDirection: 0];
-            break;
-        case 1:
-            self.midiController.toggleIsON=NO;
-            [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
-            [[NSUserDefaults standardUserDefaults]setObject:@"exhale" forKey:@"direction"];
-            wasExhaling = true;
-            [self.settingsViewController setSettingsViewDirection: 1];
-            break;
-        default:
-            break;
-    }
-    
-}
+
 
 - (IBAction)tapGesture:(UITapGestureRecognizer*)gesture
 {
@@ -1235,15 +1255,12 @@
     NSLog(@"inner set filter");
     [sourcePicture removeAllTargets];
     stillImageFilter=nil;
-    //[imageView removeFromSuperview];
-    //imageView=nil;
-    //imageView = [[GPUImageView alloc]initWithFrame:self.view.frame];
-    //[self.view insertSubview:imageView atIndex:2];
     stillImageFilter=[self filterForIndex:index];
     [sourcePicture addTarget:stillImageFilter];
     [stillImageFilter addTarget:imageView];
     self.mainGaugeView.MainGaugeDelegate=self;
-    [self.mainGaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
+   //addedthu
+    //[self.mainGaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
     [self.mainGaugeView start];
     [self.mainGaugeView setForce:0];
 }

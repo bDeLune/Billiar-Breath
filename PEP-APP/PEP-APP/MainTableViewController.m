@@ -35,7 +35,7 @@
     }
     
     self.gameViewController.settingsViewController = self.settingsViewController;
-    self.settingsViewController.delegate = self.gameViewController;
+    //self.settingsViewController.delegate = self.gameViewController;
     [self.settingsViewController setSettinngsDelegate:self.gameViewController];
     [self.gameViewController prepareDisplay]; //todo: prepare imageview
     

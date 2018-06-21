@@ -119,6 +119,8 @@
     
     currentlyExhaling = value2;
     setToInhale = value;
+    NSLog(@"TS - currentlyExhaling %d", currentlyExhaling);
+    NSLog(@"TS - setToInhale %d", setToInhale);
     
     if ((currentlyExhaling == 1 && setToInhale == 0) || (currentlyExhaling == 0 && setToInhale == 1)){
         NSLog(@"CORRECT");
@@ -148,6 +150,12 @@
     isaccelerating=NO;
 }
 
+-(void)directionChanged:(int)direction{
+    NSLog(@"Main gauge changed direction");
+    
+    
+}
+
 -(void)animate
 {
     if (isaccelerating) {
@@ -167,6 +175,8 @@
     time = distance / velocity;
     distance= ceilf((0.5)* (acceleration * powf(time, 2)));
     
+    
+    
     if (distance > MAINGUAGE_HEIGHT){
         distance = MAINGUAGE_HEIGHT;
     }
@@ -180,10 +190,13 @@
         if (distance>bestDistance) {
             bestDistance=distance;
         }
+        
+      //  NSLog(@"distance %f", distance );
+        
         [animationObject setFrame:frame];
     }else
     {
-        distance=MAINGUAGE_HEIGHT +20;
+        distance = MAINGUAGE_HEIGHT +20;
         [self stop];  //change
         [self fallQuickly];
     }
@@ -210,7 +223,7 @@
 
 -(void)start
 {
-    //  [self stop];
+    //[self stop];
     NSLog(@"STARTING ANIMATION");
     
     [self setDefaults];
@@ -225,7 +238,7 @@
 
 -(void)fallQuickly
 {
-    [UIView animateWithDuration:0.5
+    [UIView animateWithDuration:0.3
                      animations:^{
         CGRect frame=animationObject.frame;
         frame.origin.y=self.bounds.size.height-MAINGUAGE_HEIGHT;

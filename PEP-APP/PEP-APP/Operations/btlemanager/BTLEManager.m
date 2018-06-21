@@ -3,7 +3,7 @@
 #import "NSData+NSData_Conversion.h"
 
 #define ZERO_BOTTOM 1930
-#define ZERO_TOP 1990
+#define ZERO_TOP 1990   //CHANGE THURS
 #define DEADZONE 50
 #define START_STOP_AVERAGE 10
 @interface BTLEManager ()< MelodySmartDelegate, MelodyManagerDelegate>

@@ -34,4 +34,5 @@
 -(void) setSettingsDurationLabelText:(NSString*)text;
 -(void) setGaugeForce:(float)force;
 -(void) setSettingsViewDirection:(int)val;
+-(void) setGaugeSettings: (int)breathToggle exhaleToggle:(BOOL)ex;
 @end

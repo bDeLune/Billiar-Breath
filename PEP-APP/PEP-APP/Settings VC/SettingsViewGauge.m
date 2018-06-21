@@ -39,7 +39,6 @@
         [self setDefaults];
         displayLink = [CADisplayLink displayLinkWithTarget:self
                                                   selector:@selector(animate)];
-        
         start=[NSDate date];
         animationObject=[[UIView alloc]initWithFrame:self.bounds];
         
