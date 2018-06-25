@@ -175,8 +175,6 @@
     time = distance / velocity;
     distance= ceilf((0.5)* (acceleration * powf(time, 2)));
     
-    
-    
     if (distance > MAINGUAGE_HEIGHT){
         distance = MAINGUAGE_HEIGHT;
     }
@@ -184,7 +182,7 @@
     if (distance<MAINGUAGE_HEIGHT) {
         CGRect frame=animationObject.frame;
         frame.origin.x=0;
-        frame.size.height=100;
+        frame.size.height=90;
         frame.size.width=distance;
         
         if (distance>bestDistance) {
@@ -196,7 +194,7 @@
         [animationObject setFrame:frame];
     }else
     {
-        distance = MAINGUAGE_HEIGHT +20;
+        distance = MAINGUAGE_HEIGHT;
         [self stop];  //change
         [self fallQuickly];
     }

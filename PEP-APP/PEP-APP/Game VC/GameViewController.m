@@ -67,6 +67,7 @@
     NSString* currentImageGameSound;
     int selectedBallCount;
     int selectedSpeed;
+    bool disableModeButton;
 }
 
 @property (nonatomic, retain) IBOutlet UIToolbar *myToolbar;
@@ -225,6 +226,8 @@
 }
 
 -(void)btleManagerBreathBegan:(BTLEManager*)manager{
+    
+    disableModeButton = true;
     if ([self.midiController allowBreath]==NO) {
         return;
     }
@@ -240,6 +243,8 @@
 }
 
 -(void)btleManagerBreathStopped:(BTLEManager*)manager{
+    
+    disableModeButton = false;
     if ([self.midiController allowBreath]==NO) {
         return;
     }
@@ -430,19 +435,23 @@
 
 -(IBAction)toggleGameMode:(id)sender
 {
-    NSLog(@"Toggling game mode");
-    int mode=self.currentGameType;
-    mode++;
-    
-    if (mode>2) {
-        mode=gameTypeBalloon;
+    if (disableModeButton == true){
+        NSLog(@"game mode button is disabled");
+    }else{
+        NSLog(@"Toggling game mode");
+        int mode=self.currentGameType;
+        mode++;
+        
+        if (mode>2) {
+            mode=gameTypeBalloon;
+        }
+        
+        self.currentGameType=mode;
+        self.balloonViewController.currentGameType = self.currentGameType;
+        NSLog(@"Current game mode %u", self.currentGameType);
+        [self.toggleGameModeButton setImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];
+        [self resetGame:nil];
     }
-    
-    self.currentGameType=mode;
-    self.balloonViewController.currentGameType = self.currentGameType;
-    NSLog(@"Current game mode %u", self.currentGameType);
-    [self.toggleGameModeButton setImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];
-    [self resetGame:nil];
 }
 
 -(NSString*)stringForMode:(int)mode

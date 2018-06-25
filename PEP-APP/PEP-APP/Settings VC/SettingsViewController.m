@@ -83,15 +83,18 @@
         [self.gaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
         [self.gaugeView start];
         
+        currentdirection = 1;
+        //placeholder for save defaults
+        
         NSLog(@"SETTING CURRENT DIRECTION AS %d, ", currentdirection);
-        if (currentdirection == 0)
-        {
-            [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
-            [[NSUserDefaults standardUserDefaults]setObject:@"inhale" forKey:@"direction"];
-        }else{
+       // if (currentdirection == 0)
+       // {
+       //     [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
+       //     [[NSUserDefaults standardUserDefaults]setObject:@"inhale" forKey:@"direction"];
+       // }else{
             [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
             [[NSUserDefaults standardUserDefaults]setObject:@"exhale" forKey:@"direction"];
-        }
+      //  }
         
         [speedSlider setValue:4 animated:YES];
         currentlyExhaling = false;
