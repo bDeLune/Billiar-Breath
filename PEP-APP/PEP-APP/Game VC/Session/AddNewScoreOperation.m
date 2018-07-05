@@ -10,7 +10,6 @@
 {
     self = [super init];
     if (self) {
-        
         self.sharedPSC = psc;
         self.user=auser;
         self.session=asession;
@@ -19,7 +18,6 @@
     
 }
 - (void)main {
-
     // Creating context in main function here make sure the context is tied to current thread.
     // init: use thread confine model to make things simpler.
     self.managedObjectContext = [[NSManagedObjectContext alloc] init];
@@ -32,33 +30,25 @@
 {
     
     NSLog(@"ADDING THE SESSION");
-    
     Game *game = [NSEntityDescription insertNewObjectForEntityForName:@"Game" inManagedObjectContext:self.managedObjectContext];
-    //[game setUser:self.user];
+   // [game setUser:self.user];
     
-    [game setDuration:0];   //change
+    NSLog(@"sessionType %@", self.session.sessionType);
+    NSLog(@"sessionStrength %@", self.session.sessionStrength);
+    NSLog(@"sessionDuration %@", self.session.sessionDuration);
+    NSLog(@"sessionSpeed %@", self.session.sessionSpeed);
+    NSLog(@"sessionDate %@", self.session.sessionDate);
+    NSLog(@"sessionDuration %@", self.session.sessionBreathDirection);
+    
+    [game setDuration:self.session.sessionDuration];
     [game setGameDate:self.session.sessionDate];
     [game setPower:self.session.sessionStrength];
     [game setGameType:self.session.sessionType];
-    [game setRequiredBalloons:self.session.sessionRequiredBalloons];   //change
-    [game setAchievedBalloons:self.session.sessionAchievedBalloons];
-    [game setRequiredBreathLength:self.session.sessionRequiredBreathLength];
-    [game setAchievedBreathLength:self.session.sessionAchievedBreathLength];
-    
-    //workds
-    //[game setCurrentGameRequiredBalloons:self.session.sessionRequiredBalloons];
-    //[game setCurrentGameAchievedBalloons:self.session.sessionAchievedBalloons];
-    //[game setCurrentGameRequiredBreathLength:self.session.sessionRequiredBreathLength];
-    //[game setCurrentGameAchievedBreathLength:self.session.sessionAchievedBreathLength];
-    
-    //game.gameRequiredBalloons = self.session.sessionRequiredBalloons;
-    //game.gameAchievedBalloons = self.session.sessionAchievedBalloons;
-    //game.gameRequiredBreathLength = self.session.sessionRequiredBreathLength;
-    //game.gameAchievedBreathLength = self.session.sessionAchievedBreathLength;
-
+    [game setSpeed:self.session.sessionSpeed];
     NSString *direction=[[NSUserDefaults standardUserDefaults]objectForKey:@"direction"];
     [game setGameDirection:direction];
-   // [game setSpeed:self.session.sessionSpeed];
+    //[game setGameDirection:0];
+    
     NSString   *name=[self.user valueForKey:@"userName"];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSManagedObjectContext *context = self.managedObjectContext;
@@ -73,14 +63,6 @@
     NSLog(@"ADDTHESESSION game: %@", game);
     NSLog(@"pred game: %@", pred);
     NSLog(@"pred game: %@", items);
-    NSLog(@"sessionDuration %@", self.session.sessionDuration);
-    NSLog(@"sessionDate %@", self.session.sessionDate);
-    NSLog(@"sessionStrength %@", self.session.sessionStrength);
-    NSLog(@"sessionType %@", self.session.sessionType);
-    NSLog(@"sessionRequiredBalloons %@", self.session.sessionRequiredBalloons);
-    NSLog(@"sessionAchievedBalloons %@", self.session.sessionAchievedBalloons);
-    NSLog(@"sessionRequiredBreathLength %@", self.session.sessionRequiredBreathLength);
-    NSLog(@"sessionAchievedBreathLength %@", self.session.sessionAchievedBreathLength);
     
     if ([items count]>0) {
         User *auser=[items objectAtIndex:0];

@@ -237,6 +237,7 @@
     NSArray  *array=[self gamesMatchingDate:[dates objectAtIndex:indexPath.row] user:user];
     NSMutableArray  *durationOnly=[NSMutableArray new];
     
+    
     for (Game *agame in array) {
        NSLog(@"GAMELABEL -  ADDING didSelectRowAtIndexPath for array %@", array);
        //NSLog(@"ADDING didSelectRowAtIndexPath for agame.gameType %@", agame.gameType);
@@ -244,13 +245,13 @@
             [durationOnly addObject:agame];
        //}
         }
-       NSLog(@"didSelectRowAtIndexPath  for username %@ durationOnlyarray %@" , user.userName , durationOnly);
+    NSLog(@"didSelectRowAtIndexPath  for username %@ durationOnlyarray %@" , user.userName , durationOnly);
     [self.detailViewController setUSerData:durationOnly];
-    self.detailViewController.view.frame = CGRectMake(97,207,569,595);
+    self.detailViewController.view.frame = CGRectMake(97,207,569,645);
     self.backButton.hidden = NO;
     [self.view addSubview:self.detailViewController.view];
     [self.view bringSubviewToFront:self.detailViewController.view];
-     [self.view bringSubviewToFront:self.backgroundColouredImage];
+    [self.view bringSubviewToFront:self.backgroundColouredImage];
     [self.view bringSubviewToFront:self.backButton];
     //[self addChildViewController:self.detailViewController];
    // [self didMoveToParentViewController:self.detailViewController];

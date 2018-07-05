@@ -102,30 +102,41 @@
     Game  *game=[data objectAtIndex:indexPath.row];
     NSDate  *date=game.gameDate;
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"d MMM y H:m:s"];
+   // [dateFormat setDateFormat:@"d MMM y H:m:s"];
+     [dateFormat setDateFormat:@"H:m:s"];
     NSString *attemptDateString = [dateFormat stringFromDate:date];
     int gameType=[game.gameType intValue];
     
+
     NSString  *typeString;
     if (gameType==0) {
         typeString=@"Balloon Game";
-        cell.detailTextLabel.text=[NSString stringWithFormat:@"Achieved Balloons :%@",game.achievedBalloons];
-        cell.detailTextLabel.text=[NSString stringWithFormat:@"Required Balloons :%@",game.requiredBalloons];
+      //  cell.detailTextLabel.text=[NSString stringWithFormat:@"Achieved Balloons :%@",game.achievedBalloons];
+      //  cell.detailTextLabel.text=[NSString stringWithFormat:@"Required Balloons :%@",game.requiredBalloons];
     }else if (gameType==1)
     {
         typeString=@"Image Game";
-        cell.detailTextLabel.text=[NSString stringWithFormat:@"Achieved Breath Length :%f",[game.achievedBreathLength floatValue]];
-        cell.detailTextLabel.text=[NSString stringWithFormat:@"Required Breath Length :%f",[game.requiredBreathLength floatValue]];
+     //   cell.detailTextLabel.text=[NSString stringWithFormat:@"Achieved Breath Length :%f",[game.achievedBreathLength floatValue]];
+      //  cell.detailTextLabel.text=[NSString stringWithFormat:@"Required Breath Length :%f",[game.requiredBreathLength floatValue]];
     }else if (gameType==2)
     {
         typeString=@"Duo Game";
-        cell.detailTextLabel.text=[NSString stringWithFormat:@"Achieved Breath Length :%f",[game.achievedBreathLength floatValue]];
-        cell.detailTextLabel.text=[NSString stringWithFormat:@"Required Breath Length :%f",[game.requiredBreathLength floatValue]];
-        cell.detailTextLabel.text=[NSString stringWithFormat:@"Achieved Balloons :%@",game.achievedBalloons];
-        cell.detailTextLabel.text=[NSString stringWithFormat:@"Required Balloons :%@",game.requiredBalloons];
+      //  cell.detailTextLabel.text=[NSString stringWithFormat:@"Achieved Breath Length :%f",[game.achievedBreathLength floatValue]];
+      //  cell.detailTextLabel.text=[NSString stringWithFormat:@"Required Breath Length :%f",[game.requiredBreathLength floatValue]];
+      //  cell.detailTextLabel.text=[NSString stringWithFormat:@"Achieved Balloons :%@",game.achievedBalloons];
+      //  cell.detailTextLabel.text=[NSString stringWithFormat:@"Required Balloons :%@",game.requiredBalloons];
     }
     
-    cell.textLabel.text=[NSString stringWithFormat:@"%@  %@",typeString,attemptDateString];
+    cell.textLabel.text=[NSString stringWithFormat:@"%@ - %@",typeString,attemptDateString];
+    [cell.textLabel setFont:[UIFont fontWithName:@"Arial-BoldMT" size:16]];
+    
+    cell.detailTextLabel.numberOfLines = 5;
+    cell.detailTextLabel.text=[NSString stringWithFormat:@"Strength: %@ \nDuration: %@ \nDirection: %@ \nSpeed: %@" ,game.power, game.duration, game.gameDirection, game.speed];
+    
+    //cell.detailTextLabel.text=[NSString stringWithFormat:@"Strength :%@ ",game.power];
+    //cell.detailTextLabel.text=[NSString stringWithFormat:@"Duration :%@",game.duration];
+    //cell.detailTextLabel.text=[NSString stringWithFormat:@"Direction :%@",game.gameDirection];
+    //cell.detailTextLabel.text=[NSString stringWithFormat:@"Speed :%@",game.speed];
 
     return cell;
 }
@@ -146,6 +157,11 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 60;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 110;
 }
 
 @end

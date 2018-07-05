@@ -119,11 +119,11 @@
     
     currentlyExhaling = value2;
     setToInhale = value;
-    NSLog(@"TS - currentlyExhaling %d", currentlyExhaling);
-    NSLog(@"TS - setToInhale %d", setToInhale);
+   // NSLog(@"TS - currentlyExhaling %d", currentlyExhaling);
+  //  NSLog(@"TS - setToInhale %d", setToInhale);
     
     if ((currentlyExhaling == 1 && setToInhale == 0) || (currentlyExhaling == 0 && setToInhale == 1)){
-        NSLog(@"CORRECT");
+  //      NSLog(@"CORRECT");
         userBreathingCorrectly = true;
         //   isaccelerating=YES;
     }else{

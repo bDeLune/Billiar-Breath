@@ -36,11 +36,12 @@
    
     if (self) {
         self.title = @"Settings";
-        //imageGameSoundArray=[NSMutableArray arrayWithObjects: @"Ballon",@"Schuiffluit",@"spaceship",@"Bas slide",@"bell synth", @"droom", @"sirene fluit", @"xylofoon", @"Toy Piano", @"harp", nil];
+        imageGameSoundFileNameArray=[NSMutableArray arrayWithObjects: @"Ballon",@"schuiffluit",@"spaceship",@"scheet",@"Bas slide",@"bell synth", @"droom", @"sirene fluit", @"xylofoon", @"Toy Piano", @"harp", nil];
         imageGameSoundArray=[NSMutableArray arrayWithObjects:
         [NSString stringWithFormat:NSLocalizedString(@"Ballon", nil)],
         [NSString stringWithFormat:NSLocalizedString(@"Schuiffluit", nil)],
         [NSString stringWithFormat:NSLocalizedString(@"Spaceship", nil)],
+        [NSString stringWithFormat:NSLocalizedString(@"Scheet", nil)],
         [NSString stringWithFormat:NSLocalizedString(@"Bas Slide", nil)],
         [NSString stringWithFormat:NSLocalizedString(@"Bel Synth", nil)],
         [NSString stringWithFormat:NSLocalizedString(@"Droon", nil)],
@@ -52,10 +53,10 @@
         
         repititionsArray=[NSMutableArray arrayWithObjects: @"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20", nil];
         
-        //filterArray=[NSMutableArray arrayWithObjects:
-        //             @"Bulge",@"Swirl",@"Blur",@"Toon",
-        ////             @"Expose",@"Polka",
-         //            @"Posterize",@"Pixellate",@"Contrast", nil];
+        filterFileNameArray=[NSMutableArray arrayWithObjects:
+                     @"Bulge",@"Swirl",@"Blur",@"Toon",
+                     @"Expose",@"Polka",
+                     @"Posterize",@"Pixellate",@"Contrast", nil];
         
         filterArray=[NSMutableArray arrayWithObjects:
         [NSString stringWithFormat:NSLocalizedString(@"Bulge", nil)],
@@ -84,19 +85,17 @@
         [self.gaugeView start];
         
         currentdirection = 1;
-        //placeholder for save defaults
+        ///usersettings
         
         NSLog(@"SETTING CURRENT DIRECTION AS %d, ", currentdirection);
-       // if (currentdirection == 0)
-       // {
-       //     [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
-       //     [[NSUserDefaults standardUserDefaults]setObject:@"inhale" forKey:@"direction"];
-       // }else{
-            [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
-            [[NSUserDefaults standardUserDefaults]setObject:@"exhale" forKey:@"direction"];
-      //  }
+
+        [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
+        [[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"direction"];
         
-        [speedSlider setValue:4 animated:YES];
+        [speedSlider setValue:3 animated:YES];
+        ///usersettings
+        
+        
         currentlyExhaling = false;
     }
     return self;
@@ -118,8 +117,6 @@
         [[NSUserDefaults standardUserDefaults]setObject:@"inhale" forKey:@"direction"];
         
     }else if (inhaleActivated == NO){
-        
-        
         NSLog(@"set to exhale");
         currentdirection = 1;
         
@@ -136,7 +133,7 @@
         currentdirection = 0;
         NSLog(@"set to inhale");
         [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
-        [[NSUserDefaults standardUserDefaults]setObject:@"inhale" forKey:@"direction"];
+        [[NSUserDefaults standardUserDefaults]setObject:@"Inhale" forKey:@"direction"];
         
         [self.settinngsDelegate setDirection:0];
     }else{
@@ -154,13 +151,12 @@
     
     NSLog(@"Settings: toggling direction button 1");
     
-    
     if (currentdirection == 1){
         currentdirection = 0;
         NSLog(@"set to inhale");
         
         [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
-        [[NSUserDefaults standardUserDefaults]setObject:@"inhale" forKey:@"direction"];
+        [[NSUserDefaults standardUserDefaults]setObject:@"Inhale" forKey:@"direction"];
 
         [self.settinngsDelegate setDirection:0];
     }else{
@@ -168,7 +164,7 @@
         currentdirection = 1;
         
         [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
-        [[NSUserDefaults standardUserDefaults]setObject:@"inhale" forKey:@"direction"];
+        [[NSUserDefaults standardUserDefaults]setObject:@"Inhale" forKey:@"direction"];
         
        [self.settinngsDelegate setDirection:1];
     }
@@ -224,12 +220,11 @@
     NSLog(@"didSelectRow %d", (int)row);
     int rowint=(int)row;
     if (thePickerView==pickerViewB) {
-        [self.settinngsDelegate setImageSoundEffect: [imageGameSoundArray objectAtIndex:row]];
+        [self.settinngsDelegate setImageSoundEffect: [imageGameSoundFileNameArray objectAtIndex:row]];
     }
     
     if (thePickerView==pickerViewC) {
         NSInteger selectedValAsint = [[repititionsArray objectAtIndex:row] integerValue];
-       
         [self.settinngsDelegate setRepetitionCount: selectedValAsint];
     }
     
@@ -274,6 +269,7 @@
 }
 
 -(void)setSettingsDurationLabelText: (NSString*)text  {
+    NSLog(@"TEXT %@", text);
     settingsDurationLabel.text = text;
 }
 
@@ -282,6 +278,8 @@
 }
 
 -(void) playSound {
+    
+    NSLog(@"Playing sound settiong view controller");
     
     //maybe delete
     NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"bell synth" ofType:@"wav"];

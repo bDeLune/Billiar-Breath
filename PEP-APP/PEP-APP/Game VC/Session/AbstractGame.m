@@ -23,8 +23,10 @@
 -(void)timerTick:(NSTimer*)timer
 {
     NSTimeInterval timeInterval = [startdate timeIntervalSinceNow];
-    self.time= fabs(timeInterval);
+   // NSLog(@"TIME %f", timeInterval);
+    self.time = fabs(timeInterval);
 }
+
 -(void)killTimer
 {
     if (!timer) {

@@ -132,10 +132,14 @@
     NSLog(@"START Session");
     self.currentSession=[Session new];
     self.currentSession.sessionDate=[NSDate date];
-    self.currentSession.sessionRequiredBreathLength = [NSNumber numberWithInt:4];
-    self.currentSession.sessionAchievedBreathLength = 0;
-    self.currentSession.sessionRequiredBalloons = [NSNumber numberWithInt:selectedBallCount];
-    self.currentSession.sessionAchievedBalloons = 0;
+    self.currentSession.sessionSpeed = [NSNumber numberWithInt:selectedSpeed];
+    self.currentSession.sessionDuration = [NSString stringWithFormat:@"%d", 0];
+
+    ///usersettings
+    
+    //self.currentSession.sessionAchievedBreathLength = 0;
+    //self.currentSession.sessionRequiredBalloons = [NSNumber numberWithInt:selectedBallCount];
+   // self.currentSession.sessionAchievedBalloons = 0;
 }
 
 #pragma mark -
@@ -167,20 +171,32 @@
     if (self) {
 
     selectedBallCount = 15;
+        
+    ///usersettings
+        
     currentDifficulty=gameDifficultyEasy;
     selectedSpeed = 3;
+        
+    ///usersettings
+        
     wasExhaling = true;
     sketchamount=0;
     self.title = @"Groov";
     _animationrate=selectedSpeed;
-    currentImageGameSound = @"bell synth";
+    currentImageGameSound = @"sirene fluit";
+    ///usersettings
+        
+        
     self.midiController.toggleIsON = NO;
         
     self.balloonViewController=[[BalloonViewController alloc]initWithFrame:CGRectMake(10, 0, 130,220) withBallCount:selectedBallCount];
     self.midiController=[[MidiController alloc]init];
     self.midiController.delegate=self;
     [self.midiController addObserver:self forKeyPath:@"numberOfSources" options:0 context:NULL];
-    self.currentGameType=gameTypeImage;
+    self.currentGameType=gameTypeDuo;
+    ///usersettings
+        
+        
     [self.toggleGameModeButton setImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];
         
     [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:currentDifficulty] forKey:@"difficulty"];
@@ -215,7 +231,11 @@
     self.settingsViewController = [self.tabBarController.viewControllers objectAtIndex:2];
         //self.settingsViewController.delegate=self;
         //self.settingsViewController.currentdirection=1;
+        
+        
+        
     [self.settingsViewController setSettingsViewDirection: 1];
+        ///usersettings - set as users last
     
     }
     return self;
@@ -233,7 +253,7 @@
     }
     
     [self.balloonViewController blowStarted: self.sequenceGameController.currentBall atSpeed:selectedSpeed];
-    [self.settingsViewController setSettingsDurationLabelText: 0];
+    [self.settingsViewController setSettingsDurationLabelText: [NSString stringWithFormat:@"%.1f", 0.0]];
     
     if ((self.midiController.toggleIsON == 0 && wasExhaling == 1) || (self.midiController.toggleIsON == 1 && wasExhaling == 0)){
         [self midiNoteBegan:nil];
@@ -294,7 +314,7 @@
         return;
     }
     
-    NSLog(@"EXHALING POM %f, ", percentOfmax);
+    //NSLog(@"EXHALING POM %f, ", percentOfmax);
     
     self.midiController.velocity=127.0*percentOfmax;
     self.midiController.speed= (fabs( self.midiController.velocity- self.midiController.previousVelocity));
@@ -336,14 +356,17 @@
 {
     [super viewDidLoad];
     [self.view addSubview:self.balloonViewController.view];
-    [[NSUserDefaults standardUserDefaults]setObject:@"exhale" forKey:@"direction"];
+    [[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"direction"];
     [self.imageFilterView sendSubviewToBack:imageView];
 
     [self.settingsViewController setSettinngsDelegate:self];
     self.tabBarController.delegate = self;
     
-    self.currentGameType = gameTypeBalloon;
+    self.currentGameType = gameTypeDuo;
     globalSoundActivated = 1;
+    ///usersettings
+    
+    
     midiinhale=61;
     midiexhale=73;
     velocity=0;
@@ -373,6 +396,8 @@
     self.balloonViewController.currentGameType = self.currentGameType;
 
     [self.toggleGameModeButton setImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];
+    
+    [self.settingsViewController setSettingsDurationLabelText: [NSString stringWithFormat:@"%.1f", 0.0]];
 }
 
 -(IBAction)toggleDirection:(id)sender
@@ -390,7 +415,7 @@
             NSLog(@"SETTING TO EXHALE");
             self.midiController.toggleIsON=NO;
             [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
-            [[NSUserDefaults standardUserDefaults]setObject:@"exhale" forKey:@"direction"];
+            [[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"direction"];
             
             //addedthu
             [self.mainGaugeView setBreathToggleAsExhale:1 isExhaling: NO];
@@ -402,7 +427,7 @@
              NSLog(@"SETTING TO INHALE");
             self.midiController.toggleIsON=YES;
             [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
-            [[NSUserDefaults standardUserDefaults]setObject:@"inhale" forKey:@"direction"];
+            [[NSUserDefaults standardUserDefaults]setObject:@"Inhale" forKey:@"direction"];
             wasExhaling = false;
             [self.mainGaugeView setBreathToggleAsExhale:0 isExhaling: YES];
             [self.settingsViewController setGaugeSettings:0 exhaleToggle: YES];
@@ -420,14 +445,14 @@
         NSLog(@"SETTING TO EXHALE from settings");
         self.midiController.toggleIsON=NO;
         [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
-        [[NSUserDefaults standardUserDefaults]setObject:@"exhale" forKey:@"direction"];
+        [[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"direction"];
         [self.mainGaugeView setBreathToggleAsExhale:1 isExhaling: NO];
         wasExhaling = true;
     }else if (self.midiController.toggleIsON == NO){
         NSLog(@"SETTING TO INHALE from settings");
         self.midiController.toggleIsON=YES;
         [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
-        [[NSUserDefaults standardUserDefaults]setObject:@"inhale" forKey:@"direction"];
+        [[NSUserDefaults standardUserDefaults]setObject:@"Inhale" forKey:@"direction"];
         wasExhaling = false;
         [self.mainGaugeView setBreathToggleAsExhale:0 isExhaling: YES];
     }
@@ -537,7 +562,7 @@
     self.sequenceGameController.time = 0;
     bestCurrentVelocity = 0;
     [self.settingsViewController setSettingsStrengthLabelText:@"0"];
-    [self.settingsViewController setSettingsDurationLabelText:[NSString stringWithFormat:@"%0.0f",self.sequenceGameController.time]];
+    [self.settingsViewController setSettingsDurationLabelText:[NSString stringWithFormat:@"%.1f",self.sequenceGameController.time]];
     
     if ((self.midiController.toggleIsON == 0 && wasExhaling == 1) || (self.midiController.toggleIsON == 1 && wasExhaling == 0)){
         
@@ -607,11 +632,21 @@
         }
     }
     
+
+    
     [self.mainGaugeView blowingEnded];
     [self.gaugeView blowingEnded];
     [self.settingsViewController.gaugeView blowingEnded];
     [self.sequenceGameController killTimer];
     self.sequenceGameController.time = 0;
+    
+    if (self.currentGameType == gameTypeTest){
+        NSLog(@"Currently in test mode, saving disabled");
+    }else{
+        [self saveCurrentSession];
+    }
+    
+    
 }
 
 -(void)midiNoteContinuing:(MidiController*)midi
@@ -625,7 +660,7 @@
     }
     
     [self.settingsViewController setSettingsStrengthLabelText:[NSString stringWithFormat:@"%0.0f",bestCurrentVelocity]];
-    [self.settingsViewController setSettingsDurationLabelText:[NSString stringWithFormat:@"%0.0f",self.sequenceGameController.time]];
+    [self.settingsViewController setSettingsDurationLabelText:[NSString stringWithFormat:@"%.1f",self.sequenceGameController.time]];
     
     if (midi.velocity>[self.currentSession.sessionStrength floatValue]) {
         
@@ -634,9 +669,11 @@
         }
     }
     
-    self.currentSession.sessionSpeed=[NSNumber numberWithFloat:midi.speed];
+    //self.currentSession.sessionSpeed=[NSNumber numberWithFloat:midi.speed];
+    
+    self.currentSession.sessionSpeed = [NSNumber numberWithInt:selectedSpeed];
     //check
-    self.currentSession.sessionDuration = currentBreathLength;
+    self.currentSession.sessionDuration = [NSString stringWithFormat:@"%g", self.sequenceGameController.time];
     
     [[GCDQueue mainQueue]queueBlock:^{
         switch (self.currentGameType) {
@@ -687,7 +724,7 @@
     [self.sequenceGameController killTimer];  //only for testing purposes
     
     [self.sequenceGameController nextBall];
-    self.currentSession.sessionAchievedBalloons = [NSNumber numberWithInt: self.sequenceGameController.currentBall];
+    //self.currentSession.sessionAchievedBalloons = [NSNumber numberWithInt: self.sequenceGameController.currentBall];
 }
 
 -(void)midiNoteContinuingForSequence:(MidiController*)midi
@@ -795,22 +832,29 @@
    // }
 
     [[GCDQueue mainQueue]queueBlock:^{
-        [self playSound];
-        [self startEffects];
-        [self resetGame:nil];
+        //[self playSound];
+       // [self startEffects];
+        //[self resetGame:nil];
     }];
 
     if (self.currentGameType == gameTypeDuo) {
         [[GCDQueue mainQueue]queueBlock:^{
              NSLog(@"DUO GAME WON");
-            [self saveCurrentSession];  //added kung
+        //    [self saveCurrentSession];  //added kung
         }];
         return;
     }
     else if (self.currentGameType == gameTypeBalloon) {
         [[GCDQueue mainQueue]queueBlock:^{
              NSLog(@"Balloon GAME WON");
-            [self saveCurrentSession];  //added kung
+        //    [self saveCurrentSession];  //added kung
+        }];
+        return;
+    }
+    else if (self.currentGameType == gameTypeImage) {
+        [[GCDQueue mainQueue]queueBlock:^{
+            NSLog(@"Image GAME WON");
+        //    [self saveCurrentSession];  //added kung
         }];
         return;
     }
@@ -831,10 +875,7 @@
 -(void)saveCurrentSession
 {
     NSLog(@"ATTEMPTING TO Save Current Session: %u", self.currentGameType);
-    
     self.currentSession.sessionType=[NSNumber numberWithInt:self.currentGameType];
-    self.currentSession.sessionRequiredBalloons = [NSNumber numberWithInt:selectedBallCount];
-    
     AddNewScoreOperation  *operation=[[AddNewScoreOperation alloc]initWithData:self.gameUser session:self.currentSession sharedPSC:self.sharedPSC];
     
     NSLog(@"SAVING CURRENT SESSION");
@@ -844,7 +885,7 @@
 
 -(void) playSound {
     
-    NSLog(@"Should be playing bursting sound!!!!!");
+    NSLog(@"Playing sound game view contoller");
     
     @try {
         NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"Crowd_cheer6" ofType:@"wav"];
@@ -859,7 +900,7 @@
         
         NSLog(@"SOUND: reset all2 %hhd", globalSoundActivated);
         
-        if (globalSoundActivated == 1){
+        if (globalSoundActivated == 0){
             NSLog(@"AUDIO MUTED");
         }else{
             [audioPlayer play];
@@ -1025,7 +1066,7 @@
     NSLog(@" inner set breath length %f", value);
    // self.breathLength=value;
     selectedSpeed = (int) (value + 0.5);
-    self.currentSession.sessionRequiredBreathLength = [NSNumber numberWithFloat:value];
+   // self.currentSession.sessionRequiredBreathLength = [NSNumber numberWithFloat:value];
     _animationrate= (int) (value + 0.5);
 }
 
@@ -1034,14 +1075,18 @@
     NSLog(@" inner set breath speed %f", value);
     // self.breathLength=value;
     selectedSpeed = (int)value;
-    self.currentSession.sessionRequiredBreathLength = [NSNumber numberWithFloat:value];
+    self.currentSession.sessionSpeed = [NSNumber numberWithFloat:value];
     _animationrate=value;
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
+     NSLog(@"VIEWDIDAPPEAR");
     [self resetGame:nil];
-    self.currentGameType= gameTypeImage;
+    self.currentGameType= gameTypeDuo;
+    
+    ///usersettings
+    
     self.balloonViewController.currentGameType = self.currentGameType;
     [self.toggleGameModeButton setImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];
 
@@ -1141,7 +1186,7 @@
             //float newRate = .1/_animationrate;
             float newRate = .05/_animationrate;
             //float newRate2 = _animationrate/.1;
-            NSLog(@"RATE:  %f",newRate);
+          //  NSLog(@"RATE:  %f",newRate);
            // NSLog(@"RATE2:  %f",newRate2);
            // NSLog(@"_animationrate:  %f",_animationrate);
            // NSLog(@"targetRadius:  %f",targetRadius);
@@ -1215,31 +1260,14 @@
 -(void)setupDisplayFilteringWithImage:(UIImage*)aImage
 {
     NSLog(@"SETUP DISPLAY WITH NEW IMAGE");
-    //cleanup
     [sourcePicture removeAllTargets];
-    //[stillImageFilter destroyFilterFBO];
-    //[stillImageFilter releaseInputTexturesIfNeeded];
     stillImageFilter=nil;
-    // [imageView removeFromSuperview];
-    //imageView=nil;
-    // imageView = [[GPUImageView alloc]initWithFrame:self.view.frame]
-    //maybe0th 
-   // stillImageFilter=[self filterForIndex:0];
-   // [sourcePicture addTarget:stillImageFilter];
-   // [stillImageFilter addTarget:imageView];
-    //image set
-    //dispatch_async(dispatch_get_main_queue(), ^{
     sourcePicture = [[GPUImagePicture alloc] initWithImage:aImage smoothlyScaleOutput:YES];
-    stillImageFilter = [self filterForIndex:0];
-    //imageView = [[GPUImageView alloc]initWithFrame:self.view.frame];
-    // [self.view addSubview:imageView];
-    //[self.view insertSubview:imageView atIndex:0];
-   // imageView = [[GPUImageView alloc]initWithFrame:self.imageFilterView.frame];
-    //[self.view insertSubview:imageView atIndex:0];
+    stillImageFilter = [self filterForIndex:1];
+    
+    ///usersettings
+    
     [self.imageFilterView insertSubview:imageView atIndex:0];
-    //check change
-    //self.imageFilterView.layer.zPosition = 5;
-   // imageView.layer.zPosition = 5;
     [sourcePicture addTarget:stillImageFilter];
     [stillImageFilter addTarget:imageView];
     [sourcePicture processImage];
@@ -1251,7 +1279,8 @@
     UIImage *inputImage;
     inputImage=[UIImage imageNamed:@"giraffe-614141_1280.jpg"];
     sourcePicture = [[GPUImagePicture alloc] initWithImage:inputImage smoothlyScaleOutput:YES];
-    stillImageFilter = [self filterForIndex:0];
+    stillImageFilter = [self filterForIndex:1];
+    ///usersettings
     imageView = [[GPUImageView alloc]initWithFrame:self.imageFilterView.frame];
     [self.imageFilterView insertSubview:imageView atIndex:0];
     [sourcePicture addTarget:stillImageFilter];
@@ -1358,8 +1387,10 @@
         imageName = [NSString stringWithFormat:@"%d%@", selectedSpeed, currentImageGameSound];
     }
     
-    NSLog(@"Playing sound:  %@", imageName);
+    NSLog(@"Playing sound GVC IMAGE SOUND:  %@", imageName);
     NSLog(@" image game speed %d", selectedSpeed);
+    
+     NSLog(@"globalSoundActivated %d", globalSoundActivated);
     
     NSString *soundPath = [[NSBundle mainBundle] pathForResource: imageName ofType:@"wav"];
     NSData *fileData = [NSData dataWithContentsOfFile:soundPath];
@@ -1387,7 +1418,7 @@
         imageName = [NSString stringWithFormat:@"%d%@", selectedSpeed, currentImageGameSound];
     }
 
-    NSLog(@"Playing sound:  %@", imageName);
+    NSLog(@"Playing sound GVC: GAME SOUND  %@", imageName);
     
     NSString *soundPath = [[NSBundle mainBundle] pathForResource: imageName ofType:@"wav"];
     NSData *fileData = [NSData dataWithContentsOfFile:soundPath];

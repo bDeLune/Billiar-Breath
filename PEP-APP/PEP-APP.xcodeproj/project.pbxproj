@@ -12,6 +12,16 @@
 		710857681E439B8A00479032 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 710857671E439B8A00479032 /* Accelerate.framework */; };
 		710BDDE5207D039400B1E393 /* Model.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 7186DDCC1E4DBE0D00F71F0C /* Model.xcdatamodel */; };
 		710BDDEB207D24B600B1E393 /* giraffe-614141_1280.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 710BDDEA207D24B600B1E393 /* giraffe-614141_1280.jpg */; };
+		711A977F20EE35DC0069F633 /* 6scheet.wav in Resources */ = {isa = PBXBuildFile; fileRef = 711A976B20EE35D90069F633 /* 6scheet.wav */; };
+		711A978020EE35DC0069F633 /* 4scheet.wav in Resources */ = {isa = PBXBuildFile; fileRef = 711A977A20EE35DA0069F633 /* 4scheet.wav */; };
+		711A978120EE35DC0069F633 /* 1scheet.wav in Resources */ = {isa = PBXBuildFile; fileRef = 711A977B20EE35DA0069F633 /* 1scheet.wav */; };
+		711A978220EE35DC0069F633 /* 5scheet.wav in Resources */ = {isa = PBXBuildFile; fileRef = 711A977C20EE35DB0069F633 /* 5scheet.wav */; };
+		711A978320EE35DC0069F633 /* 3scheet.wav in Resources */ = {isa = PBXBuildFile; fileRef = 711A977D20EE35DB0069F633 /* 3scheet.wav */; };
+		711A978420EE35DC0069F633 /* 2scheet.wav in Resources */ = {isa = PBXBuildFile; fileRef = 711A977E20EE35DB0069F633 /* 2scheet.wav */; };
+		711A978720EE38520069F633 /* InfoBackground-ENG.png in Resources */ = {isa = PBXBuildFile; fileRef = 711A978520EE38520069F633 /* InfoBackground-ENG.png */; };
+		711A978820EE38520069F633 /* InfoBackground-NL.png in Resources */ = {isa = PBXBuildFile; fileRef = 711A978620EE38520069F633 /* InfoBackground-NL.png */; };
+		711A978B20EE38CC0069F633 /* Login-Background-NL.png in Resources */ = {isa = PBXBuildFile; fileRef = 711A978920EE38CC0069F633 /* Login-Background-NL.png */; };
+		711A978C20EE38CC0069F633 /* Login-Background-ENG.png in Resources */ = {isa = PBXBuildFile; fileRef = 711A978A20EE38CC0069F633 /* Login-Background-ENG.png */; };
 		7128B02020D07C4100508782 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7128B01F20D07C4100508782 /* Launch Screen.storyboard */; };
 		7138E5952088FBA700C0C08F /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7138E5932088FBA700C0C08F /* InfoViewController.m */; };
 		715E6C7920D80ACD00B87051 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 715E6C7720D80ACD00B87051 /* SplashViewController.m */; };
@@ -140,10 +150,8 @@
 		71BAE49220C8607C00B594FA /* PEP-App-INACTIVE-80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 71BAE48E20C8607A00B594FA /* PEP-App-INACTIVE-80x80.png */; };
 		71BAE49320C8607C00B594FA /* Users-INACTIVE-80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 71BAE48F20C8607B00B594FA /* Users-INACTIVE-80x80.png */; };
 		71BAE49C20C9A3E800B594FA /* PEPAppIcon20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = 71BAE49B20C9A3E800B594FA /* PEPAppIcon20x20.png */; };
-		71BAE4A120C9A82B00B594FA /* InfoBackground-ENG.png in Resources */ = {isa = PBXBuildFile; fileRef = 71BAE49D20C9A82700B594FA /* InfoBackground-ENG.png */; };
 		71BAE4A220C9A82B00B594FA /* BUTTON-OnlineManual-NL.png in Resources */ = {isa = PBXBuildFile; fileRef = 71BAE49E20C9A82800B594FA /* BUTTON-OnlineManual-NL.png */; };
 		71BAE4A320C9A82B00B594FA /* BUTTON-OnlineManual-ENG.png in Resources */ = {isa = PBXBuildFile; fileRef = 71BAE49F20C9A82900B594FA /* BUTTON-OnlineManual-ENG.png */; };
-		71BAE4A420C9A82B00B594FA /* InfoBackground-NL.png in Resources */ = {isa = PBXBuildFile; fileRef = 71BAE4A020C9A82A00B594FA /* InfoBackground-NL.png */; };
 		71BAE4A920C9AA7700B594FA /* Info-ACTIVE-80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 71BAE4A520C9AA7500B594FA /* Info-ACTIVE-80x80.png */; };
 		71BAE4AA20C9AA7700B594FA /* Info-INACTIVE-80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 71BAE4A620C9AA7600B594FA /* Info-INACTIVE-80x80.png */; };
 		71BAE4AB20C9AA7700B594FA /* Settings-INACTIVE-80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 71BAE4A720C9AA7600B594FA /* Settings-INACTIVE-80x80.png */; };
@@ -314,6 +322,16 @@
 		710857431E439B4100479032 /* CorePlot.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CorePlot.xcodeproj; path = ../corePlotFramework/CorePlot.xcodeproj; sourceTree = "<group>"; };
 		710857671E439B8A00479032 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		710BDDEA207D24B600B1E393 /* giraffe-614141_1280.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "giraffe-614141_1280.jpg"; sourceTree = "<group>"; };
+		711A976B20EE35D90069F633 /* 6scheet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = 6scheet.wav; path = ../../../../Downloads/fart_sounds/6scheet.wav; sourceTree = "<group>"; };
+		711A977A20EE35DA0069F633 /* 4scheet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = 4scheet.wav; path = ../../../../Downloads/fart_sounds/4scheet.wav; sourceTree = "<group>"; };
+		711A977B20EE35DA0069F633 /* 1scheet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = 1scheet.wav; path = ../../../../Downloads/fart_sounds/1scheet.wav; sourceTree = "<group>"; };
+		711A977C20EE35DB0069F633 /* 5scheet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = 5scheet.wav; path = ../../../../Downloads/fart_sounds/5scheet.wav; sourceTree = "<group>"; };
+		711A977D20EE35DB0069F633 /* 3scheet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = 3scheet.wav; path = ../../../../Downloads/fart_sounds/3scheet.wav; sourceTree = "<group>"; };
+		711A977E20EE35DB0069F633 /* 2scheet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = 2scheet.wav; path = ../../../../Downloads/fart_sounds/2scheet.wav; sourceTree = "<group>"; };
+		711A978520EE38520069F633 /* InfoBackground-ENG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "InfoBackground-ENG.png"; path = "../../../../Downloads/drive-download-20180705T112721Z-001/InfoBackground-ENG.png"; sourceTree = "<group>"; };
+		711A978620EE38520069F633 /* InfoBackground-NL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "InfoBackground-NL.png"; path = "../../../../Downloads/drive-download-20180705T112721Z-001/InfoBackground-NL.png"; sourceTree = "<group>"; };
+		711A978920EE38CC0069F633 /* Login-Background-NL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Login-Background-NL.png"; path = "../../../../Downloads/drive-download-20180705T112950Z-001/Login-Background-NL.png"; sourceTree = "<group>"; };
+		711A978A20EE38CC0069F633 /* Login-Background-ENG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Login-Background-ENG.png"; path = "../../../../Downloads/drive-download-20180705T112950Z-001/Login-Background-ENG.png"; sourceTree = "<group>"; };
 		7128B01F20D07C4100508782 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		7138E5922088FBA700C0C08F /* InfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		7138E5932088FBA700C0C08F /* InfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
@@ -468,10 +486,8 @@
 		71BAE48E20C8607A00B594FA /* PEP-App-INACTIVE-80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PEP-App-INACTIVE-80x80.png"; sourceTree = "<group>"; };
 		71BAE48F20C8607B00B594FA /* Users-INACTIVE-80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Users-INACTIVE-80x80.png"; sourceTree = "<group>"; };
 		71BAE49B20C9A3E800B594FA /* PEPAppIcon20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PEPAppIcon20x20.png; sourceTree = "<group>"; };
-		71BAE49D20C9A82700B594FA /* InfoBackground-ENG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InfoBackground-ENG.png"; sourceTree = "<group>"; };
 		71BAE49E20C9A82800B594FA /* BUTTON-OnlineManual-NL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BUTTON-OnlineManual-NL.png"; sourceTree = "<group>"; };
 		71BAE49F20C9A82900B594FA /* BUTTON-OnlineManual-ENG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BUTTON-OnlineManual-ENG.png"; sourceTree = "<group>"; };
-		71BAE4A020C9A82A00B594FA /* InfoBackground-NL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InfoBackground-NL.png"; sourceTree = "<group>"; };
 		71BAE4A520C9AA7500B594FA /* Info-ACTIVE-80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Info-ACTIVE-80x80.png"; sourceTree = "<group>"; };
 		71BAE4A620C9AA7600B594FA /* Info-INACTIVE-80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Info-INACTIVE-80x80.png"; sourceTree = "<group>"; };
 		71BAE4A720C9AA7600B594FA /* Settings-INACTIVE-80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings-INACTIVE-80x80.png"; sourceTree = "<group>"; };
@@ -640,10 +656,8 @@
 				71BAE48F20C8607B00B594FA /* Users-INACTIVE-80x80.png */,
 				71BAE49F20C9A82900B594FA /* BUTTON-OnlineManual-ENG.png */,
 				71BAE49E20C9A82800B594FA /* BUTTON-OnlineManual-NL.png */,
-				71BAE49D20C9A82700B594FA /* InfoBackground-ENG.png */,
 				71D5B9B420D11EB000F44A0C /* Settings-Button-EXHALE.png */,
 				71D5B9B520D11EB000F44A0C /* Settings-Button-INHALE.png */,
-				71BAE4A020C9A82A00B594FA /* InfoBackground-NL.png */,
 				71BAE4A520C9AA7500B594FA /* Info-ACTIVE-80x80.png */,
 				71CA7A8320D047A900126454 /* User-Back-Button.png */,
 				71BAE4A620C9AA7600B594FA /* Info-INACTIVE-80x80.png */,
@@ -744,6 +758,8 @@
 				717D002F20B309610098893A /* Login-Button-Signup.png */,
 				71CA7A7C20D01C8F00126454 /* Login-Button-Login-NL.png */,
 				71CA7A7B20D01C8E00126454 /* Login-Button-Signup-NL.png */,
+				711A978A20EE38CC0069F633 /* Login-Background-ENG.png */,
+				711A978920EE38CC0069F633 /* Login-Background-NL.png */,
 				717D003120B309620098893A /* Login-Project.png */,
 			);
 			name = Login;
@@ -752,6 +768,8 @@
 		717D013720B851C70098893A /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				711A978520EE38520069F633 /* InfoBackground-ENG.png */,
+				711A978620EE38520069F633 /* InfoBackground-NL.png */,
 				7186DDEF1E4DBF4100F71F0C /* Croquet ball drop bounce cement_BLASTWAVEFX_29317.wav */,
 				7186DDF01E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.mp3 */,
 				7186DDF11E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.wav */,
@@ -791,6 +809,12 @@
 				717D00FE20B8515C0098893A /* 4harp.wav */,
 				717D00FB20B8515B0098893A /* 5harp.wav */,
 				717D00FC20B8515C0098893A /* 6harp.wav */,
+				711A977B20EE35DA0069F633 /* 1scheet.wav */,
+				711A977E20EE35DB0069F633 /* 2scheet.wav */,
+				711A977D20EE35DB0069F633 /* 3scheet.wav */,
+				711A977A20EE35DA0069F633 /* 4scheet.wav */,
+				711A977C20EE35DB0069F633 /* 5scheet.wav */,
+				711A976B20EE35D90069F633 /* 6scheet.wav */,
 				717D00F320B851480098893A /* 1schuiffluit.wav */,
 				717D00F020B851470098893A /* 2schuiffluit.wav */,
 				717D00F220B851480098893A /* 3schuiffluit.wav */,
@@ -1211,11 +1235,13 @@
 				71BAE4C620CAA0FA00B594FA /* HQ 6.jpg in Resources */,
 				7186DDF81E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.wav in Resources */,
 				717D00C520B850D50098893A /* 3Trombone.wav in Resources */,
+				711A978320EE35DC0069F633 /* 3scheet.wav in Resources */,
 				717D007920B3138D0098893A /* Balloon4.png in Resources */,
+				711A978020EE35DC0069F633 /* 4scheet.wav in Resources */,
 				717D012620B851A50098893A /* 6Bas slide.wav in Resources */,
-				71BAE4A120C9A82B00B594FA /* InfoBackground-ENG.png in Resources */,
 				71BAE4CB20CAA0FA00B594FA /* HQ 20.jpg in Resources */,
 				717D011E20B851910098893A /* 5bell synth.wav in Resources */,
+				711A978420EE35DC0069F633 /* 2scheet.wav in Resources */,
 				717D007B20B3138D0098893A /* Balloon2.png in Resources */,
 				717D00F920B851490098893A /* 1schuiffluit.wav in Resources */,
 				71BAE4CC20CAA0FA00B594FA /* HQ 17.jpg in Resources */,
@@ -1234,6 +1260,7 @@
 				7128B02020D07C4100508782 /* Launch Screen.storyboard in Resources */,
 				71BAE4C420CAA0FA00B594FA /* HQ 11.jpg in Resources */,
 				717D006420B309CA0098893A /* Settings.png in Resources */,
+				711A978720EE38520069F633 /* InfoBackground-ENG.png in Resources */,
 				717D00E220B851100098893A /* 2spaceship.wav in Resources */,
 				717D011120B851750098893A /* 5droom.wav in Resources */,
 				71BAE4D320CAA0FA00B594FA /* HQ 9.jpg in Resources */,
@@ -1253,30 +1280,33 @@
 				717D00DD20B851100098893A /* 6spaceship.wav in Resources */,
 				717D00D520B850F00098893A /* 5Toy Piano.wav in Resources */,
 				717D025020BEAB2B0098893A /* Splash768x1024.png in Resources */,
-				71BAE4A420C9A82B00B594FA /* InfoBackground-NL.png in Resources */,
 				7186DE141E4DBF5F00F71F0C /* Images.xcassets in Resources */,
 				7186DE111E4DBF5F00F71F0C /* GameViewController.xib in Resources */,
 				717D004220B309750098893A /* Bluetooth-OFF.png in Resources */,
 				717D010F20B851750098893A /* 4droom.wav in Resources */,
 				717D024F20BEAB2B0098893A /* Splash1536x2048.png in Resources */,
 				71BAE4AC20C9AA7700B594FA /* Settings-ACTIVE-80x80.png in Resources */,
+				711A978820EE38520069F633 /* InfoBackground-NL.png in Resources */,
 				717D00EC20B851290098893A /* 5sirene fluit.wav in Resources */,
 				717D011C20B851910098893A /* 6bell synth.wav in Resources */,
 				717D011D20B851910098893A /* 2bell synth.wav in Resources */,
 				717D004120B309750098893A /* Sound-OFF.png in Resources */,
 				717D003620B309620098893A /* Login-Button-Login.png in Resources */,
 				717D007520B3138C0098893A /* Balloon0.png in Resources */,
+				711A978C20EE38CC0069F633 /* Login-Background-ENG.png in Resources */,
 				717D007420B3138C0098893A /* Balloon8.png in Resources */,
 				717D00C820B850D50098893A /* 5Trombone.wav in Resources */,
 				717D012520B851A50098893A /* 4Bas slide.wav in Resources */,
 				717D00C620B850D50098893A /* 6Trombone.wav in Resources */,
 				717D00DF20B851100098893A /* 5spaceship.wav in Resources */,
 				717D00EA20B851290098893A /* 3sirene fluit.wav in Resources */,
+				711A978220EE35DC0069F633 /* 5scheet.wav in Resources */,
 				717D00F520B851490098893A /* 5schuiffluit.wav in Resources */,
 				71BAE4D620CAA0FA00B594FA /* HQ 1.jpg in Resources */,
 				717D009920B440F00098893A /* Main-Button-Picker-ALBUM.png in Resources */,
 				717D00E020B851100098893A /* 1spaceship.wav in Resources */,
 				717D010220B8515D0098893A /* 6harp.wav in Resources */,
+				711A978B20EE38CC0069F633 /* Login-Background-NL.png in Resources */,
 				717D006920B312C30098893A /* MainMode-BALLOON.png in Resources */,
 				71BAE4A220C9A82B00B594FA /* BUTTON-OnlineManual-NL.png in Resources */,
 				717D012A20B851A50098893A /* 3Bas slide.wav in Resources */,
@@ -1286,6 +1316,7 @@
 				717D007C20B3138D0098893A /* Balloon5.png in Resources */,
 				71CA7A7E20D01C8F00126454 /* Login-Button-Login-NL.png in Resources */,
 				717D011020B851750098893A /* 3droom.wav in Resources */,
+				711A978120EE35DC0069F633 /* 1scheet.wav in Resources */,
 				71CA7A8D20D0553500126454 /* SettingsViewController.xib in Resources */,
 				717D013320B851BD0098893A /* 3Ballon.wav in Resources */,
 				717D013120B851BD0098893A /* 2Ballon.wav in Resources */,
@@ -1327,6 +1358,7 @@
 				717D010320B8515D0098893A /* 2harp.wav in Resources */,
 				71BAE4CD20CAA0FA00B594FA /* HQ 7.jpg in Resources */,
 				710BDDEB207D24B600B1E393 /* giraffe-614141_1280.jpg in Resources */,
+				711A977F20EE35DC0069F633 /* 6scheet.wav in Resources */,
 				71CA7A9820D05B1100126454 /* Main.storyboard in Resources */,
 				71BAE49220C8607C00B594FA /* PEP-App-INACTIVE-80x80.png in Resources */,
 				717D00F620B851490098893A /* 2schuiffluit.wav in Resources */,

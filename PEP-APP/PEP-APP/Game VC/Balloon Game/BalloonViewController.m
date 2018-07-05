@@ -233,7 +233,7 @@
         [audioPlayer prepareToPlay];
         audioPlayer.volume=0.3;
         
-        NSLog(@"SOUND: reset all %hhd", muteAudio);
+        NSLog(@"SOUND: BALLOON VIEW CONTROLLER - reset all %hhd", muteAudio);
         
         if (muteAudio == 1){
             NSLog(@"AUDIO MUTED");

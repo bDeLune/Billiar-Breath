@@ -13,13 +13,13 @@ typedef enum
     gameDifficultyEasy,
     gameDifficultMedium,
     gameDifficultyHard
-}gameDifficulty;
+} gameDifficulty;
 
 @class AbstractGame;
 @protocol GameProtocol <NSObject>
--(void)gameEnded:(AbstractGame*)game;
--(void)gameStarted:(AbstractGame*)game;
--(void)gameWon:(AbstractGame*)game;
+-(void) gameEnded:(AbstractGame*)game;
+-(void) gameStarted:(AbstractGame*)game;
+-(void) gameWon:(AbstractGame*)game;
 @end
 
 @interface AbstractGame : NSObject
@@ -32,10 +32,10 @@ typedef enum
 @property int totalBalls;
 @property BOOL saveable;
 @property float time;
--(void)startGame;
--(void)endGame;
--(int)nextBall;
--(void)setBallCount;
--(void)startTimer;
--(void)killTimer;
+-(void) startGame;
+-(void) endGame;
+-(int) nextBall;
+-(void) setBallCount;
+-(void) startTimer;
+-(void) killTimer;
 @end

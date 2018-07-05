@@ -58,6 +58,9 @@
 -(void)playHitTop
 {
     //remove
+    
+     NSLog(@"Playing sound sequence game");
+    
     NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"IMPACT RING METAL DESEND 01" ofType:@"wav"];
     NSData *fileData = [NSData dataWithContentsOfFile:soundPath];
     NSError *error = nil;
@@ -78,14 +81,14 @@
     //[self playHitTop];
     self.currentBall++;
     NSLog(@"Current ball is %d", self.currentBall);
-    
+   // [self.delegate gameWon:self];
     self.totalBallsAttempted++;
        // [self.delegate gameEnded:self];
        // return -1;
         if (self.totalBallsRaised>=self.totalBalls) {
        //     [[GCDQueue mainQueue]queueBlock:^{
                 if (!gamewon) {
-                    [self.delegate gameWon:self];
+                 //   [self.delegate gameWon:self]; //required all balls to be completed before game won, removed for now
                     gamewon=YES;
                 }
          //   } afterDelay:1.0];

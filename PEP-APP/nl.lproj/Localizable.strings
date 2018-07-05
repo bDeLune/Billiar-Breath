@@ -17,6 +17,7 @@
 "Multi Game" = "Duo Spel";
 "Login-Button-Login" = "Login-Button-Login-NL";
 "Login-Button-Signup" = "Login-Button-Signup-NL";
+"Login-Background" = "Login-Background-NL";
 "externalURLButton" = "BUTTON-OnlineManual-NL";
 "manualURL" = "https://www.groovtube.nl/pepappmanual/";
 "InfoBackground" = "InfoBackground-NL";
@@ -32,6 +33,7 @@
 "Bel Synth" = "Bell Synth";
 "Schuiffluit" = "Schuiffluit";
 "Spaceship" = "Ruimteschip";
+"Scheet" = "Scheet";
 "Bas Slide" = "Bas Schuif";
 "Ballon" = "Ballon";
 "Droon" = "Droon";

@@ -50,7 +50,8 @@
     
     [self.loginButton setImage:[UIImage imageNamed:NSLocalizedString(@"Login-Button-Login", nil)] forState:UIControlStateNormal];
     [self.signupButton setImage: [UIImage imageNamed:NSLocalizedString(@"Login-Button-Signup", nil)] forState:UIControlStateNormal];
-    
+    UIImage* backgroundImage = [UIImage imageNamed:NSLocalizedString(@"Login-Background", nil)];
+    self.loginBackground.image = backgroundImage;
     
     [super viewDidLoad];
     self.userList=[[UserListViewController alloc]initWithNibName:@"UserListViewController" bundle:nil];

@@ -24,6 +24,8 @@
     NSMutableArray *imageGameSoundArray;
     NSMutableArray *repititionsArray;
     NSMutableArray *filterArray;
+    NSMutableArray *imageGameSoundFileNameArray;
+    NSMutableArray *filterFileNameArray;
     int currentdirection;
     id<SETTINGS_DELEGATE> __unsafe_unretained settinngsDelegate;
 }
