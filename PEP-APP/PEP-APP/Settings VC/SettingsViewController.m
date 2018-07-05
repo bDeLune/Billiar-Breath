@@ -90,7 +90,7 @@
         NSLog(@"SETTING CURRENT DIRECTION AS %d, ", currentdirection);
 
         [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
-        [[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"direction"];
+        [[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"defaultDirection"];
         
         [speedSlider setValue:3 animated:YES];
         ///usersettings
@@ -114,14 +114,14 @@
         currentdirection = 0;
         NSLog(@"set to inhale");
         [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
-        [[NSUserDefaults standardUserDefaults]setObject:@"inhale" forKey:@"direction"];
+        [[NSUserDefaults standardUserDefaults]setObject:@"inhale" forKey:@"defaultDirection"];
         
     }else if (inhaleActivated == NO){
         NSLog(@"set to exhale");
         currentdirection = 1;
         
         [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
-        [[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"direction"];
+        [[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"defaultDirection"];
     }
     
 };
@@ -133,7 +133,7 @@
         currentdirection = 0;
         NSLog(@"set to inhale");
         [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
-        [[NSUserDefaults standardUserDefaults]setObject:@"Inhale" forKey:@"direction"];
+        [[NSUserDefaults standardUserDefaults]setObject:@"Inhale" forKey:@"defaultDirection"];
         
         [self.settinngsDelegate setDirection:0];
     }else{
@@ -141,7 +141,7 @@
         currentdirection = 1;
         
         [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
-        [[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"direction"];
+        [[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"defaultDirection"];
         
          [self.settinngsDelegate setDirection:1];
     }
@@ -156,7 +156,7 @@
         NSLog(@"set to inhale");
         
         [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
-        [[NSUserDefaults standardUserDefaults]setObject:@"Inhale" forKey:@"direction"];
+        [[NSUserDefaults standardUserDefaults]setObject:@"Inhale" forKey:@"defaultDirection"];
 
         [self.settinngsDelegate setDirection:0];
     }else{
@@ -164,7 +164,7 @@
         currentdirection = 1;
         
         [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
-        [[NSUserDefaults standardUserDefaults]setObject:@"Inhale" forKey:@"direction"];
+        [[NSUserDefaults standardUserDefaults]setObject:@"Inhale" forKey:@"defaultDirection"];
         
        [self.settinngsDelegate setDirection:1];
     }

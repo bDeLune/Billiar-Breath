@@ -65,6 +65,7 @@
     bool currentlyExhaling;
     bool currentlyInhaling;
     NSString* currentImageGameSound;
+    int currentlySelectedEffectIndex;
     int selectedBallCount;
     int selectedSpeed;
     bool disableModeButton;
@@ -134,12 +135,10 @@
     self.currentSession.sessionDate=[NSDate date];
     self.currentSession.sessionSpeed = [NSNumber numberWithInt:selectedSpeed];
     self.currentSession.sessionDuration = [NSString stringWithFormat:@"%d", 0];
-
     ///usersettings
-    
     //self.currentSession.sessionAchievedBreathLength = 0;
     //self.currentSession.sessionRequiredBalloons = [NSNumber numberWithInt:selectedBallCount];
-   // self.currentSession.sessionAchievedBalloons = 0;
+    //self.currentSession.sessionAchievedBalloons = 0;
 }
 
 #pragma mark -
@@ -170,72 +169,80 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
 
-    selectedBallCount = 15;
+        self.settingsViewController = [self.tabBarController.viewControllers objectAtIndex:2];
+        selectedBallCount = [[NSUserDefaults standardUserDefaults]integerForKey:@"defaultRepetitions"];
         
-    ///usersettings
+        int TEST  = [[NSUserDefaults standardUserDefaults]integerForKey:@"defaultRepetitions"];
         
-    currentDifficulty=gameDifficultyEasy;
-    selectedSpeed = 3;
+        NSLog(@"test %d", TEST);
         
-    ///usersettings
+        selectedSpeed = [[NSUserDefaults standardUserDefaults]integerForKey:@"defaultSpeed"];
+        currentImageGameSound = [[NSUserDefaults standardUserDefaults]stringForKey:@"defaultSound"];
+        globalSoundActivated = [[NSUserDefaults standardUserDefaults]integerForKey:@"defaultMute"];
+        NSString* directionSetting = [[NSUserDefaults standardUserDefaults]stringForKey:@"defaultDirection"];
+        currentlySelectedEffectIndex= [[NSUserDefaults standardUserDefaults]integerForKey:@"defaultEffect"];
         
-    wasExhaling = true;
-    sketchamount=0;
-    self.title = @"Groov";
-    _animationrate=selectedSpeed;
-    currentImageGameSound = @"sirene fluit";
-    ///usersettings
+        if (!selectedBallCount){selectedBallCount = 15;}
+        if (!selectedSpeed){selectedSpeed = 3;}
+        if (!currentImageGameSound){currentImageGameSound = @"sirene fluit";}
+        if (!globalSoundActivated){globalSoundActivated = 1;}
+        if (!currentlySelectedEffectIndex){currentlySelectedEffectIndex = 1;}
+        if ([directionSetting isEqual: @"Inhale"]){
+            self.midiController.toggleIsON = YES;
+            [self.settingsViewController setSettingsViewDirection: 0];
+             NSLog(@"DEFAULTS directionSetting inhale");
+        }else if (!directionSetting || [directionSetting isEqual: @"Exhale"]){
+            self.midiController.toggleIsON = NO;
+            [self.settingsViewController setSettingsViewDirection: 1];
+             NSLog(@"DEFAULTS directionSetting Exhale");
+        }
         
+       
+        NSLog(@"DEFAULTS selectedBallCount %d", selectedBallCount);
+        NSLog(@"DEFAULTS currentImageGameSound %@", currentImageGameSound);
+        NSLog(@"DEFAULTS selectedSpeed %d", selectedSpeed);
+        NSLog(@"DEFAULTS globalSoundActivated %hhd", globalSoundActivated);
+        NSLog(@"DEFAULTS currentlySelectedEffectIndex %d", currentlySelectedEffectIndex);
         
-    self.midiController.toggleIsON = NO;
+        currentDifficulty=gameDifficultyEasy;
+        wasExhaling = true;
+        sketchamount=0;
+        self.title = @"Groov";
+        _animationrate=selectedSpeed;
+        self.balloonViewController=[[BalloonViewController alloc]initWithFrame:CGRectMake(10, 0, 130,220) withBallCount:selectedBallCount];
+        self.midiController=[[MidiController alloc]init];
+        self.midiController.delegate=self;
+        [self.midiController addObserver:self forKeyPath:@"numberOfSources" options:0 context:NULL];
+        self.currentGameType=gameTypeDuo;
+        [self.toggleGameModeButton setImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];
         
-    self.balloonViewController=[[BalloonViewController alloc]initWithFrame:CGRectMake(10, 0, 130,220) withBallCount:selectedBallCount];
-    self.midiController=[[MidiController alloc]init];
-    self.midiController.delegate=self;
-    [self.midiController addObserver:self forKeyPath:@"numberOfSources" options:0 context:NULL];
-    self.currentGameType=gameTypeDuo;
-    ///usersettings
+        [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:currentDifficulty] forKey:@"difficulty"];
         
+        self.addGameQueue=[[NSOperationQueue alloc]init];
+        self.btleManager=[BTLEManager new];
+        self.btleManager.delegate=self;
+        [self.btleManager startWithDeviceName:@"GroovTube" andPollInterval:0.1];
+        [self.btleManager setRangeReduction:2];
+        [self.btleManager setTreshold:60];
+        [self startSession];
+        [self.bluetoothIcon setImage:[UIImage imageNamed:@"Bluetooth-OFF"]];
+        [self.photoPickerButton addTarget:self action:@selector(photoButtonLibraryAction) forControlEvents:UIControlEventTouchUpInside];
+        self.capturedImages = [NSMutableArray array];
+        [self.HQPhotoPickerButton addTarget:self action:@selector(photoButtonBundleAction) forControlEvents:UIControlEventTouchUpInside];
+        self.hqImages = [NSMutableArray array];
         
-    [self.toggleGameModeButton setImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];
+        imagePickerController = [[UIImagePickerController alloc] init] ;
+        imagePickerController.delegate = self;
+        hqImagePickerController = [[UIImagePickerController alloc] init] ;
+        hqImagePickerController.delegate = self;
         
-    [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:currentDifficulty] forKey:@"difficulty"];
-    
-    self.addGameQueue=[[NSOperationQueue alloc]init];
-    self.btleManager=[BTLEManager new];
-    self.btleManager.delegate=self;
-    [self.btleManager startWithDeviceName:@"GroovTube" andPollInterval:0.1];
-    [self.btleManager setRangeReduction:2];
-    [self.btleManager setTreshold:60];
-    [self startSession];
-    [self.bluetoothIcon setImage:[UIImage imageNamed:@"Bluetooth-OFF"]];
-
-    [self.photoPickerButton addTarget:self action:@selector(photoButtonLibraryAction) forControlEvents:UIControlEventTouchUpInside];
-    self.capturedImages = [NSMutableArray array];
-    [self.HQPhotoPickerButton addTarget:self action:@selector(photoButtonBundleAction) forControlEvents:UIControlEventTouchUpInside];
-    self.hqImages = [NSMutableArray array];
-    
-    imagePickerController = [[UIImagePickerController alloc] init] ;
-    imagePickerController.delegate = self;
-    hqImagePickerController = [[UIImagePickerController alloc] init] ;
-    hqImagePickerController.delegate = self;
+        self.mainGaugeView=[[GameViewGauge alloc]initWithFrame:CGRectMake(445, 20, 40, MAINGUAGE_HEIGHT) ];
+        self.mainGaugeView.MainGaugeDelegate=self;
+        [self.view addSubview:self.mainGaugeView ];
+        [self.view sendSubviewToBack:self.mainGaugeView];
         
-    self.mainGaugeView=[[GameViewGauge alloc]initWithFrame:CGRectMake(445, 20, 40, MAINGUAGE_HEIGHT) ];
-    self.mainGaugeView.MainGaugeDelegate=self;
-    [self.view addSubview:self.mainGaugeView ];
-    [self.view sendSubviewToBack:self.mainGaugeView];
-        
-    [self.mainGaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
-    [self.mainGaugeView start];
-        
-    self.settingsViewController = [self.tabBarController.viewControllers objectAtIndex:2];
-        //self.settingsViewController.delegate=self;
-        //self.settingsViewController.currentdirection=1;
-        
-        
-        
-    [self.settingsViewController setSettingsViewDirection: 1];
-        ///usersettings - set as users last
+        [self.mainGaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
+        [self.mainGaugeView start];
     
     }
     return self;
@@ -356,14 +363,14 @@
 {
     [super viewDidLoad];
     [self.view addSubview:self.balloonViewController.view];
-    [[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"direction"];
+    [[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"defaultDirection"];
     [self.imageFilterView sendSubviewToBack:imageView];
 
     [self.settingsViewController setSettinngsDelegate:self];
     self.tabBarController.delegate = self;
     
     self.currentGameType = gameTypeDuo;
-    globalSoundActivated = 1;
+    //globalSoundActivated = 1;
     ///usersettings
     
     
@@ -415,7 +422,7 @@
             NSLog(@"SETTING TO EXHALE");
             self.midiController.toggleIsON=NO;
             [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
-            [[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"direction"];
+            [[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"defaultDirection"];
             
             //addedthu
             [self.mainGaugeView setBreathToggleAsExhale:1 isExhaling: NO];
@@ -427,7 +434,7 @@
              NSLog(@"SETTING TO INHALE");
             self.midiController.toggleIsON=YES;
             [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
-            [[NSUserDefaults standardUserDefaults]setObject:@"Inhale" forKey:@"direction"];
+            [[NSUserDefaults standardUserDefaults]setObject:@"Inhale" forKey:@"defaultDirection"];
             wasExhaling = false;
             [self.mainGaugeView setBreathToggleAsExhale:0 isExhaling: YES];
             [self.settingsViewController setGaugeSettings:0 exhaleToggle: YES];
@@ -445,14 +452,16 @@
         NSLog(@"SETTING TO EXHALE from settings");
         self.midiController.toggleIsON=NO;
         [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
-        [[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"direction"];
+        [[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"defaultDirection"];
         [self.mainGaugeView setBreathToggleAsExhale:1 isExhaling: NO];
         wasExhaling = true;
+        
+        
     }else if (self.midiController.toggleIsON == NO){
         NSLog(@"SETTING TO INHALE from settings");
         self.midiController.toggleIsON=YES;
         [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
-        [[NSUserDefaults standardUserDefaults]setObject:@"Inhale" forKey:@"direction"];
+        [[NSUserDefaults standardUserDefaults]setObject:@"Inhale" forKey:@"defaultDirection"];
         wasExhaling = false;
         [self.mainGaugeView setBreathToggleAsExhale:0 isExhaling: YES];
     }
@@ -803,6 +812,8 @@
         [self.soundIcon setImage:soundOffImage forState:UIControlStateNormal];
         [self.sequenceGameController setAudioMute: globalSoundActivated];
     }
+    
+    [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:globalSoundActivated] forKey:@"defaultMute"];
 }
 
 -(void)gameEnded:(AbstractGame *)game
@@ -1073,10 +1084,13 @@
 -(void)setSpeed:(float)value
 {
     NSLog(@" inner set breath speed %f", value);
-    // self.breathLength=value;
-    selectedSpeed = (int)value;
-    self.currentSession.sessionSpeed = [NSNumber numberWithFloat:value];
-    _animationrate=value;
+
+   // selectedSpeed = (int)value;
+    selectedSpeed = ceil((double)value/3);
+    self.currentSession.sessionSpeed = [NSNumber numberWithFloat:selectedSpeed];
+    _animationrate=selectedSpeed; //was value
+    
+    [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithFloat:selectedSpeed] forKey:@"defaultSpeed"];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -1279,7 +1293,7 @@
     UIImage *inputImage;
     inputImage=[UIImage imageNamed:@"giraffe-614141_1280.jpg"];
     sourcePicture = [[GPUImagePicture alloc] initWithImage:inputImage smoothlyScaleOutput:YES];
-    stillImageFilter = [self filterForIndex:1];
+    stillImageFilter = [self filterForIndex: currentlySelectedEffectIndex];
     ///usersettings
     imageView = [[GPUImageView alloc]initWithFrame:self.imageFilterView.frame];
     [self.imageFilterView insertSubview:imageView atIndex:0];
@@ -1294,24 +1308,29 @@
     [sourcePicture removeAllTargets];
     stillImageFilter=nil;
     stillImageFilter=[self filterForIndex:index];
+
     [sourcePicture addTarget:stillImageFilter];
     [stillImageFilter addTarget:imageView];
     self.mainGaugeView.MainGaugeDelegate=self;
-   //addedthu
-    //[self.mainGaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
     [self.mainGaugeView start];
     [self.mainGaugeView setForce:0];
+    [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:index] forKey:@"defaultEffect"];
+    currentlySelectedEffectIndex = index;
 }
 
 -(void)setRepetitionCount:(int)value{
     NSLog(@"inner Setting balloon game repetition count to %d ", value);
     NSLog(@"count %d ", value);
     selectedBallCount = value;
+    
+    [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:selectedBallCount] forKey:@"defaultRepetitions"];
 }
 
 -(void)setImageSoundEffect:(NSString*)value{
     NSLog(@"Setting Image sound effect to %@ ", value);
     currentImageGameSound = value;
+    
+    [[NSUserDefaults standardUserDefaults]setObject:currentImageGameSound forKey:@"defaultSound"];
 }
 
 -(GPUImageFilter*)filterForIndex:(int)index
@@ -1474,7 +1493,5 @@
     NSLog(@"FOUND TAB BAR");
     return TRUE;
 }
-
-
 
 @end

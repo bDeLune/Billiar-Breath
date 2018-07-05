@@ -3,7 +3,6 @@
 #import "User.h"
 #import "Game.h"
 #import "MainTableViewController.h"
-//#define GUAGE_HEIGHT 575
 #import <AudioToolbox/AudioToolbox.h>
 #import "BTLEManager.h"
 
@@ -75,7 +74,7 @@ typedef void(^RunTimer)(void);
         self.mainTableViewController=[[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
     }
     
-    [self.mainTableViewController setMemoryInfo:self.persistentStoreCoordinator withuser:user];
+    [self.mainTableViewController setMemoryInfo:self.persistentStoreCoordinator withuser:user withManagedObjectContext: _managedObjectContext];
     
     [UIView transitionFromView:self.loginViewController.view toView:self.mainTableViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromBottom completion:^(BOOL finished){}
     ];

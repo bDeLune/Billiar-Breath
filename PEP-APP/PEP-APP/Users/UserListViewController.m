@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property(nonatomic,assign)User  *deleteUser;
+
+
 @end
 @implementation UserListViewController
 
@@ -149,11 +151,12 @@
     NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
     
     if ([items count]>0) {
-        
         self.userList=[NSMutableArray arrayWithArray:items];
     }
+    
     [self.tableView reloadData];
 }
+
 #pragma mark - Table view data source
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -187,17 +190,14 @@
     }
     
     User  *user=[self.userList objectAtIndex:indexPath.section];
-
     NSArray  *dates=[self sortedDateArrayForUser:user];
     dates=[[dates reverseObjectEnumerator]allObjects];
-    //NSDate * dateAtRow =[dates objectAtIndex:indexPath.row];
     NSString *stringFromDate =[dates objectAtIndex:indexPath.row];
     cell.textLabel.text= stringFromDate;
     return cell;
 }
 -(NSArray*)gamesMatchingDate:(NSString*)date user:(User*)user
 {
-   // NSArray *array=nil;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"dd MMM y "];
     NSPredicate *shortNamePredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
@@ -205,17 +205,12 @@
         NSDate *gamedate=[game gameDate] ;
         NSString  *datestring=[formatter stringFromDate:gamedate];
         return [datestring isEqualToString:date];
-        return YES;
-        /// return [(Game*)[evaluatedObject gameDate]];
     }];
     
     NSArray *unfiltered=[user.game allObjects];
     NSArray *filtered=[unfiltered filteredArrayUsingPredicate:shortNamePredicate];
-   // NSMutableArray  *mut=[NSMutableArray arrayWithArray:filtered];
-   // NSMutableArray  *temp=[NSMutableArray arrayWithArray:filtered];
-    //NSMutableArray *tempcopy= [[NSMutableArray alloc] initWithObjects:unfiltered, nil];
-    NSLog(@"gamesMatchingDate username %@", user.userName);
-    NSLog(@"gamesMatchingDate unfiltered %@", unfiltered);
+    //NSLog(@"gamesMatchingDate username %@", user.userName);
+    //NSLog(@"gamesMatchingDate unfiltered %@", unfiltered);
     NSMutableArray * tempcopy = [[NSMutableArray alloc] init];
     
     [tempcopy addObjectsFromArray:unfiltered];
@@ -237,15 +232,11 @@
     NSArray  *array=[self gamesMatchingDate:[dates objectAtIndex:indexPath.row] user:user];
     NSMutableArray  *durationOnly=[NSMutableArray new];
     
-    
     for (Game *agame in array) {
-       NSLog(@"GAMELABEL -  ADDING didSelectRowAtIndexPath for array %@", array);
-       //NSLog(@"ADDING didSelectRowAtIndexPath for agame.gameType %@", agame.gameType);
-       //if ([agame.gameType intValue]==2) {
+       //NSLog(@"GAMELABEL -  ADDING didSelectRowAtIndexPath for array %@", array);
             [durationOnly addObject:agame];
-       //}
         }
-    NSLog(@"didSelectRowAtIndexPath  for username %@ durationOnlyarray %@" , user.userName , durationOnly);
+    //NSLog(@"didSelectRowAtIndexPath  for username %@ durationOnlyarray %@" , user.userName , durationOnly);
     [self.detailViewController setUSerData:durationOnly];
     self.detailViewController.view.frame = CGRectMake(97,207,569,645);
     self.backButton.hidden = NO;
@@ -253,8 +244,6 @@
     [self.view bringSubviewToFront:self.detailViewController.view];
     [self.view bringSubviewToFront:self.backgroundColouredImage];
     [self.view bringSubviewToFront:self.backButton];
-    //[self addChildViewController:self.detailViewController];
-   // [self didMoveToParentViewController:self.detailViewController];
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {

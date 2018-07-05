@@ -98,6 +98,8 @@
     isaccelerating=NO;
 }
 
+
+
 -(void)setBestDistanceWithY:(float)yValue
 {
     bestDistance= yValue;

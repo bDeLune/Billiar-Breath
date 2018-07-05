@@ -7,6 +7,12 @@
 @property (nonatomic, retain) NSString * userName;
 @property (nonatomic, retain) NSSet *game;
 @property (nonatomic, retain) NSSet *note;
+@property (nonatomic, retain) NSString * defaultDirection;
+@property (nonatomic, retain) NSNumber * defaultSpeed;
+@property (nonatomic, retain) NSNumber * defaultRepetitions;
+@property (nonatomic, retain) NSString * defaultSound;
+@property (nonatomic, retain) NSNumber * defaultMute;
+@property (nonatomic, retain) NSNumber * defaultEffect;
 @end
 
 @interface User (CoreDataGeneratedAccessors)

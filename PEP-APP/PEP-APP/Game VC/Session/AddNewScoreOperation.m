@@ -45,7 +45,7 @@
     [game setPower:self.session.sessionStrength];
     [game setGameType:self.session.sessionType];
     [game setSpeed:self.session.sessionSpeed];
-    NSString *direction=[[NSUserDefaults standardUserDefaults]objectForKey:@"direction"];
+    NSString *direction=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultDirection"];
     [game setGameDirection:direction];
     //[game setGameDirection:0];
     
