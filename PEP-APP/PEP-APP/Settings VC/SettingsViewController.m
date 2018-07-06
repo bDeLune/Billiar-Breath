@@ -36,7 +36,7 @@
    
     if (self) {
         self.title = @"Settings";
-        imageGameSoundFileNameArray=[NSMutableArray arrayWithObjects: @"Ballon",@"schuiffluit",@"spaceship",@"scheet",@"Bas slide",@"bell synth", @"droom", @"sirene fluit", @"xylofoon", @"Toy Piano", @"harp", nil];
+        imageGameSoundFileNameArray=[NSMutableArray arrayWithObjects: @"Ballon",@"schuiffluit",@"spaceship",@"scheet",@"Bas slide",@"bell synth", @"droon", @"sirene fluit", @"xylofoon", @"Toy Piano", @"harp", nil];
         imageGameSoundArray=[NSMutableArray arrayWithObjects:
         [NSString stringWithFormat:NSLocalizedString(@"Ballon", nil)],
         [NSString stringWithFormat:NSLocalizedString(@"Schuiffluit", nil)],
@@ -114,7 +114,33 @@
 
 -(void)viewDidLoad{
     
-    NSLog(@"view did load");
+    NSLog(@"SETTINGS : view did load");
+    
+    NSLog(@"pPPPPreparePickers");
+    NSNumber *defaultRepetitionIndex=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultRepetitionIndex"];
+    NSString *defaultSound=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultSound"];
+    NSNumber *defaultEffectIndex=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultEffect"];
+    
+    NSInteger repetitionIndex = [defaultRepetitionIndex integerValue];
+    NSInteger effectIndex = [defaultEffectIndex integerValue];
+    
+    [filterPicker selectRow:effectIndex inComponent:0 animated:NO];
+    [pickerViewC selectRow:repetitionIndex inComponent:0 animated:NO];
+    
+    NSLog(@"defaultSound %@", defaultSound);
+    
+    NSUInteger soundIndex = [imageGameSoundFileNameArray indexOfObjectPassingTest:^BOOL(NSString *obj, NSUInteger idx, BOOL *stop) {
+        return [obj caseInsensitiveCompare:defaultSound] == NSOrderedSame;
+    }];
+    
+    NSLog(@"effectIndex %ld", (long)effectIndex);
+    NSLog(@"repetitionIndex %ld", (long)repetitionIndex);
+    NSLog(@"soundIndex %lu", (long)soundIndex);
+    NSLog(@"soundIndex %d", (int)soundIndex);
+    [pickerViewB selectRow:(int)soundIndex inComponent:0 animated:NO];
+}
+
+-(void)preparePickers{
     
 
 }
@@ -237,6 +263,7 @@
 
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     NSLog(@"didSelectRow %d", (int)row);
+    NSLog(@"didSelectRow %d", row);
     int rowint=(int)row;
     if (thePickerView==pickerViewB) {
         [self.settinngsDelegate setImageSoundEffect: [imageGameSoundFileNameArray objectAtIndex:row]];
@@ -266,20 +293,24 @@
     [self.settinngsDelegate setSpeed:slider.value];
 }
 
--(void)setUIState:(int)picker toNo:(int)indexNo{
+-(void)setUIState:(int)picker toNo:(NSString*)indexNo{
     
-    NSLog(@"SETTING UI STATE %d TO %d",picker, indexNo);
+    NSLog(@"SETTING UI STATE %d TO %@",picker, indexNo);
     
     if (1 == picker) {
-       [filterPicker selectRow:indexNo inComponent:1 animated:YES];
+        int selected = [indexNo intValue];
+       [filterPicker selectRow:selected inComponent:1 animated:YES];
     }
     
     if (2 == picker) {
-        [pickerViewB selectRow:indexNo inComponent:1 animated:YES];
+         int selected = [indexNo intValue];
+        NSLog(@"ATTEMPT");
+        //[pickerViewB selectRow:selected inComponent:1 animated:YES];
     }
     
     if (3 == picker) {
-        [pickerViewC selectRow:indexNo inComponent:1 animated:YES];
+         int selected = [indexNo intValue];
+        [pickerViewC selectRow:selected inComponent:1 animated:YES];
     }
     
    // if (4 == picker) {

@@ -37,5 +37,6 @@
 -(void) setGaugeForce:(float)force;
 -(void) setSettingsViewDirection:(int)val;
 -(void) setGaugeSettings: (int)breathToggle exhaleToggle:(BOOL)ex;
--(void)setUIState:(int)picker toNo:(int)indexNo;
+-(void) setUIState:(int)picker toNo:(NSString*)indexNo;
+-(void) preparePickers;
 @end

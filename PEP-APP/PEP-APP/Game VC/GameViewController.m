@@ -197,11 +197,6 @@
         currentImageGameSound = defaultSound;
         globalSoundActivated = [defaultMute intValue];
         selectedSpeed = [defaultSpeed intValue];
-        
-        [self.settingsViewController setUIState:3 toNo:[defaultRepetitionIndex intValue]];
-        [self.settingsViewController setUIState:2 toNo:[defaultSound intValue]];
-        [self.settingsViewController setUIState:1  toNo:[defaultEffectIndex intValue]];
-        
   
         if ([defaultDirection isEqual: @"Inhale"]){
             self.midiController.toggleIsON = YES;
@@ -424,6 +419,10 @@
         [self.soundIcon setImage:soundOffImage forState:UIControlStateNormal];
         [self.sequenceGameController setAudioMute: globalSoundActivated];
     }
+    
+   // [self.settingsViewController setUIState:3 toNo: [NSString stringWithFormat:@"%d",selectedBallCount]];
+   // [self.settingsViewController setUIState:2 toNo: [NSString stringWithFormat:@"%@",currentImageGameSound]];
+   // [self.settingsViewController setUIState:1 toNo: [NSString stringWithFormat:@"%d",currentlySelectedEffectIndex]];
   
     /*
     NSString *defaultDirection=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultDirection"];
@@ -447,6 +446,8 @@
         [self.settingsViewController.gaugeView setBreathToggleAsExhale:1 isExhaling: NO];
         wasExhaling = true;
     }*/
+    
+    [self.settingsViewController preparePickers];
 
     midiinhale=61;
     midiexhale=73;
