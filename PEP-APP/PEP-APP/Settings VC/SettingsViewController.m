@@ -222,6 +222,7 @@
     //mylocalise
     if (thePickerView==pickerViewB) {
        thetitle=[imageGameSoundArray objectAtIndex:row];
+        [[NSUserDefaults standardUserDefaults]setObject:thetitle forKey:@"defaultSound"];
    }
      //mylocalise
     if (thePickerView==pickerViewC) {

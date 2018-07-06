@@ -134,7 +134,7 @@
 
 -(void)setForce:(float)pforce
 {
-    NSLog(@"distancE %f - MAINGUAGE_HEIGHT %d", distance, MAINGUAGE_HEIGHT);
+  //  NSLog(@"distancE %f - MAINGUAGE_HEIGHT %d", distance, MAINGUAGE_HEIGHT);
     force=(pforce/mass);
 }
 
@@ -152,7 +152,6 @@
 
 -(void)directionChanged:(int)direction{
     NSLog(@"Main gauge changed direction");
-    
     
 }
 

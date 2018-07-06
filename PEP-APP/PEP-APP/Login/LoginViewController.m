@@ -102,8 +102,13 @@
     if ([items count]>0) {
         User *user=[items objectAtIndex:0];
         
-        NSLog(@"TEST REPLAY SOUND : %@", user.defaultSound);
-
+        NSLog(@"SAVED DATA TO DEFUALTS user.defaultDirection : %@", user.defaultDirection);
+        NSLog(@"SAVED DATA TO DEFUALTS user.defaultSpeed : %@", user.defaultSpeed);
+        NSLog(@"SAVED DATA TO DEFUALTS user.defaultRepetitionIndex : %@", user.defaultRepetitionIndex);
+        NSLog(@"SAVED DATA TO DEFUALTS user.defaultMute : %@", user.defaultMute);
+        NSLog(@"SAVED DATA TO DEFUALTS user.defaultEffect : %@", user.defaultEffect);
+        NSLog(@"SAVED DATA TO DEFUALTS user.defaultSound : %@", user.defaultSound);
+        
         [[NSUserDefaults standardUserDefaults]setObject:user.defaultDirection forKey:@"defaultDirection"];
         [[NSUserDefaults standardUserDefaults]setObject:user.defaultSpeed forKey:@"defaultSpeed"];
         [[NSUserDefaults standardUserDefaults]setObject:user.defaultRepetitionIndex forKey:@"defaultRepetitionIndex"];
@@ -111,7 +116,6 @@
         [[NSUserDefaults standardUserDefaults]setObject:user.defaultMute forKey:@"defaultMute"];
         [[NSUserDefaults standardUserDefaults]setObject:user.defaultEffect forKey:@"defaultEffect"];
         return user;
-        
     }
     
     return nil;

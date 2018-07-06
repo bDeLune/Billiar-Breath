@@ -36,6 +36,12 @@ NSString *kAddNewUserOperationUserAdded = @"UserAdded";
 {
     User* newTask = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:self.managedObjectContext];
     [newTask setUserName:self.username];
+    [newTask setDefaultMute:[NSNumber numberWithInt:1]];
+    [newTask setDefaultSound: @"sirene fluit"];
+    [newTask setDefaultSpeed: [NSNumber numberWithInt:3]];
+    [newTask setDefaultRepetitionIndex: [NSNumber numberWithInt:15]];
+    [newTask setDefaultDirection: @"Exhale"];
+    [newTask setDefaultEffect: [NSNumber numberWithInt:1]];
     NSError  *error;
     
     if ([self.managedObjectContext hasChanges]) {
