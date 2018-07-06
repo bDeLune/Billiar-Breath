@@ -218,9 +218,7 @@
             [self.settingsViewController.gaugeView setBreathToggleAsExhale:1 isExhaling: NO];
             wasExhaling = true;
         }
-        
 
-        
        // [[NSUserDefaults standardUserDefaults]setInteger: selectedBallCount forKey:@"defaultRepetitionIndex"];
        // [[NSUserDefaults standardUserDefaults]setObject:currentImageGameSound forKey:@"defaultSound"];
        // [[NSUserDefaults standardUserDefaults]setInteger:selectedSpeed forKey:@"defaultSpeed"];
@@ -233,8 +231,6 @@
         NSLog(@"GV SET DEFAULTS globalSoundActivated %hhd", globalSoundActivated);
         NSLog(@"GV SET DEFAULTS currentlySelectedEffectIndex %d", currentlySelectedEffectIndex);
         
-      // [self.settingsViewController selectRow:currentlySelectedEffectIndex inComponent:1 animated:YES];
-        
         currentDifficulty=gameDifficultyEasy;
        // wasExhaling = true;
         sketchamount=0;
@@ -246,7 +242,6 @@
         [self.midiController addObserver:self forKeyPath:@"numberOfSources" options:0 context:NULL];
         self.currentGameType=gameTypeDuo;
         [self.toggleGameModeButton setImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];
-        
         [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:currentDifficulty] forKey:@"difficulty"];
         
         self.addGameQueue=[[NSOperationQueue alloc]init];
@@ -268,13 +263,9 @@
         hqImagePickerController.delegate = self;
         
         self.mainGaugeView=[[GameViewGauge alloc]initWithFrame:CGRectMake(445, 20, 40, MAINGUAGE_HEIGHT) ];
-        self.mainGaugeView.MainGaugeDelegate=self;
         [self.view addSubview:self.mainGaugeView ];
         [self.view sendSubviewToBack:self.mainGaugeView];
-        
         [self.mainGaugeView setBreathToggleAsExhale:wasExhaling isExhaling: midiController.toggleIsON]; //ADDED FRI
-        [self.mainGaugeView start];
-    
     }
     return self;
 }
@@ -283,9 +274,7 @@
 {
     [super viewDidLoad];
     [self.view addSubview:self.balloonViewController.view];
-    //[[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"defaultDirection"];
     [self.imageFilterView sendSubviewToBack:imageView];
-    
     [self.settingsViewController setSettinngsDelegate:self];
     self.tabBarController.delegate = self;
     
@@ -326,10 +315,8 @@
         [self.settingsViewController.gaugeView setBreathToggleAsExhale:1 isExhaling: NO];
         wasExhaling = true;
     }
-    
-    [self.settingsViewController preparePickers];
+
     [self resetGame:nil];
-    
     midiinhale=61;
     midiexhale=73;
     velocity=0;
@@ -338,6 +325,9 @@
     defaultScale=1.5;
     defaultRadius=0;
     chosenImage = -1;
+    
+    
+    //[self.mainGaugeView start];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -346,6 +336,7 @@
     self.balloonViewController.currentGameType = self.currentGameType;
     [self.toggleGameModeButton setImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];
     [self resetGame:nil];
+    
     
     if (!displayLink) {
         NSLog(@"SETTING UP DISPLAY LINK viewdidload");
@@ -361,14 +352,13 @@
     }
 }
 
--(void) viewWillDisappear:(BOOL)animated{
-    
-    NSLog(@"GVview will disappear");
-   // [self.tabBarController saveUserSettings];
+-(void) viewWillAppear:(BOOL)animated{
+    [self.mainGaugeView start];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
     self.currentGameType =gameTypeTest;
+    [self.mainGaugeView stop];
 }
 
 -(void)btleManagerBreathBegan:(BTLEManager*)manager{
@@ -383,8 +373,6 @@
     
     if ((self.midiController.toggleIsON == 0 && wasExhaling == 1) || (self.midiController.toggleIsON == 1 && wasExhaling == 0)){
         [self midiNoteBegan:nil];
-    }else{
-        NSLog(@"FIRST MIDI NOTE BEGAN DISALLOWED!");
     }
 }
 
@@ -410,9 +398,6 @@
         NSLog(@"INHALING AND RETURNING");
         return;
     }
-    
-    
-    NSLog(@"INHALING POM %f, ", percentOfmax);
     
     self.velocity=(percentOfmax)*127.0;
     isaccelerating=YES;
@@ -696,10 +681,6 @@
     }
     
     if (self.mainGaugeView.animationRunning) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            //   [_debugTextField setText:@"\nMidi Began"];
-        });
-        //        [self beginNewSession];
         [self.mainGaugeView blowingBegan];
     }
     
@@ -746,14 +727,10 @@
     }else{
         [self saveCurrentSession];
     }
-    
-    
 }
 
 -(void)midiNoteContinuing:(MidiController*)midi
 {
-    
-    NSLog(@"midiNoteContinuing ");
     if (midi.velocity==127) {
         return;
     }
@@ -771,15 +748,8 @@
             self.currentSession.sessionStrength=[NSNumber numberWithFloat:midi.velocity];
         }
     }
-    
-    //self.currentSession.sessionSpeed=[NSNumber numberWithFloat:midi.speed];
-    
     self.currentSession.sessionSpeed = [NSNumber numberWithInt:selectedSpeed];
-    //check
     self.currentSession.sessionDuration = [NSString stringWithFormat:@"%g", self.sequenceGameController.time];
-    
-    
-     NSLog(@"midiNoteContinuing 2");
     
     [[GCDQueue mainQueue]queueBlock:^{
         switch (self.currentGameType) {
@@ -807,7 +777,7 @@
     self.sequenceGameController.time = 0; //added
     
     if (_currentGameType == gameTypeImage || _currentGameType == gameTypeTest ){
-        NSLog(@"DISALLOWING - SEQUENCE GAME NOT ACTIVE");
+        //NSLog(@"DISALLOWING - SEQUENCE GAME NOT ACTIVE");
         return;
     }
 
@@ -817,37 +787,27 @@
 {
     
     if (_currentGameType == gameTypeImage || _currentGameType == gameTypeTest ){
-        NSLog(@"DISALLOWING - SEQUENCE GAME NOT ACTIVE");
+      //  NSLog(@"DISALLOWING - SEQUENCE GAME NOT ACTIVE");
         return;
     }
-    
-    NSLog(@"midiNoteStoppedForSequence");
-    NSLog(@"self.sequenceGameController.time %f", self.sequenceGameController.time);
     if (self.currentGameType == gameTypeImage ) {
         [self imageGameWon];
     }
     
-    [self.sequenceGameController killTimer];  //only for testing purposes
-    
+    [self.sequenceGameController killTimer]; /// maybe
     [self.sequenceGameController nextBall];
-    //self.currentSession.sessionAchievedBalloons = [NSNumber numberWithInt: self.sequenceGameController.currentBall];
 }
 
 -(void)midiNoteContinuingForSequence:(MidiController*)midi
 {
-
     self.sequenceGameController.currentSpeed=midi.speed;
-    
     gameDifficulty  difficulty=[[[NSUserDefaults standardUserDefaults]objectForKey:@"difficulty"]intValue];
-    
-    NSLog(@"self.sequenceGameController.currentSpeed %d", self.sequenceGameController.currentSpeed);
-    ///   NSLog(@"MIDI NOITE CONTINUING WITH difficulty %u", difficulty);
     
     switch (difficulty) {
         case 0:
         
             if (_currentGameType == gameTypeImage || _currentGameType == gameTypeTest){
-                NSLog(@"DISALLOWING - SEQUENCE GAME NOT ACTIVE");
+               // NSLog(@"DISALLOWING - SEQUENCE GAME NOT ACTIVE");
                 return;
             }
             
@@ -927,57 +887,18 @@
 {
     [[GCDQueue mainQueue]queueBlock:^{
          NSLog(@"IMAGE GAME WON");
-        [self saveCurrentSession];  //added kung
+        [self saveCurrentSession];
     }];
 }
 
 -(void)gameWon:(AbstractGame *)game
 {
     NSLog(@"GAME WON");
-    
-   // if (particleEffect) {
-   //     return;
-   // }
-
     [[GCDQueue mainQueue]queueBlock:^{
-        //[self playSound];
-       // [self startEffects];
         [self resetGame:nil];
     }];
-
-    if (self.currentGameType == gameTypeDuo) {
-        [[GCDQueue mainQueue]queueBlock:^{
-             NSLog(@"DUO GAME WON");
-        //    [self saveCurrentSession];  //added kung
-        }];
-        return;
-    }
-    else if (self.currentGameType == gameTypeBalloon) {
-        [[GCDQueue mainQueue]queueBlock:^{
-             NSLog(@"Balloon GAME WON");
-        //    [self saveCurrentSession];  //added kung
-        }];
-        return;
-    }
-    else if (self.currentGameType == gameTypeImage) {
-        [[GCDQueue mainQueue]queueBlock:^{
-            NSLog(@"Image GAME WON");
-        //    [self saveCurrentSession];  //added kung
-        }];
-        return;
-    }
     
     [self.sequenceGameController killTimer];
-}
-
--(void)startEffects
-{
-
-}
-
--(void)killSparks
-{
-
 }
 
 -(void)saveCurrentSession
@@ -985,47 +906,13 @@
     NSLog(@"ATTEMPTING TO Save Current Session: %u", self.currentGameType);
     self.currentSession.sessionType=[NSNumber numberWithInt:self.currentGameType];
     AddNewScoreOperation  *operation=[[AddNewScoreOperation alloc]initWithData:self.gameUser session:self.currentSession sharedPSC:self.sharedPSC];
-    
-    NSLog(@"SAVING CURRENT SESSION");
     [self.addGameQueue addOperation:operation];
     [self startSession];
 }
 
--(void) playSound {
-    
-    NSLog(@"Playing sound game view contoller");
-    
-    @try {
-        NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"Crowd_cheer6" ofType:@"wav"];
-        NSData *fileData = [NSData dataWithContentsOfFile:soundPath];
-        
-        NSError *error = nil;
-        
-        audioPlayer = [[AVAudioPlayer alloc] initWithData:fileData
-                                                    error:&error];
-        [audioPlayer prepareToPlay];
-        audioPlayer.volume=1.0;
-        
-        if (globalSoundActivated == 0){
-            NSLog(@"AUDIO MUTED");
-        }else{
-            [audioPlayer play];
-        }
-    }
-    @catch (NSException *exception) {
-        NSLog(@"COULDNT PLAY AUDIO FILE  - %@", exception.reason);
-    }
-    @finally {
-        
-    }
-}
-
-
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     NSLog(@"PHOTO LIBRARY did pick ACTION - imagePickerController");
-    
-    NSLog(@"picker %@", picker);
     
     UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
     [self setupDisplayFilteringWithImage:image];
@@ -1044,7 +931,6 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-   // [picker dismissModalViewControllerAnimated:NO];
      [picker dismissViewControllerAnimated:NO completion:nil];
 }
 
@@ -1055,8 +941,6 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         popover = [[UIPopoverController alloc] initWithContentViewController:imagePickerController];
         [popover presentPopoverFromRect:CGRectMake(0, 0, 500, 500) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-    } else {
-        //[self presentModalViewController:imagePickerController animated:YES];
     }
 }
 
@@ -1122,18 +1006,11 @@
     [self.view addSubview: self.hqPickerContainer];
 }
 
-
-
 - (IBAction)tapGesture:(UITapGestureRecognizer*)gesture
 {
-    NSLog(@"tap gesture");
-
     CGPoint tapLocation = [gesture locationInView: self.hqPickerContainer];
     for (UIImageView *imageView in self.hqPickerContainer.subviews) {
-        
-         NSLog(@"imageView");
         if (CGRectContainsPoint(imageView.frame, tapLocation)) {
-            // [imageView removeFromSuperview];
             [self setupDisplayFilteringWithImage:imageView.image];
         }
     }
@@ -1156,9 +1033,9 @@
 -(void)setBTTreshold:(float)value
 {
     [self.btleMager setTreshold:value];
-    
      NSLog(@"inner setBTTreshold");
 }
+
 -(void)setBTBoost:(float)value
 {
     [self.btleMager setRangeReduction:value];
@@ -1194,7 +1071,7 @@
 -(void)prepareDisplay{
     NSLog(@"PREPARING VC");
     
-    self.mainGaugeView.MainGaugeDelegate=self;
+   // self.mainGaugeView.MainGaugeDelegate=self;
     [self.mainGaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
     [self.mainGaugeView start];
     
@@ -1384,7 +1261,7 @@
 
     [sourcePicture addTarget:stillImageFilter];
     [stillImageFilter addTarget:imageView];
-    self.mainGaugeView.MainGaugeDelegate=self;
+    //self.mainGaugeView.MainGaugeDelegate=self;
     [self.mainGaugeView start];
     [self.mainGaugeView setForce:0];
     [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:index] forKey:@"defaultEffect"];

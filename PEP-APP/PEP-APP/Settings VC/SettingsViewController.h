@@ -2,7 +2,7 @@
 #import "GameViewController.h"
 #import "SettingsViewGauge.h"
 
-@interface SettingsViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITabBarDelegate, GaugeProtocol, SETTINGS_DELEGATE>
+@interface SettingsViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITabBarDelegate, SETTINGS_DELEGATE>
 {
     IBOutlet UISlider *speedSlider;
     IBOutlet UISlider *breathLengthSlider;
@@ -15,12 +15,12 @@
     IBOutlet UIPickerView *filterPicker;
     IBOutlet UILabel *breathLengthLabel;
     IBOutlet UISlider *rateSlider;
-    IBOutlet UILabel  *thresholdLabel;
-    IBOutlet UISlider *thresholdSlider;
-    IBOutlet UILabel  *btTresholdLabel;
-    IBOutlet UILabel  *btrangeBoost;
-    IBOutlet UISlider *btThresholdSlider;
-    IBOutlet UISlider *btBoostSlider;
+    //IBOutlet UILabel  *thresholdLabel;
+    //IBOutlet UISlider *thresholdSlider;
+    //IBOutlet UILabel  *btTresholdLabel;
+   // IBOutlet UILabel  *btrangeBoost;
+   // IBOutlet UISlider *btThresholdSlider;
+   // IBOutlet UISlider *btBoostSlider;
     NSMutableArray *imageGameSoundArray;
     NSMutableArray *repititionsArray;
     NSMutableArray *filterArray;
@@ -37,6 +37,4 @@
 -(void) setGaugeForce:(float)force;
 -(void) setSettingsViewDirection:(int)val;
 -(void) setGaugeSettings: (int)breathToggle exhaleToggle:(BOOL)ex;
--(void) setUIState:(int)picker toNo:(NSString*)indexNo;
--(void) preparePickers;
 @end

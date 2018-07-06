@@ -48,7 +48,6 @@
     if (object == self && [keyPath isEqualToString:@"currentYPosition"]) {
         
         if (currentYPosition<=self.bounds.size.width/2) {
-            
             [self.delegate balloonReachedFinalTarget:self];
         }
     }
@@ -119,17 +118,11 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
         self.backgroundColor=[UIColor clearColor];
         [self setDefaults];
         currentYPosition=frame.origin.y;
-       // UIImageView  *img=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Balloon0"]];
-        
         self.currentBalloonImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 65, 65)];
         self.currentBalloonImage.image = [UIImage imageNamed:@"Balloon0"];
-        
-        //check change
-        
         [self addSubview:self.currentBalloonImage];
     }
     return self;

@@ -71,52 +71,43 @@
         nil];
         
         self.gaugeView=[[SettingsViewGauge alloc]initWithFrame:CGRectMake(90, 155, 90, GUAGE_HEIGHT) ];
-        self.gaugeView.GaugeDelegate=self;
         [self.view addSubview:self.gaugeView];
         [self.view sendSubviewToBack:self.gaugeView];
         [self.view sendSubviewToBack:pickerViewB];
         [self.view sendSubviewToBack:pickerViewC];
         [self.view sendSubviewToBack:filterPicker];
         [self.view sendSubviewToBack:whiteBackground];
-        
         [self.gaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
-        [self.gaugeView start];
-        
-        //NSString* directionSetting = [[NSUserDefaults standardUserDefaults]stringForKey:@"defaultDirection"];
-        //if ([directionSetting isEqual: @"Inhale"]){
-        //    currentdirection = 0;
-        ///    [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
-        //    NSLog(@"DEFAULTS directionSetting inhale");
-        //}else if (!directionSetting || [directionSetting isEqual: @"Exhale"]){
-        //    currentdirection = 1;
-        //    [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
-       ///     NSLog(@"DEFAULTS directionSetting Exhale");
-       // }
-        
+    
         NSNumber* defaultSpeed = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultSpeed"];
         [speedSlider setValue:[defaultSpeed floatValue] animated:YES];
-        
-        //NSNumber* defaultEffect = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultEffect"];
-        //if (defaultEffect){[filterPicker selectRow:[defaultEffect intValue] inComponent:1 animated:YES];}
-        
-
-        
-       // NSNumber* defaultSound = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultSound"];
-       // if (defaultSound){[pickerViewB selectRow:[defaultSound intValue] inComponent:1 animated:YES];}
-        
-        //defaultSound
-        
-        
         currentlyExhaling = false;
     }
     return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    
+    NSString* directionSetting = [[NSUserDefaults standardUserDefaults]stringForKey:@"defaultDirection"];
+    if ([directionSetting isEqual: @"Inhale"]){
+        currentdirection = 0;
+        [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
+        NSLog(@"DEFAULTS directionSetting inhale");
+    }else if (!directionSetting || [directionSetting isEqual: @"Exhale"]){
+        currentdirection = 1;
+        [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
+        NSLog(@"DEFAULTS directionSetting Exhale");
+    }
+    
+    [self.gaugeView start];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [self.gaugeView stop];
+}
+
 -(void)viewDidLoad{
-    
-    NSLog(@"SETTINGS : view did load");
-    
-    NSLog(@"pPPPPreparePickers");
+
     NSNumber *defaultRepetitionIndex=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultRepetitionIndex"];
     NSString *defaultSound=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultSound"];
     NSNumber *defaultEffectIndex=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultEffect"];
@@ -124,25 +115,13 @@
     NSInteger repetitionIndex = [defaultRepetitionIndex integerValue];
     NSInteger effectIndex = [defaultEffectIndex integerValue];
     
-    [filterPicker selectRow:effectIndex inComponent:0 animated:NO];
-    [pickerViewC selectRow:repetitionIndex inComponent:0 animated:NO];
-    
-    NSLog(@"defaultSound %@", defaultSound);
-    
     NSUInteger soundIndex = [imageGameSoundFileNameArray indexOfObjectPassingTest:^BOOL(NSString *obj, NSUInteger idx, BOOL *stop) {
         return [obj caseInsensitiveCompare:defaultSound] == NSOrderedSame;
     }];
     
-    NSLog(@"effectIndex %ld", (long)effectIndex);
-    NSLog(@"repetitionIndex %ld", (long)repetitionIndex);
-    NSLog(@"soundIndex %lu", (long)soundIndex);
-    NSLog(@"soundIndex %d", (int)soundIndex);
+    [filterPicker selectRow:effectIndex inComponent:0 animated:NO];
+    [pickerViewC selectRow:repetitionIndex inComponent:0 animated:NO];
     [pickerViewB selectRow:(int)soundIndex inComponent:0 animated:NO];
-}
-
--(void)preparePickers{
-    
-
 }
 
 -(void) setGaugeForce: (float)force{
@@ -167,7 +146,6 @@
         [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
         [[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"defaultDirection"];
     }
-    
 };
 
 -(void) setSettingsViewDirection: (int)val{
@@ -192,25 +170,19 @@
 }
 
 - (IBAction)toggleDirection:(id)sender {
-    
-    NSLog(@"Settings: toggling direction button 1");
-    
+
     if (currentdirection == 1){
         currentdirection = 0;
         NSLog(@"set to inhale");
-        
         [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
         [[NSUserDefaults standardUserDefaults]setObject:@"Inhale" forKey:@"defaultDirection"];
-
         [self.settinngsDelegate setDirection:0];
     }else{
         NSLog(@"set to exhale");
         currentdirection = 1;
-        
         [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
         [[NSUserDefaults standardUserDefaults]setObject:@"Inhale" forKey:@"defaultDirection"];
-        
-       [self.settinngsDelegate setDirection:1];
+        [self.settinngsDelegate setDirection:1];
     }
 }
 
@@ -226,35 +198,26 @@
     int amount = 0;
     if (thePickerView==pickerViewB) {
         amount=(int)[imageGameSoundArray count];
-       // NSLog(@"AMOUNT IN imageGameSoundArray %d", amount);
         }
     if (thePickerView==pickerViewC) {
         amount=(int)[repititionsArray count];
-      //  NSLog(@"AMOUNT IN repititionsArray %d", amount);
     }
     if (thePickerView==filterPicker) {
         amount=(int)[filterArray count];
-       // NSLog(@"AMOUNT IN FILTER PICKER %d", amount);
     }
     
 	return amount;
 }
 
 - (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    
-    //NSLog(@"changing pickerView titleForRow");
     NSString *thetitle;
-    //NSLog(@"titleForRow %d", (int)row);
-    //mylocalise
     if (thePickerView==pickerViewB) {
        thetitle=[imageGameSoundArray objectAtIndex:row];
         [[NSUserDefaults standardUserDefaults]setObject:thetitle forKey:@"defaultSound"];
-   }
-     //mylocalise
+    }
     if (thePickerView==pickerViewC) {
         thetitle=[repititionsArray objectAtIndex:row];
     }
-     //mylocalise
     if (thePickerView==filterPicker) {
         thetitle=[filterArray objectAtIndex:row];
     }
@@ -262,8 +225,6 @@
 }
 
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    NSLog(@"didSelectRow %d", (int)row);
-    NSLog(@"didSelectRow %d", row);
     int rowint=(int)row;
     if (thePickerView==pickerViewB) {
         [self.settinngsDelegate setImageSoundEffect: [imageGameSoundFileNameArray objectAtIndex:row]];
@@ -279,12 +240,12 @@
     }
 }
 
--(IBAction)changeRate:(id)sender
-{
-    NSLog(@"changing rate");
-    UISlider  *slider=(UISlider*)sender;
-    [self.settinngsDelegate setRate:slider.value];
-}
+//-(IBAction)changeRate:(id)sender
+//{
+//    NSLog(@"changing rate");
+//    UISlider  *slider=(UISlider*)sender;
+//    [self.settinngsDelegate setRate:slider.value];
+//}
 
 -(IBAction)setBreathLength:(id)sender
 {
@@ -293,74 +254,34 @@
     [self.settinngsDelegate setSpeed:slider.value];
 }
 
--(void)setUIState:(int)picker toNo:(NSString*)indexNo{
-    
-    NSLog(@"SETTING UI STATE %d TO %@",picker, indexNo);
-    
-    if (1 == picker) {
-        int selected = [indexNo intValue];
-       [filterPicker selectRow:selected inComponent:1 animated:YES];
-    }
-    
-    if (2 == picker) {
-         int selected = [indexNo intValue];
-        NSLog(@"ATTEMPT");
-        //[pickerViewB selectRow:selected inComponent:1 animated:YES];
-    }
-    
-    if (3 == picker) {
-         int selected = [indexNo intValue];
-        [pickerViewC selectRow:selected inComponent:1 animated:YES];
-    }
-    
-   // if (4 == picker) {
-   //     [speedSlider se:indexNo inComponent:1 animated:YES];
-   // }
-}
+//-(IBAction)changeThreshold:(id)sender
+//{
+///    NSLog(@"changing threshold");
+///    [self.settinngsDelegate setThreshold:thresholdSlider.value];
+////    [thresholdLabel setText:[NSString stringWithFormat:@"%f",thresholdSlider.value]];
+//}
 
--(IBAction)changeThreshold:(id)sender
-{
-    NSLog(@"changing threshold");
-    [self.settinngsDelegate setThreshold:thresholdSlider.value];
-    [thresholdLabel setText:[NSString stringWithFormat:@"%f",thresholdSlider.value]];
-}
+///-(IBAction)changeBTTreshold:(id)sender
+//{
+//    NSLog(@"changing changeBTTreshold");
+///    [self.settinngsDelegate setBTTreshold:btThresholdSlider.value];
+///    [btTresholdLabel setText:[NSString stringWithFormat:@"%f",btThresholdSlider.value]];
+//    [self.settinngsDelegate test:btThresholdSlider.value];
+///}
 
--(IBAction)changeBTTreshold:(id)sender
-{
-    NSLog(@"changing changeBTTreshold");
-    [self.settinngsDelegate setBTTreshold:btThresholdSlider.value];
-    [btTresholdLabel setText:[NSString stringWithFormat:@"%f",btThresholdSlider.value]];
-    [self.settinngsDelegate test:btThresholdSlider.value];
-}
-
--(IBAction)changeBTBoostValue:(id)sender
-{
-    NSLog(@"changing changeBTBoostValue");
-    [self.settinngsDelegate setBTBoost:btBoostSlider.value];
-    [btrangeBoost setText:[NSString stringWithFormat:@"%f",btBoostSlider.value]];
-}
+////-(IBAction)changeBTBoostValue:(id)sender
+///{
+///    NSLog(@"changing changeBTBoostValue");
+///    [self.settinngsDelegate setBTBoost:btBoostSlider.value];
+//    [btrangeBoost setText:[NSString stringWithFormat:@"%f",btBoostSlider.value]];
+///}
 
 -(void)setSettingsDurationLabelText: (NSString*)text  {
-    NSLog(@"TEXT %@", text);
     settingsDurationLabel.text = text;
 }
 
 -(void)setSettingsStrengthLabelText: (NSString*)text  {
     settingsStrengthLabel.text = text;
-}
-
--(void) playSound {
-    
-    NSLog(@"Playing sound settiong view controller");
-    
-    //maybe delete
-    NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"bell synth" ofType:@"wav"];
-    NSData *fileData = [NSData dataWithContentsOfFile:soundPath];
-    NSError *error = nil;
-    audioPlayer = [[AVAudioPlayer alloc] initWithData:fileData
-                                                error:&error];
-    [audioPlayer prepareToPlay];
-    [audioPlayer play];
 }
 
 @end

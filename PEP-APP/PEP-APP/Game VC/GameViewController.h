@@ -35,7 +35,7 @@
 -(void)toSettingsScreen;
 @end
 
-@interface GameViewController : UIViewController<MidiControllerProtocol,GameProtocol,MainGaugeProtocol,  SETTINGS_DELEGATE,UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITabBarDelegate>{
+@interface GameViewController : UIViewController<MidiControllerProtocol,GameProtocol,  SETTINGS_DELEGATE,UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITabBarDelegate>{
         GPUImageOutput<GPUImageInput> *sepiaFilter, *sepiaFilter2;
         UISlider *imageSlider;
         NSInteger chosenImage;

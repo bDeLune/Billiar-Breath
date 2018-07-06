@@ -30,7 +30,6 @@
     }
 	
     if (self.sharedPSC != nil) {
-       // _managedObjectContext = [NSManagedObjectContext new];
          _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
         [_managedObjectContext setPersistentStoreCoordinator:self.sharedPSC];
     }
@@ -40,13 +39,9 @@
 - (void)viewDidLoad
 {
     if ([self.usernameTextField respondsToSelector:@selector(setAttributedPlaceholder:)]) {
-         //mylocalis
-        
         UIColor *color = [UIColor lightGrayColor];
         self.usernameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:NSLocalizedString(@"Enter a username", nil)] attributes:@{NSForegroundColorAttributeName: color}];
     }
-    
-    NSLog(@"LOGIN BTN");
     
     [self.loginButton setImage:[UIImage imageNamed:NSLocalizedString(@"Login-Button-Login", nil)] forState:UIControlStateNormal];
     [self.signupButton setImage: [UIImage imageNamed:NSLocalizedString(@"Login-Button-Signup", nil)] forState:UIControlStateNormal];
@@ -56,14 +51,12 @@
     [super viewDidLoad];
     self.userList=[[UserListViewController alloc]initWithNibName:@"UserListViewController" bundle:nil];
     self.userList.sharedPSC=self.sharedPSC;
-    
     self.navcontroller=[[UINavigationController alloc]initWithRootViewController:self.userList];
     
     [self.navigationController pushViewController:self.userList  animated:YES];
     
     CGRect frame=  [[UIScreen mainScreen] bounds];
     [self.navcontroller.view setFrame:frame];
-    // Do any additional setup after loading the view from its nib.
 }
 #pragma mark -
 

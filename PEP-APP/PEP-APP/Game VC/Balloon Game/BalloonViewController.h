@@ -7,9 +7,9 @@
 @interface BalloonViewController : UIViewController<BalloonProtocol>
 -(id)initWithFrame:(CGRect)frame;
 -(id)initWithFrame:(CGRect)frame withBallCount:(int)ballCount;
--(void)reset;
+//-(void)reset;
 -(void)resetwithBallCount:(int)ballCount;
--(void)pushBallsWithVelocity:(float)velocity;
+//-(void)pushBallsWithVelocity:(float)velocity;
 -(void)blowStarted: (int)currentBallNo atSpeed:(int)speed;
 -(void)blowEnded;
 -(void)timerFired:(NSTimer *)timer;

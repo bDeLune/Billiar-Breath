@@ -140,19 +140,12 @@
 
 -(void)blowingBegan
 {
-    NSLog(@"BLOW BEGAN isaccelerating %hhd", isaccelerating);
     isaccelerating=YES;
 }
 
 -(void)blowingEnded
 {
-    NSLog(@"BLOW ENDED isaccelerating %hhd", isaccelerating);
     isaccelerating=NO;
-}
-
--(void)directionChanged:(int)direction{
-    NSLog(@"Main gauge changed direction");
-    
 }
 
 -(void)animate
@@ -161,8 +154,8 @@
         // force+=500;
     }else
     {
-        force-=force*0.03;
-        acceleration-=acceleration*0.03;
+        force-=force*0.09;
+        acceleration-=acceleration*0.09;
     }
     
     if (force<1) {
@@ -188,41 +181,38 @@
             bestDistance=distance;
         }
         
-      //  NSLog(@"distance %f", distance );
-        
+        //NSLog(@"DISTANCE LESS THAN");
+        //NSLog(@"distance %f", distance );
         [animationObject setFrame:frame];
     }else
     {
-        distance = MAINGUAGE_HEIGHT;
-        [self stop];  //change
-        [self fallQuickly];
+        NSLog(@"DISTANCE ELSE");
+        distance = MAINGUAGE_HEIGHT - 30;
     }
     [self setNeedsDisplay];
 }
 
--(void)setArrowPos:(float)pforce
-{
-    force=(pforce/mass);
-    NSLog(@"SETTING PFORCE %f", pforce);
-    CGRect frame=animationObject.frame;
-    frame.origin.y=self.bounds.size.height-distance;
-}
+//-(void)setArrowPos:(float)pforce
+//{
+//    force=(pforce/mass);
+//    NSLog(@"SETTING PFORCE %f", pforce);
+///    CGRect frame=animationObject.frame;
+//    frame.origin.y=self.bounds.size.height-distance;
+//}
 
 -(void)stop
 {
     //change: stop animation when in other view
-   // NSLog(@"MAIN GAUGE STOP");
-   // if (_animationRunning) {
-   //     [displayLink invalidate];
-   //     _animationRunning=NO;
-   // }
+   NSLog(@"MAIN GAUGE STOP");
+    if (_animationRunning) {
+        [displayLink invalidate];
+       _animationRunning=NO;
+    }
 }
 
 -(void)start
 {
-    //[self stop];
     NSLog(@"STARTING ANIMATION");
-    
     [self setDefaults];
     if (!_animationRunning)
     {
@@ -233,16 +223,4 @@
     }
 }
 
--(void)fallQuickly
-{
-    [UIView animateWithDuration:0.3
-                     animations:^{
-        CGRect frame=animationObject.frame;
-        frame.origin.y=self.bounds.size.height-MAINGUAGE_HEIGHT;
-        frame.size.height=distance;
-    }
-        completion:^(BOOL finished){
-        [self stop];
-    }];
-}
 @end

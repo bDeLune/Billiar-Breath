@@ -141,8 +141,8 @@
 
     }else
     {
-        force-=force*0.03;
-        acceleration-=acceleration*0.03;
+        force-=force*0.09;
+        acceleration-=acceleration*0.09;
     }
     
     if (force<1) {
@@ -162,32 +162,21 @@
     }else
     {
         distance=GUAGE_HEIGHT-30;
-        [self stop];  //change
-        [self fallQuickly];
     }
     [self setNeedsDisplay];
 }
 
--(void)setArrowPos:(float)pforce
-{
-    force=(pforce/mass);
-}
-
 -(void)stop
 {
-    //change: stop animation when in other view
-    // NSLog(@"MAIN GAUGE STOP");
-    // if (_animationRunning) {
-    //     [displayLink invalidate];
-    //     _animationRunning=NO;
-    // }
+     NSLog(@"MAIN GAUGE STOP");
+     if (_animationRunning) {
+         [displayLink invalidate];
+         _animationRunning=NO;
+     }
 }
 
 -(void)start
 {
-    //  [self stop];
-    NSLog(@"STARTING MAIN GAUGE ANIMATION");
-    
     [self setDefaults];
     if (!_animationRunning)
     {
@@ -196,10 +185,5 @@
         [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
         _animationRunning = YES;
     }
-}
-
--(void)fallQuickly
-{
-    /// NSLog(@"FALLING QUICKLY!");
 }
 @end

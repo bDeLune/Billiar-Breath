@@ -28,41 +28,14 @@
 @property(nonatomic,strong)  NSMutableArray  *emptyBalloons;
 @property(nonatomic,strong) NSMutableArray  *animators;
 @property int currentBallININdex;
-
 @end
 
 @implementation BalloonViewController
 
-
 - (void)collisionBehavior:(UICollisionBehavior*)behavior beganContactForItem:(id<UIDynamicItem>)item withBoundaryIdentifier:(id<NSCopying>)identifier atPoint:(CGPoint)p
 {
-    // Lighten the tint color when the view is in contact with a boundary.
     [(UIView*)item setTintColor:[UIColor lightGrayColor]];
 }
-
-//| ----------------------------------------------------------------------------
-//  This method is called when square1 stops contacting a collision boundary.
-//  In this demo, the only collision boundary is the bounds of the reference
-//  view (self.view).
-//
-/**- (void)collisionBehavior:(UICollisionBehavior*)behavior endedContactForItem:(id<UIDynamicItem>)item withBoundaryIdentifier:(id<NSCopying>)identifier
-{
-    // Restore the default color when ending a contcact.
-    [(UIView*)item setTintColor:[UIColor darkGrayColor]];
-    NSLog(@"in");
-    NSLog(@"INdex == %i",self.currentBallININdex);
-    [[GCDQueue highPriorityGlobalQueue]queueBarrierBlock:^{
-        
-            [[GCDQueue mainQueue]queueBlock:^{
-                self.currentBallININdex++;
-                if (self.currentBallININdex<[self.balls count]) {
-
-                [self animateBallStart:[self.balls objectAtIndex:self.currentBallININdex]];
-                }
-                
-            } afterDelay:0.1];
-    }];
-}**/
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -75,25 +48,14 @@
 -(id)initWithFrame:(CGRect)frame{
     self=[super init];
     if (self) {
-        //887 * 100
-        
-        NSLog(@"balloon game ini with frame"); 
-        
+        NSLog(@"balloon game ini with frame");
         UIView  *view=[[UIView alloc]initWithFrame:frame];
         self.view=view;
         self.view.backgroundColor=[UIColor  clearColor];
         self.balls=[NSMutableArray new];
         self.animators=[NSMutableArray new];
-        
         selectedGameBallCount = 3;
-        
-        //check change
         self.view.layer.zPosition = 3;
-
-        
-        
-        // Set the timing functions that should be used to calculate interpolation between the first two keyframes
-       // [self makeBalls];
     }
     return self;
 }
@@ -126,9 +88,8 @@
 {
     self.currentBallININdex=0;
    __block int  startx=0;
-   // __block int  emptyBalloonstartx=0;
     
-    for (int i=0; i<selectedGameBallCount; i++) {           //change: make balls here
+    for (int i=0; i<selectedGameBallCount; i++) {
         
         Balloon *balloon=[[Balloon alloc]initWithFrame:CGRectMake(startx, 0, BALLOON_RADIUS, BALLOON_RADIUS)];
         BOOL allowAnimate = 1;
@@ -141,24 +102,16 @@
         [self.balls addObject:balloon];
         balloon.gaugeHeight=self.view.bounds.size.height;
         balloon.delegate=self;
-        // [self addFallAnimationForLayer:ball.layer];
         [self.view addSubview:balloon];
         startx+=BALLOON_RADIUS+6;
     }
-    
-    
-    //NSLog(@"Creating Balls");
-    
+
     [self animateBallStart];
-   // [self animateBallStart:[self.balls objectAtIndex:self.currentBallININdex]];
 }
 
 -(void)animateBallStart
 {
     for (ItemCount i=0; i<[self.balls count]; i++) {
-        
-        //NSLog(@"ANIMATE BALL START i %lu", i);
-        //NSLog(@"[self.balls count] %lu", (unsigned long)[self.balls count]);
         Balloon  *ball=[self.balls objectAtIndex:i];
         ball.alpha=0;
         //[[GCDQueue mainQueue]queueBlock:^{
@@ -174,13 +127,11 @@
         [CATransaction commit];
         [ball setCenter:targetCenter];
     }
-  ///   NSLog(@"COMPLETED ANIMATION!");
 }
-
+/*
 -(void)reset
 {
-    //remove
-   // NSLog(@"BIG RESET");
+
     @try
     {
         NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"Croquet ball drop bounce cement_BLASTWAVEFX_29317" ofType:@"wav"];
@@ -214,51 +165,23 @@
   //  NSLog(@"REMOVE ALL BALLS");
     [self.balls removeAllObjects];
     [self makeBalls];
-}
+}*/
 
 -(void)resetwithBallCount:(int)ballCount
 {
     //remove
     selectedGameBallCount = ballCount;
-    
-    NSLog(@"BIG RESET with ballcount");
-    @try
-    {
-        NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"Croquet ball drop bounce cement_BLASTWAVEFX_29317" ofType:@"wav"];
-        NSData *fileData = [NSData dataWithContentsOfFile:soundPath];
-        NSError *error = nil;
-        audioPlayer = [[AVAudioPlayer alloc] initWithData:fileData
-                                                    error:&error];
-        [audioPlayer setNumberOfLoops:1];
-        [audioPlayer prepareToPlay];
-        audioPlayer.volume=0.3;
-        
-        NSLog(@"SOUND: BALLOON VIEW CONTROLLER - reset all %hhd", muteAudio);
-        
-        if (muteAudio == 1){
-            NSLog(@"AUDIO MUTED");
-        }else{
-            [audioPlayer play];
-        }
-    }
-    @catch (NSException *exception) {
-        NSLog(@"COULDNT PLAY AUDIO FILE  - %@", exception.reason);
-    }
-    
     for (Balloon *ball in self.balls) {
         [ball stop];
         [ball blowingEnded];
         [ball removeFromSuperview];
     }
-    
-    NSLog(@"REMOVE ALL BALLS");
     [self.balls removeAllObjects];
     [self makeBalls];
 }
 
 - (CAKeyframeAnimation *)dockBounceAnimationWithIconHeight:(CGFloat)iconHeight
 {
-    //NSLog(@"beginning animation");
     CGFloat factors[32] = {0, 32, 60, 83, 100, 114, 124, 128, 128, 124, 114, 100, 83, 60, 32,
         0, 24, 42, 54, 62, 64, 62, 54, 42, 24, 0, 18, 28, 32, 28, 18, 0};
     
@@ -274,7 +197,7 @@
     
     CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
     animation.repeatCount = 1;
-    animation.duration = 32.0f/30.0f;///32.0f/30.0f;
+    animation.duration = 32.0f/30.0f;
     animation.fillMode = kCAFillModeForwards;
     animation.values = values;
     animation.removedOnCompletion = YES;
@@ -283,12 +206,10 @@
     return animation;
 }
 
--(void)pushBallsWithVelocity:(float)velocity
+/*-(void)pushBallsWithVelocity:(float)velocity
 {
     float maxVelocity=30;
-    
     NSString * difficulty=[[NSUserDefaults standardUserDefaults]objectForKey:@"difficulty"];
-    
     int difficultyAsInt = [difficulty intValue];
     
     switch (difficultyAsInt) {
@@ -331,7 +252,7 @@
         Balloon  *ball=[self.balls objectAtIndex:i];
         [ball blowingEnded];
     }
-}
+}*/
 
 -(void)blowStarted: (int)currentBallNo atSpeed:(int)speed{
     isaccelerating=YES;
@@ -342,19 +263,14 @@
         return;
     }
     
-    
     timeCounter = 0;
     if (!_timer) {
         _timer = [NSTimer scheduledTimerWithTimeInterval:.01 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
-        
         start = [NSDate date];
-        // do stuff...
-       
     }
 }
 
 -(void)blowEnded{
-   // NSLog(@"BLOWEEEE ended timer!");
     if ([_timer isValid]) {
         [_timer invalidate];
     }
@@ -387,7 +303,7 @@
         ball.currentBalloonImage.image = [UIImage imageNamed:@"Balloon8"];
     }
 }
-
+/*
 -(void)playHitTop
 {
     NSLog(@"BALLS HITTING TOP");
@@ -417,13 +333,7 @@
 {
     [self playHitTop];
     ballGameCount++;
-    
-  if (self.currentGameType==gameTypeBalloon)
-   {
-              NSLog(@"COMPLETED balloon MODE");
-   }
-}
-
+}*/
 
 -(void)setAudioMute: (BOOL) muteSetting{
     NSLog(@"setting inner audio mute %hhd", muteSetting);
