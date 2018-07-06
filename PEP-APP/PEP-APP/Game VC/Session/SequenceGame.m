@@ -77,6 +77,8 @@
 
 -(int)nextBall{
     NSLog(@"next ball");
+    NSLog(@"self.currentBall %d" ,self.currentBall);
+    NSLog(@"self.totalBalls %d" ,self.totalBalls);
     self.halt=NO;
     //[self playHitTop];
     self.currentBall++;
@@ -88,7 +90,7 @@
         if (self.totalBallsRaised>=self.totalBalls) {
        //     [[GCDQueue mainQueue]queueBlock:^{
                 if (!gamewon) {
-                 //   [self.delegate gameWon:self]; //required all balls to be completed before game won, removed for now
+                    [self.delegate gameWon:self]; //required all balls to be completed before game won, removed for now
                     gamewon=YES;
                 }
          //   } afterDelay:1.0];

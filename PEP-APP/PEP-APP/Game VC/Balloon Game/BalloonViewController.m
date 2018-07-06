@@ -319,7 +319,7 @@
     
     for (int i=0; i<numberOfBallsToMove; i++) {
         if (perBallCount<=maxVelocity) {
-            //NSLog(@" inner BLOWING began  %d!!!", i);
+            NSLog(@" inner BLOWING began  %d!!!", i);
             Balloon  *ball=[self.balls objectAtIndex:i];
             [ball blowingBegan];
             [ball setForce:velocity*80];

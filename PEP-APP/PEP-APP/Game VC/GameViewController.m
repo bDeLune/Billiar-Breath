@@ -279,6 +279,88 @@
     return self;
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self.view addSubview:self.balloonViewController.view];
+    //[[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"defaultDirection"];
+    [self.imageFilterView sendSubviewToBack:imageView];
+    
+    [self.settingsViewController setSettinngsDelegate:self];
+    self.tabBarController.delegate = self;
+    
+    self.currentGameType = gameTypeDuo;
+    self.balloonViewController.currentGameType = self.currentGameType;
+    [self.toggleGameModeButton setImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];
+    
+    if (globalSoundActivated == 1){
+        NSLog(@"playing sound");
+        UIImage *soundOnImage = [UIImage imageNamed:@"Sound-ON.png"];
+        [self.soundIcon setImage:soundOnImage forState:UIControlStateNormal];
+        [self.sequenceGameController setAudioMute: globalSoundActivated];
+    }else if(globalSoundActivated == 0){
+        NSLog(@"muting sound");
+        UIImage *soundOffImage = [UIImage imageNamed:@"Sound-OFF.png"];
+        [self.soundIcon setImage:soundOffImage forState:UIControlStateNormal];
+        [self.sequenceGameController setAudioMute: globalSoundActivated];
+    }
+    
+    NSString *defaultDirection=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultDirection"];
+    if ([defaultDirection isEqual: @"Inhale"]){
+        self.midiController.toggleIsON = YES;
+        [self.settingsViewController setSettingsViewDirection: 0];
+        NSLog(@"GV SET DEFAULTS directionSetting Inhale");
+        wasExhaling = false;
+        [[NSUserDefaults standardUserDefaults]setObject:@"Inhale" forKey:@"defaultDirection"];
+        [self.mainGaugeView setBreathToggleAsExhale:0 isExhaling: YES];
+        [self.settingsViewController setGaugeSettings:0 exhaleToggle: YES];
+        [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
+    }else if (defaultDirection == NULL || [defaultDirection isEqual: @"Exhale"]){
+        self.midiController.toggleIsON = NO;
+        [self.settingsViewController setSettingsViewDirection: 1];
+        NSLog(@"GV SET DEFAULTS directionSetting Exhale");
+        [self.mainGaugeView setBreathToggleAsExhale:1 isExhaling: NO];
+        [[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"defaultDirection"];
+        [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
+        [self.settingsViewController setGaugeSettings:1 exhaleToggle: NO];
+        [self.settingsViewController.gaugeView setBreathToggleAsExhale:1 isExhaling: NO];
+        wasExhaling = true;
+    }
+    
+    [self.settingsViewController preparePickers];
+    [self resetGame:nil];
+    
+    midiinhale=61;
+    midiexhale=73;
+    velocity=0;
+    midiIsOn=false;
+    targetRadius=0;
+    defaultScale=1.5;
+    defaultRadius=0;
+    chosenImage = -1;
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    self.currentGameType = gameTypeDuo;
+    self.balloonViewController.currentGameType = self.currentGameType;
+    [self.toggleGameModeButton setImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];
+    [self resetGame:nil];
+    
+    if (!displayLink) {
+        NSLog(@"SETTING UP DISPLAY LINK viewdidload");
+        [self setupDisplayFiltering];
+        displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateimage)];
+        [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+        animationRunning = YES;
+        [displayLink setFrameInterval:3];//60 times in one second       //was 8
+        //[self makeTimer];
+        // acceleration=0.1;
+        acceleration=0.1;
+        distance=0;
+    }
+}
+
 -(void) viewWillDisappear:(BOOL)animated{
     
     NSLog(@"GVview will disappear");
@@ -394,69 +476,6 @@
         [_managedObjectContext setPersistentStoreCoordinator:self.sharedPSC];
     }
     return _managedObjectContext;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self.view addSubview:self.balloonViewController.view];
-    //[[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"defaultDirection"];
-    [self.imageFilterView sendSubviewToBack:imageView];
-
-    [self.settingsViewController setSettinngsDelegate:self];
-    self.tabBarController.delegate = self;
-    
-    self.currentGameType = gameTypeDuo;
-    
-    if (globalSoundActivated == 1){
-        NSLog(@"playing sound");
-        UIImage *soundOnImage = [UIImage imageNamed:@"Sound-ON.png"];
-        [self.soundIcon setImage:soundOnImage forState:UIControlStateNormal];
-        [self.sequenceGameController setAudioMute: globalSoundActivated];
-    }else if(globalSoundActivated == 0){
-        NSLog(@"muting sound");
-        UIImage *soundOffImage = [UIImage imageNamed:@"Sound-OFF.png"];
-        [self.soundIcon setImage:soundOffImage forState:UIControlStateNormal];
-        [self.sequenceGameController setAudioMute: globalSoundActivated];
-    }
-    
-   // [self.settingsViewController setUIState:3 toNo: [NSString stringWithFormat:@"%d",selectedBallCount]];
-   // [self.settingsViewController setUIState:2 toNo: [NSString stringWithFormat:@"%@",currentImageGameSound]];
-   // [self.settingsViewController setUIState:1 toNo: [NSString stringWithFormat:@"%d",currentlySelectedEffectIndex]];
-  
-    /*
-    NSString *defaultDirection=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultDirection"];
-    if ([defaultDirection isEqual: @"Inhale"]){
-        self.midiController.toggleIsON = YES;
-        [self.settingsViewController setSettingsViewDirection: 0];
-        NSLog(@"GV SET DEFAULTS directionSetting Inhale");
-        wasExhaling = false;
-        [[NSUserDefaults standardUserDefaults]setObject:@"Inhale" forKey:@"defaultDirection"];
-        [self.mainGaugeView setBreathToggleAsExhale:0 isExhaling: YES];
-        [self.settingsViewController setGaugeSettings:0 exhaleToggle: YES];
-        [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
-    }else if (defaultDirection == NULL || [defaultDirection isEqual: @"Exhale"]){
-        self.midiController.toggleIsON = NO;
-        [self.settingsViewController setSettingsViewDirection: 1];
-        NSLog(@"GV SET DEFAULTS directionSetting Exhale");
-        [self.mainGaugeView setBreathToggleAsExhale:1 isExhaling: NO];
-        [[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"defaultDirection"];
-        [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
-        [self.settingsViewController setGaugeSettings:1 exhaleToggle: NO];
-        [self.settingsViewController.gaugeView setBreathToggleAsExhale:1 isExhaling: NO];
-        wasExhaling = true;
-    }*/
-    
-    [self.settingsViewController preparePickers];
-
-    midiinhale=61;
-    midiexhale=73;
-    velocity=0;
-    midiIsOn=false;
-    targetRadius=0;
-    defaultScale=1.5;
-    defaultRadius=0;
-    chosenImage = -1;
 }
 
 -(void)setLabels
@@ -633,7 +652,7 @@
 
 -(IBAction)resetGame:(id)sender
 {
-   // NSLog(@"RESETTING GAME with ballcount %d", selectedBallCount);
+    NSLog(@"RESETTING GAME with ballcount %d", selectedBallCount);
     self.sequenceGameController= [[SequenceGame alloc] initWithBallCount:selectedBallCount ];
         self.sequenceGameController.delegate=self;
     [self.balloonViewController resetwithBallCount:selectedBallCount];
@@ -715,9 +734,7 @@
                 break;
         }
     }
-    
 
-    
     [self.mainGaugeView blowingEnded];
     [self.gaugeView blowingEnded];
     [self.settingsViewController.gaugeView blowingEnded];
@@ -735,6 +752,8 @@
 
 -(void)midiNoteContinuing:(MidiController*)midi
 {
+    
+    NSLog(@"midiNoteContinuing ");
     if (midi.velocity==127) {
         return;
     }
@@ -758,6 +777,9 @@
     self.currentSession.sessionSpeed = [NSNumber numberWithInt:selectedSpeed];
     //check
     self.currentSession.sessionDuration = [NSString stringWithFormat:@"%g", self.sequenceGameController.time];
+    
+    
+     NSLog(@"midiNoteContinuing 2");
     
     [[GCDQueue mainQueue]queueBlock:^{
         switch (self.currentGameType) {
@@ -920,7 +942,7 @@
     [[GCDQueue mainQueue]queueBlock:^{
         //[self playSound];
        // [self startEffects];
-        //[self resetGame:nil];
+        [self resetGame:nil];
     }];
 
     if (self.currentGameType == gameTypeDuo) {
@@ -983,8 +1005,6 @@
                                                     error:&error];
         [audioPlayer prepareToPlay];
         audioPlayer.volume=1.0;
-        
-        NSLog(@"SOUND: reset all2 %hhd", globalSoundActivated);
         
         if (globalSoundActivated == 0){
             NSLog(@"AUDIO MUTED");
@@ -1169,31 +1189,6 @@
     _animationrate=selectedSpeed; //was value
     
     [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithFloat:selectedSpeed] forKey:@"defaultSpeed"];
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
-     NSLog(@"VIEWDIDAPPEAR");
-    [self resetGame:nil];
-    self.currentGameType= gameTypeDuo;
-    
-    ///usersettings
-    
-    self.balloonViewController.currentGameType = self.currentGameType;
-    [self.toggleGameModeButton setImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];
-
-    if (!displayLink) {
-         NSLog(@"SETTING UP DISPLAY LINK viewdidload");
-        [self setupDisplayFiltering];
-        displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateimage)];
-        [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
-        animationRunning = YES;
-        [displayLink setFrameInterval:3];//60 times in one second       //was 8
-        //[self makeTimer];
-        // acceleration=0.1;
-        acceleration=0.1;
-        distance=0;
-    }
 }
 
 -(void)prepareDisplay{
