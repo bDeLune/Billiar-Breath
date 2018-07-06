@@ -9,7 +9,7 @@
 @property (nonatomic, retain) NSSet *note;
 @property (nonatomic, retain) NSString * defaultDirection;
 @property (nonatomic, retain) NSNumber * defaultSpeed;
-@property (nonatomic, retain) NSNumber * defaultRepetitions;
+@property (nonatomic, retain) NSNumber * defaultRepetitionIndex;
 @property (nonatomic, retain) NSString * defaultSound;
 @property (nonatomic, retain) NSNumber * defaultMute;
 @property (nonatomic, retain) NSNumber * defaultEffect;

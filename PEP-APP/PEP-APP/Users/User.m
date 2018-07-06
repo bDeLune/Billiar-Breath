@@ -7,7 +7,7 @@
 @dynamic note;
 @dynamic defaultDirection;
 @dynamic defaultSpeed;
-@dynamic defaultRepetitions;
+@dynamic defaultRepetitionIndex;
 @dynamic defaultSound;
 @dynamic defaultMute;
 @dynamic defaultEffect;

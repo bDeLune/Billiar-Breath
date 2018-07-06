@@ -106,7 +106,7 @@
 
         [[NSUserDefaults standardUserDefaults]setObject:user.defaultDirection forKey:@"defaultDirection"];
         [[NSUserDefaults standardUserDefaults]setObject:user.defaultSpeed forKey:@"defaultSpeed"];
-        [[NSUserDefaults standardUserDefaults]setObject:user.defaultRepetitions forKey:@"defaultRepetitions"];
+        [[NSUserDefaults standardUserDefaults]setObject:user.defaultRepetitionIndex forKey:@"defaultRepetitionIndex"];
         [[NSUserDefaults standardUserDefaults]setObject:user.defaultSound forKey:@"defaultSound"];
         [[NSUserDefaults standardUserDefaults]setObject:user.defaultMute forKey:@"defaultMute"];
         [[NSUserDefaults standardUserDefaults]setObject:user.defaultEffect forKey:@"defaultEffect"];

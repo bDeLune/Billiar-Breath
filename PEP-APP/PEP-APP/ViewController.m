@@ -72,6 +72,8 @@ typedef void(^RunTimer)(void);
     
     if (!self.mainTableViewController) {
         self.mainTableViewController=[[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
+        AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+        [appDelegate setRootTablViewController: self.mainTableViewController];
     }
     
     [self.mainTableViewController setMemoryInfo:self.persistentStoreCoordinator withuser:user withManagedObjectContext: _managedObjectContext];

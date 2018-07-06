@@ -99,7 +99,7 @@
     NSLog(@"Saving user settings");
     NSString *direction=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultDirection"];
     NSNumber *defaultSpeed=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultSpeed"];
-    NSNumber *defaultRepetitions=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultRepetitions"];
+    NSNumber *defaultRepetitionIndex=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultRepetitionIndex"];
     NSString *defaultSound=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultSound"];
     NSNumber *defaultEffect=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultEffect"];
     NSNumber *defaultMute=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultMute"];
@@ -111,12 +111,12 @@
    /// NSInteger *defaultEffect = [[NSUserDefaults standardUserDefaults]integerForKey:@"defaultEffect"];
    // NSNumber *defaultMute=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultMute"];
     
-    NSLog(@"direction %@", direction);
-    NSLog(@"defaultSpeed %@", defaultSpeed);
-    NSLog(@"defaultRepetitions %@", defaultRepetitions);
-    NSLog(@"defaultSound %@", defaultSound);
-    NSLog(@"defaultEffect %@", defaultEffect);
-    NSLog(@"defaultMute %@", defaultMute);
+    NSLog(@"SAVING - direction %@", direction);
+    NSLog(@"SAVING - defaultSpeed %@", defaultSpeed);
+    NSLog(@"SAVING - defaultRepetitionIndex %@", defaultRepetitionIndex);
+    NSLog(@"SAVING - defaultSound %@", defaultSound);
+    NSLog(@"SAVING - defaultEffect %@", defaultEffect);
+    NSLog(@"SAVING - defaultMute %@", defaultMute);
     
     NSString  *name=[self.gameViewController.gameUser valueForKey:@"userName"];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -136,7 +136,7 @@
     NSLog(@"user %@", user);
     [user setValue:direction forKey:@"defaultDirection"];
     [user setValue:defaultSpeed forKey:@"defaultSpeed"];
-    [user setValue:defaultRepetitions forKey:@"defaultRepetitions"];
+    [user setValue:defaultRepetitionIndex forKey:@"defaultRepetitionIndex"];
     [user setValue:defaultSound forKey:@"defaultSound"];
     [user setValue:defaultMute forKey:@"defaultMute"];
     [user setValue:defaultEffect forKey:@"defaultEffect"];
@@ -176,12 +176,23 @@
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
 
-    [self saveUserSettings];
+    
     
     NSLog(@"selected index : %i",[tabBarController selectedIndex]);
     if ([tabBarController selectedIndex] == 1){
     
     }
+}
+
+-(void) viewWillDisappear:(BOOL)animated{
+    
+    NSLog(@"view will disappear");
+   //
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    NSLog(@"view did disappear");
+     [self saveUserSettings];
 }
 
 @end

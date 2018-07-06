@@ -4,15 +4,11 @@
 #import "SettingsViewController.h"
 #import "GameViewController.h"
 
-
-
-
 @interface AppDelegate()
 {
     UIImageView  *startupImageView;
     NSTimer      *startupTimer;
 }
-
 
 @end
 @implementation AppDelegate
@@ -26,13 +22,14 @@
     NSLog(@"APP FINISHED LAUNCHING with language: %@", language);
     [self showSplash];
     
+    self.mainTableViewController = (UITabBarController *)self.window.rootViewController.childViewControllers.lastObject;
+    
     return YES;
 }
 
 - (void)showSplash
 {
     self.initialSplash = [[SplashViewController alloc]initWithNibName:@"SplashViewController" bundle:nil];
-    
     self.initialSplash.view.frame = self.window.frame;
     
     [self.window addSubview:self.initialSplash.view];
@@ -61,6 +58,8 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    [self.mainTableViewController saveUserSettings];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -77,5 +76,13 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+- (void)setRootTablViewController: (MainTableViewController*)mtvc{
+    
+    NSLog(@"settings main table view controller");
+    self.mainTableViewController = mtvc;
+}
+
+
 
 @end

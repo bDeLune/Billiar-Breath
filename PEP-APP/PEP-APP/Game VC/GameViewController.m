@@ -130,7 +130,7 @@
 
 -(void)startSession
 {
-    NSLog(@"START Session");
+   //NSLog(@"START Session");
     self.currentSession=[Session new];
     self.currentSession.sessionDate=[NSDate date];
     self.currentSession.sessionSpeed = [NSNumber numberWithInt:selectedSpeed];
@@ -149,14 +149,14 @@
     if (object == self.midiController && [keyPath isEqualToString:@"numberOfSources"]) {
         
         if (self.midiController.numberOfSources == 0) {
-            NSLog(@"No Midi Sources!!!");
+    ///        NSLog(@"No Midi Sources!!!");
             UIAlertView  *alert=[[UIAlertView alloc]initWithTitle:@"Midi Message" message:@"No Midi Device Detected" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [[GCDQueue mainQueue]queueBlock:^{
                 [alert show];
             }];
         }else
         {
-            NSLog(@" Midi Sources Detected!!!");
+    //        NSLog(@" Midi Sources Detected!!!");
         }
     }
     else {
@@ -170,42 +170,56 @@
     if (self) {
 
         self.settingsViewController = [self.tabBarController.viewControllers objectAtIndex:2];
-        selectedBallCount = [[NSUserDefaults standardUserDefaults]integerForKey:@"defaultRepetitions"];
-        
-        int TEST  = [[NSUserDefaults standardUserDefaults]integerForKey:@"defaultRepetitions"];
-        
-        NSLog(@"test %d", TEST);
-        
+        selectedBallCount = [[NSUserDefaults standardUserDefaults]integerForKey:@"defaultRepetitionIndex"];
+        //int TEST  = [[NSUserDefaults standardUserDefaults]integerForKey:@"defaultRepetitionIndex"];
         selectedSpeed = [[NSUserDefaults standardUserDefaults]integerForKey:@"defaultSpeed"];
         currentImageGameSound = [[NSUserDefaults standardUserDefaults]stringForKey:@"defaultSound"];
         globalSoundActivated = [[NSUserDefaults standardUserDefaults]integerForKey:@"defaultMute"];
         NSString* directionSetting = [[NSUserDefaults standardUserDefaults]stringForKey:@"defaultDirection"];
         currentlySelectedEffectIndex= [[NSUserDefaults standardUserDefaults]integerForKey:@"defaultEffect"];
         
-        if (!selectedBallCount){selectedBallCount = 15;}
-        if (!selectedSpeed){selectedSpeed = 3;}
-        if (!currentImageGameSound){currentImageGameSound = @"sirene fluit";}
-        if (!globalSoundActivated){globalSoundActivated = 1;}
-        if (!currentlySelectedEffectIndex){currentlySelectedEffectIndex = 1;}
+        NSLog(@"GV LOADED DEFAULTS directionSetting %@", directionSetting);
+        NSLog(@"GV LOADED DEFAULTS selectedBallCount %d", selectedBallCount);
+        NSLog(@"GV LOADED DEFAULTS currentImageGameSound %@", currentImageGameSound);
+        NSLog(@"GV LOADED DEFAULTS selectedSpeed %d", selectedSpeed);
+        NSLog(@"GV LOADED DEFAULTS globalSoundActivated %hhd", globalSoundActivated);
+        NSLog(@"GV LOADED DEFAULTS currentlySelectedEffectIndex %d", currentlySelectedEffectIndex);
+        
+        if (selectedBallCount == NULL){selectedBallCount = 15;}else{[self.settingsViewController setUIState:3 toNo:selectedBallCount];};
+        if (selectedSpeed == NULL){selectedSpeed = 3;}
+        if (currentImageGameSound  == NULL){currentImageGameSound = @"sirene fluit";}else{[self.settingsViewController setUIState:2 toNo:[currentImageGameSound intValue]];};
+        if (globalSoundActivated == NULL){globalSoundActivated = 1;}
+        if (currentlySelectedEffectIndex  == NULL){currentlySelectedEffectIndex = 1;}else{[self.settingsViewController setUIState:1  toNo:currentlySelectedEffectIndex];};
         if ([directionSetting isEqual: @"Inhale"]){
             self.midiController.toggleIsON = YES;
             [self.settingsViewController setSettingsViewDirection: 0];
-             NSLog(@"DEFAULTS directionSetting inhale");
-        }else if (!directionSetting || [directionSetting isEqual: @"Exhale"]){
+             NSLog(@"GV SET DEFAULTS directionSetting inhale");
+            wasExhaling = false;
+            [self.mainGaugeView setBreathToggleAsExhale:0 isExhaling: YES];
+            [self.settingsViewController setGaugeSettings:0 exhaleToggle: YES];
+            [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
+        }else if (directionSetting == NULL || [directionSetting isEqual: @"Exhale"]){
             self.midiController.toggleIsON = NO;
             [self.settingsViewController setSettingsViewDirection: 1];
-             NSLog(@"DEFAULTS directionSetting Exhale");
+             NSLog(@"GV SET DEFAULTS directionSetting Exhale");
+            [self.mainGaugeView setBreathToggleAsExhale:1 isExhaling: NO];
+            //settings vie gaug
+             [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
+            [self.settingsViewController setGaugeSettings:1 exhaleToggle: NO];
+            // [self.settingsViewController.gaugeView setBreathToggleAsExhale:1 isExhaling: NO];
+            wasExhaling = true;
         }
         
-       
-        NSLog(@"DEFAULTS selectedBallCount %d", selectedBallCount);
-        NSLog(@"DEFAULTS currentImageGameSound %@", currentImageGameSound);
-        NSLog(@"DEFAULTS selectedSpeed %d", selectedSpeed);
-        NSLog(@"DEFAULTS globalSoundActivated %hhd", globalSoundActivated);
-        NSLog(@"DEFAULTS currentlySelectedEffectIndex %d", currentlySelectedEffectIndex);
+        NSLog(@"GV SET DEFAULTS selectedBallCount %d", selectedBallCount);
+        NSLog(@"GV SET DEFAULTS currentImageGameSound %@", currentImageGameSound);
+        NSLog(@"GV SET DEFAULTS selectedSpeed %d", selectedSpeed);
+        NSLog(@"GV SET DEFAULTS globalSoundActivated %hhd", globalSoundActivated);
+        NSLog(@"GV SET DEFAULTS currentlySelectedEffectIndex %d", currentlySelectedEffectIndex);
+        
+      // [self.settingsViewController selectRow:currentlySelectedEffectIndex inComponent:1 animated:YES];
         
         currentDifficulty=gameDifficultyEasy;
-        wasExhaling = true;
+       // wasExhaling = true;
         sketchamount=0;
         self.title = @"Groov";
         _animationrate=selectedSpeed;
@@ -241,11 +255,17 @@
         [self.view addSubview:self.mainGaugeView ];
         [self.view sendSubviewToBack:self.mainGaugeView];
         
-        [self.mainGaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
+        [self.mainGaugeView setBreathToggleAsExhale:wasExhaling isExhaling: midiController.toggleIsON]; //ADDED FRI
         [self.mainGaugeView start];
     
     }
     return self;
+}
+
+-(void) viewWillDisappear:(BOOL)animated{
+    
+    NSLog(@"GVview will disappear");
+   // [self.tabBarController saveUserSettings];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
@@ -558,7 +578,7 @@
 
 -(IBAction)resetGame:(id)sender
 {
-    NSLog(@"RESETTING GAME with ballcount %d", selectedBallCount);
+   // NSLog(@"RESETTING GAME with ballcount %d", selectedBallCount);
     self.sequenceGameController= [[SequenceGame alloc] initWithBallCount:selectedBallCount ];
         self.sequenceGameController.delegate=self;
     [self.balloonViewController resetwithBallCount:selectedBallCount];
@@ -1086,7 +1106,10 @@
     NSLog(@" inner set breath speed %f", value);
 
    // selectedSpeed = (int)value;
-    selectedSpeed = ceil((double)value/3);
+    selectedSpeed = roundf(value);
+    
+    NSLog(@" roundedNumber %d", selectedSpeed);
+    
     self.currentSession.sessionSpeed = [NSNumber numberWithFloat:selectedSpeed];
     _animationrate=selectedSpeed; //was value
     
@@ -1289,7 +1312,7 @@
 
 - (void)setupDisplayFiltering;
 {
-    NSLog(@"SET UP DISPLAY FILTERING");
+   // NSLog(@"SET UP DISPLAY FILTERING");
     UIImage *inputImage;
     inputImage=[UIImage imageNamed:@"giraffe-614141_1280.jpg"];
     sourcePicture = [[GPUImagePicture alloc] initWithImage:inputImage smoothlyScaleOutput:YES];
@@ -1304,7 +1327,7 @@
 
 -(void)setFilter:(int)index
 {
-    NSLog(@"inner set filter");
+   // NSLog(@"inner set filter");
     [sourcePicture removeAllTargets];
     stillImageFilter=nil;
     stillImageFilter=[self filterForIndex:index];
@@ -1322,14 +1345,12 @@
     NSLog(@"inner Setting balloon game repetition count to %d ", value);
     NSLog(@"count %d ", value);
     selectedBallCount = value;
-    
-    [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:selectedBallCount] forKey:@"defaultRepetitions"];
+    [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:selectedBallCount] forKey:@"defaultRepetitionIndex"];
 }
 
 -(void)setImageSoundEffect:(NSString*)value{
     NSLog(@"Setting Image sound effect to %@ ", value);
     currentImageGameSound = value;
-    
     [[NSUserDefaults standardUserDefaults]setObject:currentImageGameSound forKey:@"defaultSound"];
 }
 

@@ -147,7 +147,7 @@
     }
     
     
-    NSLog(@"Creating Balls");
+    //NSLog(@"Creating Balls");
     
     [self animateBallStart];
    // [self animateBallStart:[self.balls objectAtIndex:self.currentBallININdex]];
@@ -180,7 +180,7 @@
 -(void)reset
 {
     //remove
-    NSLog(@"BIG RESET");
+   // NSLog(@"BIG RESET");
     @try
     {
         NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"Croquet ball drop bounce cement_BLASTWAVEFX_29317" ofType:@"wav"];
@@ -192,16 +192,16 @@
         [audioPlayer prepareToPlay];
         audioPlayer.volume=0.3;
         
-        NSLog(@"SOUND: reset all %hhd", muteAudio);
+     //  NSLog(@"SOUND: reset all %hhd", muteAudio);
         
         if (muteAudio == 1){
-            NSLog(@"AUDIO MUTED");
+        //    NSLog(@"AUDIO MUTED");
         }else{
              [audioPlayer play];
         }
     }
     @catch (NSException *exception) {
-        NSLog(@"COULDNT PLAY AUDIO FILE  - %@", exception.reason);
+    //    NSLog(@"COULDNT PLAY AUDIO FILE  - %@", exception.reason);
     }
     
     for (Balloon *ball in self.balls) {
@@ -211,7 +211,7 @@
         [ball removeFromSuperview];
     }
     
-    NSLog(@"REMOVE ALL BALLS");
+  //  NSLog(@"REMOVE ALL BALLS");
     [self.balls removeAllObjects];
     [self makeBalls];
 }

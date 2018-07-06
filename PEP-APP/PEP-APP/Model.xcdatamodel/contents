@@ -13,7 +13,7 @@
         <attribute name="defaultDirection" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="defaultEffect" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="defaultMute" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="defaultRepetitions" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="defaultRepetitionIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="defaultSound" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="defaultSpeed" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>

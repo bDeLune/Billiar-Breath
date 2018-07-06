@@ -74,31 +74,49 @@
         self.gaugeView.GaugeDelegate=self;
         [self.view addSubview:self.gaugeView];
         [self.view sendSubviewToBack:self.gaugeView];
-        
         [self.view sendSubviewToBack:pickerViewB];
         [self.view sendSubviewToBack:pickerViewC];
         [self.view sendSubviewToBack:filterPicker];
-        
         [self.view sendSubviewToBack:whiteBackground];
         
         [self.gaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
         [self.gaugeView start];
         
-        currentdirection = 1;
-        ///usersettings
+        //NSString* directionSetting = [[NSUserDefaults standardUserDefaults]stringForKey:@"defaultDirection"];
+        //if ([directionSetting isEqual: @"Inhale"]){
+        //    currentdirection = 0;
+        ///    [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
+        //    NSLog(@"DEFAULTS directionSetting inhale");
+        //}else if (!directionSetting || [directionSetting isEqual: @"Exhale"]){
+        //    currentdirection = 1;
+        //    [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
+       ///     NSLog(@"DEFAULTS directionSetting Exhale");
+       // }
         
-        NSLog(@"SETTING CURRENT DIRECTION AS %d, ", currentdirection);
+        NSNumber* defaultSpeed = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultSpeed"];
+        [speedSlider setValue:[defaultSpeed floatValue] animated:YES];
+        
+        //NSNumber* defaultEffect = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultEffect"];
+        //if (defaultEffect){[filterPicker selectRow:[defaultEffect intValue] inComponent:1 animated:YES];}
+        
 
-        [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
-        [[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"defaultDirection"];
         
-        [speedSlider setValue:3 animated:YES];
-        ///usersettings
+       // NSNumber* defaultSound = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultSound"];
+       // if (defaultSound){[pickerViewB selectRow:[defaultSound intValue] inComponent:1 animated:YES];}
+        
+        //defaultSound
         
         
         currentlyExhaling = false;
     }
     return self;
+}
+
+-(void)viewDidLoad{
+    
+    NSLog(@"view did load");
+    
+
 }
 
 -(void) setGaugeForce: (float)force{
@@ -114,7 +132,7 @@
         currentdirection = 0;
         NSLog(@"set to inhale");
         [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
-        [[NSUserDefaults standardUserDefaults]setObject:@"inhale" forKey:@"defaultDirection"];
+        [[NSUserDefaults standardUserDefaults]setObject:@"Inhale" forKey:@"defaultDirection"];
         
     }else if (inhaleActivated == NO){
         NSLog(@"set to exhale");
@@ -182,15 +200,15 @@
     int amount = 0;
     if (thePickerView==pickerViewB) {
         amount=(int)[imageGameSoundArray count];
-        NSLog(@"AMOUNT IN imageGameSoundArray %d", amount);
+       // NSLog(@"AMOUNT IN imageGameSoundArray %d", amount);
         }
     if (thePickerView==pickerViewC) {
         amount=(int)[repititionsArray count];
-        NSLog(@"AMOUNT IN repititionsArray %d", amount);
+      //  NSLog(@"AMOUNT IN repititionsArray %d", amount);
     }
     if (thePickerView==filterPicker) {
         amount=(int)[filterArray count];
-        NSLog(@"AMOUNT IN FILTER PICKER %d", amount);
+       // NSLog(@"AMOUNT IN FILTER PICKER %d", amount);
     }
     
 	return amount;
@@ -200,7 +218,7 @@
     
     //NSLog(@"changing pickerView titleForRow");
     NSString *thetitle;
-    NSLog(@"titleForRow %d", (int)row);
+    //NSLog(@"titleForRow %d", (int)row);
     //mylocalise
     if (thePickerView==pickerViewB) {
        thetitle=[imageGameSoundArray objectAtIndex:row];
@@ -247,12 +265,34 @@
     [self.settinngsDelegate setSpeed:slider.value];
 }
 
+-(void)setUIState:(int)picker toNo:(int)indexNo{
+    
+    NSLog(@"SETTING UI STATE %d TO %d",picker, indexNo);
+    
+    if (1 == picker) {
+       [filterPicker selectRow:indexNo inComponent:1 animated:YES];
+    }
+    
+    if (2 == picker) {
+        [pickerViewB selectRow:indexNo inComponent:1 animated:YES];
+    }
+    
+    if (3 == picker) {
+        [pickerViewC selectRow:indexNo inComponent:1 animated:YES];
+    }
+    
+   // if (4 == picker) {
+   //     [speedSlider se:indexNo inComponent:1 animated:YES];
+   // }
+}
+
 -(IBAction)changeThreshold:(id)sender
 {
     NSLog(@"changing threshold");
     [self.settinngsDelegate setThreshold:thresholdSlider.value];
     [thresholdLabel setText:[NSString stringWithFormat:@"%f",thresholdSlider.value]];
 }
+
 -(IBAction)changeBTTreshold:(id)sender
 {
     NSLog(@"changing changeBTTreshold");
