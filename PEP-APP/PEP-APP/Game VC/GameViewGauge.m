@@ -55,7 +55,7 @@
         self.backgroundColor=[UIColor clearColor];
         self.layer.cornerRadius=16;
         
-        mass=1;
+        mass=.3    ;//WAS 1
         force=15;
     }
     return self;
@@ -99,9 +99,10 @@
 -(void)setDefaults
 {
     velocity=0.0;
-    distance=0.1;
-    time=0.1;
-    acceleration=0.1;
+    distance=0.01; //0.01
+   // distance=100;
+    time=0.01;///0.2
+    acceleration=0.01; //was 0.1
     h=0;
     hm=0;
     anim_delay=0;
@@ -154,18 +155,25 @@
         // force+=500;
     }else
     {
-        force-=force*0.09;
-        acceleration-=acceleration*0.09;
+        force-=force*0.1;
+        acceleration-=acceleration*0.1;
     }
     
     if (force<1) {
         force=1;
     }
     
-    acceleration= acceleration +( force/mass);
+    acceleration= 400 * ( force/mass);
+    //acceleration= acceleration + ( force/mass);
+    float myForce = (force/mass);
+    
     velocity = distance / time;
     time = distance / velocity;
-    distance= ceilf((0.5)* (acceleration * powf(time, 2)));
+    // distance= ceilf((0.5)* (acceleration * powf(time, 2)));
+    // distance = force/10;
+    //distance = ceilf((.01)*force/10);
+    //distance = ceilf((0.8)* (myForce * powf(time, 2)));
+    distance = ceilf((0.3)* (acceleration * powf(time, 2)));
     
     if (distance > MAINGUAGE_HEIGHT){
         distance = MAINGUAGE_HEIGHT;
@@ -181,12 +189,13 @@
             bestDistance=distance;
         }
         
-        //NSLog(@"DISTANCE LESS THAN");
-        //NSLog(@"distance %f", distance );
+      //  NSLog(@"force %f", force );
+      //  NSLog(@"distance %f", distance );
+      //  NSLog(@"MAINGUAGE_HEIGHT %d", MAINGUAGE_HEIGHT );
         [animationObject setFrame:frame];
     }else
     {
-        NSLog(@"DISTANCE ELSE");
+     ///   NSLog(@"DISTANCE ELSE");
         distance = MAINGUAGE_HEIGHT - 30;
     }
     [self setNeedsDisplay];

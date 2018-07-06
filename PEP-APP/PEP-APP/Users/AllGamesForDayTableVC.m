@@ -15,7 +15,38 @@
 
 -(void)setUSerData:(NSArray*)games
 {
-    data=games;
+    //data = games;
+    
+    NSLog(@"ALL TABLES DATA - %@", data);
+    
+    NSMutableArray* myDateArray;
+    int count = [games count];
+    
+    for (int i = 1; i < count; i++){
+        Game  *game= [games objectAtIndex:i];
+        NSDate  *date=game.gameDate;
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"HH:mm:ss"];
+        [myDateArray addObject:date];
+        
+        NSLog(@"myDateArray - %@", date);
+        
+        NSLog(@"myDateArray - %@", myDateArray);
+    }
+    
+    NSArray *sorted = [myDateArray sortedArrayUsingComparator:^NSComparisonResult(NSDate *date1, NSDate *date2) {
+        return [date1 compare:date2];
+    }];
+    
+    data = [games sortedArrayUsingComparator: ^NSComparisonResult(Game *c1, Game *c2)
+    {
+        NSDate *d1 = c1.gameDate;
+        NSDate *d2 = c2.gameDate;
+        return [d1 compare:d2];
+    }];
+    
+    NSLog(@"SORTED - %@", data);
+
     [self.tableView reloadData];
 }
 
@@ -99,11 +130,11 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    Game  *game=[data objectAtIndex:indexPath.row];
+    Game  *game= [data objectAtIndex:indexPath.row];
     NSDate  *date=game.gameDate;
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
    // [dateFormat setDateFormat:@"d MMM y H:m:s"];
-     [dateFormat setDateFormat:@"H:m:s"];
+    [dateFormat setDateFormat:@"HH:mm:ss"];
     NSString *attemptDateString = [dateFormat stringFromDate:date];
     int gameType=[game.gameType intValue];
     

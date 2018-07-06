@@ -96,6 +96,11 @@
     anim_delay=0;
     bestDistance=0;
     isaccelerating=NO;
+    
+    distance=0.01; //0.01
+    // distance=100;
+    time=0.01;///0.2
+    acceleration=0.01; //was 0.1
 }
 
 
@@ -141,18 +146,33 @@
 
     }else
     {
-        force-=force*0.09;
-        acceleration-=acceleration*0.09;
+        force-=force*0.1;
+        acceleration-=acceleration*0.1;
     }
     
     if (force<1) {
         force=1;
     }
     
-    acceleration= acceleration +( force/mass);
+    //acceleration= acceleration +( force/mass);
+    //velocity = distance / time;
+   // time = distance / velocity;
+    //distance= ceilf((0.5)* (acceleration * powf(time, 2)));
+    
+    //710 height
+    acceleration= 8500 * ( force/mass);
+    //acceleration= acceleration + ( force/mass);
+    
     velocity = distance / time;
     time = distance / velocity;
-    distance= ceilf((0.5)* (acceleration * powf(time, 2)));
+    // distance= ceilf((0.5)* (acceleration * powf(time, 2)));
+    // distance = force/10;
+    //distance = ceilf((.01)*force/10);
+    //distance = ceilf((0.8)* (myForce * powf(time, 2)));
+    distance = ceilf((0.3)* (acceleration * powf(time, 2)));
+    
+    //NSLog(@"GUAGE_HEIGHT %d", GUAGE_HEIGHT);
+   // NSLog(@"distance %f", distance);
     
     if (distance<GUAGE_HEIGHT) {
         CGRect frame=animationObject.frame;

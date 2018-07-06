@@ -278,10 +278,12 @@
 
 -(void)setSettingsDurationLabelText: (NSString*)text  {
     settingsDurationLabel.text = text;
+   
 }
 
 -(void)setSettingsStrengthLabelText: (NSString*)text  {
     settingsStrengthLabel.text = text;
+     NSLog(@"settingsStrengthLabel: %@", text);
 }
 
 @end

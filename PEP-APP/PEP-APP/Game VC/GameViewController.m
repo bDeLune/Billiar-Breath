@@ -42,6 +42,7 @@
     UIImagePickerController *hqImagePickerController;
     UIButton  *togglebutton;
     BOOL   toggleIsON;
+    BOOL   gameSoundPlaying;
     float mass;
     BOOL isaccelerating;
     float acceleration;// force/ mass
@@ -325,8 +326,6 @@
     defaultScale=1.5;
     defaultRadius=0;
     chosenImage = -1;
-    
-    
     //[self.mainGaugeView start];
 }
 
@@ -336,7 +335,6 @@
     self.balloonViewController.currentGameType = self.currentGameType;
     [self.toggleGameModeButton setImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];
     [self resetGame:nil];
-    
     
     if (!displayLink) {
         NSLog(@"SETTING UP DISPLAY LINK viewdidload");
@@ -367,10 +365,7 @@
     if ([self.midiController allowBreath]==NO) {
         return;
     }
-    
-    [self.balloonViewController blowStarted: self.sequenceGameController.currentBall atSpeed:selectedSpeed];
-    [self.settingsViewController setSettingsDurationLabelText: [NSString stringWithFormat:@"%.1f", 0.0]];
-    
+
     if ((self.midiController.toggleIsON == 0 && wasExhaling == 1) || (self.midiController.toggleIsON == 1 && wasExhaling == 0)){
         [self midiNoteBegan:nil];
     }
@@ -385,6 +380,7 @@
     [self.balloonViewController blowEnded];
     [self midiNoteStopped:nil];
     isaccelerating=NO;
+    gameSoundPlaying = NO;
 }
 
 -(void)btleManager:(BTLEManager*)manager inhaleWithValue:(float)percentOfmax{
@@ -397,6 +393,30 @@
     if (self.midiController.toggleIsON==NO) {
         NSLog(@"INHALING AND RETURNING");
         return;
+    }
+    
+    [self.balloonViewController blowStarted: self.sequenceGameController.currentBall atSpeed:selectedSpeed];
+    [self.settingsViewController setSettingsDurationLabelText: [NSString stringWithFormat:@"%.1f", 0.0]];
+    
+    if (gameSoundPlaying == NO){
+        switch (self.currentGameType) {
+                case gameTypeDuo:
+                    [self playImageGameSound];
+                    gameSoundPlaying = YES;
+                    break;
+                case gameTypeImage:
+                    [self playImageGameSound];
+                     gameSoundPlaying = YES;
+                    break;
+                case gameTypeBalloon:
+                    [self playGameSound];
+                     gameSoundPlaying = YES;
+                    break;
+                case gameTypeTest:
+                    break;
+                default:
+                    break;
+            }
     }
     
     self.velocity=(percentOfmax)*127.0;
@@ -425,6 +445,30 @@
         return;
     }
     
+    [self.balloonViewController blowStarted: self.sequenceGameController.currentBall atSpeed:selectedSpeed];
+    [self.settingsViewController setSettingsDurationLabelText: [NSString stringWithFormat:@"%.1f", 0.0]];
+    
+    if (gameSoundPlaying == NO){
+        switch (self.currentGameType) {
+            case gameTypeDuo:
+                [self playImageGameSound];
+                 gameSoundPlaying = YES;
+                break;
+            case gameTypeImage:
+                [self playImageGameSound];
+                 gameSoundPlaying = YES;
+                break;
+            case gameTypeBalloon:
+                [self playGameSound];
+                 gameSoundPlaying = YES;
+                break;
+            case gameTypeTest:
+                break;
+            default:
+                break;
+        }
+    }
+        
     //NSLog(@"EXHALING POM %f, ", percentOfmax);
     
     self.midiController.velocity=127.0*percentOfmax;
@@ -660,15 +704,15 @@
             case gameTypeDuo:
                 [self midiNoteBeganForSequence:midi];
                 self.balloonViewController.currentGameType=gameTypeDuo;
-                [self playImageGameSound];
+       //         [self playImageGameSound];
                 break;
             case gameTypeImage:
-                [self playImageGameSound];
+        ///        [self playImageGameSound];
                 self.balloonViewController.currentGameType=gameTypeImage;
                 break;
             case gameTypeBalloon:
                 [self midiNoteBeganForSequence:midi];
-                 [self playGameSound];
+         ///        [self playGameSound];
                 self.balloonViewController.currentGameType=gameTypeBalloon;
                 break;
             case gameTypeTest:
@@ -736,16 +780,20 @@
     }
 
     if (midi.velocity > bestCurrentVelocity){
-        bestCurrentVelocity = midi.velocity;
+        bestCurrentVelocity = midi.velocity; ///fri change
+        
+       // bestCurrentVelocity = midi.velocity*2; ///fri change
     }
     
-    [self.settingsViewController setSettingsStrengthLabelText:[NSString stringWithFormat:@"%0.0f",bestCurrentVelocity]];
+    if (midi.velocity > 50){bestCurrentVelocity = 50;}
+    
+    [self.settingsViewController setSettingsStrengthLabelText:[NSString stringWithFormat:@"%0.0f",bestCurrentVelocity*2]];
     [self.settingsViewController setSettingsDurationLabelText:[NSString stringWithFormat:@"%.1f",self.sequenceGameController.time]];
     
     if (midi.velocity>[self.currentSession.sessionStrength floatValue]) {
         
         if (midi.velocity!=127) {
-            self.currentSession.sessionStrength=[NSNumber numberWithFloat:midi.velocity];
+            self.currentSession.sessionStrength=[NSNumber numberWithFloat:bestCurrentVelocity*2]; //was midi.velocity*2
         }
     }
     self.currentSession.sessionSpeed = [NSNumber numberWithInt:selectedSpeed];
