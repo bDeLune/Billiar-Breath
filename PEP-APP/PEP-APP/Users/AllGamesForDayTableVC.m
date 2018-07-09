@@ -28,15 +28,13 @@
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"HH:mm:ss"];
         [myDateArray addObject:date];
-        
         NSLog(@"myDateArray - %@", date);
-        
         NSLog(@"myDateArray - %@", myDateArray);
     }
     
-    NSArray *sorted = [myDateArray sortedArrayUsingComparator:^NSComparisonResult(NSDate *date1, NSDate *date2) {
-        return [date1 compare:date2];
-    }];
+    //NSArray *sorted = [myDateArray sortedArrayUsingComparator:^NSComparisonResult(NSDate *date1, NSDate *date2) {
+   //     return [date1 compare:date2];
+    //}];
     
     data = [games sortedArrayUsingComparator: ^NSComparisonResult(Game *c1, Game *c2)
     {
@@ -158,16 +156,40 @@
       //  cell.detailTextLabel.text=[NSString stringWithFormat:@"Required Balloons :%@",game.requiredBalloons];
     }
     
-    cell.textLabel.text=[NSString stringWithFormat:@"%@ - %@",typeString,attemptDateString];
+    NSString* durationString;
+    NSString* powerString;
+    
+    
+    NSLog(@"game.power %@", game.power);
+    NSLog(@"game.duration %@", game.duration);
+    
+    if ([game.power intValue] == 0){
+        powerString = @"0";
+    }else{
+        // NSLog(@"powerStringTRY %@", powerString);
+        //powerString= [[NSString stringWithFormat: @"%@", game.power] substringToIndex:4];
+        // NSLog(@"powerString %@", powerString);
+        
+        float number =  [game.power floatValue];
+        float x = (int)(number * 10000) / 10000.0;
+        powerString = [NSString stringWithFormat:@"%.2f", x];
+    }
+    
+    @try{
+         NSLog(@"durationStringTRY %@", durationString);
+        durationString= [[NSString stringWithFormat: @"%@", game.duration] substringToIndex:4];
+    }@catch(NSException *exception){
+         durationString= @"0" ;
+    }
+    
+    
+    cell.textLabel.text=[NSString stringWithFormat:@"%@   %@",typeString,attemptDateString];
     [cell.textLabel setFont:[UIFont fontWithName:@"Arial-BoldMT" size:16]];
     
     cell.detailTextLabel.numberOfLines = 5;
-    cell.detailTextLabel.text=[NSString stringWithFormat:@"Strength: %@ \nDuration: %@ \nDirection: %@ \nSpeed: %@" ,game.power, game.duration, game.gameDirection, game.speed];
+    cell.detailTextLabel.text=[NSString stringWithFormat:@"Strength: %@ \nDuration: %@ \nDirection: %@ \nSpeed: %@" ,powerString, durationString, game.gameDirection, game.speed];
     
-    //cell.detailTextLabel.text=[NSString stringWithFormat:@"Strength :%@ ",game.power];
-    //cell.detailTextLabel.text=[NSString stringWithFormat:@"Duration :%@",game.duration];
-    //cell.detailTextLabel.text=[NSString stringWithFormat:@"Direction :%@",game.gameDirection];
-    //cell.detailTextLabel.text=[NSString stringWithFormat:@"Speed :%@",game.speed];
+    NSLog(@"%@",cell.detailTextLabel.text);
 
     return cell;
 }

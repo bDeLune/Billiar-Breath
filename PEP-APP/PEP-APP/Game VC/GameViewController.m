@@ -361,6 +361,8 @@
 
 -(void)btleManagerBreathBegan:(BTLEManager*)manager{
     
+    NSLog(@"BREATH BEGAN");
+    
     disableModeButton = true;
     if ([self.midiController allowBreath]==NO) {
         return;
@@ -368,6 +370,7 @@
 
     if ((self.midiController.toggleIsON == 0 && wasExhaling == 1) || (self.midiController.toggleIsON == 1 && wasExhaling == 0)){
         [self midiNoteBegan:nil];
+        
     }
 }
 
@@ -478,8 +481,8 @@
     [self midiNoteContinuing: self.midiController];
     self.velocity=(percentOfmax)*127.0;
     isaccelerating=YES;
-    
-    float scale=50.0f;
+    //ex
+    float scale=100.0f;
     float value=self.velocity*scale;
     [self.mainGaugeView setForce:(value)];
     [self.gaugeView setForce:(value)];
@@ -691,12 +694,16 @@
 
 -(void)midiNoteBegan:(MidiController*)midi
 {
+    NSLog(@"midi BEGAN");
+    
     self.sequenceGameController.time = 0;
     bestCurrentVelocity = 0;
     [self.settingsViewController setSettingsStrengthLabelText:@"0"];
     [self.settingsViewController setSettingsDurationLabelText:[NSString stringWithFormat:@"%.1f",self.sequenceGameController.time]];
     
     if ((self.midiController.toggleIsON == 0 && wasExhaling == 1) || (self.midiController.toggleIsON == 1 && wasExhaling == 0)){
+        
+        // [self.balloonViewController blowStarted: self.sequenceGameController.currentBall atSpeed:selectedSpeed];
         
         [self.sequenceGameController startTimer];
         
@@ -769,7 +776,9 @@
     if (self.currentGameType == gameTypeTest){
         NSLog(@"Currently in test mode, saving disabled");
     }else{
-        [self saveCurrentSession];
+        if ((self.midiController.toggleIsON == false && wasExhaling == true) || (self.midiController.toggleIsON == true && wasExhaling == false)){
+            [self saveCurrentSession];
+        }
     }
 }
 
@@ -785,17 +794,44 @@
        // bestCurrentVelocity = midi.velocity*2; ///fri change
     }
     
-    if (midi.velocity > 50){bestCurrentVelocity = 50;}
+    NSLog(@"midi.velocity %f", midi.velocity);
     
-    [self.settingsViewController setSettingsStrengthLabelText:[NSString stringWithFormat:@"%0.0f",bestCurrentVelocity*2]];
-    [self.settingsViewController setSettingsDurationLabelText:[NSString stringWithFormat:@"%.1f",self.sequenceGameController.time]];
-    
-    if (midi.velocity>[self.currentSession.sessionStrength floatValue]) {
+    if (self.currentGameType == gameTypeTest){
+        if (midi.velocity > 250){bestCurrentVelocity = 250;}
         
-        if (midi.velocity!=127) {
-            self.currentSession.sessionStrength=[NSNumber numberWithFloat:bestCurrentVelocity*2]; //was midi.velocity*2
+        if (self.midiController.toggleIsON == false){
+                [self.settingsViewController setSettingsStrengthLabelText:[NSString stringWithFormat:@"%0.0f",bestCurrentVelocity/1.25]];
+        }else{
+                [self.settingsViewController setSettingsStrengthLabelText:[NSString stringWithFormat:@"%0.0f",bestCurrentVelocity/2.5]];
+        }
+    }else{
+        if  (midi.velocity > 250){ bestCurrentVelocity = 250;}
+        
+       // [self.settingsViewController setSettingsStrengthLabelText:[NSString stringWithFormat:@"%0.0f",bestCurrentVelocity/2.4]];
+       // [self.settingsViewController setSettingsDurationLabelText:[NSString stringWithFormat:@"%.1f",self.sequenceGameController.time]];
+        
+    }
+    
+    
+    if (self.midiController.toggleIsON == false){
+        if (midi.velocity > [self.currentSession.sessionStrength floatValue]) {
+            //if (midi.velocity!=127) {
+            self.currentSession.sessionStrength=[NSNumber numberWithFloat:bestCurrentVelocity/1.25];
+            //}
+        }
+    }else{
+        if (midi.velocity > [self.currentSession.sessionStrength floatValue]) {
+            //if (midi.velocity!=127) {
+            self.currentSession.sessionStrength=[NSNumber numberWithFloat:bestCurrentVelocity/2.4];
+            //}
         }
     }
+    
+
+    
+    [self.settingsViewController setSettingsDurationLabelText:[NSString stringWithFormat:@"%.1f",self.sequenceGameController.time]];
+    
+
     self.currentSession.sessionSpeed = [NSNumber numberWithInt:selectedSpeed];
     self.currentSession.sessionDuration = [NSString stringWithFormat:@"%g", self.sequenceGameController.time];
     
@@ -828,6 +864,9 @@
         //NSLog(@"DISALLOWING - SEQUENCE GAME NOT ACTIVE");
         return;
     }
+    
+   //added mon
+   
 
     [self.sequenceGameController startTimer];
 }
@@ -844,6 +883,7 @@
     
     [self.sequenceGameController killTimer]; /// maybe
     [self.sequenceGameController nextBall];
+  //  [self.balloonViewController blowAttempt:self.sequenceGameController.currentBall];
 }
 
 -(void)midiNoteContinuingForSequence:(MidiController*)midi
@@ -923,6 +963,8 @@
 
 -(void)gameEnded:(AbstractGame *)game
 {
+    NSLog(@"game won 2");
+    
     [[GCDQueue mainQueue]queueBlock:^{
         [self resetGame:nil];
     }];
@@ -1415,6 +1457,7 @@
     [audioPlayer prepareToPlay];
     
     if (globalSoundActivated == 1){
+        NSLog(@"Playing sound GVC IMAGE SOUND:  %@", imageName);
         [audioPlayer play];
     }else{
         NSLog(@"Global sound set to off");

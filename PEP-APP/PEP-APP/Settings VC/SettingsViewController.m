@@ -69,24 +69,18 @@
         [NSString stringWithFormat:NSLocalizedString(@"Pixellate", nil)],
         [NSString stringWithFormat:NSLocalizedString(@"Contrast", nil)],
         nil];
-        
-        self.gaugeView=[[SettingsViewGauge alloc]initWithFrame:CGRectMake(90, 155, 90, GUAGE_HEIGHT) ];
-        [self.view addSubview:self.gaugeView];
-        [self.view sendSubviewToBack:self.gaugeView];
-        [self.view sendSubviewToBack:pickerViewB];
-        [self.view sendSubviewToBack:pickerViewC];
-        [self.view sendSubviewToBack:filterPicker];
-        [self.view sendSubviewToBack:whiteBackground];
-        [self.gaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
     
-        NSNumber* defaultSpeed = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultSpeed"];
-        [speedSlider setValue:[defaultSpeed floatValue] animated:YES];
-        currentlyExhaling = false;
+
+        
+         NSLog(@"INITIATED SETTINGS MODE PART 2");
+        
     }
     return self;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    
+    NSLog(@"vew will appear");
     
     NSString* directionSetting = [[NSUserDefaults standardUserDefaults]stringForKey:@"defaultDirection"];
     if ([directionSetting isEqual: @"Inhale"]){
@@ -99,14 +93,38 @@
         NSLog(@"DEFAULTS directionSetting Exhale");
     }
     
+    NSNumber* defaultSpeed = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultSpeed"];
+    
+    NSLog(@" SETTINGS VIEW : defaultSpeed %@", defaultSpeed);
+    [speedSlider setValue:[defaultSpeed floatValue] animated:YES];
+    
+    
+    NSLog(@" SETTINGS VIEW : defaultSpeed %@", defaultSpeed);
+    
+    //currentlyExhaling = false;
+    //[self.gaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
+    
     [self.gaugeView start];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
+    
+     NSLog(@"viewWillDisappear");
     [self.gaugeView stop];
 }
 
 -(void)viewDidLoad{
+    
+    NSLog(@"viewDidLoad");
+    self.gaugeView=[[SettingsViewGauge alloc]initWithFrame:CGRectMake(90, 155, 90, GUAGE_HEIGHT) ];
+    NSLog(@" SETTINGS VIEW : defaultSpeed222 %@", self.gaugeView);
+    
+    [self.view addSubview:self.gaugeView];
+    [self.view sendSubviewToBack:self.gaugeView];
+    [self.view sendSubviewToBack:pickerViewB];
+    [self.view sendSubviewToBack:pickerViewC];
+    [self.view sendSubviewToBack:filterPicker];
+    [self.view sendSubviewToBack:whiteBackground];
 
     NSNumber *defaultRepetitionIndex=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultRepetitionIndex"];
     NSString *defaultSound=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultSound"];
@@ -115,13 +133,19 @@
     NSInteger repetitionIndex = [defaultRepetitionIndex integerValue];
     NSInteger effectIndex = [defaultEffectIndex integerValue];
     
-    NSUInteger soundIndex = [imageGameSoundFileNameArray indexOfObjectPassingTest:^BOOL(NSString *obj, NSUInteger idx, BOOL *stop) {
+    NSLog(@" SETTINGS VIEW : defaultSound %@", defaultSound);
+    
+    NSUInteger soundIndex = [imageGameSoundArray indexOfObjectPassingTest:^BOOL(NSString *obj, NSUInteger idx, BOOL *stop) {
         return [obj caseInsensitiveCompare:defaultSound] == NSOrderedSame;
     }];
+    
+    NSLog(@" SETTINGS VIEW : (int)soundIndex %d", (int)soundIndex);
     
     [filterPicker selectRow:effectIndex inComponent:0 animated:NO];
     [pickerViewC selectRow:repetitionIndex inComponent:0 animated:NO];
     [pickerViewB selectRow:(int)soundIndex inComponent:0 animated:NO];
+    
+    NSLog(@" viewdid load endd");
 }
 
 -(void) setGaugeForce: (float)force{
@@ -213,7 +237,8 @@
     NSString *thetitle;
     if (thePickerView==pickerViewB) {
        thetitle=[imageGameSoundArray objectAtIndex:row];
-        [[NSUserDefaults standardUserDefaults]setObject:thetitle forKey:@"defaultSound"];
+        NSString* defaultSaveName=[imageGameSoundFileNameArray objectAtIndex:row];
+        [[NSUserDefaults standardUserDefaults]setObject:defaultSaveName forKey:@"defaultSound"];
     }
     if (thePickerView==pickerViewC) {
         thetitle=[repititionsArray objectAtIndex:row];

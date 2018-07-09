@@ -43,6 +43,9 @@
         displayLink = [CADisplayLink displayLinkWithTarget:self
                                                   selector:@selector(animate)];
         
+        [displayLink setFrameInterval:4];
+       // displayLink.frameInterval = 2;
+        
         start=[NSDate date];
         animationObject=[[UIView alloc]initWithFrame:self.bounds];
         
@@ -60,41 +63,6 @@
     }
     return self;
 }
-
-- (id)initWithFrame:(CGRect)frame withOrientation:(NSString*)orientation
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        
-        if ([orientation isEqual: @"Vertical"]){
-            NSLog(@"Initialising Vertical frame");
-            // Initialization code
-            [self setDefaults];
-            displayLink = [CADisplayLink displayLinkWithTarget:self
-                                                      selector:@selector(animate)];
-            
-            start=[NSDate date];
-            animationObject=[[UIView alloc]initWithFrame:self.bounds];
-            
-            UIColor* customColour = RGB(00, 33, 66);
-            [animationObject setBackgroundColor:customColour];
-            animationObject.layer.cornerRadius=16;
-            animationObject.alpha = 0.01;
-            [self addSubview:animationObject];
-            
-            isaccelerating=false;
-            self.backgroundColor=[UIColor clearColor];
-            self.layer.cornerRadius=16;
-            
-            mass=1;
-            force=15;
-        }else if ([orientation isEqual: @"Horizontal"]){
-            NSLog(@"Initialising Horizontal frame");
-        }
-    }
-    return self;
-}
-
 
 -(void)setDefaults
 {
@@ -151,6 +119,10 @@
 
 -(void)animate
 {
+   // NSLog(@"SETTYINGS GAUGE3 force %f", force);
+    
+    time=0.2;///0.2
+    
     if (isaccelerating) {
         // force+=500;
     }else
@@ -162,10 +134,11 @@
     if (force<1) {
         force=1;
     }
+   //  NSLog(@"SETTYINGS GAUGE3");
     
-    acceleration= 400 * ( force/mass);
+    acceleration= 1.9 *  force;  //length of gauge * power of breath/required power
     //acceleration= acceleration + ( force/mass);
-    float myForce = (force/mass);
+   // float myForce = (force/mass);
     
     velocity = distance / time;
     time = distance / velocity;
@@ -173,13 +146,15 @@
     // distance = force/10;
     //distance = ceilf((.01)*force/10);
     //distance = ceilf((0.8)* (myForce * powf(time, 2)));
-    distance = ceilf((0.3)* (acceleration * powf(time, 2)));
+    distance = ceilf((0.1)* (acceleration * powf(time, 2)));
     
     if (distance > MAINGUAGE_HEIGHT){
         distance = MAINGUAGE_HEIGHT;
     }
     
-    if (distance<MAINGUAGE_HEIGHT) {
+   // NSLog(@"distance %f", distance);
+    
+ //   if (distance<MAINGUAGE_HEIGHT) {
         CGRect frame=animationObject.frame;
         frame.origin.x=0;
         frame.size.height=90;
@@ -193,11 +168,11 @@
       //  NSLog(@"distance %f", distance );
       //  NSLog(@"MAINGUAGE_HEIGHT %d", MAINGUAGE_HEIGHT );
         [animationObject setFrame:frame];
-    }else
-    {
+ //   }else
+ //   {
      ///   NSLog(@"DISTANCE ELSE");
-        distance = MAINGUAGE_HEIGHT - 30;
-    }
+  //      distance = MAINGUAGE_HEIGHT - 30;
+  //  }
     [self setNeedsDisplay];
 }
 

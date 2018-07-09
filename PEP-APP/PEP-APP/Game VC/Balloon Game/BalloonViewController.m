@@ -303,6 +303,19 @@
         ball.currentBalloonImage.image = [UIImage imageNamed:@"Balloon8"];
     }
 }
+
+- (void)blowAttempt:(int)ballNo{
+    NSLog(@"blow attempt with ball %d", ballNo);
+    Balloon  *ball=[self.balls objectAtIndex: currentBall];
+    
+    NSString* ballString = [NSString stringWithFormat:@"Balloon%d",ballNo];
+    NSLog(@"%@", ballString);
+    ball.currentBalloonImage.image = [UIImage imageNamed:ballString];
+    
+}
+
+
+
 /*
 -(void)playHitTop
 {

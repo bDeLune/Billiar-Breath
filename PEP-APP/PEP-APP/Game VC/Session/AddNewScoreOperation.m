@@ -45,7 +45,7 @@
     
     NSError  *error;
     NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
-    //NSLog(@"ADDTHESESSION game: %@", game);
+    NSLog(@"ADDTHESESSION game: %@", game);
     
     if ([items count]>0) {
         User *auser=[items objectAtIndex:0];

@@ -37,8 +37,13 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self setDefaults];
+        NSLog(@"SETTYINGS GAUGE");
+        
         displayLink = [CADisplayLink displayLinkWithTarget:self
                                                   selector:@selector(animate)];
+        [displayLink setFrameInterval:4];
+        
+        
         start=[NSDate date];
         animationObject=[[UIView alloc]initWithFrame:self.bounds];
         
@@ -52,45 +57,18 @@
         self.layer.cornerRadius=16;
         mass=1;
         force=15;
-    }
-    return self;
-}
-
-- (id)initWithFrame:(CGRect)frame withOrientation:(NSString*)orientation
-{
-    self = [super initWithFrame:frame];
-    if (self) {
         
-        if ([orientation isEqual: @"Vertical"]){
-            NSLog(@"Initialising Vertical frame");
-            [self setDefaults];
-            displayLink = [CADisplayLink displayLinkWithTarget:self
-                                                      selector:@selector(animate)];
-            
-            start=[NSDate date];
-            animationObject=[[UIView alloc]initWithFrame:self.bounds];
-            
-            UIColor* customColour = RGB(00, 33, 66);
-            [animationObject setBackgroundColor:customColour];
-            animationObject.layer.cornerRadius=16;
-            [self addSubview:animationObject];
-            isaccelerating=false;
-            self.backgroundColor=[UIColor clearColor];
-            self.layer.cornerRadius=16;
-            mass=1;
-            force=15;
-        }
+      //  NSLog(@"SETTYINGS GAUGE2");
     }
     return self;
 }
-
 
 -(void)setDefaults
 {
     velocity=0.0;
-    distance=0.1;
+    distance=0.01; //was 01
     time=0.1;
-    acceleration=0.1;
+    acceleration=0.01; //was 0.01
     h=0;
     hm=0;
     anim_delay=0;
@@ -101,6 +79,8 @@
     // distance=100;
     time=0.01;///0.2
     acceleration=0.01; //was 0.1
+    
+  //  NSLog(@"SETTYINGS GAUGE3");
 }
 
 
@@ -142,6 +122,9 @@
 
 -(void)animate
 {
+    // NSLog(@"SETTYINGS GAUGE6");
+     time=0.2;///0.2
+    
     if (isaccelerating) {
 
     }else
@@ -160,7 +143,7 @@
     //distance= ceilf((0.5)* (acceleration * powf(time, 2)));
     
     //710 height
-    acceleration= 8500 * ( force/mass);
+    acceleration = 13.4 * force;
     //acceleration= acceleration + ( force/mass);
     
     velocity = distance / time;
@@ -169,20 +152,21 @@
     // distance = force/10;
     //distance = ceilf((.01)*force/10);
     //distance = ceilf((0.8)* (myForce * powf(time, 2)));
-    distance = ceilf((0.3)* (acceleration * powf(time, 2)));
-    
+   // distance = ceilf((0.3)* (acceleration * powf(time, 2)));
+   //  distance = ceilf((.05)* (acceleration * powf(time, 2)));
+    distance = ceilf((0.1) * (acceleration * powf(time, 2)));
     //NSLog(@"GUAGE_HEIGHT %d", GUAGE_HEIGHT);
    // NSLog(@"distance %f", distance);
     
-    if (distance<GUAGE_HEIGHT) {
-        CGRect frame=animationObject.frame;
-        frame.origin.y=self.bounds.size.height-distance;
-        frame.size.height= 1 + distance;
-        [animationObject setFrame:frame];
-    }else
-    {
-        distance=GUAGE_HEIGHT-30;
-    }
+  //  if (distance<GUAGE_HEIGHT) {
+    CGRect frame=animationObject.frame;
+    frame.origin.y=self.bounds.size.height-distance;
+    frame.size.height= distance;
+    [animationObject setFrame:frame];
+   // }else
+   // {
+   //     distance=GUAGE_HEIGHT-30;
+  //  }
     [self setNeedsDisplay];
 }
 
