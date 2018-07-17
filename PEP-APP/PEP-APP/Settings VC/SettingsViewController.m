@@ -135,15 +135,24 @@
     
     NSLog(@" SETTINGS VIEW : defaultSound %@", defaultSound);
     
-    NSUInteger soundIndex = [imageGameSoundArray indexOfObjectPassingTest:^BOOL(NSString *obj, NSUInteger idx, BOOL *stop) {
-        return [obj caseInsensitiveCompare:defaultSound] == NSOrderedSame;
-    }];
+    NSUInteger soundIndex;
+    
+    if ([defaultSound isEqualToString:@"sirene fluit"]){
+        NSLog(@"default sound selected: sirene fluit");
+        soundIndex = (int)7;
+    }else{
+        soundIndex = (int)[imageGameSoundArray indexOfObjectPassingTest:^BOOL(NSString *obj, NSUInteger idx, BOOL *stop) {
+            return [obj caseInsensitiveCompare:defaultSound] == NSOrderedSame;
+        }];
+    }
+    
+
     
     NSLog(@" SETTINGS VIEW : (int)soundIndex %d", (int)soundIndex);
     
     [filterPicker selectRow:effectIndex inComponent:0 animated:NO];
     [pickerViewC selectRow:repetitionIndex inComponent:0 animated:NO];
-    [pickerViewB selectRow:(int)soundIndex inComponent:0 animated:NO];
+    [pickerViewB selectRow:soundIndex inComponent:0 animated:NO];
     
     NSLog(@" viewdid load endd");
 }
@@ -173,6 +182,8 @@
 };
 
 -(void) setSettingsViewDirection: (int)val{
+    [self setSettingsStrengthLabelText:@"0"];
+    [self setSettingsDurationLabelText:@"0"];
     
     NSLog(@"SETTING DIRECTION SETTITNGS %d",val);
     if (val == 0){
@@ -194,7 +205,10 @@
 }
 
 - (IBAction)toggleDirection:(id)sender {
-
+    
+    [self setSettingsStrengthLabelText:@"0"];
+    [self setSettingsDurationLabelText:@"0"];
+    
     if (currentdirection == 1){
         currentdirection = 0;
         NSLog(@"set to inhale");

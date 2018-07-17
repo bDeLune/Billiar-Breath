@@ -150,14 +150,10 @@
     if (object == self.midiController && [keyPath isEqualToString:@"numberOfSources"]) {
         
         if (self.midiController.numberOfSources == 0) {
-    ///        NSLog(@"No Midi Sources!!!");
             UIAlertView  *alert=[[UIAlertView alloc]initWithTitle:@"Midi Message" message:@"No Midi Device Detected" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [[GCDQueue mainQueue]queueBlock:^{
                 [alert show];
             }];
-        }else
-        {
-    //        NSLog(@" Midi Sources Detected!!!");
         }
     }
     else {
@@ -171,14 +167,6 @@
     if (self) {
 
         self.settingsViewController = [self.tabBarController.viewControllers objectAtIndex:2];
-        //selectedBallCount = [[NSUserDefaults standardUserDefaults]integerForKey:@"defaultRepetitionIndex"];
-        //selectedSpeed = [[NSUserDefaults standardUserDefaults]integerForKey:@"defaultSpeed"];
-        //currentImageGameSound = [[NSUserDefaults standardUserDefaults]stringForKey:@"defaultSound"];
-        //globalSoundActivated = [[NSUserDefaults standardUserDefaults]integerForKey:@"defaultMute"];
-        //NSString* directionSetting = [[NSUserDefaults standardUserDefaults]stringForKey:@"defaultDirection"];
-        //currentlySelectedEffectIndex= [[NSUserDefaults standardUserDefaults]integerForKey:@"defaultEffect"];
-        
-        
         NSString *defaultDirection=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultDirection"];
         NSNumber *defaultSpeed=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultSpeed"];
         NSNumber *defaultRepetitionIndex=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultRepetitionIndex"];
@@ -219,12 +207,6 @@
             [self.settingsViewController.gaugeView setBreathToggleAsExhale:1 isExhaling: NO];
             wasExhaling = true;
         }
-
-       // [[NSUserDefaults standardUserDefaults]setInteger: selectedBallCount forKey:@"defaultRepetitionIndex"];
-       // [[NSUserDefaults standardUserDefaults]setObject:currentImageGameSound forKey:@"defaultSound"];
-       // [[NSUserDefaults standardUserDefaults]setInteger:selectedSpeed forKey:@"defaultSpeed"];
-        //[[NSUserDefaults standardUserDefaults]setInteger:globalSoundActivated forKey:@"defaultMute"];
-       // [[NSUserDefaults standardUserDefaults]setInteger:currentlySelectedEffectIndex forKey:@"defaultEffect"];
         
         NSLog(@"GV SET DEFAULTS selectedBallCount %d", selectedBallCount);
         NSLog(@"GV SET DEFAULTS currentImageGameSound %@", currentImageGameSound);
@@ -363,6 +345,8 @@
     
     NSLog(@"BREATH BEGAN");
     
+    if (self.midiController.toggleIsON == 0){wasExhaling = 1;}else{wasExhaling = 0;};
+    
     disableModeButton = true;
     if ([self.midiController allowBreath]==NO) {
         return;
@@ -376,6 +360,7 @@
 
 -(void)btleManagerBreathStopped:(BTLEManager*)manager{
     
+    NSLog(@"STOPPED");
     disableModeButton = false;
     if ([self.midiController allowBreath]==NO) {
         return;
@@ -389,17 +374,22 @@
 -(void)btleManager:(BTLEManager*)manager inhaleWithValue:(float)percentOfmax{
     
     wasExhaling = false;
-    [self.mainGaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
-    [self.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
-    [self.settingsViewController.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
+
 
     if (self.midiController.toggleIsON==NO) {
         NSLog(@"INHALING AND RETURNING");
         return;
     }
     
+    [self.mainGaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
+    [self.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
+    [self.settingsViewController.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
+    
+    
+     NSLog(@"INHALING");
+    
     [self.balloonViewController blowStarted: self.sequenceGameController.currentBall atSpeed:selectedSpeed];
-    [self.settingsViewController setSettingsDurationLabelText: [NSString stringWithFormat:@"%.1f", 0.0]];
+   // [self.settingsViewController setSettingsDurationLabelText: [NSString stringWithFormat:@"%.1f", 0.0]];
     
     if (gameSoundPlaying == NO){
         switch (self.currentGameType) {
@@ -439,17 +429,21 @@
 -(void)btleManager:(BTLEManager*)manager exhaleWithValue:(float)percentOfmax{
     
     wasExhaling = true;
-    [self.mainGaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
-    [self.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
-    [self.settingsViewController.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
+
 
     if (self.midiController.toggleIsON==YES) {
         NSLog(@"EXHALING AND RETURNING");
         return;
     }
     
+    [self.mainGaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
+    [self.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
+    [self.settingsViewController.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
+    
+     NSLog(@"EXHALING");
+    
     [self.balloonViewController blowStarted: self.sequenceGameController.currentBall atSpeed:selectedSpeed];
-    [self.settingsViewController setSettingsDurationLabelText: [NSString stringWithFormat:@"%.1f", 0.0]];
+   // [self.settingsViewController setSettingsDurationLabelText: [NSString stringWithFormat:@"%.1f", 0.0]];
     
     if (gameSoundPlaying == NO){
         switch (self.currentGameType) {
@@ -698,10 +692,14 @@
     
     self.sequenceGameController.time = 0;
     bestCurrentVelocity = 0;
-    [self.settingsViewController setSettingsStrengthLabelText:@"0"];
-    [self.settingsViewController setSettingsDurationLabelText:[NSString stringWithFormat:@"%.1f",self.sequenceGameController.time]];
+    
+    //ADDED
+   // [self.settingsViewController setSettingsStrengthLabelText:@"0"];
+   // [self.settingsViewController setSettingsDurationLabelText:[NSString stringWithFormat:@"%.1f",self.sequenceGameController.time]];
     
     if ((self.midiController.toggleIsON == 0 && wasExhaling == 1) || (self.midiController.toggleIsON == 1 && wasExhaling == 0)){
+        
+         NSLog(@"midi BEGAN2");
         
         // [self.balloonViewController blowStarted: self.sequenceGameController.currentBall atSpeed:selectedSpeed];
         
@@ -711,15 +709,12 @@
             case gameTypeDuo:
                 [self midiNoteBeganForSequence:midi];
                 self.balloonViewController.currentGameType=gameTypeDuo;
-       //         [self playImageGameSound];
                 break;
             case gameTypeImage:
-        ///        [self playImageGameSound];
                 self.balloonViewController.currentGameType=gameTypeImage;
                 break;
             case gameTypeBalloon:
                 [self midiNoteBeganForSequence:midi];
-         ///        [self playGameSound];
                 self.balloonViewController.currentGameType=gameTypeBalloon;
                 break;
             case gameTypeTest:

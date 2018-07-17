@@ -1,5 +1,5 @@
 "Enter a username" = "Vul gebruikersnaam in";
-"Delete User ' %@ '" = "Verwijder gebruiker ' %@ '";
+"Delete User " = "Verwijder gebruiker ";
 "Field has been left blank" = "Het veld is nog leeg";
 "Error" = "Error";
 "Sorry, that user already exists" = "Sorry, die naam is al in gebruik";
@@ -7,7 +7,6 @@
 "Success" = "Succes";
 "OK" = "Ok";
 "Registration Complete!" = "Registratie compleet!";
-"Delete User" = "Verwijder Gebruiker";
 "Confirm" = "Bevestig";
 "Data" = "Gegevens";
 "Cancel" = "Annuleer";

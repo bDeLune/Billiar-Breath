@@ -2,6 +2,7 @@
 @interface HeaderView ()
 @property (nonatomic,strong)UILabel  *label;
 @property (nonatomic,strong)UIButton  *deleteButton;
+@property (nonatomic,strong)UILabel  *currentUserLabel;
 @property (nonatomic,strong)UIButton  *dataButton;
 @end
 
@@ -24,21 +25,32 @@
     [self.label setText:self.user.userName];
     [self addSubview:self.label];
     
-    self.deleteButton=[UIButton buttonWithType:UIButtonTypeSystem];
-    self.deleteButton.frame=CGRectMake(self.bounds.size.width-100, 30, 100, self.bounds.size.height);
-    [self.deleteButton setTitle:@"Delete" forState:UIControlStateNormal];
-    [self.deleteButton addTarget:self action:@selector(deleteAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.deleteButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    [self addSubview:self.deleteButton];
-    
-    //added
-   // self.dataButton=[UIButton buttonWithType:UIButtonTypeSystem];
-    //self.dataButton.frame=CGRectMake(self.deleteButton.frame.origin.x+110, 10, 100, self.bounds.size.height);
-   // [self.dataButton setTitle:@"Data" forState:UIControlStateNormal];
-   // [self.dataButton addTarget:self action:@selector(viewHistoricalData) forControlEvents:UIControlEventTouchUpInside];
-   // [self addSubview:self.dataButton];
 
+    
+    NSString *currentUser=[[NSUserDefaults standardUserDefaults]objectForKey:@"currentUser"];
+    
+    NSLog(@"currentUser %@", currentUser);
+    NSLog(@"self.user.userName %@", self.user.userName);
+    
+    if ([currentUser isEqualToString:self.user.userName]){
+        NSLog(@"no delete option for current user");
+        self.currentUserLabel=[[UILabel alloc]initWithFrame:CGRectMake(self.bounds.size.width-100, 30, 100, self.bounds.size.height)];
+        [self.currentUserLabel setText:@"Current User"];
+        [self.currentUserLabel setTextColor:[UIColor blackColor]];
+        [self.currentUserLabel setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(14.0)]];
+        [self addSubview:self.currentUserLabel];
+    }else{
+        self.deleteButton=[UIButton buttonWithType:UIButtonTypeSystem];
+        self.deleteButton.frame=CGRectMake(self.bounds.size.width-125, 30, 100, self.bounds.size.height);
+        [self.deleteButton setTitle:@"Delete" forState:UIControlStateNormal];
+        [self.deleteButton.titleLabel setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(14.0)]];
+        [self.deleteButton addTarget:self action:@selector(deleteAction) forControlEvents:UIControlEventTouchUpInside];
+        [self.deleteButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        [self addSubview:self.deleteButton];
+    }
+    
 }
+
 -(void)viewHistoricalData
 {
     [self.delegate viewHistoricalData:self];

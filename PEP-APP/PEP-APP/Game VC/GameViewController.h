@@ -61,7 +61,7 @@
 @property (nonatomic,weak) IBOutlet  UIButton  *backToLoginButton;
 @property (nonatomic,weak) IBOutlet  UIButton *toggleDirectionButton;
 @property (nonatomic,weak) IBOutlet  UIButton *toggleGameModeButton;
-@property (nonatomic,strong) SettingsViewController  *settingsViewController;
+@property (nonatomic,strong) SettingsViewController *settingsViewController;
 @property (nonatomic,weak) IBOutlet  UILabel *currentUsersNameLabel;
 @property (nonatomic,retain) IBOutlet UIViewController *chosenImageController;
 @property (nonatomic,retain) IBOutlet UIImageView *chosenImageView;

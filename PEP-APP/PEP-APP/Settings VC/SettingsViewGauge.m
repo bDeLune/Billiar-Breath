@@ -41,8 +41,7 @@
         
         displayLink = [CADisplayLink displayLinkWithTarget:self
                                                   selector:@selector(animate)];
-        [displayLink setFrameInterval:4];
-        
+        [displayLink setFrameInterval:8];
         
         start=[NSDate date];
         animationObject=[[UIView alloc]initWithFrame:self.bounds];

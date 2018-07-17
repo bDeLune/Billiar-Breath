@@ -43,7 +43,7 @@
         displayLink = [CADisplayLink displayLinkWithTarget:self
                                                   selector:@selector(animate)];
         
-        [displayLink setFrameInterval:4];
+        [displayLink setFrameInterval:8];
        // displayLink.frameInterval = 2;
         
         start=[NSDate date];

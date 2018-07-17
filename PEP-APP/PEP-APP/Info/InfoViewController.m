@@ -8,22 +8,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self.infoViewBackgroundImage setImage: [UIImage imageNamed:NSLocalizedString(@"InfoBackground", nil)]];
-   
     [self.externalURLButton setImage: [UIImage imageNamed:NSLocalizedString(@"externalURLButton", nil)]forState:UIControlStateNormal];
-    
 }
 - (IBAction)returnToGameView:(id)sender {
     NSLog(@"Returning to game view");
     [self dismissViewControllerAnimated:true completion:nil];
 }
 - (IBAction)goToWebsite:(id)sender {
-    
     NSLog(@"Moving to website");
-    
-    //mylocalise
-    //www.groovtube.nl/en/pepappmanual/  english
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString: [NSString stringWithFormat:NSLocalizedString(@"manualURL", nil)]]];
 }
 

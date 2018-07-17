@@ -64,9 +64,9 @@
                                   image:[UIImage imageNamed:@"Info-INACTIVE-80x80"]
                                     tag:4];
     
-    UIImage *image = [[UIImage imageNamed:@"Info-INACTIVE-80x80"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    [self.infoViewController.tabBarItem setSelectedImage:image];
-    [self.infoViewController.tabBarItem setImage:image];
+   //UIImage *image = [[UIImage imageNamed:@"Info-INACTIVE-80x80"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+   //[self.infoViewController.tabBarItem setSelectedImage:image];
+   //[self.infoViewController.tabBarItem setImage:image];
     
     self.infoViewController.tabBarItem.title = @"";
     self.userListViewController.tabBarItem.title = @"";

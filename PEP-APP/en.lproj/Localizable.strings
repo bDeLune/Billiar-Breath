@@ -1,5 +1,5 @@
 "Enter a username" = "Enter a username";
-"Delete User ' %@ '" = "Delete User ' %@ '";
+"Delete User " = "Delete User ";
 "Field has been left blank" = "Field has been left blank";
 "Enter username" = "Enter username";
 "Error" = "Error";
@@ -15,7 +15,6 @@
 "externalURLButton" = "BUTTON-OnlineManual-ENG";
 "manualURL" = "https://www.groovtube.nl/en/pepappmanual/";
 "InfoBackground" = "InfoBackground-ENG";
-"Delete User" = "Delete User";
 "Confirm" = "Confirm";
 "Data" = "Data";
 "Cancel" = "Cancel";

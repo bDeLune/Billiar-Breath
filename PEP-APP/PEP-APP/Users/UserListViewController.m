@@ -81,6 +81,8 @@
     
      NSMutableArray *mutable=[[NSMutableArray alloc]initWithArray:cleanedArray];
      [mutable sortUsingSelector:@selector(compare:)];
+    
+    // [[[mutable sortedArrayUsingSelector:@selector(compare:)] reverseObjectEnumerator] allObjects];
 
     return mutable;
     
@@ -293,9 +295,18 @@
 
 -(void)deleteMember:(HeaderView *)header
 {
-    //localis
     self.deleteUser=[self.userList objectAtIndex:header.section];
-    NSString *message=[NSString stringWithFormat: [NSString stringWithFormat:NSLocalizedString(@"Delete User ' %@ '", self.deleteUser.userName)],nil];
+    NSLog(@"userList: %d", header.section);
+    NSLog(@"userList: %@", self.userList);
+    NSLog(@"self.deleteUser.userName: %@", self.deleteUser.userName);
+    
+    NSString *deleteUserString=[NSString stringWithFormat:NSLocalizedString(@"Delete User ", nil)];
+    NSLog(@"deleteUserString: %@", deleteUserString);
+
+    NSString *message=[NSString stringWithFormat: [NSString stringWithFormat: deleteUserString, self.deleteUser.userName],nil];
+    
+     NSLog(@"message: %@", deleteUserString);
+    
     UIAlertView *alert=[[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Confirm", nil)] message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:[NSString stringWithFormat:NSLocalizedString(@"Cancel", nil)] , nil];
         [alert show];
 }

@@ -28,8 +28,8 @@
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"HH:mm:ss"];
         [myDateArray addObject:date];
-        NSLog(@"myDateArray - %@", date);
-        NSLog(@"myDateArray - %@", myDateArray);
+      //  NSLog(@"myDateArray - %@", date);
+      //  NSLog(@"myDateArray - %@", myDateArray);
     }
     
     //NSArray *sorted = [myDateArray sortedArrayUsingComparator:^NSComparisonResult(NSDate *date1, NSDate *date2) {
@@ -38,12 +38,12 @@
     
     data = [games sortedArrayUsingComparator: ^NSComparisonResult(Game *c1, Game *c2)
     {
-        NSDate *d1 = c1.gameDate;
-        NSDate *d2 = c2.gameDate;
+        NSDate *d1 = c2.gameDate;
+        NSDate *d2 = c1.gameDate;
         return [d1 compare:d2];
     }];
     
-    NSLog(@"SORTED - %@", data);
+   // NSLog(@"SORTED - %@", data);
 
     [self.tableView reloadData];
 }
@@ -176,7 +176,7 @@
     }
     
     @try{
-         NSLog(@"durationStringTRY %@", durationString);
+    //     NSLog(@"durationStringTRY %@", durationString);
         durationString= [[NSString stringWithFormat: @"%@", game.duration] substringToIndex:4];
     }@catch(NSException *exception){
          durationString= @"0" ;

@@ -142,6 +142,7 @@
     
     self.loggedInUser=[items objectAtIndex:0];
     [self.delegate LoginSucceeded:self user:[self user:self.usernameTextField.text]];
+    [[NSUserDefaults standardUserDefaults]setObject:self.usernameTextField.text forKey:@"currentUser"];
 }
 
 -(void)signup:(id)sender
