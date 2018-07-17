@@ -7,13 +7,7 @@
 #import "BTLEManager.h"
 
 typedef void(^RunTimer)(void);
-@interface ViewController ()<BTLEManagerDelegate>
-@property (nonatomic, retain) IBOutlet UIToolbar *myToolbar;
-@property (nonatomic, retain) NSMutableArray *capturedImages;
-@property (nonatomic,strong)BTLEManager  *btleMager;
-@property (nonatomic,strong)UIImageView  *btOnOfImageView;
-@property (assign) SystemSoundID tickSound;
-@property (nonatomic,strong)UIButton *ledTestButton;
+@interface ViewController ()
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
@@ -21,7 +15,6 @@ typedef void(^RunTimer)(void);
 @property (nonatomic,strong) MainTableViewController  *mainTableViewController;
 @property (nonatomic,strong) User  *currentUser;
 @property (nonatomic,strong) Game  *currentGame;
-@property (nonatomic,strong) UIImageView *startupImageView;
 @end
 
 @implementation ViewController
@@ -36,20 +29,6 @@ typedef void(^RunTimer)(void);
     [self addUserLoginViewController]; 
 }
 
--(void)removeStartupImage:(NSTimer*)timer
-{
-    //remove
-    [timer invalidate];
-    timer=nil;
-
-    [UIView animateWithDuration:3.0 animations:^{
-        _startupImageView.alpha=0.0;
-    } completion:^(BOOL finished){
-        [_startupImageView removeFromSuperview];
-        _startupImageView=nil;
-    }];
-}
-
 -(void)addUserLoginViewController
 {
     if (!self.loginViewController) {
@@ -60,11 +39,6 @@ typedef void(^RunTimer)(void);
     self.loginViewController.sharedPSC=self.persistentStoreCoordinator;
     self.loginViewController.delegate=self;
 }
-
-
-#pragma mark -
-
-#pragma mark - Login Delegate
 
 -(void)LoginSucceeded:(LoginViewController*)viewController user:(User*)user
 {
@@ -83,22 +57,10 @@ typedef void(^RunTimer)(void);
 }
 
 
--(void)gameViewExitGame
-{
-    [UIView transitionFromView:self.mainTableViewController.view toView:self.loginViewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromTop completion:^(BOOL finished){
-    }];
-}
-
-#pragma mark - Core Data
-
-// Returns the path to the application's documents directory.
 - (NSString *)applicationDocumentsDirectory {
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 }
 
-// Returns the managed object context for the application.
-// If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
-//
 - (NSManagedObjectContext *)managedObjectContext {
     
     if (_managedObjectContext != nil) {
@@ -111,7 +73,6 @@ typedef void(^RunTimer)(void);
         [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
     
-    // observe the ParseOperation's save operation with its managed object context
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(mergeChanges:)
                                                  name:NSManagedObjectContextDidSaveNotification
@@ -119,27 +80,17 @@ typedef void(^RunTimer)(void);
     return _managedObjectContext;
 }
 
-// Returns the managed object model for the application.
-// If the model doesn't already exist, it is created by merging all of the models found in the application bundle.
 - (NSManagedObjectModel *)managedObjectModel {
     
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
     }
     
-    //NSString *path = [[NSBundle mainBundle] resourcePath];
-    //NSFileManager *fm = [NSFileManager defaultManager];
-   // NSError *error = nil;
-    //NSArray *directoryAndFileNames = [fm contentsOfDirectoryAtPath:path error:&error];
-    //NSLog(@"Manged object model %@", directoryAndFileNames);
-    
     NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Model" withExtension:@"mom"]; //was mom
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
 }
 
-// Returns the persistent store coordinator for the application.
-// If the coordinator doesn't already exist, it is created and the application's store added to it
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
     
     if (_persistentStoreCoordinator != nil) {
@@ -152,38 +103,25 @@ typedef void(^RunTimer)(void);
     NSError *error;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:nil error:&error]) {
-        // Replace this implementation with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate.
-        // You should not use this function in a shipping application, although it may be useful
-        // during development. If it is not possible to recover from the error, display an alert
-        // panel that instructs the user to quit the application by pressing the Home button.
-        // Typical reasons for an error here include:
-        // The persistent store is not accessible
-        // The schema for the persistent store is incompatible with current managed object model
-        // Check the error message to determine what the actual problem was.
-        NSLog(@"ABORTING");
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
     return _persistentStoreCoordinator;
 }
 
-// merge changes to main context,fetchedRequestController will automatically monitor the changes and update tableview.
 - (void)updateMainContext:(NSNotification *)notification {
     
     assert([NSThread isMainThread]);
     [self.managedObjectContext mergeChangesFromContextDidSaveNotification:notification];
 }
 
-// this is called via observing "NSManagedObjectContextDidSaveNotification" from our APLParseOperation
 - (void)mergeChanges:(NSNotification *)notification {
     
     if (notification.object != self.managedObjectContext) {
         [self performSelectorOnMainThread:@selector(updateMainContext:) withObject:notification waitUntilDone:NO];
     }
 }
-#pragma mark -
-#pragma mark - Add User Notifications
+
+
 -(void)addUserSuccess:(NSNotification*)notification
 {
 }
@@ -192,11 +130,6 @@ typedef void(^RunTimer)(void);
 }
 -(void)addUserError:(NSNotification*)notification
 {
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
 }
 
 #pragma mark -

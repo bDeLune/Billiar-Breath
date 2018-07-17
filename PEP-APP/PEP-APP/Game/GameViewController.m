@@ -21,7 +21,6 @@
 @interface GameViewController ()<BTLEManagerDelegate, UITabBarDelegate,UITabBarControllerDelegate, SETTINGS_DELEGATE>
 {
     int threshold;
-    CADisplayLink *testDurationDisplayLink;
     gameDifficulty  currentDifficulty;
     AVAudioPlayer  *audioPlayer;
     bool wasExhaling;
@@ -197,12 +196,10 @@
         NSLog(@"playing sound");
         UIImage *soundOnImage = [UIImage imageNamed:@"Sound-ON.png"];
         [self.soundIcon setImage:soundOnImage forState:UIControlStateNormal];
-        [self.sequenceGameController setAudioMute: globalSoundActivated];
     }else if(globalSoundActivated == 0){
         NSLog(@"muting sound");
         UIImage *soundOffImage = [UIImage imageNamed:@"Sound-OFF.png"];
         [self.soundIcon setImage:soundOffImage forState:UIControlStateNormal];
-        [self.sequenceGameController setAudioMute: globalSoundActivated];
     }
     
     NSString *defaultDirection=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultDirection"];
@@ -400,11 +397,6 @@
     [[GCDQueue mainQueue]queueBlock:^{
         self.currentUsersNameLabel.text=[self.gameUser valueForKey:@"userName"];
     }];
-}
-
--(IBAction)exitGameScreen:(id)sender
-{
-    [self.delegate gameViewExitGame];
 }
 
 - (IBAction)goToSettings:(id)sender {
@@ -666,36 +658,12 @@
 -(void)midiNoteContinuingForSequence:(MidiController*)midi
 {
     self.sequenceGameController.currentSpeed=midi.speed;
-    gameDifficulty  difficulty=[[[NSUserDefaults standardUserDefaults]objectForKey:@"difficulty"]intValue];
     
-    switch (difficulty) {
-        case 0:
-            if (_currentGameType == gameTypeImage || _currentGameType == gameTypeTest){
-                return;
-            }
-            
-            [self.sequenceGameController setAllowNextBall:YES];
-        
-            break;
-        case 1:
-            if (self.sequenceGameController.currentSpeed>15) {
-                [self.sequenceGameController setAllowNextBall:YES];
-            }else
-            {
-                [self.sequenceGameController setAllowNextBall:NO];
-            }
-            break;
-        case 2:
-            if (self.sequenceGameController.currentSpeed>50) {
-                [self.sequenceGameController setAllowNextBall:YES];
-            }else
-            {
-                [self.sequenceGameController setAllowNextBall:NO];
-            }
-            break;
-        default:
-            break;
+    if (_currentGameType == gameTypeImage || _currentGameType == gameTypeTest){
+        return;
     }
+    
+    [self.sequenceGameController setAllowNextBall:YES];
     
     if (self.sequenceGameController.halt) {
         return;
@@ -718,12 +686,12 @@
         globalSoundActivated = 1;
         UIImage *soundOnImage = [UIImage imageNamed:@"Sound-ON.png"];
          [self.soundIcon setImage:soundOnImage forState:UIControlStateNormal];
-        [self.sequenceGameController setAudioMute: globalSoundActivated];
+       // [self.sequenceGameController setAudioMute: globalSoundActivated];
     }else if(globalSoundActivated == 1){
         globalSoundActivated = 0;
         UIImage *soundOffImage = [UIImage imageNamed:@"Sound-OFF.png"];
         [self.soundIcon setImage:soundOffImage forState:UIControlStateNormal];
-        [self.sequenceGameController setAudioMute: globalSoundActivated];
+       // [self.sequenceGameController setAudioMute: globalSoundActivated];
     }
     
     [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:globalSoundActivated] forKey:@"defaultMute"];

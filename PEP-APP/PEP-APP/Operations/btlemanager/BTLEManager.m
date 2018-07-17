@@ -3,7 +3,7 @@
 #import "NSData+NSData_Conversion.h"
 
 #define ZERO_BOTTOM 1930
-#define ZERO_TOP 1990   //CHANGE THURS
+#define ZERO_TOP 1990
 #define DEADZONE 50
 #define START_STOP_AVERAGE 10
 @interface BTLEManager ()< MelodySmartDelegate, MelodyManagerDelegate>
@@ -33,7 +33,6 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[BTLEManager alloc] init];
-        // Do any other initialisation stuff here
     });
     return sharedInstance;
 }
@@ -84,7 +83,7 @@
             [weakSelf startScanning];
         }
     });
-    //self.pollTimer=[NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(requestBTData:) userInfo:nil repeats:YES];
+ 
     [self startTimerWithInterval:interval];
 }
 
@@ -122,22 +121,20 @@
         [self.melody connect];
         return;
     }
-    //[self.melody setDataNotification:YES];
+
     self.melody.delegate=self;
     [self.melody sendData:data];
 }
 
 -(void)requestBTData:(NSTimer*)timer
 {
-    //assert([NSThread isMainThread]);
-    //NSLog(@"rssi %i",[[self.melody RSSI]intValue]);
+
     NSData* data = [@"?b" dataUsingEncoding:NSUTF8StringEncoding];
-    //NSLog(@"melody connected %i",[self.melody isConnected]);
+
     if ([self.melody isConnected]==NO) {
         [self.melody connect];
         return;
     }
-    // [self.melody setDataNotification:YES];
     self.melody.delegate=self;
     [self.melody sendData:data];
 }
@@ -158,7 +155,6 @@
 {
     [self.pollTimer invalidate];
     self.pollTimer=nil;
-    //[self.manager stopScanning];
 }
 
 -(void)connect
@@ -176,30 +172,24 @@
 -(void)ledLeftOn
 {
     NSData* data = [@"l1" dataUsingEncoding:NSUTF8StringEncoding];
-    //NSLog(@"%s",__func__);
-    //[self.melody setDataNotification:YES];
     [self.melody sendData:data];
 }
 
 -(void)ledLeftOff
 {
-    //NSLog(@"%s",__func__);
     NSData* data = [@"l0" dataUsingEncoding:NSUTF8StringEncoding];
-    //[self.melody setDataNotification:YES];
     [self.melody sendData:data];
 }
 
 -(void)ledRightOn
 {
     NSData* data = [@"r1" dataUsingEncoding:NSUTF8StringEncoding];
-    // [self.melody setDataNotification:YES];
     [self.melody sendData:data];
 }
 
 -(void)ledRightOff
 {
     NSData* data = [@"r0" dataUsingEncoding:NSUTF8StringEncoding];
-    //[self.melody setDataNotification:YES];
     [self.melody sendData:data];
 }
 
@@ -208,18 +198,13 @@
 
 - (void) melodyManagerDiscoveryDidRefresh:(MelodyManager*)manager
 {
-  //NSLog(@"%s",__func__);
-  //[foundDevices reloadData];
-  //NSLog(@"!!!!!!!!");
   if ([MelodyManager numberOfFoundDevices]>0) {
         [self connect];
     }
-  //NSLog(@"%@",[MelodyManager foundDeviceAtIndex:0]);
 }
 
 - (void) melodyManagerDiscoveryStatePoweredOff:(MelodyManager*)manager
 {
-   //NSLog(@"%s",__func__);
    NSLog(@"BT IS OFF");
 }
 
@@ -233,14 +218,12 @@
 }
 
 - (void) melodySmart:(MelodySmart*)m didConnectToMelody:(BOOL) result {
-    
-    //[self ledLeftOn];
+
     if (!_queue) {
         _queue= dispatch_queue_create("serialQ", DISPATCH_QUEUE_SERIAL);
     }
     
     self.isConnected=YES;
-   // NSLog(@"%s",__func__);
     _zeroBottom_=ZERO_BOTTOM;
     _zeroTop_=ZERO_TOP;
     _samplesTaken_=0;
@@ -260,18 +243,11 @@
 }
 
 -(void) melodySmartDidPopulateMelodyService:(MelodySmart*)m {
-    /*if (m == melody) {
-     UIAppDelegate.melody = melody;
-     [[NSNotificationCenter defaultCenter] postNotificationName:@"MelodyDeviceUpdateNotification" object: nil];
-     MMDrawerController * drawerController = (MMDrawerController *)UIAppDelegate.window.rootViewController;
-     [drawerController closeDrawerAnimated:YES completion:nil];
-     }*/
-  //  NSLog(@"%s",__func__);
+
 }
 
 - (void) melodySmartDidDisconnectFromMelody:(MelodySmart*) melody {
-   // NSLog(@"disconnected %@",melody);
-   // NSLog(@"%s",__func__);
+
     _isConnected=NO;
     [self.delegate btleManagerDisconnected:self];
 }
@@ -284,8 +260,6 @@
     _deadZone_=threshold;
     _zeroTop_=_neutralValueAverage_+_deadZone_;
     _zeroBottom_=_neutralValueAverage_-_deadZone_;
-    //[_neutralArray_ removeAllObjects];
-    //_isNeuteralising=YES;
 }
 -(void)setRangeReduction:(float)range
 {
@@ -296,11 +270,9 @@
 {
     NSString *content = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     content =[NSString stringWithFormat:@"0x%@",content];
-    // NSLog(@"blah %@",content);
     unsigned int outVal;
     NSScanner* scanner = [NSScanner scannerWithString:content];
     [scanner scanHexInt:&outVal];
-    //NSLog(@"outval %i",outVal);
     if (_isNeuteralising) {
         NSNumber  *num=[NSNumber numberWithInt:outVal];
         [_neutralArray_ addObject:num];
@@ -313,23 +285,18 @@
         return;
     }
     
-    //fff == 4095
     float fullmax= 4096-_zeroTop_;
-    float fullmin= _zeroBottom_; //- MAX_INHALE;
+    float fullmin= _zeroBottom_;
     
     if (outVal<_zeroBottom_)
     {
         float value=outVal;
         float percent=(_zeroBottom_-value)/fullmin;
-        //float percent=(_zeroBottom_)/fullmin;
         
         if (percent>1.0) {
             percent=1.0;
         }
-        //  NSLog(@"pct == %f\n",percent);
-        // NSLog(@"value == %f\n",value);
-        // // NSLog(@"zero bottom %d\n",_zeroBottom_);
-        //  NSLog(@"full min == %f\n",fullmin);
+
         if (self.btleState==BTLEState_Stopped) {
             self.btleState=BTLEState_Began;
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -355,18 +322,12 @@
         
         float percent=(value-_zeroTop_)/fullmax;
         
-        //sometimes it goes to 1.3
-        //NSLog(@"pct == %f\n",percent);
-        //NSLog(@"value == %f\n",value);
-        //NSLog(@"zero top %d\n",_zeroTop_);
-        //NSLog(@"full max == %f\n",fullmax);
         if (percent>1.0) {
             percent=1.0;
         }
         if (self.btleState==BTLEState_Stopped) {
             self.btleState=BTLEState_Began;
             dispatch_async(dispatch_get_main_queue(), ^{
-                //  [self ledLeftOn];
                 [self.delegate btleManagerBreathBegan:self];
                 if ([self.delegate respondsToSelector:@selector(btleManagerBreathBeganWithExhale:)]) {
                     [self.delegate btleManagerBreathBeganWithExhale:self];
@@ -382,8 +343,6 @@
     {
         if (self.btleState!=BTLEState_Stopped) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                // [self ledLeftOff];
-                // [self ledRightOff];
                 [self.delegate btleManagerBreathStopped:self];
             });
         self.btleState=BTLEState_Stopped;
@@ -428,8 +387,6 @@
 {
     NSMutableString* hexStr = [NSMutableString stringWithCapacity:dlen * 2];
     int i;
-    // Note 'data' contains a null terminator. Subtract an extra 1
-    // from 'dlen' in this loop:
     for(i = 0; i < dlen-1; i++)
         [hexStr appendFormat:@"%02x ", data[i]];
     

@@ -8,32 +8,14 @@
 
 @implementation HeaderView
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    
-    
-    return self;
-}
 -(void)build
 {
     self.label=[[UILabel alloc]initWithFrame:CGRectMake(30,30, 500, self.bounds.size.height)];
-
     [self.label setText:self.user.userName];
     [self addSubview:self.label];
-    
-
-    
     NSString *currentUser=[[NSUserDefaults standardUserDefaults]objectForKey:@"currentUser"];
     
-    NSLog(@"currentUser %@", currentUser);
-    NSLog(@"self.user.userName %@", self.user.userName);
-    
     if ([currentUser isEqualToString:self.user.userName]){
-        NSLog(@"no delete option for current user");
         self.currentUserLabel=[[UILabel alloc]initWithFrame:CGRectMake(self.bounds.size.width-100, 30, 100, self.bounds.size.height)];
         [self.currentUserLabel setText:@"Current User"];
         [self.currentUserLabel setTextColor:[UIColor blackColor]];

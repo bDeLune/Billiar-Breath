@@ -28,11 +28,6 @@
     -(void)settingsModeToUser:(SettingsViewController*)caller;
 @end
 
-@protocol GameViewProtocol <NSObject>
-    -(void)gameViewExitGame;
-    -(void)toSettingsScreen;
-@end
-
 @interface GameViewController : UIViewController<MidiControllerProtocol,GameProtocol,  SETTINGS_DELEGATE,UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITabBarDelegate>{
     GPUImageOutput<GPUImageInput> *sepiaFilter, *sepiaFilter2;
     UISlider *imageSlider;
@@ -57,7 +52,7 @@
 @property (nonatomic,weak) IBOutlet  UILabel *currentUsersNameLabel;
 @property (strong) NSPersistentStoreCoordinator *sharedPSC;
 @property (nonatomic,strong)User  *gameUser;
-@property (nonatomic,unsafe_unretained)id<GameViewProtocol, UITabBarDelegate>delegate;
+@property (nonatomic,unsafe_unretained)id<UITabBarDelegate>delegate;
 @property float velocity;
 @property float animationrate;
 @end

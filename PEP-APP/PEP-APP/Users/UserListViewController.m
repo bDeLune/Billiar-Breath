@@ -17,46 +17,16 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property(nonatomic,assign)User  *deleteUser;
-
-
 @end
 @implementation UserListViewController
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (IBAction)returnToUsersList:(id)sender {
-    
-    NSLog(@"RETURN TO USERS LIST");
     self.backButton.hidden = YES;
     [self.detailViewController.view removeFromSuperview];
 }
 
 -(NSArray*)sortedDateArrayForUser:(User*)user
 {
-    /* NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-     [formatter setDateFormat:@"d MMM y "];
-     
-     NSMutableArray  *datesstrings=[NSMutableArray new];
-     NSArray *alldates=[user.game allObjects];
-     for (int i=0; i<[user.game count]; i++) {
-     NSDate  *date=[[alldates objectAtIndex:i]valueForKey:@"gameDate"];
-     // NSString  *datestring=[formatter]
-     
-     [datesstrings addObject:[formatter stringFromDate:date]];
-     }
-     NSArray *cleanedArray = [[NSSet setWithArray:datesstrings] allObjects];
-     NSMutableArray *mutable=[[NSMutableArray alloc]initWithArray:cleanedArray];
-     [mutable sortUsingSelector:@selector(compare:)];
-     
-     NSArray  *reverse=[[mutable reverseObjectEnumerator]allObjects];*/
-    
     NSArray *alldates=[user.game allObjects];
     
     
@@ -81,9 +51,6 @@
     
      NSMutableArray *mutable=[[NSMutableArray alloc]initWithArray:cleanedArray];
      [mutable sortUsingSelector:@selector(compare:)];
-    
-    // [[[mutable sortedArrayUsingSelector:@selector(compare:)] reverseObjectEnumerator] allObjects];
-
     return mutable;
     
 }
@@ -96,7 +63,6 @@
     NSArray *alldates=[user.game allObjects];
     for (int i=0; i<[user.game count]; i++) {
         NSDate  *date=[[alldates objectAtIndex:i]valueForKey:@"gameDate"];
-        // NSString  *datestring=[formatter]
         [datesstrings addObject:[formatter stringFromDate:date]];
     }
     NSArray *cleanedArray = [[NSSet setWithArray:datesstrings] allObjects];
@@ -184,7 +150,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -198,6 +163,7 @@
     cell.textLabel.text= stringFromDate;
     return cell;
 }
+
 -(NSArray*)gamesMatchingDate:(NSString*)date user:(User*)user
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -211,8 +177,6 @@
     
     NSArray *unfiltered=[user.game allObjects];
     NSArray *filtered=[unfiltered filteredArrayUsingPredicate:shortNamePredicate];
-    //NSLog(@"gamesMatchingDate username %@", user.userName);
-    //NSLog(@"gamesMatchingDate unfiltered %@", unfiltered);
     NSMutableArray * tempcopy = [[NSMutableArray alloc] init];
     
     [tempcopy addObjectsFromArray:unfiltered];
@@ -235,10 +199,9 @@
     NSMutableArray  *durationOnly=[NSMutableArray new];
     
     for (Game *agame in array) {
-       //NSLog(@"GAMELABEL -  ADDING didSelectRowAtIndexPath for array %@", array);
-            [durationOnly addObject:agame];
-        }
-    //NSLog(@"didSelectRowAtIndexPath  for username %@ durationOnlyarray %@" , user.userName , durationOnly);
+        [durationOnly addObject:agame];
+    }
+    
     [self.detailViewController setUSerData:durationOnly];
     self.detailViewController.view.frame = CGRectMake(97,207,569,645);
     self.backButton.hidden = NO;
@@ -249,13 +212,9 @@
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-     NSLog(@"controllerDidChangeContent");
     [self.tableView reloadData];
 }
 
-#pragma mark - Core Data stack
-
-// Returns the path to the application's documents directory.
 - (NSString *)applicationDocumentsDirectory {
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 }
@@ -296,20 +255,14 @@
 -(void)deleteMember:(HeaderView *)header
 {
     self.deleteUser=[self.userList objectAtIndex:header.section];
-    NSLog(@"userList: %d", header.section);
-    NSLog(@"userList: %@", self.userList);
-    NSLog(@"self.deleteUser.userName: %@", self.deleteUser.userName);
-    
     NSString *deleteUserString=[NSString stringWithFormat:NSLocalizedString(@"Delete User ", nil)];
-    NSLog(@"deleteUserString: %@", deleteUserString);
 
     NSString *message=[NSString stringWithFormat: [NSString stringWithFormat: deleteUserString, self.deleteUser.userName],nil];
-    
-     NSLog(@"message: %@", deleteUserString);
     
     UIAlertView *alert=[[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Confirm", nil)] message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:[NSString stringWithFormat:NSLocalizedString(@"Cancel", nil)] , nil];
         [alert show];
 }
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0)
@@ -321,7 +274,6 @@
 
 -(void)viewHistoricalData:(HeaderView *)header
 {
-    NSLog(@"Searching for historical data");
     User *user=[self.userList objectAtIndex:header.section];
     NSArray * src=[user.game allObjects];
     NSMutableArray  *durationOnly=[NSMutableArray new];
@@ -333,7 +285,6 @@
     }
 
     NSUInteger count=[[user.game allObjects]count];
-     //localis
     if (count==0) {
         UIAlertView  *alert=[[UIAlertView alloc]initWithTitle:@"No Data" message:@"No data for this user yet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [[GCDQueue mainQueue]queueBlock:^{
@@ -352,14 +303,11 @@
 
 // this is called via observing "NSManagedObjectContextDidSaveNotification" from our APLParseOperation
 - (void)mergeChanges:(NSNotification *)notification {
-    //if (notification.object != self.managedObjectContext) {
     [self performSelectorOnMainThread:@selector(updateMainContext:) withObject:notification waitUntilDone:NO];
-    // }
 }
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"canEditRowAtIndexPath");
     return NO;
 }
 
@@ -372,7 +320,6 @@
 
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"editingStyleForRowAtIndexPath");
     return UITableViewCellEditingStyleDelete;
 }
 

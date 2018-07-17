@@ -5,6 +5,6 @@
 #import "MainTableViewController.h"
 #import "AppDelegate.h"
 
-@interface ViewController : UITabBarController<LoginProtocol, GameViewProtocol>
+@interface ViewController : UITabBarController<LoginProtocol>
 
 @end
