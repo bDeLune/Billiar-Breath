@@ -23,12 +23,8 @@ NSString *kAddNewUserOperationUserAdded = @"UserAdded";
 
 }
 - (void)main {
-    
-    // Creating context in main function here make sure the context is tied to current thread.
-    // init: use thread confine model to make things simpler.
     self.managedObjectContext = [[NSManagedObjectContext alloc] init];
     self.managedObjectContext.persistentStoreCoordinator = self.sharedPSC;
-    
     [self addTheUser];
 }
 

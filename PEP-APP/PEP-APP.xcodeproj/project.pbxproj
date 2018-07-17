@@ -906,9 +906,9 @@
 		71A04ECB208FD0E400AA878B /* Info */ = {
 			isa = PBXGroup;
 			children = (
+				71CA7A9D20D05F4D00126454 /* InfoViewController.xib */,
 				7138E5922088FBA700C0C08F /* InfoViewController.h */,
 				7138E5932088FBA700C0C08F /* InfoViewController.m */,
-				71CA7A9D20D05F4D00126454 /* InfoViewController.xib */,
 			);
 			path = Info;
 			sourceTree = "<group>";

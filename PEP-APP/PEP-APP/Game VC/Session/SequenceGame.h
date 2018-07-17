@@ -6,7 +6,6 @@
 @property int totalBallsAttempted;
 @property int currentSpeed;
 @property BOOL  halt;
--(void)playHitTop;
--(id)initWithBallCount: (int)ballCount;
+-(id)  initWithBallCount: (int)ballCount;
 -(void)setAudioMute: (BOOL) muteSetting;
 @end

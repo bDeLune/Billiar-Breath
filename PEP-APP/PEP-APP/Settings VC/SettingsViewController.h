@@ -5,22 +5,14 @@
 @interface SettingsViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITabBarDelegate, SETTINGS_DELEGATE>
 {
     IBOutlet UISlider *speedSlider;
-    IBOutlet UISlider *breathLengthSlider;
+    IBOutlet UIPickerView *filterPicker;
     IBOutlet UIPickerView *pickerViewB;
+    IBOutlet UIPickerView *pickerViewC;
     IBOutlet UILabel *settingsStrengthLabel;
     IBOutlet UILabel *settingsDurationLabel;
     IBOutlet UIImageView *whiteBackground;
-    IBOutlet UIPickerView *pickerViewC;
     IBOutlet UIImageView *backgroundImage;
-    IBOutlet UIPickerView *filterPicker;
     IBOutlet UILabel *breathLengthLabel;
-    IBOutlet UISlider *rateSlider;
-    //IBOutlet UILabel  *thresholdLabel;
-    //IBOutlet UISlider *thresholdSlider;
-    //IBOutlet UILabel  *btTresholdLabel;
-   // IBOutlet UILabel  *btrangeBoost;
-   // IBOutlet UISlider *btThresholdSlider;
-   // IBOutlet UISlider *btBoostSlider;
     NSMutableArray *imageGameSoundArray;
     NSMutableArray *repititionsArray;
     NSMutableArray *filterArray;
@@ -29,9 +21,9 @@
     int currentdirection;
     id<SETTINGS_DELEGATE> __unsafe_unretained settinngsDelegate;
 }
+
 @property (unsafe_unretained) id<SETTINGS_DELEGATE> settinngsDelegate;
 @property(nonatomic,strong)SettingsViewGauge  *gaugeView;
-
 -(void) setSettingsStrengthLabelText:(NSString*)text;
 -(void) setSettingsDurationLabelText:(NSString*)text;
 -(void) setGaugeForce:(float)force;

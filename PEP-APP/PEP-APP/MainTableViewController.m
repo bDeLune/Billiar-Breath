@@ -36,9 +36,8 @@
     }
     
     self.gameViewController.settingsViewController = self.settingsViewController;
-    //self.settingsViewController.delegate = self.gameViewController;
     [self.settingsViewController setSettinngsDelegate:self.gameViewController];
-    [self.gameViewController prepareDisplay]; //todo: prepare imageview
+    [self.gameViewController prepareDisplay];
     
     NSMutableArray *tabViewControllers = [[NSMutableArray alloc] init];
     [tabViewControllers addObject:self.gameViewController];
@@ -64,10 +63,6 @@
                                   image:[UIImage imageNamed:@"Info-INACTIVE-80x80"]
                                     tag:4];
     
-   //UIImage *image = [[UIImage imageNamed:@"Info-INACTIVE-80x80"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-   //[self.infoViewController.tabBarItem setSelectedImage:image];
-   //[self.infoViewController.tabBarItem setImage:image];
-    
     self.infoViewController.tabBarItem.title = @"";
     self.userListViewController.tabBarItem.title = @"";
     self.settingsViewController.tabBarItem.title = @"";
@@ -84,56 +79,33 @@
 }
 
 -(void)setMemoryInfo:(NSPersistentStoreCoordinator*)store withuser:(User*)user withManagedObjectContext:(NSManagedObjectContext*)moc{
-    NSLog(@"setting memory info");
     self.gameViewController.gameUser=user;
     [self.gameViewController setLabels];
     self.gameViewController.sharedPSC=store;
     self.userListViewController.sharedPSC=store;
     [self.userListViewController getListOfUsers];
-
     self.managedObjectContext = moc;
 }
 
 -(void)saveUserSettings {
-    
-    NSLog(@"Saving user settings");
     NSString *direction=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultDirection"];
     NSNumber *defaultSpeed=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultSpeed"];
     NSNumber *defaultRepetitionIndex=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultRepetitionIndex"];
     NSString *defaultSound=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultSound"];
     NSNumber *defaultEffect=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultEffect"];
     NSNumber *defaultMute=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultMute"];
-    
-    //NSInteger* defaultSpeed = [[NSUserDefaults standardUserDefaults]integerForKey:@"defaultSpeed"];
-    //NSString *defaultSound = [[NSUserDefaults standardUserDefaults]stringForKey:@"defaultSound"];
-    //NSInteger* defaultRepetitions = [[NSUserDefaults standardUserDefaults]integerForKey:@"defaultRepetitions"];
-   // NSString* direction = [[NSUserDefaults standardUserDefaults]stringForKey:@"defaultDirection"];
-   /// NSInteger *defaultEffect = [[NSUserDefaults standardUserDefaults]integerForKey:@"defaultEffect"];
-   // NSNumber *defaultMute=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultMute"];
-    
-    NSLog(@"SAVING - direction %@", direction);
-    NSLog(@"SAVING - defaultSpeed %@", defaultSpeed);
-    NSLog(@"SAVING - defaultRepetitionIndex %@", defaultRepetitionIndex);
-    NSLog(@"SAVING - defaultSound %@", defaultSound);
-    NSLog(@"SAVING - defaultEffect %@", defaultEffect);
-    NSLog(@"SAVING - defaultMute %@", defaultMute);
-    
+
     NSString  *name=[self.gameViewController.gameUser valueForKey:@"userName"];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSManagedObjectContext *context = self.managedObjectContext;
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:context];
     NSPredicate  *pred = [NSPredicate predicateWithFormat:@"userName == %@", name];
     [fetchRequest setPredicate:pred];
-    //[fetchRequest setFetchLimit:1];
     [fetchRequest setEntity:entity];
-    NSLog(@"pred %@", name);
-    
     NSError  *error;
     NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
 
     User *user = items[0];
-    
-    NSLog(@"user %@", user);
     [user setValue:direction forKey:@"defaultDirection"];
     [user setValue:defaultSpeed forKey:@"defaultSpeed"];
     [user setValue:defaultRepetitionIndex forKey:@"defaultRepetitionIndex"];
@@ -141,15 +113,6 @@
     [user setValue:defaultMute forKey:@"defaultMute"];
     [user setValue:defaultEffect forKey:@"defaultEffect"];
     
-   // user.direction = direction;
-    //user.defaultSpeed = defaultSpeed;
-    //user.defaultRepetitions = defaultRepetitions;
-    //user.defaultSound = defaultSound;
-    //user.defaultEffect = defaultEffect;
-   // user.defaultMute = defaultMute;
-    //[appdelegate saveContext];
-    
-
     if ([self.managedObjectContext hasChanges]) {
         if (![self.managedObjectContext save:&error]) {
             // Replace this implementation with code to handle the error appropriately.
@@ -163,8 +126,6 @@
     }
 }
 
-#pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     self.tableview =tableView;
     return 0;
@@ -174,24 +135,7 @@
     return 0;
 }
 
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
-
-    
-    
-    NSLog(@"selected index : %i",[tabBarController selectedIndex]);
-    if ([tabBarController selectedIndex] == 1){
-    
-    }
-}
-
--(void) viewWillDisappear:(BOOL)animated{
-    
-    NSLog(@"view will disappear");
-   //
-}
-
 - (void)viewDidDisappear:(BOOL)animated{
-    NSLog(@"view did disappear");
      [self saveUserSettings];
 }
 

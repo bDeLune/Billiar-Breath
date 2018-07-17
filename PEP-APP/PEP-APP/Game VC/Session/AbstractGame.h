@@ -34,7 +34,7 @@ typedef enum
 @property float time;
 -(void) startGame;
 -(void) endGame;
--(int) nextBall;
+-(int)  nextBall;
 -(void) setBallCount;
 -(void) startTimer;
 -(void) killTimer;

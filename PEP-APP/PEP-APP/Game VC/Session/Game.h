@@ -10,12 +10,4 @@
 @property (nonatomic, retain) NSNumber * power;
 @property (nonatomic, retain) User *user;
 @property (nonatomic, retain) NSString * gameDirection;
-//@property (nonatomic, retain) NSNumber * requiredBalloons;
-//@property (nonatomic, retain) NSNumber * achievedBalloons;
-//@property (nonatomic, retain) NSNumber * achievedBreathLength;
-//@property (nonatomic, retain) NSNumber * requiredBreathLength;
-//@property (nonatomic, retain) NSNumber * bestDuration;
-//@property (nonatomic, retain) NSString * durationString;
-//@property (nonatomic, retain) NSNumber * bestStrength;
-
 @end

@@ -12,11 +12,6 @@
         _sessionDuration= [NSString stringWithFormat:@"%g", 0.0];
         _sessionSpeed=[NSNumber numberWithFloat:0.0];
         _sessionType=[NSNumber numberWithInt:0];
-       // _sessionRequiredBalloons=[NSNumber numberWithInt:0];
-       // _sessionAchievedBalloons=[NSNumber numberWithInt:0];
-       /// _sessionBreathDirection=[NSNumber numberWithInt:0];
-       // _sessionRequiredBreathLength=[NSNumber numberWithInt:0];
-       // _sessionAchievedBreathLength=[NSNumber numberWithInt:0];
         _sessionBreathDirection=[NSNumber numberWithInt:0];
     }
     
@@ -39,11 +34,6 @@
     [encoder encodeObject:_username forKey:@"username"];
     [encoder encodeObject:_sessionType forKey:@"sessionType"];
     [encoder encodeObject:_sessionBreathDirection forKey:@"sessionDirection"];
-    //[encoder encodeObject:_sessionRequiredBalloons forKey:@"sessionRequiredBalloons"];
-   // [encoder encodeObject:_sessionAchievedBalloons forKey:@"sessionAchievedBalloons"];
-    //[encoder encodeObject:_sessionRequiredBreathLength forKey:@"sessionRequiredBreathLength"];
-   // [encoder encodeObject:_sessionAchievedBreathLength forKey:@"sessionAchievedBreathLength"];
-   // [encoder encodeObject:_sessionBreathDirection forKey:@"sessionBreathDirection"];
 }
 
 -(id)initWithCoder:(NSCoder *)decoder
@@ -55,11 +45,6 @@
     self.sessionSpeed=[decoder decodeObjectForKey:@"sessionSpeed"];
     self.sessionType=[decoder decodeObjectForKey:@"sessionType"];
     self.sessionBreathDirection=[decoder decodeObjectForKey:@"sessionDirection"];
-   // self.sessionRequiredBalloons = [decoder decodeObjectForKey:@"sessionRequiredBalloons"];
-   // self.sessionAchievedBalloons = [decoder decodeObjectForKey:@"sessionAchievedBalloons"];
-   // self.sessionRequiredBreathLength = [decoder decodeObjectForKey:@"sessionRequiredBreathLength"];
-   // self.sessionAchievedBreathLength = [decoder decodeObjectForKey:@"sessionAchievedBreathLength"];
-   // self.sessionBreathDirection=[decoder decodeObjectForKey:@"sessionBreathDirection"];
     return self;
 }
 

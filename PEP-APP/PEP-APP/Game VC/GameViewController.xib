@@ -12,8 +12,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GameViewController">
             <connections>
                 <outlet property="HQPhotoPickerButton" destination="r0I-hC-pUN" id="CJu-aa-tbf"/>
-                <outlet property="MainGaugeWindow" destination="r3m-4U-DNu" id="5UP-6e-w9h"/>
-                <outlet property="backToLoginButton" destination="OpF-Up-0wA" id="GDI-p4-Deo"/>
                 <outlet property="balloonView" destination="Kzq-xs-lx8" id="Ucd-JP-AfN"/>
                 <outlet property="bluetoothIcon" destination="vWa-Qa-fCA" id="P6u-Cw-3ls"/>
                 <outlet property="currentUsersNameLabel" destination="Uk2-5k-71G" id="j86-aF-w4z"/>
@@ -41,16 +39,6 @@
                     <rect key="frame" x="0.0" y="0.0" width="779" height="1019"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="OpF-Up-0wA">
-                    <rect key="frame" x="13" y="400" width="175" height="58"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" backgroundImage="LoginButton">
-                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="exitGameScreen:" destination="-1" eventType="touchUpInside" id="xEB-hZ-bdR"/>
-                    </connections>
-                </button>
                 <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="TE6-R3-G8k">
                     <rect key="frame" x="419" y="782" width="126" height="121"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -104,10 +92,6 @@
                         <action selector="openHQContrastPhoto:" destination="-1" eventType="touchUpInside" id="UgQ-JC-cGc"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="r3m-4U-DNu">
-                    <rect key="frame" x="419" y="0.0" width="360" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -118,7 +102,6 @@
     </objects>
     <resources>
         <image name="Bluetooth-OFF.png" width="108" height="147"/>
-        <image name="LoginButton" width="261" height="58"/>
         <image name="Main-Background.png" width="1536" height="2048"/>
         <image name="Main-Button-Picker-ALBUM.png" width="190" height="190"/>
         <image name="Main-Button-Picker-HICONTRAST.png" width="190" height="190"/>

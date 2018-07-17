@@ -12,8 +12,7 @@
 }
 
 @property(nonatomic,strong) UITextView  *outputtext;
-@property (nonatomic, strong) dispatch_source_t  aTimer; //added nonatomic strjng
-
+@property(nonatomic,unsafe_unretained)id<MidiControllerProtocol>delegate;
 @property int midiinhale;
 @property int midiexhale;
 @property float velocity;
@@ -27,7 +26,6 @@
 @property int numberOfSources;
 -(void)pause;
 -(void)resume;
-@property(nonatomic,unsafe_unretained)id<MidiControllerProtocol>delegate;
 -(BOOL)allowBreath;
 -(void)continueMidiNote:(int)pvelocity;
 -(void)stopMidiNote;

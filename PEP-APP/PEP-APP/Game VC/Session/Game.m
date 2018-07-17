@@ -9,12 +9,4 @@
 @dynamic user;
 @dynamic speed;
 @dynamic gameDirection;
-//@dynamic durationString;
-//@dynamic requiredBalloons;
-//@dynamic achievedBalloons;
-//@dynamic achievedBreathLength;
-//@dynamic requiredBreathLength;
-//@dynamic bestStrength;
-//@dynamic bestDuration;
-
 @end

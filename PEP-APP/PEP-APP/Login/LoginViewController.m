@@ -14,12 +14,9 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
         self.addUserQueue = [NSOperationQueue new];
-        
-        // observe the keypath change to get notified of the end of the parser operation to hide the activity indicator
         [self.addUserQueue addObserver:self forKeyPath:@"operationCount" options:0 context:NULL];
-           }
+        }
     return self;
 }
 
@@ -61,23 +58,25 @@
 #pragma mark -
 
 #pragma mark - KVO
-// observe the queue's operationCount, stop activity indicator if there is no operatation ongoing.
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (object == self.addUserQueue && [keyPath isEqualToString:@"operationCount"]) {
         
         if (self.addUserQueue.operationCount == 0) {
-            
-    ///        [[GCDQueue mainQueue]queueBlock:^{
-    ///            [self.delegate LoginSucceeded:self user:[self user:self.usernameTextField.text]];
-
-    //        }];
+            ///[[GCDQueue mainQueue]queueBlock:^{
+            ///  [self.delegate LoginSucceeded:self user:[self user:self.usernameTextField.text]];
+            // }];
         }
     }
     else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
+
+#pragma mark -
+
+#pragma mark - User login and signup
 
 -(User*)user:(NSString*)username
 {
@@ -94,13 +93,6 @@
     
     if ([items count]>0) {
         User *user=[items objectAtIndex:0];
-        
-        NSLog(@"SAVED DATA TO DEFUALTS user.defaultDirection : %@", user.defaultDirection);
-        NSLog(@"SAVED DATA TO DEFUALTS user.defaultSpeed : %@", user.defaultSpeed);
-        NSLog(@"SAVED DATA TO DEFUALTS user.defaultRepetitionIndex : %@", user.defaultRepetitionIndex);
-        NSLog(@"SAVED DATA TO DEFUALTS user.defaultMute : %@", user.defaultMute);
-        NSLog(@"SAVED DATA TO DEFUALTS user.defaultEffect : %@", user.defaultEffect);
-        NSLog(@"SAVED DATA TO DEFUALTS user.defaultSound : %@", user.defaultSound);
         
         [[NSUserDefaults standardUserDefaults]setObject:user.defaultDirection forKey:@"defaultDirection"];
         [[NSUserDefaults standardUserDefaults]setObject:user.defaultSpeed forKey:@"defaultSpeed"];
@@ -127,10 +119,8 @@
     NSError  *error;
     NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
     if ([items count]==0) {
-        //mylocalis
 
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:[NSString stringWithFormat:NSLocalizedString(@"That user does not exist. Try signing up instead", nil)] preferredStyle:UIAlertControllerStyleAlert];
-        //mylocalis
 
         UIAlertAction* ok = [UIAlertAction actionWithTitle:[NSString stringWithFormat:NSLocalizedString(@"OK", nil)] style:UIAlertActionStyleDefault handler:nil];
         [alertController addAction:ok];
@@ -159,7 +149,6 @@
     NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
     
     if ([name length] == 0){
-        //mylocalis
         NSString* leftBlankString = [NSString stringWithFormat:NSLocalizedString(@"Field has been left blank", nil)];
         NSString* errorString = [NSString stringWithFormat:NSLocalizedString(@"Error", nil)];
         NSString* okString = [NSString stringWithFormat:NSLocalizedString(@"OK", nil)];
@@ -173,8 +162,6 @@
     }
     
     if ([items count]>0) {
-
-        //localis
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Error", nil)] message:[NSString stringWithFormat:NSLocalizedString(@"Sorry, that user already exists", nil)] preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* ok = [UIAlertAction actionWithTitle:[NSString stringWithFormat:NSLocalizedString(@"OK", nil)] style:UIAlertActionStyleDefault handler:nil];
         [alertController addAction:ok];
@@ -186,7 +173,6 @@
         AddNewUserOperation *addUserOperation =[[AddNewUserOperation alloc]initWithData:self.usernameTextField.text sharedPSC:self.sharedPSC];
         
         [self.addUserQueue addOperation:addUserOperation];
-        //mylocalis
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Success!" message:[NSString stringWithFormat:NSLocalizedString(@"Registration Complete!", nil)] preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* ok = [UIAlertAction actionWithTitle:[NSString stringWithFormat:NSLocalizedString(@"OK", nil)] style:UIAlertActionStyleDefault handler:nil];
         [alertController addAction:ok];
@@ -198,7 +184,6 @@
 -(IBAction)goToUsersScreen:(id)sender
 {
     NSLog(@"Login screen move to users");
-    
     self.userList.sharedPSC=self.sharedPSC ;
     [self.userList getListOfUsers];
     [UIView transitionFromView:self.view toView:self.navcontroller.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished){
@@ -209,12 +194,12 @@
 
 -(void)userListDismissRequest:(UserListViewController *)caller
 {
-   // [[GCDQueue mainQueue]queueBlock:^{
-       [UIView transitionFromView:self.navcontroller.view toView:self.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished){
-            self.userList.sharedPSC=self.sharedPSC;
-            self.userList.delegate=self;
-        }];
-  //  }];
+   [UIView transitionFromView:self.navcontroller.view toView:self.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished){
+        self.userList.sharedPSC=self.sharedPSC;
+        self.userList.delegate=self;
+    }];
 }
+
+#pragma mark -
 
 @end

@@ -1,5 +1,5 @@
 #import <UIKit/UIKit.h>
-#import "User.h"    //added fri
+#import "User.h"
 
 @interface MainTableViewController : UITableViewController
 -(void)setMemoryInfo:(NSPersistentStoreCoordinator*)store withuser:(User*)user withManagedObjectContext:(NSManagedObjectContext*)moc;

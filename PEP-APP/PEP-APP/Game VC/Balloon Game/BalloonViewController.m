@@ -2,10 +2,7 @@
 #import "BalloonViewController.h"
 #import "Balloon.h"
 #import "CAKeyframeAnimation+AHEasing.h"
-//#import "EasingDeclarations.h"
-//#import "easing.h"
 #import "GCDQueue.h"
-#define NUM_BALLS  8
 #define BALL_RADIUS  80
 #define BALLOON_RADIUS  30
 
@@ -45,41 +42,18 @@
     }
     return self;
 }
--(id)initWithFrame:(CGRect)frame{
-    self=[super init];
-    if (self) {
-        NSLog(@"balloon game ini with frame");
-        UIView  *view=[[UIView alloc]initWithFrame:frame];
-        self.view=view;
-        self.view.backgroundColor=[UIColor  clearColor];
-        self.balls=[NSMutableArray new];
-        self.animators=[NSMutableArray new];
-        selectedGameBallCount = 3;
-        self.view.layer.zPosition = 3;
-    }
-    return self;
-}
 
 -(id)initWithFrame:(CGRect)frame withBallCount:(int)ballCount{
     self=[super init];
     if (self) {
-        //887 * 100
-        
-        NSLog(@"balloon game ini with frame and ballcount %d",ballCount );
-        
         UIView  *view=[[UIView alloc]initWithFrame:frame];
         self.view=view;
         self.view.backgroundColor=[UIColor  clearColor];
         self.balls=[NSMutableArray new];
-        
         self.emptyBalloons=[NSMutableArray new];
         self.animators=[NSMutableArray new];
         selectedGameBallCount = ballCount;
-        
-        //check change
         self.view.layer.zPosition = 3;
-        // Set the timing functions that should be used to calculate interpolation between the first two keyframes
-        // [self makeBalls];
     }
     return self;
 }
@@ -114,7 +88,6 @@
     for (ItemCount i=0; i<[self.balls count]; i++) {
         Balloon  *ball=[self.balls objectAtIndex:i];
         ball.alpha=0;
-        //[[GCDQueue mainQueue]queueBlock:^{
         CALayer *layer= ball.layer;
         [CATransaction begin];
         [CATransaction setValue:[NSNumber numberWithFloat:0.750] forKey:kCATransactionAnimationDuration];
@@ -122,54 +95,15 @@
         ball.animation = [self dockBounceAnimationWithIconHeight:150];
         ball.targetPoint=targetCenter;
         [ball.animation setDelegate:ball];
-        ball.animation.beginTime = CACurrentMediaTime()+(0.1*i); ///WAS 0.1
+        ball.animation.beginTime = CACurrentMediaTime()+(0.1*i);
         [layer addAnimation:ball.animation forKey:@"position"];
         [CATransaction commit];
         [ball setCenter:targetCenter];
     }
 }
-/*
--(void)reset
-{
-
-    @try
-    {
-        NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"Croquet ball drop bounce cement_BLASTWAVEFX_29317" ofType:@"wav"];
-        NSData *fileData = [NSData dataWithContentsOfFile:soundPath];
-        NSError *error = nil;
-        audioPlayer = [[AVAudioPlayer alloc] initWithData:fileData
-                                                    error:&error];
-        [audioPlayer setNumberOfLoops:1];
-        [audioPlayer prepareToPlay];
-        audioPlayer.volume=0.3;
-        
-     //  NSLog(@"SOUND: reset all %hhd", muteAudio);
-        
-        if (muteAudio == 1){
-        //    NSLog(@"AUDIO MUTED");
-        }else{
-             [audioPlayer play];
-        }
-    }
-    @catch (NSException *exception) {
-    //    NSLog(@"COULDNT PLAY AUDIO FILE  - %@", exception.reason);
-    }
-    
-    for (Balloon *ball in self.balls) {
-     // NSLog(@"STOPPING BALLS");
-        [ball stop];
-        [ball blowingEnded];
-        [ball removeFromSuperview];
-    }
-    
-  //  NSLog(@"REMOVE ALL BALLS");
-    [self.balls removeAllObjects];
-    [self makeBalls];
-}*/
 
 -(void)resetwithBallCount:(int)ballCount
 {
-    //remove
     selectedGameBallCount = ballCount;
     for (Balloon *ball in self.balls) {
         [ball stop];
@@ -205,54 +139,6 @@
     
     return animation;
 }
-
-/*-(void)pushBallsWithVelocity:(float)velocity
-{
-    float maxVelocity=30;
-    NSString * difficulty=[[NSUserDefaults standardUserDefaults]objectForKey:@"difficulty"];
-    int difficultyAsInt = [difficulty intValue];
-    
-    switch (difficultyAsInt) {
-        case 0:
-            maxVelocity=15;
-            NSLog(@"POWER small");
-           break;
-        case 1:
-            maxVelocity=50;
-            NSLog(@"POWER medium");
-           break;
-        case 2:
-            maxVelocity=65;
-            NSLog(@"POWER hard");
-          break;
-            
-        default:
-            break;
-    }
-    
-    if (velocity>maxVelocity) {
-        velocity=maxVelocity;
-    }
-    
-    int  perBall=maxVelocity/selectedGameBallCount;
-    float perBallCount=0;
-    int numberOfBallsToMove=(velocity/maxVelocity)*selectedGameBallCount;
-    
-    for (int i=0; i<numberOfBallsToMove; i++) {
-        if (perBallCount<=maxVelocity) {
-            NSLog(@" inner BLOWING began  %d!!!", i);
-            Balloon  *ball=[self.balls objectAtIndex:i];
-            [ball blowingBegan];
-            [ball setForce:velocity*80];
-            perBallCount+=perBall;
-        }
-    }
-    
-    for (int i=numberOfBallsToMove; i<[self.balls count]; i++) {
-        Balloon  *ball=[self.balls objectAtIndex:i];
-        [ball blowingEnded];
-    }
-}*/
 
 -(void)blowStarted: (int)currentBallNo atSpeed:(int)speed{
     isaccelerating=YES;
@@ -305,51 +191,12 @@
 }
 
 - (void)blowAttempt:(int)ballNo{
-    NSLog(@"blow attempt with ball %d", ballNo);
     Balloon  *ball=[self.balls objectAtIndex: currentBall];
-    
     NSString* ballString = [NSString stringWithFormat:@"Balloon%d",ballNo];
-    NSLog(@"%@", ballString);
     ball.currentBalloonImage.image = [UIImage imageNamed:ballString];
-    
 }
-
-
-
-/*
--(void)playHitTop
-{
-    NSLog(@"BALLS HITTING TOP");
-    @try {
-        NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"IMPACT RING METAL DESEND 01" ofType:@"wav"];
-        NSData *fileData = [NSData dataWithContentsOfFile:soundPath];
-        NSError *error = nil;
-        audioPlayer = [[AVAudioPlayer alloc] initWithData:fileData
-                                                    error:&error];
-        [audioPlayer prepareToPlay];
-        audioPlayer.volume=0.3;
-        
-        NSLog(@"SOUND:AUDIO HIT TOP");
-        if (muteAudio == 1){
-            NSLog(@"AUDIO MUTED");
-        }else{
-            [audioPlayer play];
-        }
-    }
-    @catch (NSException *exception) {
-        NSLog(@"COULDNT PLAY AUDIO FILE  - %@", exception.reason);
-    }
-}
-
--(void)ballReachedFinalTarget:(Balloon *)ball
-
-{
-    [self playHitTop];
-    ballGameCount++;
-}*/
 
 -(void)setAudioMute: (BOOL) muteSetting{
-    NSLog(@"setting inner audio mute %hhd", muteSetting);
     muteAudio = muteSetting;
 }
 

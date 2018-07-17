@@ -5,14 +5,12 @@
 #import "GPUImage.h"
 
 @interface BalloonViewController : UIViewController<BalloonProtocol>
--(id)initWithFrame:(CGRect)frame;
 -(id)initWithFrame:(CGRect)frame withBallCount:(int)ballCount;
-- (void)blowAttempt:(int)ballNo;//-(void)reset;
+-(void)blowAttempt:(int)ballNo;
 -(void)resetwithBallCount:(int)ballCount;
-//-(void)pushBallsWithVelocity:(float)velocity;
--(void)blowStarted: (int)currentBallNo atSpeed:(int)speed;
+-(void)blowStarted:(int)currentBallNo atSpeed:(int)speed;
 -(void)blowEnded;
 -(void)timerFired:(NSTimer *)timer;
-- (CAKeyframeAnimation *)dockBounceAnimationWithIconHeight:(CGFloat)iconHeight;
+-(CAKeyframeAnimation *)dockBounceAnimationWithIconHeight:(CGFloat)iconHeight;
 @property gameType  currentGameType;
 @end
