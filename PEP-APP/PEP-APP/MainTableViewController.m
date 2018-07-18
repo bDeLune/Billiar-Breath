@@ -88,6 +88,9 @@
 }
 
 -(void)saveUserSettings {
+    
+    NSLog(@"SAVING SETTINGS");
+    
     NSString *direction=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultDirection"];
     NSNumber *defaultSpeed=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultSpeed"];
     NSNumber *defaultRepetitionIndex=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultRepetitionIndex"];

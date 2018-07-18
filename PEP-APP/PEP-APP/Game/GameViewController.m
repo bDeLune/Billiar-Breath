@@ -182,15 +182,18 @@
     [self.toggleGameModeButton setImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];
     
     if (globalSoundActivated == 1){
-        NSLog(@"playing sound");
+        NSLog(@"unmuting sound");
         UIImage *soundOnImage = [UIImage imageNamed:@"Sound-ON.png"];
         [self.soundIcon setImage:soundOnImage forState:UIControlStateNormal];
-        [self.balloonViewController setAudioMute: 1];
+        [self.balloonViewController setAudioMute: 0];
+        [self.sequenceGameController setAudioMute: 0];
+        
     }else if(globalSoundActivated == 0){
         NSLog(@"muting sound");
         UIImage *soundOffImage = [UIImage imageNamed:@"Sound-OFF.png"];
         [self.soundIcon setImage:soundOffImage forState:UIControlStateNormal];
-        [self.balloonViewController setAudioMute: 0];
+        [self.balloonViewController setAudioMute: 1];
+        [self.sequenceGameController setAudioMute: 1];
     }
     
     NSString *defaultDirection=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultDirection"];
@@ -551,9 +554,14 @@
     self.sequenceGameController= [[SequenceGame alloc] initWithBallCount:selectedBallCount ];
         self.sequenceGameController.delegate=self;
     [self.balloonViewController resetwithBallCount:selectedBallCount];
+    if (globalSoundActivated == 1){
+        NSLog(@"unmuting sound");
+        [self.sequenceGameController setAudioMute: 0];
+    }else if(globalSoundActivated == 0){
+        NSLog(@"muting sound");
+        [self.sequenceGameController setAudioMute: 1];
+    }
 }
-
-
 
 -(void)noteContinuing:(MidiController*)note
 {
@@ -652,12 +660,16 @@
         globalSoundActivated = 1;
         UIImage *soundOnImage = [UIImage imageNamed:@"Sound-ON.png"];
          [self.soundIcon setImage:soundOnImage forState:UIControlStateNormal];
-         [self.balloonViewController setAudioMute: 1];
+         NSLog(@"unmuting sound");
+         [self.balloonViewController setAudioMute: 0];
+         [self.sequenceGameController setAudioMute: 0];
     }else if(globalSoundActivated == 1){
         globalSoundActivated = 0;
+         NSLog(@"muting sound");
         UIImage *soundOffImage = [UIImage imageNamed:@"Sound-OFF.png"];
         [self.soundIcon setImage:soundOffImage forState:UIControlStateNormal];
-         [self.balloonViewController setAudioMute: 0];
+         [self.balloonViewController setAudioMute: 1];
+         [self.sequenceGameController setAudioMute: 1];
     }
     
     [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:globalSoundActivated] forKey:@"defaultMute"];
@@ -682,12 +694,15 @@
 
 -(void)gameWon:(AbstractGame *)game
 {
+    
     [[GCDQueue mainQueue]queueBlock:^{
         [self resetGame:nil];
     }];
     
     [self.sequenceGameController killTimer];
 }
+
+
 
 -(void)saveCurrentSession
 {
@@ -891,6 +906,7 @@
     {
         [(GPUImageContrastFilter*)stillImageFilter setContrast:1-targetRadius];
     }
+    
     [sourcePicture processImage];
 }
 
@@ -977,6 +993,35 @@
             break;
     }
     return filter;
+}
+
+-(void) playImageGameVictorySound {
+    
+    NSLog(@"playImageGameVictorySound");
+    
+    @try {
+        NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"applauding" ofType:@"wav"];
+        NSData *fileData = [NSData dataWithContentsOfFile:soundPath];
+        NSError *error = nil;
+        
+        audioPlayer = [[AVAudioPlayer alloc] initWithData:fileData
+                                                    error:&error];
+        [audioPlayer prepareToPlay];
+        audioPlayer.volume= 0.5;
+        
+        
+        if (globalSoundActivated == 1){
+            NSLog(@"playImageGameVictorySound AUDIO MUTED");
+        }else{
+            [audioPlayer play];
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"COULDNT PLAY AUDIO FILE  - %@", exception.reason);
+    }
+    @finally {
+        
+    }
 }
 
 -(void) playImageGameSound {

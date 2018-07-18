@@ -5,7 +5,7 @@
 {
     BOOL gamewon;
     AVAudioPlayer *audioPlayer;
-    BOOL muteAudio;
+    int muteAudio;
     int currentGameBallCount;
 }
 @end
@@ -32,14 +32,24 @@
 }
 
 -(int)nextBall{
+    
+    NSLog(@"NEXT VBALL");
+    
     self.halt=NO;
     self.currentBall++;
     self.totalBallsAttempted++;
+    
+        if (self.totalBallsRaised == self.totalBalls) {
+            [self playVictorySound];
+        }
+    
+    
         if (self.totalBallsRaised>=self.totalBalls) {
             if (!gamewon) {
+                gamewon=YES;
                 [self.delegate gameWon:self];
-                    gamewon=YES;
-                }
+
+            }
             return -1;
         }
     if (!gamewon) {
@@ -50,4 +60,40 @@
     }
     return self.currentBall;
 }
+
+-(void) playVictorySound {
+    
+    NSLog(@"Victory sound! muteaudio %d", muteAudio);
+    
+    @try {
+        NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"applauding" ofType:@"wav"];
+        NSData *fileData = [NSData dataWithContentsOfFile:soundPath];
+        NSError *error = nil;
+        
+        audioPlayer = [[AVAudioPlayer alloc] initWithData:fileData
+                                                    error:&error];
+        [audioPlayer prepareToPlay];
+        audioPlayer.volume= 0.5;
+
+        
+        if (muteAudio == 1){
+            NSLog(@"Victory AUDIO MUTED");
+        }else{
+            [audioPlayer play];
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"COULDNT PLAY AUDIO FILE  - %@", exception.reason);
+    }
+    @finally {
+        
+    }
+}
+
+-(void)setAudioMute: (int) muteSetting{
+    
+    NSLog(@"inner SEQUENCE set mute %d", muteSetting);
+    muteAudio = muteSetting;
+}
+
 @end

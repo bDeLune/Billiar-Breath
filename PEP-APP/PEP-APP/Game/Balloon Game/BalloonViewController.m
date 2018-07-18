@@ -187,8 +187,6 @@
         ball.currentBalloonImage.image = [UIImage imageNamed:@"Balloon7"];
     }else if(percentageComplete >= 100){
         ball.currentBalloonImage.image = [UIImage imageNamed:@"Balloon8"];
-        [self playVictorySound];
-        
     }
 }
 
@@ -202,35 +200,6 @@
     
     NSLog(@"inner set mute %hhd", muteSetting);
     muteAudio = muteSetting;
-}
-
--(void) playVictorySound {
-    
-    NSLog(@"Victory sound!");
-    
-    @try {
-        NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"applauding" ofType:@"wav"];
-        NSData *fileData = [NSData dataWithContentsOfFile:soundPath];
-        NSError *error = nil;
-        
-        audioPlayer = [[AVAudioPlayer alloc] initWithData:fileData
-                                                    error:&error];
-        [audioPlayer prepareToPlay];
-        audioPlayer.volume= 0.5;
-
-        
-        if (muteAudio == 0){
-            NSLog(@"Victory AUDIO MUTED");
-        }else{
-            [audioPlayer play];
-        }
-    }
-    @catch (NSException *exception) {
-        NSLog(@"COULDNT PLAY AUDIO FILE  - %@", exception.reason);
-    }
-    @finally {
-        
-    }
 }
 
 @end

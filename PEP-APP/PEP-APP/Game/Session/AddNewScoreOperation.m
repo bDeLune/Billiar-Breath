@@ -25,6 +25,7 @@
 
 -(void)addTheSession
 {
+     NSLog(@"SAVING SESSION");
     Game *game = [NSEntityDescription insertNewObjectForEntityForName:@"Game" inManagedObjectContext:self.managedObjectContext];
     [game setDuration:self.session.sessionDuration];
     [game setGameDate:self.session.sessionDate];
@@ -44,6 +45,8 @@
     
     NSError  *error;
     NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
+    
+     NSLog(@"game %@", game);
     
     if ([items count]>0) {
         User *auser=[items objectAtIndex:0];
