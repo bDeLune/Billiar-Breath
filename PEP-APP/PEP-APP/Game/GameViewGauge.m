@@ -93,6 +93,7 @@
 
 -(void)blowingEnded
 {
+        NSLog(@"game gauge blow ended");
     isaccelerating=NO;
 }
 
@@ -105,30 +106,41 @@
     }else
     {
         force-=force*0.1;
-        acceleration-=acceleration*0.1;
+        acceleration-=acceleration*0.1;  //.03
+        
+        //force-=force*0.03;
+       // acceleration-=acceleration*0.03;
+        
     }
     
     if (force<1) {
         force=1;
     }
     
-    acceleration= 1.9 *  force;
+    //acceleration= acceleration +( force/mass);
+   // velocity = distance / time;
+    //time = distance / velocity;
+   // distance= ceilf((0.5)* (acceleration * powf(time, 2)));
+    
+    acceleration = 50.1*  force; //was 1.95.01
     velocity = distance / time;
     time = distance / velocity;
-    distance = ceilf((0.1)* (acceleration * powf(time, 2)));
+    distance = ceilf((0.01)* (acceleration * powf(time, 2)));//.1
     
-    if (distance > MAINGUAGE_HEIGHT){
-        distance = MAINGUAGE_HEIGHT;
-    }
+   // NSLog(@"game distance %f", force);
+    
+   // if (distance > MAINGUAGE_HEIGHT){ //15750
+    //    distance = MAINGUAGE_HEIGHT;
+   // }
 
     CGRect frame=animationObject.frame;
     frame.origin.x=0;
     frame.size.height=90;
     frame.size.width=distance;
     
-    if (distance>bestDistance) {
-        bestDistance=distance;
-    }
+   // if (distance>bestDistance) {
+   //     bestDistance=distance;
+    //}
 
     [animationObject setFrame:frame];
     [self setNeedsDisplay];

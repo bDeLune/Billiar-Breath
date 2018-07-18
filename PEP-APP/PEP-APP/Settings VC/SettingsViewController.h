@@ -29,4 +29,6 @@
 -(void) setGaugeForce:(float)force;
 -(void) setSettingsViewDirection:(int)val;
 -(void) setGaugeSettings: (int)breathToggle exhaleToggle:(BOOL)ex;
+-(void) settingsGaugeBeginBlow;
+-(void) settingsGaugeEndedBlow;
 @end

@@ -33,16 +33,13 @@
 
 -(int)nextBall{
     
-    NSLog(@"NEXT VBALL");
-    
     self.halt=NO;
     self.currentBall++;
     self.totalBallsAttempted++;
     
-        if (self.totalBallsRaised == self.totalBalls) {
+        if (self.currentBall == self.totalBalls) {
             [self playVictorySound];
         }
-    
     
         if (self.totalBallsRaised>=self.totalBalls) {
             if (!gamewon) {

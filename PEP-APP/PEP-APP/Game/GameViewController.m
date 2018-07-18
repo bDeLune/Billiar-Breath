@@ -298,6 +298,12 @@
 
 -(void)btleManagerBreathStopped:(BTLEManager*)manager{
     disableModeButton = false;
+    
+    //added
+    [[self.settingsViewController gaugeView] blowingEnded];
+    [self.sequenceGameController killTimer];
+    self.sequenceGameController.time = 0;
+    
     if ([self.noteController allowBreath]==NO) {
         return;
     }
@@ -315,11 +321,12 @@
         [self.sequenceGameController nextBall];
     }
     
+    NSLog(@"END");
+    
     [self.mainGaugeView blowingEnded];
     [self.gaugeView blowingEnded];
-    [self.settingsViewController.gaugeView blowingEnded];
-    [self.sequenceGameController killTimer];
-    self.sequenceGameController.time = 0;
+    //[self.settingsViewController.gaugeView blowingEnded];
+    //[self.settingsViewController settingsGaugeEndedBlow];
     
     if (self.currentGameType == gameTypeTest){
         NSLog(@"Currently in test mode, saving disabled");
@@ -467,7 +474,9 @@
 -(IBAction)toggleDirection:(id)sender
 {
     [self.gaugeView blowingEnded];
-    [self.settingsViewController.gaugeView blowingEnded];
+   // [self.settingsViewController.gaugeView blowingEnded];
+    [[self.settingsViewController gaugeView] blowingEnded];
+    //[self.settingsViewController settingsGaugeEndedBlow];
     
     if (self.noteController.toggleIsON == YES){
             self.noteController.toggleIsON=NO;
@@ -489,7 +498,9 @@
 -(void)setDirection:(int)value{
     
     [self.gaugeView blowingEnded];
-    [self.settingsViewController.gaugeView blowingEnded];
+    //[self.settingsViewController.gaugeView blowingEnded];
+    [[self.settingsViewController gaugeView] blowingEnded];
+    //[self.settingsViewController settingsGaugeEndedBlow];
     
     if (self.noteController.toggleIsON == YES){
         self.noteController.toggleIsON=NO;
@@ -573,26 +584,30 @@
         bestCurrentVelocity = note.velocity;
     }
     
+    NSLog(@"note.velocity %f", note.velocity);
+    
     if (self.currentGameType == gameTypeTest){
-        if (note.velocity > 250){bestCurrentVelocity = 250;}
+        if (note.velocity > 100){bestCurrentVelocity = 100;}
         
         if (self.noteController.toggleIsON == false){
-            [self.settingsViewController setSettingsStrengthLabelText:[NSString stringWithFormat:@"%0.0f",bestCurrentVelocity/1.25]];
+            [self.settingsViewController setSettingsStrengthLabelText:[NSString stringWithFormat:@"%0.0f",bestCurrentVelocity*2.1]];
         }else{
-            [self.settingsViewController setSettingsStrengthLabelText:[NSString stringWithFormat:@"%0.0f",bestCurrentVelocity/2.5]];
+            [self.settingsViewController setSettingsStrengthLabelText:[NSString stringWithFormat:@"%0.0f",bestCurrentVelocity]];
         }
     }else{
         if  (note.velocity > 250){ bestCurrentVelocity = 250;}
     }
     
     if (self.noteController.toggleIsON == false){
-        if (note.velocity > [self.currentSession.sessionStrength floatValue]) {
-            self.currentSession.sessionStrength=[NSNumber numberWithFloat:bestCurrentVelocity/1.25];
-        }
+       // if (note.velocity > [self.currentSession.sessionStrength floatValue]) {
+            NSLog(@"FG %f",bestCurrentVelocity*2.1);
+            self.currentSession.sessionStrength=[NSNumber numberWithFloat:bestCurrentVelocity*2.1];
+      //  }
     }else{
-        if (note.velocity > [self.currentSession.sessionStrength floatValue]) {
-            self.currentSession.sessionStrength=[NSNumber numberWithFloat:bestCurrentVelocity/2.4];
-        }
+       // if (note.velocity > [self.currentSession.sessionStrength floatValue]) {
+            NSLog(@"FG %f",bestCurrentVelocity*2.2);
+            self.currentSession.sessionStrength=[NSNumber numberWithFloat:bestCurrentVelocity];
+      //  }
     }
     
     [self.settingsViewController setSettingsDurationLabelText:[NSString stringWithFormat:@"%.1f",self.sequenceGameController.time]];

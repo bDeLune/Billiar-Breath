@@ -124,6 +124,16 @@
     [self.gaugeView setForce:force];
 };
 
+-(void) settingsGaugeBeginBlow{
+    NSLog(@"inner began blow");
+    [self.gaugeView blowingBegan];
+}
+
+-(void) settingsGaugeEndedBlow{
+    NSLog(@"inner ended blow");
+    [self.gaugeView blowingEnded];
+}
+
 -(void) setGaugeSettings: (int)breathToggle exhaleToggle:(BOOL)inhaleActivated{
     [self.gaugeView setBreathToggleAsExhale:breathToggle isExhaling: inhaleActivated];
     
@@ -233,7 +243,7 @@
 
 -(IBAction)setBreathLength:(id)sender
 {
-    NSLog(@"changing breath length");
+    //NSLog(@"changing breath length");
     UISlider  *slider=(UISlider*)sender;
     [self.settinngsDelegate setSpeed:slider.value];
 }
@@ -245,7 +255,7 @@
 
 -(void)setSettingsStrengthLabelText: (NSString*)text  {
     settingsStrengthLabel.text = text;
-    NSLog(@"settingsStrengthLabel: %@", text);
+   // NSLog(@"settingsStrengthLabel: %@", text);
 }
 
 @end

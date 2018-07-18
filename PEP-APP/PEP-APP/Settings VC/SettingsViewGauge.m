@@ -85,16 +85,19 @@
 
 -(void)setForce:(float)pforce
 {
+    NSLog(@"Settings gauge setForce %f", pforce);
     force=(pforce/mass);
 }
 
 -(void)blowingBegan
 {
+    NSLog(@"Settings gauge blow started");
     isaccelerating=YES;
 }
 
 -(void)blowingEnded
 {
+    NSLog(@"Settings gauge blow ended");
     isaccelerating=NO;
 }
 
@@ -106,27 +109,40 @@
 
     }else
     {
-        force-=force*0.1;
-        acceleration-=acceleration*0.1;
+        force -= force*0.1;
+        acceleration -= acceleration*0.1;
     }
     
     if (force<1) {
         force=1;
     }
+    
+  //  NSLog(@"distance %f", distance);
+   // NSLog(@"isaccelerating %hhd", isaccelerating);
 
-    acceleration = 13.4 * force;
+    acceleration = 35.73 * force; //13.4
     velocity = distance / time;
     time = distance / velocity;
     distance = ceilf((0.1) * (acceleration * powf(time, 2)));
+    
     CGRect frame=animationObject.frame;
     frame.origin.y=self.bounds.size.height-distance;
     frame.size.height= distance;
     [animationObject setFrame:frame];
     [self setNeedsDisplay];
+    
+    if (distance>bestDistance) {
+        bestDistance=distance;
+    }
+    
+    [animationObject setFrame:frame];
+    [self setNeedsDisplay];
+    
 }
 
 -(void)stop
 {
+    NSLog(@"stopping");
      if (_animationRunning) {
          [displayLink invalidate];
          _animationRunning=NO;
