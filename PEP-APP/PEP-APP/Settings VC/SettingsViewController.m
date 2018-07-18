@@ -56,6 +56,7 @@
         [NSString stringWithFormat:NSLocalizedString(@"Pixellate", nil)],
         [NSString stringWithFormat:NSLocalizedString(@"Contrast", nil)],
         nil];
+        
     }
     return self;
 }
@@ -97,13 +98,22 @@
     NSInteger effectIndex = [defaultEffectIndex integerValue];
     NSUInteger soundIndex;
     
+    NSLog(@"defaultSound %@", defaultSound);
+    NSLog(@"defaultSound %@", defaultSound);
+    NSLog(@"imageGameSoundArray %@", imageGameSoundArray);
+    NSLog(@"imageGameSoundFileNameArray %@", imageGameSoundFileNameArray);
+    
+    
+    //was imagegamesoundarray
     if ([defaultSound isEqualToString:@"sirene fluit"]){
         soundIndex = (int)7;
     }else{
-        soundIndex = (int)[imageGameSoundArray indexOfObjectPassingTest:^BOOL(NSString *obj, NSUInteger idx, BOOL *stop) {
+        soundIndex = (int)[imageGameSoundFileNameArray indexOfObjectPassingTest:^BOOL(NSString *obj, NSUInteger idx, BOOL *stop) {
             return [obj caseInsensitiveCompare:defaultSound] == NSOrderedSame;
         }];
     }
+    
+    NSLog(@"soundIndex %lu", (unsigned long)soundIndex);
     
     [filterPicker selectRow:effectIndex inComponent:0 animated:NO];
     [pickerViewC selectRow:repetitionIndex inComponent:0 animated:NO];

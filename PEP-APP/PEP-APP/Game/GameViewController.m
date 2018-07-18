@@ -38,7 +38,7 @@
     BOOL gameSoundPlaying;
     BOOL isaccelerating;
     BOOL globalSoundActivated;
-    MidiController  *midiController;
+    MidiController  *noteController;
     Session  *currentSession;
     NSNumber* currentBreathLength;
     bool currentlyExhaling;
@@ -58,7 +58,7 @@
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic,strong) NSOperationQueue  *addGameQueue;
 @property (nonatomic,strong) BalloonViewController  *balloonViewController;
-@property (nonatomic,strong) MidiController  *midiController;
+@property (nonatomic,strong) MidiController  *noteController;
 @property (nonatomic)        gameType  currentGameType;
 @property (nonatomic,strong) Session  *currentSession;
 @property (nonatomic,strong) SequenceGame  *sequenceGameController;
@@ -93,18 +93,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (object == self.midiController && [keyPath isEqualToString:@"numberOfSources"]) {
-        
-        if (self.midiController.numberOfSources == 0) {
-            UIAlertView  *alert=[[UIAlertView alloc]initWithTitle:@"Midi Message" message:@"No Midi Device Detected" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [[GCDQueue mainQueue]queueBlock:^{
-                [alert show];
-            }];
-        }
-    }
-    else {
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-    }
+    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -127,7 +116,7 @@
         selectedSpeed = [defaultSpeed intValue];
   
         if ([defaultDirection isEqual: @"Inhale"]){
-            self.midiController.toggleIsON = YES;
+            self.noteController.toggleIsON = YES;
             [self.settingsViewController setSettingsViewDirection: 0];
             wasExhaling = false;
             [[NSUserDefaults standardUserDefaults]setObject:@"Inhale" forKey:@"defaultDirection"];
@@ -135,7 +124,7 @@
             [self.settingsViewController setGaugeSettings:0 exhaleToggle: YES];
            [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
         }else if (defaultDirection == NULL || [defaultDirection isEqual: @"Exhale"]){
-            self.midiController.toggleIsON = NO;
+            self.noteController.toggleIsON = NO;
             [self.settingsViewController setSettingsViewDirection: 1];
             [self.mainGaugeView setBreathToggleAsExhale:1 isExhaling: NO];
             [[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"defaultDirection"];
@@ -148,9 +137,9 @@
         self.title = @"Groov";
         _animationrate=selectedSpeed;
         self.balloonViewController=[[BalloonViewController alloc]initWithFrame:CGRectMake(10, 0, 130,220) withBallCount:selectedBallCount];
-        self.midiController=[[MidiController alloc]init];
-        self.midiController.delegate=self;
-        [self.midiController addObserver:self forKeyPath:@"numberOfSources" options:0 context:NULL];
+        self.noteController=[[MidiController alloc]init];
+        self.noteController.delegate=self;
+        [self.noteController addObserver:self forKeyPath:@"numberOfSources" options:0 context:NULL];
         self.currentGameType=gameTypeDuo;
         [self.toggleGameModeButton setImage:[UIImage imageNamed:[self stringForMode:self.currentGameType]] forState:UIControlStateNormal];
         [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:currentDifficulty] forKey:@"difficulty"];
@@ -175,7 +164,7 @@
         self.mainGaugeView=[[GameViewGauge alloc]initWithFrame:CGRectMake(445, 20, 40, MAINGUAGE_HEIGHT) ];
         [self.view addSubview:self.mainGaugeView ];
         [self.view sendSubviewToBack:self.mainGaugeView];
-        [self.mainGaugeView setBreathToggleAsExhale:wasExhaling isExhaling: midiController.toggleIsON];
+        [self.mainGaugeView setBreathToggleAsExhale:wasExhaling isExhaling: noteController.toggleIsON];
     }
     return self;
 }
@@ -196,15 +185,17 @@
         NSLog(@"playing sound");
         UIImage *soundOnImage = [UIImage imageNamed:@"Sound-ON.png"];
         [self.soundIcon setImage:soundOnImage forState:UIControlStateNormal];
+        [self.balloonViewController setAudioMute: 1];
     }else if(globalSoundActivated == 0){
         NSLog(@"muting sound");
         UIImage *soundOffImage = [UIImage imageNamed:@"Sound-OFF.png"];
         [self.soundIcon setImage:soundOffImage forState:UIControlStateNormal];
+        [self.balloonViewController setAudioMute: 0];
     }
     
     NSString *defaultDirection=[[NSUserDefaults standardUserDefaults]objectForKey:@"defaultDirection"];
     if ([defaultDirection isEqual: @"Inhale"]){
-        self.midiController.toggleIsON = YES;
+        self.noteController.toggleIsON = YES;
         [self.settingsViewController setSettingsViewDirection: 0];
         wasExhaling = false;
         [[NSUserDefaults standardUserDefaults]setObject:@"Inhale" forKey:@"defaultDirection"];
@@ -212,7 +203,7 @@
         [self.settingsViewController setGaugeSettings:0 exhaleToggle: YES];
         [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
     }else if (defaultDirection == NULL || [defaultDirection isEqual: @"Exhale"]){
-        self.midiController.toggleIsON = NO;
+        self.noteController.toggleIsON = NO;
         [self.settingsViewController setSettingsViewDirection: 1];
         [self.mainGaugeView setBreathToggleAsExhale:1 isExhaling: NO];
         [[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"defaultDirection"];
@@ -252,25 +243,89 @@
 }
 
 -(void)btleManagerBreathBegan:(BTLEManager*)manager{
-    if (self.midiController.toggleIsON == 0){wasExhaling = 1;}else{wasExhaling = 0;};
+    if (self.noteController.toggleIsON == 0){wasExhaling = 1;}else{wasExhaling = 0;};
     
     disableModeButton = true;
-    if ([self.midiController allowBreath]==NO) {
+    if ([self.noteController allowBreath]==NO) {
         return;
     }
 
-    if ((self.midiController.toggleIsON == 0 && wasExhaling == 1) || (self.midiController.toggleIsON == 1 && wasExhaling == 0)){
-        [self midiNoteBegan:nil];
+    if ((self.noteController.toggleIsON == 0 && wasExhaling == 1) || (self.noteController.toggleIsON == 1 && wasExhaling == 0)){
+        self.sequenceGameController.time = 0;
+        bestCurrentVelocity = 0;
+        
+        if ((self.noteController.toggleIsON == 0 && wasExhaling == 1) || (self.noteController.toggleIsON == 1 && wasExhaling == 0)){
+            
+            [self.sequenceGameController startTimer];
+            
+            switch (self.currentGameType) {
+                case gameTypeDuo:
+                    [self noteBeganForSequence:nil];
+                    self.balloonViewController.currentGameType=gameTypeDuo;
+                    break;
+                case gameTypeImage:
+                    self.balloonViewController.currentGameType=gameTypeImage;
+                    break;
+                case gameTypeBalloon:
+                    [self noteBeganForSequence:nil];
+                    self.balloonViewController.currentGameType=gameTypeBalloon;
+                    break;
+                case gameTypeTest:
+                    [self noteBeganForSequence:nil];
+                    self.balloonViewController.currentGameType=gameTypeTest;
+                    break;
+                default:
+                    break;
+            }
+        }
+        
+        if (self.mainGaugeView.animationRunning) {
+            [self.mainGaugeView blowingBegan];
+        }
+        
+        if (self.gaugeView.animationRunning) {
+            [self.gaugeView blowingBegan];
+        }
+        
+        if (self.settingsViewController.gaugeView.animationRunning) {
+            [[self.settingsViewController gaugeView] blowingBegan];
+        }
     }
 }
 
 -(void)btleManagerBreathStopped:(BTLEManager*)manager{
     disableModeButton = false;
-    if ([self.midiController allowBreath]==NO) {
+    if ([self.noteController allowBreath]==NO) {
         return;
     }
     [self.balloonViewController blowEnded];
-    [self midiNoteStopped:nil];
+   
+    if ((self.noteController.toggleIsON == false && wasExhaling == true) || (self.noteController.toggleIsON == true && wasExhaling == false)){
+        if (_currentGameType == gameTypeImage || _currentGameType == gameTypeTest ){
+            return;
+        }
+        if (self.currentGameType == gameTypeImage ) {
+            [self imageGameWon];
+        }
+        
+        [self.sequenceGameController killTimer];
+        [self.sequenceGameController nextBall];
+    }
+    
+    [self.mainGaugeView blowingEnded];
+    [self.gaugeView blowingEnded];
+    [self.settingsViewController.gaugeView blowingEnded];
+    [self.sequenceGameController killTimer];
+    self.sequenceGameController.time = 0;
+    
+    if (self.currentGameType == gameTypeTest){
+        NSLog(@"Currently in test mode, saving disabled");
+    }else{
+        if ((self.noteController.toggleIsON == false && wasExhaling == true) || (self.noteController.toggleIsON == true && wasExhaling == false)){
+            [self saveCurrentSession];
+        }
+    }
+
     isaccelerating=NO;
     gameSoundPlaying = NO;
 }
@@ -279,13 +334,13 @@
     
     wasExhaling = false;
 
-    if (self.midiController.toggleIsON==NO) {
+    if (self.noteController.toggleIsON==NO) {
         return;
     }
     
-    [self.mainGaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
-    [self.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
-    [self.settingsViewController.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
+    [self.mainGaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.noteController.toggleIsON];
+    [self.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.noteController.toggleIsON];
+    [self.settingsViewController.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.noteController.toggleIsON];
     [self.balloonViewController blowStarted: self.sequenceGameController.currentBall atSpeed:selectedSpeed];
     
     if (gameSoundPlaying == NO){
@@ -311,28 +366,28 @@
     
     self.velocity=(percentOfmax)*127.0;
     isaccelerating=YES;
-    self.midiController.velocity=127.0*percentOfmax;
-    self.midiController.speed= (fabs( self.midiController.velocity- self.midiController.previousVelocity));
-    self.midiController.previousVelocity= self.midiController.velocity;
+    self.noteController.velocity=127.0*percentOfmax;
+    self.noteController.speed= (fabs( self.noteController.velocity- self.noteController.previousVelocity));
+    self.noteController.previousVelocity= self.noteController.velocity;
     
    float scale=50.0f;
    float value=self.velocity*scale;
    [self.mainGaugeView setForce:(value)];
    [self.gaugeView setForce:(value)];
    [self.settingsViewController.gaugeView setForce:(value)];
-   [self midiNoteContinuing: self.midiController];
+   [self noteContinuing: self.noteController];
 }
 
 -(void)btleManager:(BTLEManager*)manager exhaleWithValue:(float)percentOfmax{
     
     wasExhaling = true;
-    if (self.midiController.toggleIsON==YES) {
+    if (self.noteController.toggleIsON==YES) {
         return;
     }
     
-    [self.mainGaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
-    [self.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
-    [self.settingsViewController.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.midiController.toggleIsON];
+    [self.mainGaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.noteController.toggleIsON];
+    [self.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.noteController.toggleIsON];
+    [self.settingsViewController.gaugeView setBreathToggleAsExhale:wasExhaling isExhaling: self.noteController.toggleIsON];
     [self.balloonViewController blowStarted: self.sequenceGameController.currentBall atSpeed:selectedSpeed];
     
     if (gameSoundPlaying == NO){
@@ -356,11 +411,11 @@
         }
     }
     
-    self.midiController.velocity=127.0*percentOfmax;
-    self.midiController.speed= (fabs( self.midiController.velocity- self.midiController.previousVelocity));
-    self.midiController.previousVelocity= self.midiController.velocity;
+    self.noteController.velocity=127.0*percentOfmax;
+    self.noteController.speed= (fabs( self.noteController.velocity- self.noteController.previousVelocity));
+    self.noteController.previousVelocity= self.noteController.velocity;
     
-    [self midiNoteContinuing: self.midiController];
+    [self noteContinuing: self.noteController];
     self.velocity=(percentOfmax)*127.0;
     isaccelerating=YES;
     float scale=100.0f;
@@ -411,15 +466,15 @@
     [self.gaugeView blowingEnded];
     [self.settingsViewController.gaugeView blowingEnded];
     
-    if (self.midiController.toggleIsON == YES){
-            self.midiController.toggleIsON=NO;
+    if (self.noteController.toggleIsON == YES){
+            self.noteController.toggleIsON=NO;
             [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
             [[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"defaultDirection"];
             [self.mainGaugeView setBreathToggleAsExhale:1 isExhaling: NO];
             [self.settingsViewController setGaugeSettings:1 exhaleToggle: NO];
             wasExhaling = true;
-    }else if (self.midiController.toggleIsON == NO){
-            self.midiController.toggleIsON=YES;
+    }else if (self.noteController.toggleIsON == NO){
+            self.noteController.toggleIsON=YES;
             [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
             [[NSUserDefaults standardUserDefaults]setObject:@"Inhale" forKey:@"defaultDirection"];
             wasExhaling = false;
@@ -433,14 +488,14 @@
     [self.gaugeView blowingEnded];
     [self.settingsViewController.gaugeView blowingEnded];
     
-    if (self.midiController.toggleIsON == YES){
-        self.midiController.toggleIsON=NO;
+    if (self.noteController.toggleIsON == YES){
+        self.noteController.toggleIsON=NO;
         [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-EXHALE.png"] forState:UIControlStateNormal];
         [[NSUserDefaults standardUserDefaults]setObject:@"Exhale" forKey:@"defaultDirection"];
         [self.mainGaugeView setBreathToggleAsExhale:1 isExhaling: NO];
         wasExhaling = true;
-    }else if (self.midiController.toggleIsON == NO){
-        self.midiController.toggleIsON=YES;
+    }else if (self.noteController.toggleIsON == NO){
+        self.noteController.toggleIsON=YES;
         [self.toggleDirectionButton setImage:[UIImage imageNamed:@"Settings-Button-INHALE.png"] forState:UIControlStateNormal];
         [[NSUserDefaults standardUserDefaults]setObject:@"Inhale" forKey:@"defaultDirection"];
         wasExhaling = false;
@@ -498,113 +553,36 @@
     [self.balloonViewController resetwithBallCount:selectedBallCount];
 }
 
--(void)midiNoteBegan:(MidiController*)midi
-{
-    self.sequenceGameController.time = 0;
-    bestCurrentVelocity = 0;
-    
-    if ((self.midiController.toggleIsON == 0 && wasExhaling == 1) || (self.midiController.toggleIsON == 1 && wasExhaling == 0)){
-        
-        [self.sequenceGameController startTimer];
-        
-        switch (self.currentGameType) {
-            case gameTypeDuo:
-                [self midiNoteBeganForSequence:midi];
-                self.balloonViewController.currentGameType=gameTypeDuo;
-                break;
-            case gameTypeImage:
-                self.balloonViewController.currentGameType=gameTypeImage;
-                break;
-            case gameTypeBalloon:
-                [self midiNoteBeganForSequence:midi];
-                self.balloonViewController.currentGameType=gameTypeBalloon;
-                break;
-            case gameTypeTest:
-                [self midiNoteBeganForSequence:midi];
-                self.balloonViewController.currentGameType=gameTypeTest;
-                break;
-            default:
-                break;
-        }
-    }
-    
-    if (self.mainGaugeView.animationRunning) {
-        [self.mainGaugeView blowingBegan];
-    }
-    
-    if (self.gaugeView.animationRunning) {
-        [self.gaugeView blowingBegan];
-    }
-    
-    if (self.settingsViewController.gaugeView.animationRunning) {
-        [[self.settingsViewController gaugeView] blowingBegan];
-    }
-}
 
--(void)midiNoteStopped:(MidiController*)midi
-{
-    if ((self.midiController.toggleIsON == false && wasExhaling == true) || (self.midiController.toggleIsON == true && wasExhaling == false)){
-        switch (self.currentGameType) {
-            case gameTypeDuo:
-                [self midiNoteStoppedForSequence:midi];
-                break;
-            case gameTypeImage:
-                [self midiNoteStoppedForSequence:midi];
-                break;
-            case gameTypeBalloon:
-                [self midiNoteStoppedForSequence:midi];
-                break;
-            case gameTypeTest:
-                [self midiNoteStoppedForSequence:midi];
-                break;
-            default:
-                break;
-        }
-    }
 
-    [self.mainGaugeView blowingEnded];
-    [self.gaugeView blowingEnded];
-    [self.settingsViewController.gaugeView blowingEnded];
-    [self.sequenceGameController killTimer];
-    self.sequenceGameController.time = 0;
-    
-    if (self.currentGameType == gameTypeTest){
-        NSLog(@"Currently in test mode, saving disabled");
-    }else{
-        if ((self.midiController.toggleIsON == false && wasExhaling == true) || (self.midiController.toggleIsON == true && wasExhaling == false)){
-            [self saveCurrentSession];
-        }
-    }
-}
-
--(void)midiNoteContinuing:(MidiController*)midi
+-(void)noteContinuing:(MidiController*)note
 {
-    if (midi.velocity==127) {
+    if (note.velocity==127) {
         return;
     }
 
-    if (midi.velocity > bestCurrentVelocity){
-        bestCurrentVelocity = midi.velocity;
+    if (note.velocity > bestCurrentVelocity){
+        bestCurrentVelocity = note.velocity;
     }
     
     if (self.currentGameType == gameTypeTest){
-        if (midi.velocity > 250){bestCurrentVelocity = 250;}
+        if (note.velocity > 250){bestCurrentVelocity = 250;}
         
-        if (self.midiController.toggleIsON == false){
+        if (self.noteController.toggleIsON == false){
             [self.settingsViewController setSettingsStrengthLabelText:[NSString stringWithFormat:@"%0.0f",bestCurrentVelocity/1.25]];
         }else{
             [self.settingsViewController setSettingsStrengthLabelText:[NSString stringWithFormat:@"%0.0f",bestCurrentVelocity/2.5]];
         }
     }else{
-        if  (midi.velocity > 250){ bestCurrentVelocity = 250;}
+        if  (note.velocity > 250){ bestCurrentVelocity = 250;}
     }
     
-    if (self.midiController.toggleIsON == false){
-        if (midi.velocity > [self.currentSession.sessionStrength floatValue]) {
+    if (self.noteController.toggleIsON == false){
+        if (note.velocity > [self.currentSession.sessionStrength floatValue]) {
             self.currentSession.sessionStrength=[NSNumber numberWithFloat:bestCurrentVelocity/1.25];
         }
     }else{
-        if (midi.velocity > [self.currentSession.sessionStrength floatValue]) {
+        if (note.velocity > [self.currentSession.sessionStrength floatValue]) {
             self.currentSession.sessionStrength=[NSNumber numberWithFloat:bestCurrentVelocity/2.4];
         }
     }
@@ -616,12 +594,12 @@
     [[GCDQueue mainQueue]queueBlock:^{
         switch (self.currentGameType) {
             case gameTypeDuo:
-                [self midiNoteContinuingForSequence:midi];
+                [self noteContinuingForSequence:note];
                 break;
             case gameTypeImage:
                 break;
             case gameTypeBalloon:
-                [self midiNoteContinuingForSequence:midi];
+                [self noteContinuingForSequence:note];
                 break;
             case gameTypeTest:
                 break;
@@ -631,7 +609,7 @@
     }];
 }
 
--(void)midiNoteBeganForSequence:(MidiController *)midi
+-(void)noteBeganForSequence:(MidiController *)note
 {
     self.sequenceGameController.currentSpeed= -1;
     self.sequenceGameController.time = 0;
@@ -642,22 +620,10 @@
     [self.sequenceGameController startTimer];
 }
 
--(void)midiNoteStoppedForSequence:(MidiController *)midi
-{
-    if (_currentGameType == gameTypeImage || _currentGameType == gameTypeTest ){
-        return;
-    }
-    if (self.currentGameType == gameTypeImage ) {
-        [self imageGameWon];
-    }
-    
-    [self.sequenceGameController killTimer];
-    [self.sequenceGameController nextBall];
-}
 
--(void)midiNoteContinuingForSequence:(MidiController*)midi
+-(void)noteContinuingForSequence:(MidiController*)note
 {
-    self.sequenceGameController.currentSpeed=midi.speed;
+    self.sequenceGameController.currentSpeed=note.speed;
     
     if (_currentGameType == gameTypeImage || _currentGameType == gameTypeTest){
         return;
@@ -673,7 +639,7 @@
         self.sequenceGameController.halt=YES;
         
         [[GCDQueue mainQueue]queueBlock:^{
-            if (midi.speed!=0) {
+            if (note.speed!=0) {
                 self.sequenceGameController.totalBallsRaised++;
             }
         }];
@@ -686,12 +652,12 @@
         globalSoundActivated = 1;
         UIImage *soundOnImage = [UIImage imageNamed:@"Sound-ON.png"];
          [self.soundIcon setImage:soundOnImage forState:UIControlStateNormal];
-       // [self.sequenceGameController setAudioMute: globalSoundActivated];
+         [self.balloonViewController setAudioMute: 1];
     }else if(globalSoundActivated == 1){
         globalSoundActivated = 0;
         UIImage *soundOffImage = [UIImage imageNamed:@"Sound-OFF.png"];
         [self.soundIcon setImage:soundOffImage forState:UIControlStateNormal];
-       // [self.sequenceGameController setAudioMute: globalSoundActivated];
+         [self.balloonViewController setAudioMute: 0];
     }
     
     [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:globalSoundActivated] forKey:@"defaultMute"];
@@ -850,7 +816,7 @@
 }
 
 -(void)prepareDisplay{
-    [self.mainGaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: midiController.toggleIsON];
+    [self.mainGaugeView setBreathToggleAsExhale:currentlyExhaling isExhaling: noteController.toggleIsON];
     [self.mainGaugeView start];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];

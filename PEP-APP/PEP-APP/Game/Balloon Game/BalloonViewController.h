@@ -12,5 +12,6 @@
 -(void)blowEnded;
 -(void)timerFired:(NSTimer *)timer;
 -(CAKeyframeAnimation *)dockBounceAnimationWithIconHeight:(CGFloat)iconHeight;
+-(void)setAudioMute: (BOOL) muteSetting;
 @property gameType  currentGameType;
 @end

@@ -92,12 +92,12 @@
 		717D010420B8515D0098893A /* 4harp.wav in Resources */ = {isa = PBXBuildFile; fileRef = 717D00FE20B8515C0098893A /* 4harp.wav */; };
 		717D010520B8515D0098893A /* 3harp.wav in Resources */ = {isa = PBXBuildFile; fileRef = 717D00FF20B8515D0098893A /* 3harp.wav */; };
 		717D010620B8515D0098893A /* 1harp.wav in Resources */ = {isa = PBXBuildFile; fileRef = 717D010020B8515D0098893A /* 1harp.wav */; };
-		717D010D20B851750098893A /* 1droom.wav in Resources */ = {isa = PBXBuildFile; fileRef = 717D010720B851730098893A /* 1droom.wav */; };
-		717D010E20B851750098893A /* 2droom.wav in Resources */ = {isa = PBXBuildFile; fileRef = 717D010820B851740098893A /* 2droom.wav */; };
-		717D010F20B851750098893A /* 4droom.wav in Resources */ = {isa = PBXBuildFile; fileRef = 717D010920B851740098893A /* 4droom.wav */; };
-		717D011020B851750098893A /* 3droom.wav in Resources */ = {isa = PBXBuildFile; fileRef = 717D010A20B851740098893A /* 3droom.wav */; };
-		717D011120B851750098893A /* 5droom.wav in Resources */ = {isa = PBXBuildFile; fileRef = 717D010B20B851740098893A /* 5droom.wav */; };
-		717D011220B851750098893A /* 6droom.wav in Resources */ = {isa = PBXBuildFile; fileRef = 717D010C20B851750098893A /* 6droom.wav */; };
+		717D010D20B851750098893A /* 1droon.wav in Resources */ = {isa = PBXBuildFile; fileRef = 717D010720B851730098893A /* 1droon.wav */; };
+		717D010E20B851750098893A /* 2droon.wav in Resources */ = {isa = PBXBuildFile; fileRef = 717D010820B851740098893A /* 2droon.wav */; };
+		717D010F20B851750098893A /* 4droon.wav in Resources */ = {isa = PBXBuildFile; fileRef = 717D010920B851740098893A /* 4droon.wav */; };
+		717D011020B851750098893A /* 3droon.wav in Resources */ = {isa = PBXBuildFile; fileRef = 717D010A20B851740098893A /* 3droon.wav */; };
+		717D011120B851750098893A /* 5droon.wav in Resources */ = {isa = PBXBuildFile; fileRef = 717D010B20B851740098893A /* 5droon.wav */; };
+		717D011220B851750098893A /* 6droon.wav in Resources */ = {isa = PBXBuildFile; fileRef = 717D010C20B851750098893A /* 6droon.wav */; };
 		717D011920B851910098893A /* 1bell synth.wav in Resources */ = {isa = PBXBuildFile; fileRef = 717D011320B8518D0098893A /* 1bell synth.wav */; };
 		717D011A20B851910098893A /* 4bell synth.wav in Resources */ = {isa = PBXBuildFile; fileRef = 717D011420B8518E0098893A /* 4bell synth.wav */; };
 		717D011B20B851910098893A /* 3bell synth.wav in Resources */ = {isa = PBXBuildFile; fileRef = 717D011520B8518E0098893A /* 3bell synth.wav */; };
@@ -123,8 +123,6 @@
 		717D024F20BEAB2B0098893A /* Splash1536x2048.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D024D20BEAB2A0098893A /* Splash1536x2048.png */; };
 		717D025020BEAB2B0098893A /* Splash768x1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 717D024E20BEAB2B0098893A /* Splash768x1024.png */; };
 		7186DDF41E4DBF4100F71F0C /* AllGamesForDayTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DDED1E4DBF4100F71F0C /* AllGamesForDayTableVC.m */; };
-		7186DDF71E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7186DDF01E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.mp3 */; };
-		7186DDF81E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7186DDF11E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.wav */; };
 		7186DE0A1E4DBF5F00F71F0C /* BalloonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DDFC1E4DBF5F00F71F0C /* BalloonViewController.m */; };
 		7186DE101E4DBF5F00F71F0C /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7186DE041E4DBF5F00F71F0C /* HeaderView.m */; };
 		7186DE111E4DBF5F00F71F0C /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7186DE051E4DBF5F00F71F0C /* GameViewController.xib */; };
@@ -195,6 +193,7 @@
 		71CA7A9B20D05F4D00126454 /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71CA7A9D20D05F4D00126454 /* InfoViewController.xib */; };
 		71CA7A9E20D05F6700126454 /* UserListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71CA7AA020D05F6700126454 /* UserListViewController.xib */; };
 		71CA7AA120D05F7000126454 /* AllGamesForDayTableVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71CA7AA320D05F7000126454 /* AllGamesForDayTableVC.xib */; };
+		71D1798120FF4B1C0016526B /* applauding.wav in Resources */ = {isa = PBXBuildFile; fileRef = 71D1797220FF4B1C0016526B /* applauding.wav */; };
 		71D1A3732074FE5300C83B63 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D1A3712074FE5200C83B63 /* SettingsViewController.m */; };
 		71D1A64F20751F2400C83B63 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D1A64E20751F2400C83B63 /* CoreMedia.framework */; };
 		71D1A65120751F2D00C83B63 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D1A65020751F2C00C83B63 /* CoreVideo.framework */; };
@@ -418,12 +417,12 @@
 		717D00FE20B8515C0098893A /* 4harp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 4harp.wav; sourceTree = "<group>"; };
 		717D00FF20B8515D0098893A /* 3harp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 3harp.wav; sourceTree = "<group>"; };
 		717D010020B8515D0098893A /* 1harp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1harp.wav; sourceTree = "<group>"; };
-		717D010720B851730098893A /* 1droom.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1droom.wav; sourceTree = "<group>"; };
-		717D010820B851740098893A /* 2droom.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 2droom.wav; sourceTree = "<group>"; };
-		717D010920B851740098893A /* 4droom.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 4droom.wav; sourceTree = "<group>"; };
-		717D010A20B851740098893A /* 3droom.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 3droom.wav; sourceTree = "<group>"; };
-		717D010B20B851740098893A /* 5droom.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 5droom.wav; sourceTree = "<group>"; };
-		717D010C20B851750098893A /* 6droom.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 6droom.wav; sourceTree = "<group>"; };
+		717D010720B851730098893A /* 1droon.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1droon.wav; sourceTree = "<group>"; };
+		717D010820B851740098893A /* 2droon.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 2droon.wav; sourceTree = "<group>"; };
+		717D010920B851740098893A /* 4droon.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 4droon.wav; sourceTree = "<group>"; };
+		717D010A20B851740098893A /* 3droon.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 3droon.wav; sourceTree = "<group>"; };
+		717D010B20B851740098893A /* 5droon.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 5droon.wav; sourceTree = "<group>"; };
+		717D010C20B851750098893A /* 6droon.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 6droon.wav; sourceTree = "<group>"; };
 		717D011320B8518D0098893A /* 1bell synth.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "1bell synth.wav"; sourceTree = "<group>"; };
 		717D011420B8518E0098893A /* 4bell synth.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "4bell synth.wav"; sourceTree = "<group>"; };
 		717D011520B8518E0098893A /* 3bell synth.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "3bell synth.wav"; sourceTree = "<group>"; };
@@ -452,9 +451,6 @@
 		7186DDCC1E4DBE0D00F71F0C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		7186DDEC1E4DBF4100F71F0C /* AllGamesForDayTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllGamesForDayTableVC.h; sourceTree = "<group>"; };
 		7186DDED1E4DBF4100F71F0C /* AllGamesForDayTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllGamesForDayTableVC.m; sourceTree = "<group>"; };
-		7186DDEF1E4DBF4100F71F0C /* Croquet ball drop bounce cement_BLASTWAVEFX_29317.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Croquet ball drop bounce cement_BLASTWAVEFX_29317.wav"; sourceTree = "<group>"; };
-		7186DDF01E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "IMPACT RING METAL DESEND 01.mp3"; sourceTree = "<group>"; };
-		7186DDF11E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "IMPACT RING METAL DESEND 01.wav"; sourceTree = "<group>"; };
 		7186DDFB1E4DBF5F00F71F0C /* BalloonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalloonViewController.h; sourceTree = "<group>"; };
 		7186DDFC1E4DBF5F00F71F0C /* BalloonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BalloonViewController.m; sourceTree = "<group>"; };
 		7186DE031E4DBF5F00F71F0C /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
@@ -563,6 +559,7 @@
 		71CA7AA920D0625200126454 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		71CA7AAB20D0625300126454 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/AllGamesForDayTableVC.strings; sourceTree = "<group>"; };
 		71CA7AAC20D0625300126454 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/UserListViewController.strings; sourceTree = "<group>"; };
+		71D1797220FF4B1C0016526B /* applauding.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = applauding.wav; sourceTree = "<group>"; };
 		71D1A3712074FE5200C83B63 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		71D1A3722074FE5300C83B63 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		71D1A64E20751F2400C83B63 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -803,9 +800,7 @@
 		717D013720B851C70098893A /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				7186DDEF1E4DBF4100F71F0C /* Croquet ball drop bounce cement_BLASTWAVEFX_29317.wav */,
-				7186DDF01E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.mp3 */,
-				7186DDF11E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.wav */,
+				71D1797220FF4B1C0016526B /* applauding.wav */,
 				717D012C20B851BC0098893A /* 1Ballon.wav */,
 				717D012B20B851BB0098893A /* 2Ballon.wav */,
 				717D012D20B851BC0098893A /* 3Ballon.wav */,
@@ -830,12 +825,12 @@
 				717D011420B8518E0098893A /* 4bell synth.wav */,
 				717D011820B851910098893A /* 5bell synth.wav */,
 				717D011620B851900098893A /* 6bell synth.wav */,
-				717D010720B851730098893A /* 1droom.wav */,
-				717D010820B851740098893A /* 2droom.wav */,
-				717D010A20B851740098893A /* 3droom.wav */,
-				717D010920B851740098893A /* 4droom.wav */,
-				717D010B20B851740098893A /* 5droom.wav */,
-				717D010C20B851750098893A /* 6droom.wav */,
+				717D010720B851730098893A /* 1droon.wav */,
+				717D010820B851740098893A /* 2droon.wav */,
+				717D010A20B851740098893A /* 3droon.wav */,
+				717D010920B851740098893A /* 4droon.wav */,
+				717D010B20B851740098893A /* 5droon.wav */,
+				717D010C20B851750098893A /* 6droon.wav */,
 				717D010020B8515D0098893A /* 1harp.wav */,
 				717D00FD20B8515C0098893A /* 2harp.wav */,
 				717D00FF20B8515D0098893A /* 3harp.wav */,
@@ -1242,7 +1237,7 @@
 				71BAE49320C8607C00B594FA /* Users-INACTIVE-80x80.png in Resources */,
 				717D007720B3138C0098893A /* Balloon1.png in Resources */,
 				717D003520B309620098893A /* Login-Project.png in Resources */,
-				717D010D20B851750098893A /* 1droom.wav in Resources */,
+				717D010D20B851750098893A /* 1droon.wav in Resources */,
 				717D00CA20B850D50098893A /* 1Trombone.wav in Resources */,
 				71BAE49C20C9A3E800B594FA /* PEPAppIcon20x20.png in Resources */,
 				71CA7AA120D05F7000126454 /* AllGamesForDayTableVC.xib in Resources */,
@@ -1267,7 +1262,6 @@
 				717D00BB20B850C30098893A /* 1xylofoon.wav in Resources */,
 				717D010120B8515D0098893A /* 5harp.wav in Resources */,
 				71BAE4C620CAA0FA00B594FA /* HQ 6.jpg in Resources */,
-				7186DDF81E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.wav in Resources */,
 				717D00C520B850D50098893A /* 3Trombone.wav in Resources */,
 				71A03FB720F3F36800235F1E /* Images-2.xcassets in Resources */,
 				71EB846D20FCBEF400355EE8 /* InfoBackground-NL.png in Resources */,
@@ -1298,7 +1292,7 @@
 				71BAE4C420CAA0FA00B594FA /* HQ 11.jpg in Resources */,
 				717D006420B309CA0098893A /* Settings.png in Resources */,
 				717D00E220B851100098893A /* 2spaceship.wav in Resources */,
-				717D011120B851750098893A /* 5droom.wav in Resources */,
+				717D011120B851750098893A /* 5droon.wav in Resources */,
 				71BAE4D320CAA0FA00B594FA /* HQ 9.jpg in Resources */,
 				717D015720BC84F00098893A /* MainTableViewController.xib in Resources */,
 				71BAE4C520CAA0FA00B594FA /* HQ 2.jpg in Resources */,
@@ -1321,9 +1315,10 @@
 				7186DE141E4DBF5F00F71F0C /* Images.xcassets in Resources */,
 				7186DE111E4DBF5F00F71F0C /* GameViewController.xib in Resources */,
 				717D004220B309750098893A /* Bluetooth-OFF.png in Resources */,
-				717D010F20B851750098893A /* 4droom.wav in Resources */,
+				717D010F20B851750098893A /* 4droon.wav in Resources */,
 				717D024F20BEAB2B0098893A /* Splash1536x2048.png in Resources */,
 				71BAE4AC20C9AA7700B594FA /* Settings-ACTIVE-80x80.png in Resources */,
+				71D1798120FF4B1C0016526B /* applauding.wav in Resources */,
 				717D00EC20B851290098893A /* 5sirene fluit.wav in Resources */,
 				717D011C20B851910098893A /* 6bell synth.wav in Resources */,
 				717D011D20B851910098893A /* 2bell synth.wav in Resources */,
@@ -1349,14 +1344,14 @@
 				71CA7A7820D018A500126454 /* Localizable.strings in Resources */,
 				717D007C20B3138D0098893A /* Balloon5.png in Resources */,
 				71CA7A7E20D01C8F00126454 /* Login-Button-Login-NL.png in Resources */,
-				717D011020B851750098893A /* 3droom.wav in Resources */,
+				717D011020B851750098893A /* 3droon.wav in Resources */,
 				711A978120EE35DC0069F633 /* 1scheet.wav in Resources */,
 				71CA7A8D20D0553500126454 /* SettingsViewController.xib in Resources */,
 				717D013320B851BD0098893A /* 3Ballon.wav in Resources */,
 				717D013120B851BD0098893A /* 2Ballon.wav in Resources */,
 				71BAE4D120CAA0FA00B594FA /* HQ 5.jpg in Resources */,
 				717D00D120B850F00098893A /* 2Toy Piano.wav in Resources */,
-				717D011220B851750098893A /* 6droom.wav in Resources */,
+				717D011220B851750098893A /* 6droon.wav in Resources */,
 				717D00BC20B850C30098893A /* 4xylofoon.wav in Resources */,
 				71BAE4C720CAA0FA00B594FA /* HQ 12.jpg in Resources */,
 				71BAE4CE20CAA0FA00B594FA /* HQ 15.jpg in Resources */,
@@ -1370,7 +1365,7 @@
 				71BAE4C820CAA0FA00B594FA /* HQ 8 .jpg in Resources */,
 				71BAE4AB20C9AA7700B594FA /* Settings-INACTIVE-80x80.png in Resources */,
 				717D006320B309CA0098893A /* Help.png in Resources */,
-				717D010E20B851750098893A /* 2droom.wav in Resources */,
+				717D010E20B851750098893A /* 2droon.wav in Resources */,
 				717D012820B851A50098893A /* 1Bas slide.wav in Resources */,
 				717D00F720B851490098893A /* 4schuiffluit.wav in Resources */,
 				71BAE4AE20C9B27900B594FA /* Settings-INACTIVE-80x801.png in Resources */,
@@ -1379,7 +1374,6 @@
 				717D00D220B850F00098893A /* 6Toy Piano.wav in Resources */,
 				717D00B920B850C30098893A /* 6xylofoon.wav in Resources */,
 				717D00F820B851490098893A /* 3schuiffluit.wav in Resources */,
-				7186DDF71E4DBF4100F71F0C /* IMPACT RING METAL DESEND 01.mp3 in Resources */,
 				717D00ED20B851290098893A /* 1sirene fluit.wav in Resources */,
 				71D1A65A207523C900C83B63 /* giraffe.jpg in Resources */,
 				717D00C720B850D50098893A /* 2Trombone.wav in Resources */,
