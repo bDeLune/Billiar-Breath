@@ -78,11 +78,12 @@
     
     __unsafe_unretained BTLEManager *weakSelf = self;
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), _queue, ^{
+    //ios12
+    //dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), _queue, ^{
         if (weakSelf) {
             [weakSelf startScanning];
         }
-    });
+   // });
  
     [self startTimerWithInterval:interval];
 }
@@ -161,9 +162,10 @@
 {
     self.melody = [MelodyManager foundDeviceAtIndex:0];
     self.melody.delegate = self;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), _queue, ^{
+   //ios12
+   // dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), _queue, ^{
         [self.melody connect];
-    });
+   // });
 }
 
 #pragma mark -
