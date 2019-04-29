@@ -283,13 +283,6 @@
 			remoteGlobalIDString = BCF1A33414DDB1EC00852800;
 			remoteInfo = GPUImage;
 		};
-		71D5B9E020D146B700F44A0C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 71D5B9D820D146B600F44A0C /* GPUImage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BCE209E51943F20C002FEED8;
-			remoteInfo = GPUImageFramework;
-		};
 		71D5B9E220D146CD00F44A0C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 71D5B9D820D146B600F44A0C /* GPUImage.xcodeproj */;
@@ -1092,7 +1085,6 @@
 			isa = PBXGroup;
 			children = (
 				71D5B9DF20D146B700F44A0C /* libGPUImage.a */,
-				71D5B9E120D146B700F44A0C /* GPUImage.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1141,6 +1133,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 				nl,
@@ -1227,13 +1220,6 @@
 			fileType = archive.ar;
 			path = libGPUImage.a;
 			remoteRef = 71D5B9DE20D146B700F44A0C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		71D5B9E120D146B700F44A0C /* GPUImage.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = GPUImage.framework;
-			remoteRef = 71D5B9E020D146B700F44A0C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1644,8 +1630,10 @@
 				DEVELOPMENT_TEAM = 7HMHYHNLFC;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../corePlotFramework/**",
 					"$(SRCROOT)/../GPUImage/**",
+					"$(SRCROOT)/../corePlotFramework",
+					"$(SRCROOT)/../corePlotFramework/iPhoneOnly",
+					"$(SRCROOT)/../corePlotFramework/Source",
 				);
 				INFOPLIST_FILE = "PEP-APP/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
@@ -1674,8 +1662,10 @@
 				DEVELOPMENT_TEAM = 7HMHYHNLFC;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../corePlotFramework/**",
 					"$(SRCROOT)/../GPUImage/**",
+					"$(SRCROOT)/../corePlotFramework",
+					"$(SRCROOT)/../corePlotFramework/iPhoneOnly",
+					"$(SRCROOT)/../corePlotFramework/Source",
 				);
 				INFOPLIST_FILE = "PEP-APP/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;

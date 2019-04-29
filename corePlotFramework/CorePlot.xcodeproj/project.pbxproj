@@ -116,7 +116,6 @@
 		079FC0BF0FB9762B0037E990 /* CPTColorSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = 079FC0BC0FB9762B0037E990 /* CPTColorSpace.m */; };
 		07A2E6FC102DF47900809BC5 /* CPTTimeFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A2E6FA102DF47900809BC5 /* CPTTimeFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07A2E6FD102DF47900809BC5 /* CPTTimeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A2E6FB102DF47900809BC5 /* CPTTimeFormatter.m */; };
-		07AEF24910BBED050012BEFF /* CPTResponder.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AEF1FD10BBE1F10012BEFF /* CPTResponder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07B69A5D12B6215000F4C16C /* CPTTextStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B69A5B12B6215000F4C16C /* CPTTextStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07B69A5E12B6215000F4C16C /* CPTTextStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B69A5C12B6215000F4C16C /* CPTTextStyle.m */; };
 		07B69B1712B62ABB00F4C16C /* CPTMutableLineStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B69B1512B62ABB00F4C16C /* CPTMutableLineStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -998,7 +997,6 @@
 		07FCF2C5115B54AE00E46606 /* _CPTSlateTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _CPTSlateTheme.m; sourceTree = "<group>"; };
 		07FEBD60110B7E8B00E44D37 /* CPTScatterPlotTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTScatterPlotTests.h; sourceTree = "<group>"; };
 		07FEBD61110B7E8B00E44D37 /* CPTScatterPlotTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTScatterPlotTests.m; sourceTree = "<group>"; };
-		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		32484B3F0F530E8B002151AD /* CPTPlotRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CPTPlotRange.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		32484B400F530E8B002151AD /* CPTPlotRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CPTPlotRange.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32DBCF5E0370ADEE00C91783 /* CorePlot_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CorePlot_Prefix.pch; sourceTree = "<group>"; };
@@ -1201,6 +1199,7 @@
 		C3FF6EF00FFFA51D00AF0496 /* mainpage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mainpage.h; path = Source/mainpage.h; sourceTree = "<group>"; };
 		D0C0477B12D6560900DA8047 /* CPTRangePlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CPTRangePlot.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		D0C0477C12D6560900DA8047 /* CPTRangePlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTRangePlot.h; sourceTree = "<group>"; };
+		D35A8D1B2277C33000DD69C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E1620CBC100F03A100A84E77 /* CPTThemeTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTThemeTests.h; sourceTree = "<group>"; };
 		E1620CBD100F03A100A84E77 /* CPTThemeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTThemeTests.m; sourceTree = "<group>"; };
 		E1FE6050100F27EF00895A91 /* CPTDarkGradientThemeTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTDarkGradientThemeTests.h; sourceTree = "<group>"; };
@@ -2068,7 +2067,6 @@
 				4C97EF12104D819100B554F9 /* CPTMutableNumericData.h in Headers */,
 				C3F31DEA1045EB470058520A /* CPTPlotGroup.h in Headers */,
 				C3DA34CD107AD7710051DA02 /* _CPTXYTheme.h in Headers */,
-				07AEF24910BBED050012BEFF /* CPTResponder.h in Headers */,
 				0772B43A10E24D5C009CD04C /* CPTTradingRangePlot.h in Headers */,
 				070064E9111F2BAA003DE087 /* CPTConstraints.h in Headers */,
 				07FCF2C6115B54AE00E46606 /* _CPTSlateTheme.h in Headers */,
@@ -2493,14 +2491,15 @@
 			};
 			buildConfigurationList = 1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "CorePlot" */;
 			compatibilityVersion = "Xcode 6.3";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
-				English,
-				Japanese,
-				French,
 				German,
 				nl,
+				fr,
+				ja,
+				Base,
+				en,
 			);
 			mainGroup = 0867D691FE84028FC02AAC07 /* CorePlot */;
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
@@ -3213,8 +3212,8 @@
 		089C1666FE841158C02AAC07 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				089C1667FE841158C02AAC07 /* English */,
 				71CA7AAA20D0625300126454 /* nl */,
+				D35A8D1B2277C33000DD69C4 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -3289,6 +3288,7 @@
 		1DEB91B208733DA50010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -3318,6 +3318,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SYMROOT = "$(PROJECT_DIR)/../build";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -3326,6 +3328,7 @@
 		1DEB91B308733DA50010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -3353,6 +3356,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SYMROOT = "$(PROJECT_DIR)/../build";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
