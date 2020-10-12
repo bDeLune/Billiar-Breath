@@ -7,21 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		275DB64ACF1005274FA16870 /* libPods-PEP-APP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 273784C89A06172FC3BEB52C /* libPods-PEP-APP.a */; };
 		710857311E439A0A00479032 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 710857301E439A0A00479032 /* ViewController.m */; };
-		710857651E439B6200479032 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7108575C1E439B4200479032 /* libCorePlot-CocoaTouch.a */; };
 		710857681E439B8A00479032 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 710857671E439B8A00479032 /* Accelerate.framework */; };
 		710BDDE5207D039400B1E393 /* Model.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 7186DDCC1E4DBE0D00F71F0C /* Model.xcdatamodel */; };
 		710BDDEB207D24B600B1E393 /* giraffe-614141_1280.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 710BDDEA207D24B600B1E393 /* giraffe-614141_1280.jpg */; };
-		711A977F20EE35DC0069F633 /* 6scheet.wav in Resources */ = {isa = PBXBuildFile; fileRef = 711A976B20EE35D90069F633 /* 6scheet.wav */; };
-		711A978020EE35DC0069F633 /* 4scheet.wav in Resources */ = {isa = PBXBuildFile; fileRef = 711A977A20EE35DA0069F633 /* 4scheet.wav */; };
-		711A978120EE35DC0069F633 /* 1scheet.wav in Resources */ = {isa = PBXBuildFile; fileRef = 711A977B20EE35DA0069F633 /* 1scheet.wav */; };
-		711A978220EE35DC0069F633 /* 5scheet.wav in Resources */ = {isa = PBXBuildFile; fileRef = 711A977C20EE35DB0069F633 /* 5scheet.wav */; };
-		711A978320EE35DC0069F633 /* 3scheet.wav in Resources */ = {isa = PBXBuildFile; fileRef = 711A977D20EE35DB0069F633 /* 3scheet.wav */; };
-		711A978420EE35DC0069F633 /* 2scheet.wav in Resources */ = {isa = PBXBuildFile; fileRef = 711A977E20EE35DB0069F633 /* 2scheet.wav */; };
 		7128B02020D07C4100508782 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7128B01F20D07C4100508782 /* Launch Screen.storyboard */; };
 		713532242152421800DDDAF7 /* Settings-Button-EXHALE.png in Resources */ = {isa = PBXBuildFile; fileRef = 713532232152421700DDDAF7 /* Settings-Button-EXHALE.png */; };
 		713532262152424700DDDAF7 /* Settings-Button-INHALE.png in Resources */ = {isa = PBXBuildFile; fileRef = 713532252152424700DDDAF7 /* Settings-Button-INHALE.png */; };
 		713532282152427700DDDAF7 /* Main-Project.png in Resources */ = {isa = PBXBuildFile; fileRef = 713532272152427700DDDAF7 /* Main-Project.png */; };
+		7137890F253499870022A24B /* 5scheet.wav in Resources */ = {isa = PBXBuildFile; fileRef = 71378909253499850022A24B /* 5scheet.wav */; };
+		71378910253499870022A24B /* 3scheet.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7137890A253499860022A24B /* 3scheet.wav */; };
+		71378911253499870022A24B /* 6scheet.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7137890B253499860022A24B /* 6scheet.wav */; };
+		71378912253499870022A24B /* 2scheet.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7137890C253499860022A24B /* 2scheet.wav */; };
+		71378913253499870022A24B /* 1scheet.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7137890D253499860022A24B /* 1scheet.wav */; };
+		71378914253499870022A24B /* 4scheet.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7137890E253499870022A24B /* 4scheet.wav */; };
 		7138E5952088FBA700C0C08F /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7138E5932088FBA700C0C08F /* InfoViewController.m */; };
 		715E6C7920D80ACD00B87051 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 715E6C7720D80ACD00B87051 /* SplashViewController.m */; };
 		715E6C7A20D80ACD00B87051 /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 715E6C7820D80ACD00B87051 /* SplashViewController.xib */; };
@@ -205,92 +205,11 @@
 		71D1A65520751F4A00C83B63 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D1A65420751F4A00C83B63 /* AVFoundation.framework */; };
 		71D1A65720751F5300C83B63 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D1A65620751F5200C83B63 /* QuartzCore.framework */; };
 		71D1A65A207523C900C83B63 /* giraffe.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 71D1A659207523C900C83B63 /* giraffe.jpg */; };
-		71D5B9E420D146DE00F44A0C /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D5B9DF20D146B700F44A0C /* libGPUImage.a */; };
 		71EB844420FC861800355EE8 /* Login-Background-NL.png in Resources */ = {isa = PBXBuildFile; fileRef = 71EB844220FC861700355EE8 /* Login-Background-NL.png */; };
 		71EB844520FC861800355EE8 /* Login-Background-ENG.png in Resources */ = {isa = PBXBuildFile; fileRef = 71EB844320FC861800355EE8 /* Login-Background-ENG.png */; };
 		71EB846C20FCBEF400355EE8 /* InfoBackground-ENG.png in Resources */ = {isa = PBXBuildFile; fileRef = 71EB846A20FCBEF200355EE8 /* InfoBackground-ENG.png */; };
 		71EB846D20FCBEF400355EE8 /* InfoBackground-NL.png in Resources */ = {isa = PBXBuildFile; fileRef = 71EB846B20FCBEF300355EE8 /* InfoBackground-NL.png */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		710857531E439B4200479032 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 710857431E439B4100479032 /* CorePlot.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
-			remoteInfo = "CorePlot Mac";
-		};
-		710857551E439B4200479032 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 710857431E439B4100479032 /* CorePlot.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0730F600109492D800E95162;
-			remoteInfo = "UnitTests Mac";
-		};
-		710857571E439B4200479032 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 710857431E439B4100479032 /* CorePlot.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C38A09781A46185200D45436;
-			remoteInfo = "CorePlot iOS";
-		};
-		710857591E439B4200479032 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 710857431E439B4100479032 /* CorePlot.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C38A09821A46185300D45436;
-			remoteInfo = "UnitTests iOS";
-		};
-		7108575B1E439B4200479032 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 710857431E439B4100479032 /* CorePlot.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C38A09BA1A4619A900D45436;
-			remoteInfo = "CorePlot-CocoaTouch";
-		};
-		7108575D1E439B4200479032 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 710857431E439B4100479032 /* CorePlot.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C38A09C41A4619A900D45436;
-			remoteInfo = "CorePlot-CocoaTouchTests";
-		};
-		7108575F1E439B4200479032 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 710857431E439B4100479032 /* CorePlot.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C37EA6921BC83F2A0091C8F7;
-			remoteInfo = "CorePlot tvOS";
-		};
-		710857611E439B4200479032 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 710857431E439B4100479032 /* CorePlot.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C37EA6B71BC83F2D0091C8F7;
-			remoteInfo = "UnitTests tvOS";
-		};
-		710857631E439B5D00479032 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 710857431E439B4100479032 /* CorePlot.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = C38A09B91A4619A900D45436;
-			remoteInfo = "CorePlot-CocoaTouch";
-		};
-		71D5B9DE20D146B700F44A0C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 71D5B9D820D146B600F44A0C /* GPUImage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BCF1A33414DDB1EC00852800;
-			remoteInfo = GPUImage;
-		};
-		71D5B9E220D146CD00F44A0C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 71D5B9D820D146B600F44A0C /* GPUImage.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = BCF1A33314DDB1EC00852800;
-			remoteInfo = GPUImage;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		71D1A64C207518D200C83B63 /* CopyFiles */ = {
@@ -305,12 +224,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		273784C89A06172FC3BEB52C /* libPods-PEP-APP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PEP-APP.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BC1D53A06A3C9C05189B088 /* Pods-PEP-APP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PEP-APP.debug.xcconfig"; path = "Target Support Files/Pods-PEP-APP/Pods-PEP-APP.debug.xcconfig"; sourceTree = "<group>"; };
 		710857261E439A0A00479032 /* PEP-APP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PEP-APP.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7108572C1E439A0A00479032 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7108572F1E439A0A00479032 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		710857301E439A0A00479032 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; tabWidth = 6; };
 		7108573D1E439A0A00479032 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		710857431E439B4100479032 /* CorePlot.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CorePlot.xcodeproj; path = ../corePlotFramework/CorePlot.xcodeproj; sourceTree = "<group>"; };
 		710857671E439B8A00479032 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		710B733C20FE570A00DF8824 /* Settings-Button-INHALE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Settings-Button-INHALE.png"; path = "../../../../.Trash/App UI 3/Settings/Settings-Button-INHALE.png"; sourceTree = "<group>"; };
 		710B733D20FE570B00DF8824 /* Settings-Button-EXHALE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Settings-Button-EXHALE.png"; path = "../../../../.Trash/App UI 3/Settings/Settings-Button-EXHALE.png"; sourceTree = "<group>"; };
@@ -327,16 +247,16 @@
 		710B734A20FE57E000DF8824 /* Main-Project.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Main-Project.png"; path = "../../../../.Trash/App UI 2/Main/Main-Project.png"; sourceTree = "<group>"; };
 		710B734B20FE57E100DF8824 /* Settings-Button-EXHALE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Settings-Button-EXHALE.png"; path = "../../../../.Trash/App UI 3/Settings/Settings-Button-EXHALE.png"; sourceTree = "<group>"; };
 		710BDDEA207D24B600B1E393 /* giraffe-614141_1280.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "giraffe-614141_1280.jpg"; sourceTree = "<group>"; };
-		711A976B20EE35D90069F633 /* 6scheet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = 6scheet.wav; path = ../../../../Downloads/fart_sounds/6scheet.wav; sourceTree = "<group>"; };
-		711A977A20EE35DA0069F633 /* 4scheet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = 4scheet.wav; path = ../../../../Downloads/fart_sounds/4scheet.wav; sourceTree = "<group>"; };
-		711A977B20EE35DA0069F633 /* 1scheet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = 1scheet.wav; path = ../../../../Downloads/fart_sounds/1scheet.wav; sourceTree = "<group>"; };
-		711A977C20EE35DB0069F633 /* 5scheet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = 5scheet.wav; path = ../../../../Downloads/fart_sounds/5scheet.wav; sourceTree = "<group>"; };
-		711A977D20EE35DB0069F633 /* 3scheet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = 3scheet.wav; path = ../../../../Downloads/fart_sounds/3scheet.wav; sourceTree = "<group>"; };
-		711A977E20EE35DB0069F633 /* 2scheet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = 2scheet.wav; path = ../../../../Downloads/fart_sounds/2scheet.wav; sourceTree = "<group>"; };
 		7128B01F20D07C4100508782 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		713532232152421700DDDAF7 /* Settings-Button-EXHALE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings-Button-EXHALE.png"; sourceTree = "<group>"; };
 		713532252152424700DDDAF7 /* Settings-Button-INHALE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings-Button-INHALE.png"; sourceTree = "<group>"; };
 		713532272152427700DDDAF7 /* Main-Project.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Main-Project.png"; path = "PEP-APP/Main-Project.png"; sourceTree = "<group>"; };
+		71378909253499850022A24B /* 5scheet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 5scheet.wav; sourceTree = "<group>"; };
+		7137890A253499860022A24B /* 3scheet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 3scheet.wav; sourceTree = "<group>"; };
+		7137890B253499860022A24B /* 6scheet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 6scheet.wav; sourceTree = "<group>"; };
+		7137890C253499860022A24B /* 2scheet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 2scheet.wav; sourceTree = "<group>"; };
+		7137890D253499860022A24B /* 1scheet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1scheet.wav; sourceTree = "<group>"; };
+		7137890E253499870022A24B /* 4scheet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 4scheet.wav; sourceTree = "<group>"; };
 		7138E5922088FBA700C0C08F /* InfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		7138E5932088FBA700C0C08F /* InfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		715E6C7620D80ACD00B87051 /* SplashViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
@@ -569,11 +489,11 @@
 		71D5B9A620D11E3600F44A0C /* Main-Project.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Main-Project.png"; path = "../../../../.Trash/App UI 2/Main/Main-Project.png"; sourceTree = "<group>"; };
 		71D5B9B420D11EB000F44A0C /* Settings-Button-EXHALE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Settings-Button-EXHALE.png"; path = "../../../../.Trash/App UI 3/Settings/Settings-Button-EXHALE.png"; sourceTree = "<group>"; };
 		71D5B9B520D11EB000F44A0C /* Settings-Button-INHALE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Settings-Button-INHALE.png"; path = "../../../../.Trash/App UI 3/Settings/Settings-Button-INHALE.png"; sourceTree = "<group>"; };
-		71D5B9D820D146B600F44A0C /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = ../GPUImage/framework/GPUImage.xcodeproj; sourceTree = "<group>"; };
 		71EB844220FC861700355EE8 /* Login-Background-NL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-Background-NL.png"; sourceTree = "<group>"; };
 		71EB844320FC861800355EE8 /* Login-Background-ENG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-Background-ENG.png"; sourceTree = "<group>"; };
 		71EB846A20FCBEF200355EE8 /* InfoBackground-ENG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InfoBackground-ENG.png"; sourceTree = "<group>"; };
 		71EB846B20FCBEF300355EE8 /* InfoBackground-NL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InfoBackground-NL.png"; sourceTree = "<group>"; };
+		ACFD54E1EA5113FD169032C2 /* Pods-PEP-APP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PEP-APP.release.xcconfig"; path = "Target Support Files/Pods-PEP-APP/Pods-PEP-APP.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -581,15 +501,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71D5B9E420D146DE00F44A0C /* libGPUImage.a in Frameworks */,
 				71D1A65720751F5300C83B63 /* QuartzCore.framework in Frameworks */,
 				71D1A65520751F4A00C83B63 /* AVFoundation.framework in Frameworks */,
 				71D1A65320751F4200C83B63 /* OpenGLES.framework in Frameworks */,
 				71D1A65120751F2D00C83B63 /* CoreVideo.framework in Frameworks */,
 				71D1A64F20751F2400C83B63 /* CoreMedia.framework in Frameworks */,
 				710857681E439B8A00479032 /* Accelerate.framework in Frameworks */,
-				710857651E439B6200479032 /* libCorePlot-CocoaTouch.a in Frameworks */,
 				7186DEB41E4DC59F00F71F0C /* libMelodySmart.a in Frameworks */,
+				275DB64ACF1005274FA16870 /* libPods-PEP-APP.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,13 +521,12 @@
 				713532272152427700DDDAF7 /* Main-Project.png */,
 				713532252152424700DDDAF7 /* Settings-Button-INHALE.png */,
 				713532232152421700DDDAF7 /* Settings-Button-EXHALE.png */,
-				71D5B9D820D146B600F44A0C /* GPUImage.xcodeproj */,
 				7128B01F20D07C4100508782 /* Launch Screen.storyboard */,
 				71CA7A7A20D018A500126454 /* Localizable.strings */,
-				710857431E439B4100479032 /* CorePlot.xcodeproj */,
 				710857281E439A0A00479032 /* PEP-APP */,
 				710857271E439A0A00479032 /* Products */,
 				710857661E439B8A00479032 /* Frameworks */,
+				E1FC17A6A80CBCEA5DE54C08 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -667,21 +585,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		710857441E439B4100479032 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				710857541E439B4200479032 /* CorePlot.framework */,
-				710857561E439B4200479032 /* UnitTests.xctest */,
-				710857581E439B4200479032 /* CorePlot.framework */,
-				7108575A1E439B4200479032 /* UnitTests iOS.xctest */,
-				7108575C1E439B4200479032 /* libCorePlot-CocoaTouch.a */,
-				7108575E1E439B4200479032 /* CorePlot-CocoaTouchTests.xctest */,
-				710857601E439B4200479032 /* CorePlot.framework */,
-				710857621E439B4200479032 /* UnitTests tvOS.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		710857661E439B8A00479032 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -691,6 +594,7 @@
 				71D1A65020751F2C00C83B63 /* CoreVideo.framework */,
 				71D1A64E20751F2400C83B63 /* CoreMedia.framework */,
 				710857671E439B8A00479032 /* Accelerate.framework */,
+				273784C89A06172FC3BEB52C /* libPods-PEP-APP.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -830,6 +734,12 @@
 				717D010720B851730098893A /* 1droon.wav */,
 				717D010820B851740098893A /* 2droon.wav */,
 				717D010A20B851740098893A /* 3droon.wav */,
+				7137890D253499860022A24B /* 1scheet.wav */,
+				7137890C253499860022A24B /* 2scheet.wav */,
+				7137890A253499860022A24B /* 3scheet.wav */,
+				7137890E253499870022A24B /* 4scheet.wav */,
+				71378909253499850022A24B /* 5scheet.wav */,
+				7137890B253499860022A24B /* 6scheet.wav */,
 				717D010920B851740098893A /* 4droon.wav */,
 				717D010B20B851740098893A /* 5droon.wav */,
 				717D010C20B851750098893A /* 6droon.wav */,
@@ -839,12 +749,6 @@
 				717D00FE20B8515C0098893A /* 4harp.wav */,
 				717D00FB20B8515B0098893A /* 5harp.wav */,
 				717D00FC20B8515C0098893A /* 6harp.wav */,
-				711A977B20EE35DA0069F633 /* 1scheet.wav */,
-				711A977E20EE35DB0069F633 /* 2scheet.wav */,
-				711A977D20EE35DB0069F633 /* 3scheet.wav */,
-				711A977A20EE35DA0069F633 /* 4scheet.wav */,
-				711A977C20EE35DB0069F633 /* 5scheet.wav */,
-				711A976B20EE35D90069F633 /* 6scheet.wav */,
 				717D00F320B851480098893A /* 1schuiffluit.wav */,
 				717D00F020B851470098893A /* 2schuiffluit.wav */,
 				717D00F220B851480098893A /* 3schuiffluit.wav */,
@@ -1081,12 +985,13 @@
 			path = UIEffectDesignerView;
 			sourceTree = "<group>";
 		};
-		71D5B9D920D146B600F44A0C /* Products */ = {
+		E1FC17A6A80CBCEA5DE54C08 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				71D5B9DF20D146B700F44A0C /* libGPUImage.a */,
+				6BC1D53A06A3C9C05189B088 /* Pods-PEP-APP.debug.xcconfig */,
+				ACFD54E1EA5113FD169032C2 /* Pods-PEP-APP.release.xcconfig */,
 			);
-			name = Products;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1096,16 +1001,16 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 710857401E439A0A00479032 /* Build configuration list for PBXNativeTarget "PEP-APP" */;
 			buildPhases = (
+				04544EDD9A504E4CFDE51094 /* [CP] Check Pods Manifest.lock */,
 				710857221E439A0A00479032 /* Sources */,
 				710857231E439A0A00479032 /* Frameworks */,
 				710857241E439A0A00479032 /* Resources */,
 				71D1A64C207518D200C83B63 /* CopyFiles */,
+				0F6548B9989A337F82A49E95 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				71D5B9E320D146CD00F44A0C /* PBXTargetDependency */,
-				710857641E439B5D00479032 /* PBXTargetDependency */,
 			);
 			name = "PEP-APP";
 			productName = Billiard2017;
@@ -1141,88 +1046,12 @@
 			mainGroup = 7108571D1E439A0A00479032;
 			productRefGroup = 710857271E439A0A00479032 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 710857441E439B4100479032 /* Products */;
-					ProjectRef = 710857431E439B4100479032 /* CorePlot.xcodeproj */;
-				},
-				{
-					ProductGroup = 71D5B9D920D146B600F44A0C /* Products */;
-					ProjectRef = 71D5B9D820D146B600F44A0C /* GPUImage.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				710857251E439A0A00479032 /* PEP-APP */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		710857541E439B4200479032 /* CorePlot.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CorePlot.framework;
-			remoteRef = 710857531E439B4200479032 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		710857561E439B4200479032 /* UnitTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = UnitTests.xctest;
-			remoteRef = 710857551E439B4200479032 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		710857581E439B4200479032 /* CorePlot.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CorePlot.framework;
-			remoteRef = 710857571E439B4200479032 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7108575A1E439B4200479032 /* UnitTests iOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "UnitTests iOS.xctest";
-			remoteRef = 710857591E439B4200479032 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7108575C1E439B4200479032 /* libCorePlot-CocoaTouch.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libCorePlot-CocoaTouch.a";
-			remoteRef = 7108575B1E439B4200479032 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		7108575E1E439B4200479032 /* CorePlot-CocoaTouchTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "CorePlot-CocoaTouchTests.xctest";
-			remoteRef = 7108575D1E439B4200479032 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		710857601E439B4200479032 /* CorePlot.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CorePlot.framework;
-			remoteRef = 7108575F1E439B4200479032 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		710857621E439B4200479032 /* UnitTests tvOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "UnitTests tvOS.xctest";
-			remoteRef = 710857611E439B4200479032 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		71D5B9DF20D146B700F44A0C /* libGPUImage.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libGPUImage.a;
-			remoteRef = 71D5B9DE20D146B700F44A0C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		710857241E439A0A00479032 /* Resources */ = {
@@ -1232,6 +1061,7 @@
 				71BAE49320C8607C00B594FA /* Users-INACTIVE-80x80.png in Resources */,
 				717D007720B3138C0098893A /* Balloon1.png in Resources */,
 				717D003520B309620098893A /* Login-Project.png in Resources */,
+				71378914253499870022A24B /* 4scheet.wav in Resources */,
 				717D010D20B851750098893A /* 1droon.wav in Resources */,
 				717D00CA20B850D50098893A /* 1Trombone.wav in Resources */,
 				71BAE49C20C9A3E800B594FA /* PEPAppIcon20x20.png in Resources */,
@@ -1243,6 +1073,7 @@
 				71CA7A8420D047AA00126454 /* User-Back-Button.png in Resources */,
 				717D00EE20B851290098893A /* 6sirene fluit.wav in Resources */,
 				717D009A20B440F00098893A /* Main-Button-Picker-HICONTRAST.png in Resources */,
+				7137890F253499870022A24B /* 5scheet.wav in Resources */,
 				717D010620B8515D0098893A /* 1harp.wav in Resources */,
 				71BAE4A320C9A82B00B594FA /* BUTTON-OnlineManual-ENG.png in Resources */,
 				717D015B20BD61310098893A /* Settings-Background.png in Resources */,
@@ -1250,6 +1081,7 @@
 				717D00E920B851290098893A /* 4sirene fluit.wav in Resources */,
 				71BAE4CF20CAA0FA00B594FA /* HQ 10.jpg in Resources */,
 				717D003E20B309750098893A /* Sound-ON.png in Resources */,
+				71378910253499870022A24B /* 3scheet.wav in Resources */,
 				71EB844420FC861800355EE8 /* Login-Background-NL.png in Resources */,
 				71CA7A7F20D0317D00126454 /* LoginViewController.xib in Resources */,
 				71BAE4CA20CAA0FA00B594FA /* HQ 16.jpg in Resources */,
@@ -1260,13 +1092,10 @@
 				717D00C520B850D50098893A /* 3Trombone.wav in Resources */,
 				71A03FB720F3F36800235F1E /* Images-2.xcassets in Resources */,
 				71EB846D20FCBEF400355EE8 /* InfoBackground-NL.png in Resources */,
-				711A978320EE35DC0069F633 /* 3scheet.wav in Resources */,
 				717D007920B3138D0098893A /* Balloon4.png in Resources */,
-				711A978020EE35DC0069F633 /* 4scheet.wav in Resources */,
 				717D012620B851A50098893A /* 6Bas slide.wav in Resources */,
 				71BAE4CB20CAA0FA00B594FA /* HQ 20.jpg in Resources */,
 				717D011E20B851910098893A /* 5bell synth.wav in Resources */,
-				711A978420EE35DC0069F633 /* 2scheet.wav in Resources */,
 				717D007B20B3138D0098893A /* Balloon2.png in Resources */,
 				717D00F920B851490098893A /* 1schuiffluit.wav in Resources */,
 				71BAE4CC20CAA0FA00B594FA /* HQ 17.jpg in Resources */,
@@ -1325,8 +1154,8 @@
 				717D00C620B850D50098893A /* 6Trombone.wav in Resources */,
 				717D00DF20B851100098893A /* 5spaceship.wav in Resources */,
 				717D00EA20B851290098893A /* 3sirene fluit.wav in Resources */,
-				711A978220EE35DC0069F633 /* 5scheet.wav in Resources */,
 				717D00F520B851490098893A /* 5schuiffluit.wav in Resources */,
+				71378913253499870022A24B /* 1scheet.wav in Resources */,
 				71BAE4D620CAA0FA00B594FA /* HQ 1.jpg in Resources */,
 				717D009920B440F00098893A /* Main-Button-Picker-ALBUM.png in Resources */,
 				717D00E020B851100098893A /* 1spaceship.wav in Resources */,
@@ -1339,7 +1168,6 @@
 				717D007C20B3138D0098893A /* Balloon5.png in Resources */,
 				71CA7A7E20D01C8F00126454 /* Login-Button-Login-NL.png in Resources */,
 				717D011020B851750098893A /* 3droon.wav in Resources */,
-				711A978120EE35DC0069F633 /* 1scheet.wav in Resources */,
 				71CA7A8D20D0553500126454 /* SettingsViewController.xib in Resources */,
 				717D013320B851BD0098893A /* 3Ballon.wav in Resources */,
 				717D013120B851BD0098893A /* 2Ballon.wav in Resources */,
@@ -1350,6 +1178,7 @@
 				717D00BC20B850C30098893A /* 4xylofoon.wav in Resources */,
 				71BAE4C720CAA0FA00B594FA /* HQ 12.jpg in Resources */,
 				71BAE4CE20CAA0FA00B594FA /* HQ 15.jpg in Resources */,
+				71378911253499870022A24B /* 6scheet.wav in Resources */,
 				717D013620B851BD0098893A /* 6Ballon.wav in Resources */,
 				717D010520B8515D0098893A /* 3harp.wav in Resources */,
 				717D013920B868E30098893A /* User-Project.png in Resources */,
@@ -1360,6 +1189,7 @@
 				71BAE4AB20C9AA7700B594FA /* Settings-INACTIVE-80x80.png in Resources */,
 				717D006320B309CA0098893A /* Help.png in Resources */,
 				717D010E20B851750098893A /* 2droon.wav in Resources */,
+				71378912253499870022A24B /* 2scheet.wav in Resources */,
 				717D012820B851A50098893A /* 1Bas slide.wav in Resources */,
 				717D00F720B851490098893A /* 4schuiffluit.wav in Resources */,
 				71BAE4AE20C9B27900B594FA /* Settings-INACTIVE-80x801.png in Resources */,
@@ -1379,7 +1209,6 @@
 				717D010320B8515D0098893A /* 2harp.wav in Resources */,
 				71BAE4CD20CAA0FA00B594FA /* HQ 7.jpg in Resources */,
 				710BDDEB207D24B600B1E393 /* giraffe-614141_1280.jpg in Resources */,
-				711A977F20EE35DC0069F633 /* 6scheet.wav in Resources */,
 				71CA7A9820D05B1100126454 /* Main.storyboard in Resources */,
 				71BAE49220C8607C00B594FA /* PEP-App-INACTIVE-80x80.png in Resources */,
 				717D00F620B851490098893A /* 2schuiffluit.wav in Resources */,
@@ -1391,6 +1220,57 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		04544EDD9A504E4CFDE51094 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PEP-APP-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0F6548B9989A337F82A49E95 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PEP-APP/Pods-PEP-APP-resources.sh",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_amatorka.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_miss_etikate.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_soft_elegance_1.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_soft_elegance_2.png",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_amatorka.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_miss_etikate.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_soft_elegance_1.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_soft_elegance_2.png",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PEP-APP/Pods-PEP-APP-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		710857221E439A0A00479032 /* Sources */ = {
@@ -1437,19 +1317,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		710857641E439B5D00479032 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "CorePlot-CocoaTouch";
-			targetProxy = 710857631E439B5D00479032 /* PBXContainerItemProxy */;
-		};
-		71D5B9E320D146CD00F44A0C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = GPUImage;
-			targetProxy = 71D5B9E220D146CD00F44A0C /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		71CA7A7A20D018A500126454 /* Localizable.strings */ = {
@@ -1562,6 +1429,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1613,6 +1481,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1621,28 +1490,26 @@
 		};
 		710857411E439A0A00479032 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BC1D53A06A3C9C05189B088 /* Pods-PEP-APP.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.88;
 				DEVELOPMENT_TEAM = 7HMHYHNLFC;
 				ENABLE_BITCODE = NO;
-				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../GPUImage/**",
-					"$(SRCROOT)/../corePlotFramework",
-					"$(SRCROOT)/../corePlotFramework/iPhoneOnly",
-					"$(SRCROOT)/../corePlotFramework/Source",
-				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "PEP-APP/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
 					"$(PROJECT_DIR)/PEP-APP/btlemanager/libMelodySmart",
+					"$(inherited)",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
+				"OTHER_LDFLAGS[arch=*]" = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.audiorhoon.pep-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1653,28 +1520,25 @@
 		};
 		710857421E439A0A00479032 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ACFD54E1EA5113FD169032C2 /* Pods-PEP-APP.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.88;
 				DEVELOPMENT_TEAM = 7HMHYHNLFC;
 				ENABLE_BITCODE = NO;
-				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../GPUImage/**",
-					"$(SRCROOT)/../corePlotFramework",
-					"$(SRCROOT)/../corePlotFramework/iPhoneOnly",
-					"$(SRCROOT)/../corePlotFramework/Source",
-				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "PEP-APP/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
 					"$(PROJECT_DIR)/PEP-APP/btlemanager/libMelodySmart",
+					"$(inherited)",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.audiorhoon.pep-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
