@@ -46,6 +46,7 @@
     [self.initialSplash.view removeFromSuperview];
 }
 
+
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     [self.mainTableViewController saveUserSettings];

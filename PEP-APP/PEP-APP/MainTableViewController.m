@@ -70,13 +70,23 @@
     self.delegate = self;
 }
 
-- (void)viewWillLayoutSubviews {
+//- (void)viewWillLayoutSubviews {
+//    CGRect tabFrame = self.tabBar.frame;
+//    tabFrame.size.height = 130;
+//    tabFrame.origin.y = self.view.frame.size.height - 110;
+//    self.tabBar.frame = tabFrame;
+//    [self.tabBar setItemPositioning:UITabBarItemPositioningFill];
+//}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
     CGRect tabFrame = self.tabBar.frame;
-    tabFrame.size.height = 130;
+    tabFrame.size.height = 115;
     tabFrame.origin.y = self.view.frame.size.height - 110;
     self.tabBar.frame = tabFrame;
     [self.tabBar setItemPositioning:UITabBarItemPositioningFill];
 }
+
 
 -(void)setMemoryInfo:(NSPersistentStoreCoordinator*)store withuser:(User*)user withManagedObjectContext:(NSManagedObjectContext*)moc{
     self.gameViewController.gameUser=user;
