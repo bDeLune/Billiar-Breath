@@ -1,0 +1,4 @@
+target 'PEP-APP' do
+    pod 'CorePlot', '~> 2.3'
+    pod 'GPUImage', '~> 0.1'
+end
